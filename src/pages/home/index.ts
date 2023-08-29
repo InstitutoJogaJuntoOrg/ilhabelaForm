@@ -1,1 +1,1 @@
-export {HomePage} from './form'
+export {HomePage} from './home'

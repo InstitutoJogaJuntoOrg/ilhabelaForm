@@ -1,12 +1,15 @@
-import { Routes, Route } from 'react-router-dom';
-import { HomePage } from '../pages/home/form';
-import { FormPage } from '../pages/form/form';
+import { Routes, Route } from "react-router-dom";
+import { FormPage } from "../pages/form/form";
+import { DefaultLayout } from "../layout/default";
+import { HomePage } from "../pages/home";
 
 export function Router() {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/inscrição" element={<FormPage />} />
+      <Route path="/" element={<DefaultLayout />}>
+        <Route path="/inscrição" element={<FormPage />} />
+        <Route path="/" element={<HomePage />} />
+      </Route>
     </Routes>
   );
 }
