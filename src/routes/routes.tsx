@@ -7,7 +7,7 @@ export function Router() {
   return (
     <Routes>
       <Route path="/" element={<DefaultLayout />}>
-        <Route path="/inscrição" element={<FormPage />} />
+        <Route path="/inscricao" element={<FormPage />} />
         <Route path="/" element={<HomePage />} />
       </Route>
     </Routes>
