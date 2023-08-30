@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+import { styled } from "styled-components";
 
 export const HeaderContainer = styled.header`
   background-color: #9fdb89;
@@ -10,7 +10,7 @@ export const HeaderContainer = styled.header`
     align-items: center;
     height: 93px;
     justify-content: space-between;
-    padding: .2rem 4rem;
+    padding: 0.2rem 4rem;
   }
 
   ul {
@@ -18,10 +18,49 @@ export const HeaderContainer = styled.header`
     display: flex;
     gap: 25px;
   }
+
+  .hamburger-icon {
+    display: none;
+    position: fixed;
+    left: 90%;
+    cursor: pointer;
+  }
+
+  @media (max-width: 800px) {
+
+    top: 1rem;
+    z-index: 10;
+    img {
+        width:70%;
+    }
+    ul {
+      display: none;
+    }
+
+    .show-links ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: white;
+      padding: 1rem;
+      box-shadow: 0px 15px 39px 0px rgba(0, 0, 0, 0.25);
+      z-index: 1;
+      position: absolute;
+      top: 93px;
+      left: 0;
+      width: 100%;
+    }
+
+    .hamburger-icon {
+      display: block;
+      z-index: 100;
+      color: white;
+    }
+  }
 `;
+
 export const StyledNavLink = styled(NavLink)`
   z-index: 10;
-  /* Estilos para o link */
   padding: 0.5rem 1rem;
   display: flex;
   justify-content: center;
@@ -36,7 +75,7 @@ export const StyledNavLink = styled(NavLink)`
     background-color: #54993a;
     border-radius: 60px;
   }
-  /* Estilos para o link ativo */
+
   &.active {
     color: white;
     background-color: #54993a;

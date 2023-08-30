@@ -24,19 +24,6 @@ export const HomePage = () => {
           <button>Inscrever-se</button>
         </ContainerTitle>
       </section>
-      <ContainerCards>
-        <Card
-          titleCard="Sobre o projeto"
-          image="https://cdn.discordapp.com/attachments/566850308702208001/1146214276537786438/Group.png"
-          alt="image card ilhabela"
-        />
-        <Card
-          titleCard="Sobre o QA"
-          className="fullWidth"
-          image="https://cdn.discordapp.com/attachments/566850308702208001/1146220725309546546/Rectangle_28.png"
-          alt="image card ilhabela"
-        />
-      </ContainerCards>
     </ContainerHome>
   );
 };

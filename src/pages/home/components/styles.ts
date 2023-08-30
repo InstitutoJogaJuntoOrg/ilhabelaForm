@@ -31,47 +31,65 @@ export const Background = styled.div`
       font-size: 2rem;
     }
   }
-
   .fullWidth {
     border-radius: 16px;
     height: 535px;
     width: 100%;
     background-color: white;
     padding: 0;
-    transition: box-shadow 0.3s ease-in-out; /* Adicione uma transição suave */
-
+    transition: box-shadow 0.3s ease-in-out;
     &:hover {
-      box-shadow: 0px 15px 39px 0px rgba(0, 0, 0, 0.35); /* Adicione uma sombra no hover */
+      box-shadow: 0px 15px 39px 0px rgba(0, 0, 0, 0.35);
     }
   }
 `;
-
 export const ContainerCard = styled.div`
   position: relative;
-  width: 450px;
+  width: 420px;
+
+  margin-top: -30rem;
   cursor: pointer;
+  background-color: white;
   display: flex;
+
   justify-content: center;
   align-items: center;
   border-radius: 16px;
-  background-color: white;
   box-shadow: 0px 15px 39px 0px rgba(0, 0, 0, 0.25);
   border-radius: 16px;
   img {
     padding-left: 5rem;
     padding-right: 7.5rem;
-    padding-top: 9.3rem;
+    padding-top: 8.3rem;
     padding-bottom: 10.4rem;
   }
-  transition: box-shadow .3s ease-in-out; /* Adicione uma transição suave */
+  @media (max-width: 1400px) {
+    margin-top: -5rem;
+    display: flex;
+    flex-wrap: wrap;
+    width: 420px;
+  }
+  transition: box-shadow 0.3s ease-in-out;
   &:hover {
-    box-shadow: 0px 15px 39px 0px rgba(0, 0, 0, 0.50); /* Adicione uma sombra no hover */
+    box-shadow: 0px 15px 39px 0px rgba(0, 0, 0, 0.5);
   }
 `;
 export const ContainerCards = styled.div`
-  margin-top: -30rem;
+  width: 100%;
+
+  @media (max-width: 1000px) {
+    margin-top: 5rem!important;
+  }
+  flex-wrap: wrap;
   background-color: white;
-  display: flex;
+
   justify-content: center;
-  gap: 3rem;
+  gap: 7rem;
+
+  @media (max-width: 1400px) {
+    margin-top: -3rem;
+  }
+  @media (max-width: 600px) {
+    margin-top: 5rem;
+  }
 `;
