@@ -25,5 +25,8 @@ export const GlobalStyle = createGlobalStyle`
   .p-inputtext:enabled:focus {
     box-shadow: none;
   }
+  .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+    color: black;
+  }
 `;
  
