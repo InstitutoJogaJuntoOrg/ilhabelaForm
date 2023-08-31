@@ -22,5 +22,8 @@ export const GlobalStyle = createGlobalStyle`
     color: white;
     padding: 1rem 0rem;
   }
+  .p-inputtext:enabled:focus {
+    box-shadow: none;
+  }
 `;
  

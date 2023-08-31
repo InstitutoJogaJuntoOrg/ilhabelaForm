@@ -20,9 +20,9 @@ export const Container = styled.div`
     flex-direction: column;
   }
   form {
-    .invalid-input {
-  border: 2px solid red;
-}
+    .p-invalid {
+      border: 2px solid red;
+    }
     gap: 4rem;
     border-radius: 15px;
     box-shadow: 0px 15px 57px 0px rgba(0, 0, 0, 0.25);

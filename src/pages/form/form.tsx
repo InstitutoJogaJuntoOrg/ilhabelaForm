@@ -40,20 +40,20 @@ export const FormPage = () => {
   } = useForm<FormSchemaType>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      state: '',
-      deficiency: "",
-      color: "",
-      children: "",
-      gender: "",
-      guidance: "",
-      income: '',
+      income: "",
     },
   });
 
   function handleForm(data: FormSchemaType) {
     console.log(data);
 
-    reset()
+    setSelectedCity(null);
+    setSelectedcollor(null);
+    setSelectedchildrens(null);
+    setSelectedguildance(null);
+    setSelectedgender(null);
+    SetSelectedDeficiency(null);
+    reset();
   }
   console.log(errors);
   return (
@@ -81,6 +81,7 @@ export const FormPage = () => {
                 id="username"
                 aria-describedby="username-help"
                 placeholder="Nome"
+                className={errors.name ? "p-invalid" : ""}
               />
             </div>
 
@@ -95,7 +96,8 @@ export const FormPage = () => {
                 {...register("socialName")}
                 id="socialName"
                 aria-describedby="username-help"
-                placeholder="Nome socil"
+                placeholder="Nome social"
+                className={errors.socialName ? "p-invalid" : ""}
               />
             </div>
 
@@ -111,6 +113,7 @@ export const FormPage = () => {
                 key="cpf"
                 mask="999.999.999-99"
                 placeholder="___.___.___-__"
+                className={errors.cpf ? "p-invalid" : ""}
               />
             </div>
 
@@ -121,7 +124,7 @@ export const FormPage = () => {
               }}
             >
               <label>Email</label>
-              <InputText {...register("email")} placeholder="Email" />
+              <InputText {...register("email")} placeholder="Email" className={errors.email ? "p-invalid" : ""} />
             </div>
 
             <div
@@ -136,6 +139,7 @@ export const FormPage = () => {
                 id="date"
                 mask="99/99/9999"
                 placeholder="dd/mm/yyyy"
+                className={errors.date ? "p-invalid" : ""}
               />
             </div>
 
@@ -156,8 +160,9 @@ export const FormPage = () => {
                   setSelectedCity(e.value);
                   setValue("state", e.value);
                 }}
+                
                 placeholder="Selecione"
-                className="w-full md:w-14rem"
+                className={errors.date ? "p-invalid w-full md:w-14rem" : "w-full md:w-14rem"}
                 showClear
               />
             </div>
@@ -183,8 +188,7 @@ export const FormPage = () => {
                   setValue("deficiency", e.value);
                 }}
                 placeholder="Selecione"
-                className="w-full md:w-14rem"
-                showClear
+                className={errors.deficiency ? "p-invalid w-full md:w-14rem" : "w-full md:w-14rem"}
               />
             </div>
 
@@ -206,8 +210,7 @@ export const FormPage = () => {
                   setValue("color", e.value);
                 }}
                 placeholder="Selecione"
-                className="w-full md:w-14rem"
-                showClear
+                className={errors.color ? "p-invalid w-full md:w-14rem" : "w-full md:w-14rem"}
               />
             </div>
 
@@ -229,7 +232,7 @@ export const FormPage = () => {
                   setValue("gender", e.value);
                 }}
                 placeholder="Selecione"
-                className="w-full md:w-14rem"
+                className={errors.gender ? "p-invalid w-full md:w-14rem" : "w-full md:w-14rem"}
                 showClear
               />
             </div>
@@ -252,7 +255,7 @@ export const FormPage = () => {
                   setValue("guidance", e.value);
                 }}
                 placeholder="Selecione"
-                className="w-full md:w-14rem"
+                className={errors.guidance ? "p-invalid w-full md:w-14rem" : "w-full md:w-14rem"}
                 showClear
               />
             </div>
@@ -275,7 +278,7 @@ export const FormPage = () => {
                   setValue("children", e.value);
                 }}
                 placeholder="Selecione"
-                className="w-full md:w-14rem"
+                className={errors.children ? "p-invalid w-full md:w-14rem" : "w-full md:w-14rem"}
                 showClear
               />
             </div>
@@ -292,6 +295,7 @@ export const FormPage = () => {
                 {...register("income")}
                 id="renda"
                 aria-describedby="username-help"
+                className={errors.income ? "p-invalid w-full md:w-14rem" : "w-full md:w-14rem"}
                 placeholder="R$"
               />
             </div>

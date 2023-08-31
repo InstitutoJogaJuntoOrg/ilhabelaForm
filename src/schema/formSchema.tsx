@@ -1,19 +1,53 @@
 import * as z from "zod";
 
-
 export const FormSchema = z.object({
-  name: z.string().min(1, "Campo obrigatório"),
+  name: z.string().min(3, "Campo obrigatório"),
   socialName: z.string().min(1, "Campo obrigatório"),
   cpf: z.string().min(1, "Campo obrigatório"),
   email: z.string().email("Email inválido").min(1, "Campo obrigatório"),
   date: z.string().min(1, "Campo obrigatório"),
-  state: z.any(),
-  deficiency: z.any(),
-  color: z.any(),
-  gender: z.any(),
-  guidance: z.any(),
-  children: z.any(),
-  schooling: z.any(),
+  state: z.object({
+    name: z
+      .string({
+        required_error: "messages.required",
+      })
+      .min(1, { message: "messages.required" }),
+  }),
+  deficiency:z.object({
+    name: z
+      .string({
+        required_error: "messages.required",
+      })
+      .min(1, { message: "messages.required" }),
+  }),
+  color:z.object({
+    name: z
+      .string({
+        required_error: "messages.required",
+      })
+      .min(1, { message: "messages.required" }),
+  }),
+  gender:z.object({
+    name: z
+      .string({
+        required_error: "messages.required",
+      })
+      .min(1, { message: "messages.required" }),
+  }),
+  guidance: z.object({
+    name: z
+      .string({
+        required_error: "messages.required",
+      })
+      .min(1, { message: "messages.required" }),
+  }),
+  children: z.object({
+    name: z
+      .string({
+        required_error: "messages.required",
+      })
+      .min(1, { message: "messages.required" }),
+  }),
   income: z.string(),
 });
 
