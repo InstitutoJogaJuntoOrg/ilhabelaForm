@@ -1,21 +1,20 @@
-import * as z from 'zod'
+import * as z from "zod";
 
-export const FormSchema = z
-  .object({
-    name: z.string(),
-    socialName: z.string(),
-    cpf: z.string(),
-    email: z.string().email(),
-    date: z.date(),
-    state: z.string(),
-    deficiency: z.string(),
-    color: z.string(),
-    gender: z.string(),
-    guidance: z.string(),
-    children: z.string(),
-    schooling: z.string(),
-    income: z.number(),
-    password: z.string(),
-  })
+
+export const FormSchema = z.object({
+  name: z.string().min(1, "Campo obrigatório"),
+  socialName: z.string().min(1, "Campo obrigatório"),
+  cpf: z.string().min(1, "Campo obrigatório"),
+  email: z.string().email("Email inválido").min(1, "Campo obrigatório"),
+  date: z.string().min(1, "Campo obrigatório"),
+  state: z.any(),
+  deficiency: z.any(),
+  color: z.any(),
+  gender: z.any(),
+  guidance: z.any(),
+  children: z.any(),
+  schooling: z.any(),
+  income: z.string(),
+});
 
 export type FormSchemaType = z.infer<typeof FormSchema>;

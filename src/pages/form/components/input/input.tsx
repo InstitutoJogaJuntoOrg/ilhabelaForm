@@ -1,7 +1,8 @@
+// Input.tsx
 import { InputText } from "primereact/inputtext";
 import { InputType } from "../../../../interface/inputs";
 
-export default function Input({placeholder, label}: InputType) {
+export default function Input({ placeholder, label, ...rest }: InputType) {
     return (
         <div className="card flex justify-content-center">
             <div className="flex flex-column gap-2">
@@ -10,7 +11,7 @@ export default function Input({placeholder, label}: InputType) {
                     flexDirection: "column"
                 }}>
                 <label htmlFor="username">{label}</label>
-                <InputText id="username" aria-describedby="username-help" placeholder={placeholder} />
+                <InputText id="username" aria-describedby="username-help" placeholder={placeholder} {...rest} />
                 </div>
             </div>
         </div>
