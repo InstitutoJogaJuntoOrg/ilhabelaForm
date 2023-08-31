@@ -6,6 +6,13 @@ import Input from "./components/input/input";
 import InputTypeMask from "./components/input/mask";
 import InputTypeDate from "./components/input/date";
 import InputTypeDropdown from "./components/input/dropdown";
+import { states } from "./components/options/state";
+import { deficiency } from "./components/options/deficiency";
+import { collor } from "./components/options/collor";
+import { gender } from "./components/options/gender";
+import { guildance } from "./components/options/guidance";
+import { childrens } from "./components/options/childrens";
+import CurrencyDemo from "./components/input/number";
 
 export const FormPage = () => {
   //const navigate = useNavigate();
@@ -41,28 +48,55 @@ export const FormPage = () => {
               placeholder="Nome"
             />
             <Input
-              label="Nome"
+              label="Nome social"
               {...register("socialName")}
-              placeholder="Nome"
+              placeholder="Nome social"
             />
             <InputTypeMask {...register("cpf")} key="cpf" />
             <Input label="Email" {...register("email")} placeholder="Email" />
             <InputTypeDate {...register("date")} key="date" />
-            <InputTypeDropdown label="Estado" {...register("state")} key="state" />
+            <InputTypeDropdown
+              states={states}
+              label="Estado"
+              {...register("state")}
+              key="state"
+            />
           </div>
           <div className="dadosSocieconomicos">
             <h1>Dados socioeconômicos</h1>
-            <InputTypeDropdown label="Possui algum tipo de deficiência física?" {...register("deficiency")} key="state" />
-            <InputTypeDropdown label="Cor/raça:" {...register("color")} key="state" />
-            <InputTypeDropdown label="Qual gênero você se identifica?" {...register("gender")} key="state" />
-            <InputTypeDropdown label="Qual sua orientação sexual?" {...register("children")} key="state" />
-            <InputTypeDropdown label="Tem filhos?" {...register("schooling")} key="state" />
-            <InputTypeDropdown label="Tem filhos?" {...register("schooling")} key="state" />
-            <InputTypeDropdown label="Tem filhos?" {...register("schooling")} key="state" />
-            <Input
-              label="Qual a renda média mensal da sua família?"
+            <InputTypeDropdown
+              states={deficiency}
+              label="Possui algum tipo de deficiência física?"
+              {...register("deficiency")}
+              key="state"
+            />
+            <InputTypeDropdown
+            states={collor}
+              label="Cor/raça:"
+              {...register("color")}
+              key="state"
+            />
+            <InputTypeDropdown
+            states={gender}
+              label="Qual gênero você se identifica?"
+              {...register("gender")}
+              key="state"
+            />
+            <InputTypeDropdown
+            states={guildance}
+              label="Qual sua orientação sexual?"
+              {...register("guidance")}
+              key="state"
+            />
+            <InputTypeDropdown
+            states={childrens}
+              label="Tem filhos?"
+              {...register("children")}
+              key="state"
+            />
+            <CurrencyDemo
+key={''}
               {...register("income")}
-              placeholder="R$"
             />
           </div>
         </div>

@@ -5,9 +5,9 @@ export const Container = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin-top: 5rem;
-  height: 100vh;
+
   > h1 {
+    margin-top: 2rem;
     font-style: normal;
     font-weight: 900;
     line-height: normal;
@@ -24,6 +24,7 @@ export const Container = styled.div`
     border-radius: 15px;
     box-shadow: 0px 15px 57px 0px rgba(0, 0, 0, 0.25);
     margin-top: 2rem;
+    margin-bottom: 2rem;
     width: 60rem;
     padding: 4rem 4rem;
     background-color: #72b65a;
@@ -34,15 +35,15 @@ export const Container = styled.div`
       }
     }
     button {
-        color: white;
-        font-size: 1.5rem;
-        margin-top: 2rem;
-        background-color: #54993A;
+      color: white;
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      background-color: #54993a;
 
-        border: none;
-        padding: 1rem;
-        border-radius: 6px;
-        width: 100%;
+      border: none;
+      padding: 1rem;
+      border-radius: 6px;
+      width: 100%;
     }
     h1 {
       font-size: 1.75rem;

@@ -6,7 +6,7 @@ const InputTypeDate = () => {
       display: "flex",
       flexDirection: "column"
   }}>
-      <label htmlFor="date">Date:</label>
+      <label htmlFor="date">Data de nascimento:</label>
       <InputMask
         id="date"
         mask="99/99/9999"
