@@ -20,6 +20,9 @@ export const Container = styled.div`
     flex-direction: column;
   }
   form {
+    .p-button {
+      width: 100%;
+    }
     .p-invalid {
       border: 2px solid red;
     }
@@ -57,3 +60,8 @@ export const Container = styled.div`
     }
   }
 `;
+export const ContainerFlexInputs = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 5rem;
+`
