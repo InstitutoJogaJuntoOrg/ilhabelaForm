@@ -12,12 +12,19 @@ export const Container = styled.div`
     font-weight: 900;
     line-height: normal;
     color: #72b65a;
-    font-size: 66px;
+    font-size: 46px;
   }
   .dadosSocieconomicos {
     width: 100%;
     display: flex;
     flex-direction: column;
+  }
+
+  .flexEnd {
+    justify-content: flex-end;
+  }
+  .inputCheck {
+    width: 3%;
   }
   form {
     .p-button {
@@ -31,8 +38,8 @@ export const Container = styled.div`
     box-shadow: 0px 15px 57px 0px rgba(0, 0, 0, 0.25);
     margin-top: 2rem;
     margin-bottom: 2rem;
-    width: 60rem;
-    padding: 4rem 4rem;
+    width: 49rem;
+    padding: 2rem 4rem 1rem 4rem;
     background-color: #72b65a;
     div {
       width: 100%;
@@ -41,6 +48,7 @@ export const Container = styled.div`
       }
     }
     button {
+      cursor: pointer;
       color: white;
       font-size: 1.5rem;
       margin-top: 2rem;
@@ -60,8 +68,54 @@ export const Container = styled.div`
     }
   }
 `;
+export const ContainerSteps = styled.div`
+  margin-top: 2rem;
+`
 export const ContainerFlexInputs = styled.div`
   display: flex;
   flex-direction: row;
   gap: 5rem;
-`
+`;
+export const ContainerButtons = styled.div`
+margin-top: .5rem;
+  display: flex;
+  width: 100%;
+  gap: 5rem;
+  justify-content: space-between;
+  .back {
+    background-color: #95D07F;
+  }
+  .buttonForm {
+    cursor: pointer;
+    width: 153px !important;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    text-align: center;
+    border-radius: 26px !important;
+    font-size: 16px !important;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+  }
+  .buttonFormSubmit {
+    cursor: pointer;
+    width: 153px !important;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-shrink: 0;
+    color: #fff;
+    text-align: center;
+    border-radius: 26px !important;
+    font-size: 16px !important;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+  }
+`;

@@ -1,7 +1,12 @@
 import { FormSchema, FormSchemaType } from "../../schema/formSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Container, ContainerFlexInputs } from ".";
+import {
+  Container,
+  ContainerButtons,
+  ContainerFlexInputs,
+  ContainerSteps,
+} from ".";
 import { states } from "./components/options/state";
 import { deficiency } from "./components/options/deficiency";
 import { collor } from "./components/options/collor";
@@ -13,10 +18,13 @@ import { InputText } from "primereact/inputtext";
 import { InputMask } from "primereact/inputmask";
 import { Dropdown } from "primereact/dropdown";
 import { useContext, useState } from "react";
-import { useRef } from "react";
-import { Toast } from "primereact/toast";
+import { Steps } from "primereact/steps";
 import { FileUpload } from "primereact/fileupload";
 import { ImageContext } from "../../context/image";
+import { benefits } from "./components/options/benefits";
+import { scholl } from "./components/options/scholl";
+import { connect } from "./components/options/conect";
+import { displays } from "./components/options/display";
 
 interface City {
   name: string;
@@ -25,30 +33,52 @@ interface City {
 
 export const FormPage = () => {
   const { image, setImage } = useContext(ImageContext);
+  const [activeTab, setActiveTab] = useState(0);
+  const [activeIndex, setActiveIndex] = useState<number>(1);
+
   const [selectedCity, setSelectedCity] = useState<City | null>(null);
   const [selectedcollor, setSelectedcollor] = useState<City | null>(null);
   const [selectedchildrens, setSelectedchildrens] = useState<City | null>(null);
+  const [selectedconexao, setSelectedconexao] = useState<City | null>(null);
   const [selectedguildance, setSelectedguildance] = useState<City | null>(null);
+  const [selecteddisplay, setSelecteddisplay] = useState<City | null>(null);
+  const [selectedscholl, setSelectedscholl] = useState<City | null>(null);
 
   const [selectedgender, setSelectedgender] = useState<City | null>(null);
+  const [selectedBenefits, setSelectedBenefits] = useState<City | null>(null);
   const [selectedDeficiency, SetSelectedDeficiency] = useState<City | null>(
     null
   );
 
-  const toast = useRef<Toast>(null);
-  console.log(image);
+  const items = [
+    {
+      label: "Primeiro passo",
+    },
+    {
+      label: "Segundo passo",
+    },
+    {
+      label: "Terceiro passo",
+    },
+  ];
 
-  const handleUpload = (event: { files: any[]; }) => {
-    const uploadedFile = event.files[0]; // Assumes the array 'files' contains only one file
-    setImage(uploadedFile); // Set the uploaded image in the ImageContext
-  };
-  const onUpload = () => {
-    if (toast.current) {
-      toast.current.show({
-        severity: "info",
-        summary: "Success",
-        detail: "File Uploaded",
-      });
+  function fileToJSON(file: any) {
+    return {
+      name: file.name,
+      size: file.size,
+      type: file.type,
+      lastModified: file.lastModified,
+      lastModifiedDate: new Date(file.lastModifiedDate),
+      webkitRelativePath: file.webkitRelativePath,
+    };
+  }
+
+  const handleUpload = (event: { files: any[] }) => {
+    const uploadedFile = event.files[0];
+
+    if (uploadedFile instanceof File) {
+      const imageJSON = fileToJSON(uploadedFile);
+      setImage(imageJSON);
     }
   };
 
@@ -67,17 +97,7 @@ export const FormPage = () => {
 
   function handleForm(data: FormSchemaType) {
     console.log(data);
-
-    setSelectedCity(null);
-    setSelectedcollor(null);
-    setSelectedchildrens(null);
-    setSelectedguildance(null);
-    setSelectedgender(null);
-    SetSelectedDeficiency(null);
-
-    reset();
-
-    console.log(image);
+    console.log("imagem enviada", image);
   }
   console.log(errors);
   return (
@@ -94,8 +114,12 @@ export const FormPage = () => {
         >
           <div>
             <div className="card">
-              <TabView>
+              <TabView
+                activeIndex={activeTab}
+                onTabChange={(e) => setActiveTab(e.index)}
+              >
                 <TabPanel header="Dados pessoais">
+                  <div></div>
                   <ContainerFlexInputs>
                     <div>
                       <div
@@ -198,11 +222,9 @@ export const FormPage = () => {
                         }}
                       >
                         <label htmlFor="date">RG:</label>
-                        <Toast ref={toast}></Toast>
                         <FileUpload
                           onSelect={handleUpload}
                           mode="basic"
-                          {...register('image')}
                           accept="image/*"
                           maxFileSize={1000000}
                           onUpload={handleUpload}
@@ -236,10 +258,27 @@ export const FormPage = () => {
                           showClear
                         />
                       </div>
+                      <ContainerButtons className="flexEnd">
+                        <button
+                          className="buttonForm"
+                          onClick={() => setActiveTab(1)}
+                        >
+                          Próximo
+                        </button>
+                      </ContainerButtons>
                     </div>
                   </ContainerFlexInputs>
+                  <ContainerSteps>
+                    <Steps
+                      model={items}
+                      activeIndex={0}
+                      onSelect={(e) => setActiveIndex(e.index)}
+                    />
+                  </ContainerSteps>
                 </TabPanel>
                 <TabPanel header="Dados socioeconômicos">
+                  <div></div>
+                  <br />
                   <div className="dadosSocieconomicos">
                     <ContainerFlexInputs>
                       <div>
@@ -279,32 +318,6 @@ export const FormPage = () => {
                           }}
                           className="card flex justify-content-center"
                         >
-                          <label>Cor/raça:</label>
-                          <Dropdown
-                            value={selectedcollor}
-                            options={collor}
-                            optionLabel="name"
-                            onChange={(e) => {
-                              setSelectedcollor(e.value);
-                              setValue("color", e.value);
-                            }}
-                            placeholder="Selecione"
-                            className={
-                              errors.color
-                                ? "p-invalid w-full md:w-14rem"
-                                : "w-full md:w-14rem"
-                            }
-                          />
-                        </div>
-
-                        <div
-                          style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: ".0rem",
-                          }}
-                          className="card flex justify-content-center"
-                        >
                           <label>Qual gênero você se identifica?</label>
                           <Dropdown
                             value={selectedgender}
@@ -323,9 +336,113 @@ export const FormPage = () => {
                             showClear
                           />
                         </div>
+
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: ".0rem",
+                          }}
+                          className="card flex justify-content-center"
+                        >
+                          <label>Tem filhos?</label>
+                          <Dropdown
+                            value={selectedchildrens}
+                            options={childrens}
+                            optionLabel="name"
+                            onChange={(e) => {
+                              setSelectedchildrens(e.value);
+                              setValue("children", e.value);
+                            }}
+                            placeholder="Selecione"
+                            className={
+                              errors.children
+                                ? "p-invalid w-full md:w-14rem"
+                                : "w-full md:w-14rem"
+                            }
+                            showClear
+                          />
+                        </div>
+
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                          }}
+                        >
+                          <label
+                            htmlFor="currency-us"
+                            className="font-bold block mb-2"
+                          >
+                            Qual a renda média mensal da sua família?
+                          </label>
+                          <InputText
+                            {...register("income")}
+                            id="renda"
+                            aria-describedby="username-help"
+                            className={
+                              errors.income
+                                ? "p-invalid w-full md:w-14rem"
+                                : "w-full md:w-14rem"
+                            }
+                            placeholder="R$"
+                          />
+                        </div>
+
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: ".0rem",
+                          }}
+                          className="card flex justify-content-center"
+                        >
+                          <label>Tipos de conexão</label>
+                          <Dropdown
+                            value={selectedconexao}
+                            options={connect}
+                            optionLabel="name"
+                            onChange={(e) => {
+                              setSelectedconexao(e.value);
+                              setValue("connect", e.value);
+                            }}
+                            placeholder="Selecione"
+                            className={
+                              errors.color
+                                ? "p-invalid w-full md:w-14rem"
+                                : "w-full md:w-14rem"
+                            }
+                          />
+                        </div>
                       </div>
 
                       <div>
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: ".0rem",
+                          }}
+                          className="card flex justify-content-center"
+                        >
+                          <label>Cor/raça:</label>
+                          <Dropdown
+                            value={selectedcollor}
+                            options={collor}
+                            optionLabel="name"
+                            onChange={(e) => {
+                              setSelectedcollor(e.value);
+                              setValue("color", e.value);
+                            }}
+                            placeholder="Selecione"
+                            className={
+                              errors.color
+                                ? "p-invalid w-full md:w-14rem"
+                                : "w-full md:w-14rem"
+                            }
+                          />
+                        </div>
+
                         <div
                           style={{
                             display: "flex",
@@ -361,57 +478,279 @@ export const FormPage = () => {
                           }}
                           className="card flex justify-content-center"
                         >
-                          <label>Tem filhos?</label>
+                          <label>Qual sua escolaridade</label>
                           <Dropdown
-                            value={selectedchildrens}
-                            options={childrens}
+                            value={selectedscholl}
+                            options={scholl}
                             optionLabel="name"
                             onChange={(e) => {
-                              setSelectedchildrens(e.value);
-                              setValue("children", e.value);
+                              setSelectedscholl(e.value);
+                              setValue("schooling", e.value);
                             }}
                             placeholder="Selecione"
                             className={
-                              errors.children
+                              errors.benefit
+                                ? "p-invalid w-full md:w-14rem"
+                                : "w-full md:w-14rem"
+                            }
+                          />
+                        </div>
+
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: ".0rem",
+                          }}
+                          className="card flex justify-content-center"
+                        >
+                          <label>
+                            Benefício governamental seu ou da sua família
+                          </label>
+                          <Dropdown
+                            value={selectedBenefits}
+                            options={benefits}
+                            optionLabel="name"
+                            onChange={(e) => {
+                              setSelectedBenefits(e.value);
+                              setValue("benefit", e.value);
+                            }}
+                            placeholder="Selecione"
+                            className={
+                              errors.benefit
                                 ? "p-invalid w-full md:w-14rem"
                                 : "w-full md:w-14rem"
                             }
                             showClear
                           />
                         </div>
+
                         <div
                           style={{
                             display: "flex",
                             flexDirection: "column",
+                            gap: ".0rem",
                           }}
+                          className="card flex justify-content-center"
                         >
-                          <label
-                            htmlFor="currency-us"
-                            className="font-bold block mb-2"
-                          >
-                            Qual a renda média mensal da sua família?
+                          <label>
+                            Tipo de dispositivo para acessar as aulas
                           </label>
-                          <InputText
-                            {...register("income")}
-                            id="renda"
-                            aria-describedby="username-help"
+                          <Dropdown
+                            value={selecteddisplay}
+                            options={displays}
+                            optionLabel="name"
+                            onChange={(e) => {
+                              setSelecteddisplay(e.value);
+                              setValue("display", e.value);
+                            }}
+                            placeholder="Selecione"
                             className={
-                              errors.income
+                              errors.gender
                                 ? "p-invalid w-full md:w-14rem"
                                 : "w-full md:w-14rem"
                             }
-                            placeholder="R$"
+                            showClear
                           />
                         </div>
                       </div>
                     </ContainerFlexInputs>
+                    <ContainerButtons>
+                      <button
+                        className="buttonForm back"
+                        onClick={() => setActiveTab(0)}
+                      >
+                        Voltar
+                      </button>
+                      <button
+                        className="buttonForm"
+                        onClick={() => setActiveTab(2)}
+                      >
+                        Próximo
+                      </button>
+                    </ContainerButtons>
                   </div>
+                  <ContainerSteps>
+                    <Steps
+                      model={items}
+                      activeIndex={1}
+                      onSelect={(e) => setActiveIndex(e.index)}
+                    />
+                  </ContainerSteps>
+                </TabPanel>
+
+                <TabPanel header="Prova">
+                  <div className="options">
+                    <h1
+                      style={{
+                        fontSize: "1rem",
+                      }}
+                    >
+                      Questão 1
+                    </h1>
+                    <label className="hLabel" htmlFor="option1">
+                      <input
+                        className="inputWidth"
+                        type="radio"
+                        name="question1"
+                        id="option1"
+                      />
+                      abc
+                    </label>
+
+                    <label className="hLabel" htmlFor="option2">
+                      <input
+                        className="inputWidth"
+                        type="radio"
+                        name="question1"
+                        id="option2"
+                      />
+                      abc
+                    </label>
+
+                    <label className="hLabel" htmlFor="option3">
+                      <input
+                        className="inputWidth"
+                        type="radio"
+                        name="question1"
+                        id="option3"
+                      />
+                      abc
+                    </label>
+
+                    <label className="hLabel" htmlFor="option4">
+                      <input
+                        className="inputWidth"
+                        type="radio"
+                        name="question1"
+                        id="option4"
+                      />
+                      abc
+                    </label>
+                  </div>
+
+                  <div className="options">
+                    <h1
+                      style={{
+                        fontSize: "1rem",
+                      }}
+                    >
+                      Questão 1
+                    </h1>
+                    <label className="hLabel" htmlFor="option1">
+                      <input
+                        className="inputWidth"
+                        type="radio"
+                        name="question1"
+                        id="option1"
+                      />
+                      abc
+                    </label>
+
+                    <label className="hLabel" htmlFor="option2">
+                      <input
+                        className="inputWidth"
+                        type="radio"
+                        name="question1"
+                        id="option2"
+                      />
+                      abc
+                    </label>
+
+                    <label className="hLabel" htmlFor="option3">
+                      <input
+                        className="inputWidth"
+                        type="radio"
+                        name="question1"
+                        id="option3"
+                      />
+                      abc
+                    </label>
+
+                    <label className="hLabel" htmlFor="option4">
+                      <input
+                        className="inputWidth"
+                        type="radio"
+                        name="question1"
+                        id="option4"
+                      />
+                      abc
+                    </label>
+                  </div>
+
+                  <div className="options">
+                    <h1
+                      style={{
+                        fontSize: "1rem",
+                      }}
+                    >
+                      Questão 2
+                    </h1>
+                    <label className="hLabel" htmlFor="option1">
+                      <input
+                        className="inputWidth"
+                        type="radio"
+                        name="question1"
+                        id="option1"
+                      />
+                      abc
+                    </label>
+
+                    <label className="hLabel" htmlFor="option2">
+                      <input
+                        className="inputWidth"
+                        type="radio"
+                        name="question1"
+                        id="option2"
+                      />
+                      abc
+                    </label>
+
+                    <label className="hLabel" htmlFor="option3">
+                      <input
+                        className="inputWidth"
+                        type="radio"
+                        name="question1"
+                        id="option3"
+                      />
+                      abc
+                    </label>
+
+                    <label className="hLabel" htmlFor="option4">
+                      <input
+                        className="inputWidth"
+                        type="radio"
+                        name="question1"
+                        id="option4"
+                      />
+                      abc
+                    </label>
+                  </div>
+
+                  <ContainerButtons>
+                    <button
+                      className="buttonForm back"
+                      onClick={() => setActiveTab(1)}
+                    >
+                      Voltar
+                    </button>
+                    <button className="buttonFormSubmit" type="submit">
+                      Enviar
+                    </button>
+                  </ContainerButtons>
+
+                  <ContainerSteps>
+                    <Steps
+                      model={items}
+                      activeIndex={2}
+                      onSelect={(e) => setActiveIndex(e.index)}
+                    />
+                  </ContainerSteps>
                 </TabPanel>
               </TabView>
             </div>
           </div>
         </div>
-        <button type="submit">Inscrever-se</button>
       </form>
     </Container>
   );
