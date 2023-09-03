@@ -3,7 +3,10 @@ import * as z from "zod";
 export const FormSchema = z.object({
   name: z.string().min(3, "Campo obrigatório"),
   socialName: z.string().min(1, "Campo obrigatório"),
-  cpf: z.string().min(1, "Campo obrigatório"),
+  cpf: z
+  .string({
+    required_error: "messages.required",
+  }).min(1, "Campo obrigatório"),
   email: z.string().email("Email inválido").min(1, "Campo obrigatório"),
   date: z.string().min(1, "Campo obrigatório"),
   state: z.object({
@@ -89,7 +92,22 @@ export const FormSchema = z.object({
 
 
 
-  income: z.string(),
+  income: z.string({
+    required_error: "messages.required",
+  }),
+
+  questionOne: z.string({
+    required_error: "messages.required",
+  }),
+
+  questionTwo: z.string({
+    required_error: "messages.required",
+  }),
+
+  questionTree: z.string({
+    required_error: "messages.required",
+  })
+
 });
 
 export type FormSchemaType = z.infer<typeof FormSchema>;

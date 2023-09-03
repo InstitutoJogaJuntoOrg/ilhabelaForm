@@ -72,7 +72,7 @@ export const FormPage = () => {
       webkitRelativePath: file.webkitRelativePath,
     };
   }
-  const handleUpload = (event: { files: any[]; }) => {
+  const handleUpload = (event: { files: any[] }) => {
     const uploadedFile = event.files[0];
 
     if (uploadedFile instanceof File) {
@@ -150,7 +150,6 @@ export const FormPage = () => {
                         <label>CPF:</label>
                         <InputMask
                           {...register("cpf")}
-                          key="cpf"
                           mask="999.999.999-99"
                           placeholder="___.___.___-__"
                           className={errors.cpf ? "p-invalid" : ""}
@@ -232,9 +231,7 @@ export const FormPage = () => {
                           maxFileSize={1000000}
                           onUpload={handleUpload}
                           chooseLabel={
-                            image.name
-                              ? image.name
-                              : "Selecionar imagem"
+                            image.name ? image.name : "Selecionar imagem"
                           }
                         />
                       </div>
@@ -593,8 +590,9 @@ export const FormPage = () => {
                       <input
                         className="inputWidth"
                         type="radio"
-                        name="question1"
+                        {...register("questionOne")}
                         id="q1-option1"
+                        value="resposta 1A"
                       />
                       Resposta 1A
                     </label>
@@ -603,8 +601,9 @@ export const FormPage = () => {
                       <input
                         className="inputWidth"
                         type="radio"
-                        name="question1"
+                        {...register("questionOne")}
                         id="q1-option2"
+                        value="resposta 1B"
                       />
                       Resposta 1B
                     </label>
@@ -613,8 +612,9 @@ export const FormPage = () => {
                       <input
                         className="inputWidth"
                         type="radio"
-                        name="question1"
+                        {...register("questionOne")}
                         id="q1-option3"
+                        value="resposta 1C"
                       />
                       Resposta 1C
                     </label>
@@ -623,8 +623,9 @@ export const FormPage = () => {
                       <input
                         className="inputWidth"
                         type="radio"
-                        name="question1"
+                        {...register("questionOne")}
                         id="q1-option4"
+                        value="resposta 1D"
                       />
                       Resposta 1D
                     </label>
@@ -636,8 +637,9 @@ export const FormPage = () => {
                       <input
                         className="inputWidth"
                         type="radio"
-                        name="question2"
+                        {...register("questionTwo")}
                         id="q2-option1"
+                        value="resposta 2A"
                       />
                       Resposta 2A
                     </label>
@@ -646,8 +648,9 @@ export const FormPage = () => {
                       <input
                         className="inputWidth"
                         type="radio"
-                        name="question2"
+                        {...register("questionTwo")}
                         id="q2-option2"
+                        value="resposta 2B"
                       />
                       Resposta 2B
                     </label>
@@ -656,8 +659,9 @@ export const FormPage = () => {
                       <input
                         className="inputWidth"
                         type="radio"
-                        name="question2"
+                        {...register("questionTwo")}
                         id="q2-option3"
+                        value="resposta 2C"
                       />
                       Resposta 2C
                     </label>
@@ -666,8 +670,9 @@ export const FormPage = () => {
                       <input
                         className="inputWidth"
                         type="radio"
-                        name="question2"
+                        {...register("questionTwo")}
                         id="q2-option4"
+                        value="resposta 2D"
                       />
                       Resposta 2D
                     </label>
@@ -679,8 +684,9 @@ export const FormPage = () => {
                       <input
                         className="inputWidth"
                         type="radio"
-                        name="question3"
+                        {...register("questionTree")}
                         id="q3-option1"
+                        value="resposta 3A"
                       />
                       Resposta 3A
                     </label>
@@ -689,8 +695,9 @@ export const FormPage = () => {
                       <input
                         className="inputWidth"
                         type="radio"
-                        name="question3"
+                        {...register("questionTree")}
                         id="q3-option2"
+                        value="resposta 3B"
                       />
                       Resposta 3B
                     </label>
@@ -699,8 +706,9 @@ export const FormPage = () => {
                       <input
                         className="inputWidth"
                         type="radio"
-                        name="question3"
+                        {...register("questionTree")}
                         id="q3-option3"
+                        value="resposta 3C"
                       />
                       Resposta 3C
                     </label>
@@ -709,8 +717,9 @@ export const FormPage = () => {
                       <input
                         className="inputWidth"
                         type="radio"
-                        name="question3"
+                        {...register("questionTree")}
                         id="q3-option4"
+                        value="resposta 3D"
                       />
                       Resposta 3D
                     </label>
