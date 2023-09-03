@@ -35,7 +35,8 @@ export const FormPage = () => {
   const { image, setImage } = useContext(ImageContext);
   const [activeTab, setActiveTab] = useState(0);
   const [activeIndex, setActiveIndex] = useState<number>(1);
-
+  const [cpfValue, setCpfValue] = useState<any>("");
+  const [dateValue, setDateValue] = useState<any>("");
   const [selectedCity, setSelectedCity] = useState<City | null>(null);
   const [selectedcollor, setSelectedcollor] = useState<City | null>(null);
   const [selectedchildrens, setSelectedchildrens] = useState<City | null>(null);
@@ -93,9 +94,6 @@ export const FormPage = () => {
     formState: { errors },
   } = useForm<FormSchemaType>({
     resolver: zodResolver(FormSchema),
-    defaultValues: {
-      income: "",
-    },
   });
 
   function handleForm(data: FormSchemaType) {
@@ -149,8 +147,10 @@ export const FormPage = () => {
                       >
                         <label>CPF:</label>
                         <InputMask
-                          {...register("cpf")}
+                          value={cpfValue ?? ""}
+                          onComplete={(e) => setCpfValue(e.value || "")}
                           mask="999.999.999-99"
+                          {...register("cpf")}
                           placeholder="___.___.___-__"
                           className={errors.cpf ? "p-invalid" : ""}
                         />
@@ -163,6 +163,8 @@ export const FormPage = () => {
                       >
                         <label htmlFor="date">Data de nascimento:</label>
                         <InputMask
+                          value={dateValue ?? ""}
+                          onComplete={(e) => setDateValue(e.value || "")}
                           {...register("date")}
                           id="date"
                           mask="99/99/9999"

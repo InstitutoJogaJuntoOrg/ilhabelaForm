@@ -94,7 +94,7 @@ export const FormSchema = z.object({
 
   income: z.string({
     required_error: "messages.required",
-  }),
+  }).min(1, { message: "messages.required" }),
 
   questionOne: z.string({
     required_error: "messages.required",
