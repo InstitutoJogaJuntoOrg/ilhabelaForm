@@ -72,11 +72,14 @@ export const FormPage = () => {
       webkitRelativePath: file.webkitRelativePath,
     };
   }
-
-  const handleUpload = (event: { files: any[] }) => {
+  const handleUpload = (event: { files: any[]; }) => {
     const uploadedFile = event.files[0];
 
     if (uploadedFile instanceof File) {
+      if (uploadedFile.size > 0) {
+        image.name = "reenviar novo arquivo";
+      }
+
       const imageJSON = fileToJSON(uploadedFile);
       setImage(imageJSON);
     }
@@ -228,7 +231,11 @@ export const FormPage = () => {
                           accept="image/*"
                           maxFileSize={1000000}
                           onUpload={handleUpload}
-                          chooseLabel="Selecionar imagem"
+                          chooseLabel={
+                            image.name
+                              ? image.name
+                              : "Selecionar imagem"
+                          }
                         />
                       </div>
 
@@ -581,149 +588,131 @@ export const FormPage = () => {
 
                 <TabPanel header="Prova">
                   <div className="options">
-                    <h1
-                      style={{
-                        fontSize: "1rem",
-                      }}
-                    >
-                      Questão 1
-                    </h1>
-                    <label className="hLabel" htmlFor="option1">
+                    <h1 style={{ fontSize: "1rem" }}>Questão 1</h1>
+                    <label className="hLabel" htmlFor="q1-option1">
                       <input
                         className="inputWidth"
                         type="radio"
                         name="question1"
-                        id="option1"
+                        id="q1-option1"
                       />
-                      abc
+                      Resposta 1A
                     </label>
 
-                    <label className="hLabel" htmlFor="option2">
+                    <label className="hLabel" htmlFor="q1-option2">
                       <input
                         className="inputWidth"
                         type="radio"
                         name="question1"
-                        id="option2"
+                        id="q1-option2"
                       />
-                      abc
+                      Resposta 1B
                     </label>
 
-                    <label className="hLabel" htmlFor="option3">
+                    <label className="hLabel" htmlFor="q1-option3">
                       <input
                         className="inputWidth"
                         type="radio"
                         name="question1"
-                        id="option3"
+                        id="q1-option3"
                       />
-                      abc
+                      Resposta 1C
                     </label>
 
-                    <label className="hLabel" htmlFor="option4">
+                    <label className="hLabel" htmlFor="q1-option4">
                       <input
                         className="inputWidth"
                         type="radio"
                         name="question1"
-                        id="option4"
+                        id="q1-option4"
                       />
-                      abc
+                      Resposta 1D
                     </label>
                   </div>
 
                   <div className="options">
-                    <h1
-                      style={{
-                        fontSize: "1rem",
-                      }}
-                    >
-                      Questão 1
-                    </h1>
-                    <label className="hLabel" htmlFor="option1">
+                    <h1 style={{ fontSize: "1rem" }}>Questão 2</h1>
+                    <label className="hLabel" htmlFor="q2-option1">
                       <input
                         className="inputWidth"
                         type="radio"
-                        name="question1"
-                        id="option1"
+                        name="question2"
+                        id="q2-option1"
                       />
-                      abc
+                      Resposta 2A
                     </label>
 
-                    <label className="hLabel" htmlFor="option2">
+                    <label className="hLabel" htmlFor="q2-option2">
                       <input
                         className="inputWidth"
                         type="radio"
-                        name="question1"
-                        id="option2"
+                        name="question2"
+                        id="q2-option2"
                       />
-                      abc
+                      Resposta 2B
                     </label>
 
-                    <label className="hLabel" htmlFor="option3">
+                    <label className="hLabel" htmlFor="q2-option3">
                       <input
                         className="inputWidth"
                         type="radio"
-                        name="question1"
-                        id="option3"
+                        name="question2"
+                        id="q2-option3"
                       />
-                      abc
+                      Resposta 2C
                     </label>
 
-                    <label className="hLabel" htmlFor="option4">
+                    <label className="hLabel" htmlFor="q2-option4">
                       <input
                         className="inputWidth"
                         type="radio"
-                        name="question1"
-                        id="option4"
+                        name="question2"
+                        id="q2-option4"
                       />
-                      abc
+                      Resposta 2D
                     </label>
                   </div>
 
                   <div className="options">
-                    <h1
-                      style={{
-                        fontSize: "1rem",
-                      }}
-                    >
-                      Questão 2
-                    </h1>
-                    <label className="hLabel" htmlFor="option1">
+                    <h1 style={{ fontSize: "1rem" }}>Questão 3</h1>
+                    <label className="hLabel" htmlFor="q3-option1">
                       <input
                         className="inputWidth"
                         type="radio"
-                        name="question1"
-                        id="option1"
+                        name="question3"
+                        id="q3-option1"
                       />
-                      abc
+                      Resposta 3A
                     </label>
 
-                    <label className="hLabel" htmlFor="option2">
+                    <label className="hLabel" htmlFor="q3-option2">
                       <input
                         className="inputWidth"
                         type="radio"
-                        name="question1"
-                        id="option2"
+                        name="question3"
+                        id="q3-option2"
                       />
-                      abc
+                      Resposta 3B
                     </label>
 
-                    <label className="hLabel" htmlFor="option3">
+                    <label className="hLabel" htmlFor="q3-option3">
                       <input
                         className="inputWidth"
                         type="radio"
-                        name="question1"
-                        id="option3"
+                        name="question3"
+                        id="q3-option3"
                       />
-                      abc
+                      Resposta 3C
                     </label>
 
-                    <label className="hLabel" htmlFor="option4">
+                    <label className="hLabel" htmlFor="q3-option4">
                       <input
                         className="inputWidth"
                         type="radio"
-                        name="question1"
-                        id="option4"
+                        name="question3"
+                        id="q3-option4"
                       />
-                      abc
+                      Resposta 3D
                     </label>
                   </div>
 
