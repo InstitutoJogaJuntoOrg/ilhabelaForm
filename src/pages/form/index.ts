@@ -33,6 +33,14 @@ export const Container = styled.div`
     .p-invalid {
       border: 2px solid red;
     }
+    @media only screen and (max-width : 800px) {
+      width: 39rem;
+  }
+
+  @media only screen and (max-width : 600px) {
+    padding: .5rem;
+      width: 21rem;
+  }
     gap: 4rem;
     border-radius: 15px;
     box-shadow: 0px 15px 57px 0px rgba(0, 0, 0, 0.25);
@@ -75,12 +83,20 @@ export const ContainerFlexInputs = styled.div`
   display: flex;
   flex-direction: row;
   gap: 5rem;
+
+  @media only screen and (max-width : 600px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 export const ContainerButtons = styled.div`
 margin-top: .5rem;
   display: flex;
   width: 100%;
   gap: 5rem;
+  @media only screen and (max-width : 600px) {
+    gap: 1.5rem;
+  }
   justify-content: space-between;
   .back {
     background-color: #95D07F;

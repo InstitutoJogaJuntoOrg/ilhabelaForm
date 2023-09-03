@@ -71,6 +71,18 @@ export const GlobalStyle = createGlobalStyle`
   .p-tabview .p-tabview-nav li .p-tabview-nav-link {
     padding: 1rem 3rem;
     background-color: transparent;
+    @media only screen and (max-width : 800px) {
+      padding: 1rem 1.2rem;
+  }
+
+  @media only screen and (max-width : 600px) {
+    padding: 1rem 0.3rem;
+  }
+  }
+  .p-steps-item{
+    @media only screen and (max-width : 600px) {
+   width: 100px;
+  }
   }
   .p-steps .p-steps-item .p-menuitem-link {
     background: transparent;
@@ -91,5 +103,8 @@ export const GlobalStyle = createGlobalStyle`
   .p-tabview-title {
     width: 100%;
     font-size: 1.1rem;
+    @media only screen and (max-width : 600px) {
+    font-size: 13px;
+  }
   }
 `;

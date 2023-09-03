@@ -53,13 +53,13 @@ export const FormPage = () => {
 
   const items = [
     {
-      label: "Primeiro passo",
+      label: "Dados",
     },
     {
-      label: "Segundo passo",
+      label: "Social",
     },
     {
-      label: "Terceiro passo",
+      label: "Prova",
     },
   ];
 
