@@ -50,19 +50,20 @@ export const GlobalStyle = createGlobalStyle`
     color: white;
   }
   #pr_id_1_header_0:hover {
-    background-color: #54993a!important;
     color: white;
   }
-
+  .p-tabview-nav-link {
+    background: transparent!important;
+  }
   .p-tabview .p-tabview-nav li .p-tabview-nav-link {
     color: #fff8;
   }
   #pr_id_1_header_1:hover {
-    background-color: #54993a!important;
+  
     color: white;
   }
   #pr_id_1_header_2:hover {
-    background-color: #54993a!important;
+
     color: white;
   }
   .p-tabview .p-tabview-nav .p-tabview-ink-bar {

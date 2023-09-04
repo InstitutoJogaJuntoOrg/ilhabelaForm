@@ -8,7 +8,8 @@ export const DefaultLayout = () => {
 
   return (
     <Container>
-      {!isLoginPage && <Header />}
+
+      <Header />
       <Outlet />
     </Container>
   );
