@@ -15,6 +15,16 @@ export const GlobalStyle = createGlobalStyle`
     background: white;
     font-family: 'Inter', sans-serif;
   }
+  .p-dialog .p-dialog-header {
+    padding: 0rem;
+  }
+  .p-dialog .p-dialog-content {
+    padding-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
   .p-dropdown {
     width: 100%;
   }
@@ -23,6 +33,18 @@ export const GlobalStyle = createGlobalStyle`
   }
   .hLabel {
     height: 2rem;
+  }
+  .p-dialog-title {
+    color: black;
+  }
+  .p-dialog .p-dialog-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .p-dialog-header-close-icon {
+    color: black;
+    fill: black;
   }
   label {
     display: flex;

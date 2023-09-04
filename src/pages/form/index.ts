@@ -5,7 +5,6 @@ export const Container = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-
   > h1 {
     margin-top: 2rem;
     font-style: normal;
@@ -14,6 +13,7 @@ export const Container = styled.div`
     color: #72b65a;
     font-size: 46px;
   }
+
   .dadosSocieconomicos {
     width: 100%;
     display: flex;
@@ -33,14 +33,14 @@ export const Container = styled.div`
     .p-invalid {
       border: 2px solid red;
     }
-    @media only screen and (max-width : 800px) {
+    @media only screen and (max-width: 800px) {
       width: 39rem;
-  }
+    }
 
-  @media only screen and (max-width : 600px) {
-    padding: .5rem;
+    @media only screen and (max-width: 600px) {
+      padding: 0.5rem;
       width: 21rem;
-  }
+    }
     gap: 4rem;
     border-radius: 15px;
     box-shadow: 0px 15px 57px 0px rgba(0, 0, 0, 0.25);
@@ -78,28 +78,28 @@ export const Container = styled.div`
 `;
 export const ContainerSteps = styled.div`
   margin-top: 2rem;
-`
+`;
 export const ContainerFlexInputs = styled.div`
   display: flex;
   flex-direction: row;
   gap: 5rem;
 
-  @media only screen and (max-width : 600px) {
+  @media only screen and (max-width: 600px) {
     display: flex;
     flex-direction: column;
   }
 `;
 export const ContainerButtons = styled.div`
-margin-top: .5rem;
+  margin-top: 0.5rem;
   display: flex;
   width: 100%;
   gap: 5rem;
-  @media only screen and (max-width : 600px) {
+  @media only screen and (max-width: 600px) {
     gap: 1.5rem;
   }
   justify-content: space-between;
   .back {
-    background-color: #95D07F;
+    background-color: #95d07f;
   }
   .buttonForm {
     cursor: pointer;
