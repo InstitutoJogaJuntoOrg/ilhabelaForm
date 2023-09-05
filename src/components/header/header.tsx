@@ -35,13 +35,10 @@ export const Header = () => {
         <img src="https://cdn.discordapp.com/attachments/566850308702208001/1146230197813788702/Vector_1.png" alt="ilhabela prefeitura" />
         <ul className={windowWidth <= 800 && showLinks ? "hidden" : ""}>
           <StyledNavLink to={"/"} >
-            Saiba mais
+            Home
           </StyledNavLink>
           <StyledNavLink to={"/login"}>
             Fazer login
-          </StyledNavLink>
-          <StyledNavLink to={"/inscricao"}>
-            Sobre
           </StyledNavLink>
         </ul>
         <div className="hamburger-icon" onClick={toggleLinks}>

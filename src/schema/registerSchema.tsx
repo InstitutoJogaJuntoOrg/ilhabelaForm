@@ -1,4 +1,4 @@
-import * as z from 'zod'
+import * as z from 'zod';
 
 export const RegisterSchema = z
   .object({
@@ -11,6 +11,11 @@ export const RegisterSchema = z
       .email(),
     password: z.string(),
     confirmPassword: z.string(),
+    name: z.string({
+      errorMap: () => {
+        return { message: "Digite um nome válido" }; // Corrigi a mensagem de erro para "Digite um nome válido"
+      },
+    }),
   })
   .refine((fields) => fields.password === fields.confirmPassword, {
     path: ["confirmPassword"],

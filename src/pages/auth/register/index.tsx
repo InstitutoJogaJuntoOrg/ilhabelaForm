@@ -3,7 +3,10 @@ import { Container } from "../../form";
 import { FormField, Register } from "./styles";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { RegisterSchemaType, RegisterSchema } from "../../../schema/registerSchema";
+import {
+  RegisterSchemaType,
+  RegisterSchema,
+} from "../../../schema/registerSchema";
 import { Link } from "react-router-dom";
 
 export const RegisterPage = () => {
@@ -30,10 +33,20 @@ export const RegisterPage = () => {
         }}
       >
         <FormField>
+          <label>Nome</label>
+          <InputText
+            id="name"
+            {...register("name")}
+            aria-describedby="email-help"
+            placeholder="Nome"
+          />
+        </FormField>
+
+        <FormField>
           <label>Email</label>
           <InputText
             id="email"
-            {...register('email')}
+            {...register("email")}
             aria-describedby="email-help"
             placeholder="Email"
           />
@@ -43,7 +56,7 @@ export const RegisterPage = () => {
           <label>Senha</label>
           <InputText
             id="password"
-            {...register('password')}
+            {...register("password")}
             aria-describedby="password-help"
             placeholder="Senha"
             type="password"
@@ -54,7 +67,7 @@ export const RegisterPage = () => {
           <label>Repetir Senha</label>
           <InputText
             id="repeatPassword"
-            {...register('confirmPassword')}
+            {...register("confirmPassword")}
             aria-describedby="repeatPassword-help"
             placeholder="Repetir Senha"
             type="password"
@@ -77,8 +90,8 @@ export const RegisterPage = () => {
       <Register>
         <h3>Já tem uma conta?</h3>
         <span className="register">
-            <Link to={"/login"}>Fazer login</Link>
-          </span>
+          <Link to={"/auth"}>Fazer login</Link>
+        </span>
       </Register>
     </Container>
   );
