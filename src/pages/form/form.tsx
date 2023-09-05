@@ -26,10 +26,8 @@ import { scholl } from "./components/options/scholl";
 import { connect } from "./components/options/conect";
 import { displays } from "./components/options/display";
 import { Toast } from "primereact/toast";
-import DeclarativeDemo from "./sucess";
 import { Dialog } from "primereact/dialog";
-import { ConfirmDialog } from "primereact/confirmdialog";
-import { Button } from "primereact/button";
+import { useNavigate } from "react-router-dom";
 
 interface City {
   name: string;
@@ -37,11 +35,13 @@ interface City {
 }
 
 export const FormPage = () => {
+  const navigate = useNavigate();
+
   const { image, setImage } = useContext(ImageContext);
   const [activeTab, setActiveTab] = useState(0);
   const toast = useRef<Toast | null>(null);
-  const [visible, setVisible] = useState<boolean>(true);
-  const [activeIndex, setActiveIndex] = useState<number>(1);
+  const [visible, setVisible] = useState<boolean>(false);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
   const [cpfValue, setCpfValue] = useState<any>("");
   const [dateValue, setDateValue] = useState<any>("");
   const [selectedCity, setSelectedCity] = useState<City | null>(null);
@@ -96,6 +96,7 @@ export const FormPage = () => {
       }
     }
   };
+
   const showResultMessage = (data: any) => {
     const validationResult = FormSchema.safeParse(data);
     if (validationResult.success) {
@@ -138,36 +139,45 @@ export const FormPage = () => {
     console.log(data);
     console.log("imagem enviada", image);
     setVisible(true);
+    reset()
+    setTimeout(() => {
+      navigate("/");
+    }, 2000);
   }
 
   console.log(errors);
   return (
     <>
       <Container>
-      <Toast ref={toast} />
-      <Dialog
-        header=""
-        visible={visible}
-        style={{ width: "20vw" }}
-        onHide={() => setVisible(false)}
-      >
-        <div className="modal">
-          <img style={{
-            width: '50px',
-            paddingBottom: '1rem'
-          }} className="imgModal" src="https://cdn.discordapp.com/attachments/566850308702208001/1148304394228600832/Group_93.png" alt="" />
-          <p
-            style={{
-              fontSize: "1.2rem",
-              fontWeight: "600",
-            }}
-            className="m-0"
-          >
-            Respostas enviadas!
-          </p>
-          <span>Agora é só aguardar o resultado.</span>
-        </div>
-      </Dialog>
+        <Toast ref={toast} />
+        <Dialog
+          header=""
+          visible={visible}
+          style={{ width: "20vw" }}
+          onHide={() => setVisible(false)}
+        >
+          <div className="modal">
+            <img
+              style={{
+                width: "50px",
+                paddingBottom: "1rem",
+              }}
+              className="imgModal"
+              src="https://cdn.discordapp.com/attachments/566850308702208001/1148304394228600832/Group_93.png"
+              alt=""
+            />
+            <p
+              style={{
+                fontSize: "1.2rem",
+                fontWeight: "600",
+              }}
+              className="m-0"
+            >
+              Respostas enviadas!
+            </p>
+            <span>Agora é só aguardar o resultado.</span>
+          </div>
+        </Dialog>
         <form onSubmit={handleSubmit(handleForm)}>
           <div
             style={{
@@ -340,7 +350,7 @@ export const FormPage = () => {
                     <ContainerSteps>
                       <Steps
                         model={items}
-                        activeIndex={0}
+                        activeIndex={activeIndex}
                         onSelect={(e) => setActiveIndex(e.index)}
                       />
                     </ContainerSteps>
