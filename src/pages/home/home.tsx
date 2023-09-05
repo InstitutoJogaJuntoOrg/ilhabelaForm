@@ -1,5 +1,3 @@
-import { Card } from "./components/card";
-import { ContainerCards } from "./components/styles";
 import { ContainerHome, ContainerTitle } from "./styles";
 
 export const HomePage = () => {

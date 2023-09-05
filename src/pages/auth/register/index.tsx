@@ -1,30 +1,30 @@
 import { InputText } from "primereact/inputtext";
 import { Container } from "../../form";
-import { FormField, Register } from "../register/styles";
+import { FormField, Register } from "./styles";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { LoginFormInputs, loginFormSchema } from "../../../schema/loginSchema";
+import { RegisterSchemaType, RegisterSchema } from "../../../schema/registerSchema";
 import { Link } from "react-router-dom";
 
-export const LoginPage = () => {
+export const RegisterPage = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormInputs>({
-    resolver: zodResolver(loginFormSchema),
+  } = useForm<RegisterSchemaType>({
+    resolver: zodResolver(RegisterSchema),
   });
 
-  function handleSubmitLogin(data: any) {
+  function handleSubmitRegister(data: any) {
     console.log(data);
   }
   console.log(errors);
 
   return (
     <Container>
-      <h1>Login</h1>
+      <h1>Registro</h1>
       <form
-        onSubmit={handleSubmit(handleSubmitLogin)}
+        onSubmit={handleSubmit(handleSubmitRegister)}
         style={{
           width: "30rem",
         }}
@@ -33,7 +33,7 @@ export const LoginPage = () => {
           <label>Email</label>
           <InputText
             id="email"
-            {...register("email")}
+            {...register('email')}
             aria-describedby="email-help"
             placeholder="Email"
           />
@@ -43,25 +43,23 @@ export const LoginPage = () => {
           <label>Senha</label>
           <InputText
             id="password"
-            {...register("password")}
+            {...register('password')}
             aria-describedby="password-help"
             placeholder="Senha"
             type="password"
           />
         </FormField>
 
-        <div
-          style={{
-            marginTop: "1rem",
-            color: "white",
-            width: "100%",
-            display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "flex-end",
-          }}
-        >
-          <span>Esqueci minha senha</span>
-        </div>
+        <FormField>
+          <label>Repetir Senha</label>
+          <InputText
+            id="repeatPassword"
+            {...register('confirmPassword')}
+            aria-describedby="repeatPassword-help"
+            placeholder="Repetir Senha"
+            type="password"
+          />
+        </FormField>
 
         <button
           style={{
@@ -70,17 +68,17 @@ export const LoginPage = () => {
           }}
           type="submit"
         >
-          Fazer login
+          Registrar
         </button>
         <br />
         <br />
       </form>
 
       <Register>
-        <h3>Ainda não tem uma conta?</h3>
+        <h3>Já tem uma conta?</h3>
         <span className="register">
-          <Link to={"/register"}>Clique aqui e registre-se</Link>
-        </span>
+            <Link to={"/login"}>Fazer login</Link>
+          </span>
       </Register>
     </Container>
   );

@@ -6,3 +6,8 @@ export const Register = styled.div`
     align-items: center;
     justify-content: center;
 `
+export const FormField = styled.div`
+display: flex;
+flex-direction: column;
+/* Add any other CSS properties you need */
+`;
