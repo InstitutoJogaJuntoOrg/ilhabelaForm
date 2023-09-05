@@ -7,14 +7,14 @@ yarn-error.log*
 
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
-build/Release
+
 
 # Dependency directories
 node_modules/
 jspm_packages/
 
 # Distribution directories
-dist/
+
 
 # Typescript v1 declaration files
 typings/
