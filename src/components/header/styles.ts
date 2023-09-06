@@ -3,7 +3,6 @@ import { styled } from "styled-components";
 
 export const HeaderContainer = styled.header`
   background-color: #9fdb89;
-
   nav {
     display: flex;
     flex-direction: row;

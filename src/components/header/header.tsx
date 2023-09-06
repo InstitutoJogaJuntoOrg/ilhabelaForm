@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { HeaderContainer, StyledNavLink } from "./styles";
 import { FaBars, FaTimes } from "react-icons/fa";
 import MobileMenu from "./mobile";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   const [showLinks, setShowLinks] = useState(false);
@@ -32,7 +33,9 @@ export const Header = () => {
   return (
     <HeaderContainer className={showLinks ? "show-links" : ""}>
       <nav>
-        <img src="https://cdn.discordapp.com/attachments/566850308702208001/1146230197813788702/Vector_1.png" alt="ilhabela prefeitura" />
+       <Link to={'/'}>
+       <img src="https://cdn.discordapp.com/attachments/566850308702208001/1146230197813788702/Vector_1.png" alt="ilhabela prefeitura" />
+       </Link>
         <ul className={windowWidth <= 800 && showLinks ? "hidden" : ""}>
           <StyledNavLink to={"/"} >
             Home

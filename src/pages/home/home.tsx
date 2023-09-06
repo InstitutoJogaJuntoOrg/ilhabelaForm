@@ -1,4 +1,6 @@
-import { ContainerHome, ContainerTitle } from "./styles";
+import { Card } from "./components/card";
+import { ContainerCard } from "./components/styles";
+import { ContainerCardLayout, ContainerHome, ContainerTitle } from "./styles";
 
 export const HomePage = () => {
   return (
@@ -22,6 +24,10 @@ export const HomePage = () => {
           <button>Inscrever-se</button>
         </ContainerTitle>
       </section>
+      <ContainerCardLayout>
+      <Card titleCard="title" image="https://cdn.discordapp.com/attachments/566850308702208001/1146220725309546546/Rectangle_28.png" key={1} alt="img"/>
+      <Card className="secondImg" titleCard="title" image="https://cdn.discordapp.com/attachments/566850308702208001/1146214276537786438/Group.png" key={2} alt="img"/>
+      </ContainerCardLayout>
     </ContainerHome>
   );
 };

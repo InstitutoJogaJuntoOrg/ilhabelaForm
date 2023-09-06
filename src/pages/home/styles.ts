@@ -12,8 +12,14 @@ export const ContainerHome = styled.div`
   }
   img {
     width: 100%;
-    height: 80%;
     object-fit: cover;
+  }
+  .secondImg {
+    img {
+      height: auto;
+      padding: 2rem;
+      margin-top: 20%;
+    }
   }
   section {
     position: absolute;
@@ -42,6 +48,27 @@ export const ContainerHome = styled.div`
     }
   }
 `;
+export const ContainerCardLayout = styled.div`
+  display: flex;
+  margin-top: -27rem;
+  gap: 3rem;
+  justify-content: center;
+  width: 100%;
+  @media (max-width: 1900px) {
+    margin-top: -15rem;
+      }
+      @media (max-width: 1500px) {
+    margin-top: -10rem;
+      }
+      @media (max-width: 1400px) {
+    margin-top: -5rem;
+      }
+      @media (max-width: 1300px) {
+    margin-top: 1rem;
+    flex-direction: column;
+    align-items: center
+      }
+`
 export const ContainerTitle = styled.div`
   display: flex;
   flex-direction: column;

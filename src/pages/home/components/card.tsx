@@ -1,15 +1,18 @@
+
 import { CardsProps } from "../../../interface/cards";
-import { ContainerCard, Background } from "./styles";
+import { ContainerCard, Background, ImageWrapper, OpacityOverlay } from "./styles";
 
 export const Card = ({ image, alt, className, titleCard }: CardsProps) => {
   return (
     <Background>
-      <ContainerCard>
-        <img className={className} src={image} alt={alt} />
+      <ContainerCard className={className}>
+        <ImageWrapper>
+          <img src={image} alt={alt} />
+        </ImageWrapper>
+        <OpacityOverlay>
+          <span className="titleOpacity">{titleCard}</span>
+        </OpacityOverlay>
       </ContainerCard>
-      <div className="opacity">
-        <span className="titleOpacity">{titleCard}</span>
-      </div>
     </Background>
   );
 };
