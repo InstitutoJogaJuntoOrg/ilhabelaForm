@@ -27,7 +27,9 @@ import { connect } from "./components/options/conect";
 import { displays } from "./components/options/display";
 import { Toast } from "primereact/toast";
 import { Dialog } from "primereact/dialog";
-import { useNavigate } from "react-router-dom";
+import { Button } from "primereact/button";
+import Timer from "./components/timer";
+import { Prova } from "./components/prova";
 
 interface City {
   name: string;
@@ -35,11 +37,12 @@ interface City {
 }
 
 export const FormPage = () => {
-  const navigate = useNavigate();
-
   const { image, setImage } = useContext(ImageContext);
   const [activeTab, setActiveTab] = useState(0);
   const toast = useRef<Toast | null>(null);
+  const [isTabEnabled, setTabEnabled] = useState(true);
+  const [isTabEnabledSocial, setIsTabEnabledSocial] = useState(false);
+  const [isTabEnabledDate, setIsTabEnabledDate] = useState(false);
   const [visible, setVisible] = useState<boolean>(false);
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [cpfValue, setCpfValue] = useState<any>("");
@@ -129,20 +132,20 @@ export const FormPage = () => {
     register,
     handleSubmit,
     setValue,
-    reset,
     formState: { errors },
   } = useForm<FormSchemaType>({
     resolver: zodResolver(FormSchema),
   });
 
   function handleForm(data: FormSchemaType) {
-    console.log(data);
+   console.log(data);
     console.log("imagem enviada", image);
-    setVisible(true);
-    reset()
-    setTimeout(() => {
-      navigate("/");
-    }, 2000);
+    setTabEnabled(false);
+    setIsTabEnabledSocial(true)
+    setIsTabEnabledDate(true)
+    setActiveTab(2)
+    setVisible(true)
+    
   }
 
   console.log(errors);
@@ -173,9 +176,13 @@ export const FormPage = () => {
               }}
               className="m-0"
             >
-              Respostas enviadas!
+              Inscrição realizada!
             </p>
-            <span>Agora é só aguardar o resultado.</span>
+            <span>A partir daqui, a prova será iniciada e você terá <strong>30 minutos</strong> para respondê-la</span>
+            <div className="card flex justify-content-center">
+              <br />
+                <Button onClick={() => setVisible(false)} icon="pi pi-check" label="Iniciar" />
+            </div>
           </div>
         </Dialog>
         <form onSubmit={handleSubmit(handleForm)}>
@@ -192,7 +199,7 @@ export const FormPage = () => {
                   activeIndex={activeTab}
                   onTabChange={(e) => setActiveTab(e.index)}
                 >
-                  <TabPanel header="Dados pessoais">
+                  <TabPanel header="Dados pessoais" disabled={isTabEnabledDate}>
                     <div></div>
                     <ContainerFlexInputs>
                       <div>
@@ -355,7 +362,7 @@ export const FormPage = () => {
                       />
                     </ContainerSteps>
                   </TabPanel>
-                  <TabPanel header="Dados socioeconômicos">
+                  <TabPanel header="Dados socioeconômicos" disabled={isTabEnabledSocial}>
                     <div></div>
                     <br />
                     <div className="dadosSocieconomicos">
@@ -642,10 +649,11 @@ export const FormPage = () => {
                           Voltar
                         </button>
                         <button
-                          className="buttonForm"
-                          onClick={() => setActiveTab(2)}
+                          className="buttonFormSubmit"
+                          type="submit"
+                          onClick={showResultMessage}
                         >
-                          Próximo
+                          Enviar
                         </button>
                       </ContainerButtons>
                     </div>
@@ -658,164 +666,9 @@ export const FormPage = () => {
                     </ContainerSteps>
                   </TabPanel>
 
-                  <TabPanel header="Prova">
-                    <div className="options">
-                      <h1 style={{ fontSize: "1rem" }}>Questão 1</h1>
-                      <label className="hLabel" htmlFor="q1-option1">
-                        <input
-                          className="inputWidth"
-                          type="radio"
-                          {...register("questionOne")}
-                          id="q1-option1"
-                          value="resposta 1A"
-                        />
-                        Resposta 1A
-                      </label>
-
-                      <label className="hLabel" htmlFor="q1-option2">
-                        <input
-                          className="inputWidth"
-                          type="radio"
-                          {...register("questionOne")}
-                          id="q1-option2"
-                          value="resposta 1B"
-                        />
-                        Resposta 1B
-                      </label>
-
-                      <label className="hLabel" htmlFor="q1-option3">
-                        <input
-                          className="inputWidth"
-                          type="radio"
-                          {...register("questionOne")}
-                          id="q1-option3"
-                          value="resposta 1C"
-                        />
-                        Resposta 1C
-                      </label>
-
-                      <label className="hLabel" htmlFor="q1-option4">
-                        <input
-                          className="inputWidth"
-                          type="radio"
-                          {...register("questionOne")}
-                          id="q1-option4"
-                          value="resposta 1D"
-                        />
-                        Resposta 1D
-                      </label>
-                    </div>
-
-                    <div className="options">
-                      <h1 style={{ fontSize: "1rem" }}>Questão 2</h1>
-                      <label className="hLabel" htmlFor="q2-option1">
-                        <input
-                          className="inputWidth"
-                          type="radio"
-                          {...register("questionTwo")}
-                          id="q2-option1"
-                          value="resposta 2A"
-                        />
-                        Resposta 2A
-                      </label>
-
-                      <label className="hLabel" htmlFor="q2-option2">
-                        <input
-                          className="inputWidth"
-                          type="radio"
-                          {...register("questionTwo")}
-                          id="q2-option2"
-                          value="resposta 2B"
-                        />
-                        Resposta 2B
-                      </label>
-
-                      <label className="hLabel" htmlFor="q2-option3">
-                        <input
-                          className="inputWidth"
-                          type="radio"
-                          {...register("questionTwo")}
-                          id="q2-option3"
-                          value="resposta 2C"
-                        />
-                        Resposta 2C
-                      </label>
-
-                      <label className="hLabel" htmlFor="q2-option4">
-                        <input
-                          className="inputWidth"
-                          type="radio"
-                          {...register("questionTwo")}
-                          id="q2-option4"
-                          value="resposta 2D"
-                        />
-                        Resposta 2D
-                      </label>
-                    </div>
-
-                    <div className="options">
-                      <h1 style={{ fontSize: "1rem" }}>Questão 3</h1>
-                      <label className="hLabel" htmlFor="q3-option1">
-                        <input
-                          className="inputWidth"
-                          type="radio"
-                          {...register("questionTree")}
-                          id="q3-option1"
-                          value="resposta 3A"
-                        />
-                        Resposta 3A
-                      </label>
-
-                      <label className="hLabel" htmlFor="q3-option2">
-                        <input
-                          className="inputWidth"
-                          type="radio"
-                          {...register("questionTree")}
-                          id="q3-option2"
-                          value="resposta 3B"
-                        />
-                        Resposta 3B
-                      </label>
-
-                      <label className="hLabel" htmlFor="q3-option3">
-                        <input
-                          className="inputWidth"
-                          type="radio"
-                          {...register("questionTree")}
-                          id="q3-option3"
-                          value="resposta 3C"
-                        />
-                        Resposta 3C
-                      </label>
-
-                      <label className="hLabel" htmlFor="q3-option4">
-                        <input
-                          className="inputWidth"
-                          type="radio"
-                          {...register("questionTree")}
-                          id="q3-option4"
-                          value="resposta 3D"
-                        />
-                        Resposta 3D
-                      </label>
-                    </div>
-
-                    <ContainerButtons>
-                      <button
-                        className="buttonForm back"
-                        onClick={() => setActiveTab(1)}
-                      >
-                        Voltar
-                      </button>
-                      <button
-                        className="buttonFormSubmit"
-                        type="submit"
-                        onClick={showResultMessage}
-                      >
-                        Enviar
-                      </button>
-                    </ContainerButtons>
-
+                  <TabPanel header="Prova" disabled={isTabEnabled}>
+                            <Timer />
+                            <Prova />
                     <ContainerSteps>
                       <Steps
                         model={items}

@@ -46,6 +46,9 @@ export const GlobalStyle = createGlobalStyle`
     color: black;
     fill: black;
   }
+  .boxSh {
+    box-shadow: none!important;
+  }
   label {
     display: flex;
     justify-content: flex-start;

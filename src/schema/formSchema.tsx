@@ -96,18 +96,6 @@ export const FormSchema = z.object({
     required_error: "messages.required",
   }).min(1, { message: "messages.required" }),
 
-  questionOne: z.string({
-    required_error: "messages.required",
-  }),
-
-  questionTwo: z.string({
-    required_error: "messages.required",
-  }),
-
-  questionTree: z.string({
-    required_error: "messages.required",
-  })
-
 });
 
 export type FormSchemaType = z.infer<typeof FormSchema>;
