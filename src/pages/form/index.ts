@@ -38,8 +38,8 @@ export const Container = styled.div`
     }
 
     @media only screen and (max-width: 600px) {
-      padding: 0.5rem;
-      width: 21rem;
+      padding: 1rem;
+      width: 21rem!important;
     }
     gap: 4rem;
     border-radius: 15px;

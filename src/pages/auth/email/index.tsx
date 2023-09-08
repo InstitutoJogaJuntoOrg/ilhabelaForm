@@ -29,16 +29,6 @@ export const EmailPage = () => {
         }}
       >
         <FormField>
-          <label>Qual seu nome?</label>
-          <InputText
-            id="email"
-            {...register("name")}
-            aria-describedby="email-help"
-            placeholder="Nome"
-          />
-        </FormField>
-
-        <FormField>
           <label>Email</label>
           <InputText
             id="email"
