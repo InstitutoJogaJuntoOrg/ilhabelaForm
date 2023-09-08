@@ -1,6 +1,7 @@
 import { Steps } from "primereact/steps";
 import { useState } from "react";
 import { Card } from "./components/card";
+import StepsHome from "./components/steps";
 import { ContainerCard } from "./components/styles";
 import {
   About,
@@ -88,17 +89,7 @@ export const HomePage = () => {
             minus perferendis, fugiat, tempore nam aliquid vel itaque quibusdam
             laborum, et consequatur libero.
           </span>
-          <StepsCustom>
-            <div>
-              <h1>1</h1>
-            </div>
-            <div>
-              <h1>2</h1>
-            </div>
-            <div>
-              <h1>3</h1>
-            </div>
-          </StepsCustom>
+           <StepsHome />
         </About>
       </ContainerHome>
     </div>
