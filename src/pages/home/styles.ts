@@ -4,11 +4,12 @@ export const ContainerHome = styled.div`
   width: 100%;
   height: 100vh;
   position: relative;
+  display: flex;
+  flex-direction: column;
   .InitialMessage {
     max-width: 95%;
     width: 100%;
     height: 100%;
-
   }
   img {
     width: 100%;
@@ -56,19 +57,22 @@ export const ContainerCardLayout = styled.div`
   width: 100%;
   @media (max-width: 1900px) {
     margin-top: -15rem;
-      }
-      @media (max-width: 1500px) {
+  }
+  @media (max-width: 1700px) {
     margin-top: -10rem;
-      }
-      @media (max-width: 1400px) {
-    margin-top: -5rem;
-      }
-      @media (max-width: 1300px) {
-    margin-top: 1rem;
+  }
+  @media (max-width: 1600px) {
+    margin-top: -2rem;
+  }
+  @media (max-width: 1300px) {
+    margin-top: 5rem;
+  }
+  @media (max-width: 1100px) {
+    margin-top: 5rem;
     flex-direction: column;
-    align-items: center
-      }
-`
+    align-items: center;
+  }
+`;
 export const ContainerTitle = styled.div`
   display: flex;
   flex-direction: column;
@@ -99,7 +103,46 @@ export const ContainerTitle = styled.div`
     color: white;
     font-weight: 600;
     @media (max-width: 1000px) {
-        font-size: 20px;
-      }
+      font-size: 20px;
+    }
+  }
+`;
+export const About = styled.div`
+  margin-top: 5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white; /* Add a background color to clearly define the "About" section */
+`;
+
+export const StepsCustom = styled.div`
+  display: flex;
+  justify-content: space-between; /* Adjust as needed to control the spacing between steps */
+  align-items: center; /* Center the steps vertically */
+  /* Style for the line connecting the steps */
+  & > div {
+    position: relative;
+    width: 24px; /* Adjust the width of the step circle as needed */
+    height: 24px; /* Adjust the height of the step circle as needed */
+    border: 2px solid #000; /* Adjust the border style and color as needed */
+    border-radius: 50%;
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px; /* Adjust the font size as needed */
+    background-color: #fff; /* Adjust the background color of the step circle as needed */
+  }
+
+  & > div::before {
+    content: "";
+    position: absolute;
+    top: calc(50% + 2px); /* Adjust the top position to center the line between steps */
+    left: calc(100% - 12px); /* Adjust the distance between the step circle and the line as needed */
+    width: 24px; /* Adjust the width of the connecting line as needed */
+    height: 2px; /* Adjust the height of the connecting line as needed */
+    background-color: #000; /* Adjust the line color as needed */
   }
 `;
