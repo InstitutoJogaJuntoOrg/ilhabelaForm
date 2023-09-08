@@ -25,8 +25,9 @@ export const ContainerCard = styled.div`
 `;
 
 export const StepsContainer = styled.div`
-  margin-top: 4rem;
-  padding: 1rem;
+  margin-top: 9rem;
+  padding: 1rem 5rem;
+  margin-bottom: 5rem;
   width: 100%;
 
   .p-steps .p-steps-item .p-menuitem-link .p-steps-number {

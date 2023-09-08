@@ -108,41 +108,19 @@ export const ContainerTitle = styled.div`
   }
 `;
 export const About = styled.div`
-  margin-top: 5rem;
+  margin-top: 10rem;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: white; /* Add a background color to clearly define the "About" section */
-`;
-
-export const StepsCustom = styled.div`
-  display: flex;
-  justify-content: space-between; /* Adjust as needed to control the spacing between steps */
-  align-items: center; /* Center the steps vertically */
-  /* Style for the line connecting the steps */
-  & > div {
-    position: relative;
-    width: 24px; /* Adjust the width of the step circle as needed */
-    height: 24px; /* Adjust the height of the step circle as needed */
-    border: 2px solid #000; /* Adjust the border style and color as needed */
-    border-radius: 50%;
-    display: flex;
-    padding: 1rem;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px; /* Adjust the font size as needed */
-    background-color: #fff; /* Adjust the background color of the step circle as needed */
+  background-color: white;
+  h1 {
+    font-size: 5rem;
+    color: #54993A;
   }
-
-  & > div::before {
-    content: "";
-    position: absolute;
-    top: calc(50% + 2px); /* Adjust the top position to center the line between steps */
-    left: calc(100% - 12px); /* Adjust the distance between the step circle and the line as needed */
-    width: 24px; /* Adjust the width of the connecting line as needed */
-    height: 2px; /* Adjust the height of the connecting line as needed */
-    background-color: #000; /* Adjust the line color as needed */
+  p {
+    font-size: 1rem;
+    color: #54993A;
   }
 `;

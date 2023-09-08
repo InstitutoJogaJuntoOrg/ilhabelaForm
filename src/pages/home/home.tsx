@@ -1,29 +1,13 @@
-import { Steps } from "primereact/steps";
-import { useState } from "react";
 import { Card } from "./components/card";
 import StepsHome from "./components/steps";
-import { ContainerCard } from "./components/styles";
 import {
   About,
   ContainerCardLayout,
   ContainerHome,
   ContainerTitle,
-  StepsCustom,
 } from "./styles";
 
 export const HomePage = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const items = [
-    {
-      label: "Dados",
-    },
-    {
-      label: "Social",
-    },
-    {
-      label: "Prova",
-    },
-  ];
 
   return (
     <div
@@ -71,24 +55,7 @@ export const HomePage = () => {
         </ContainerCardLayout>
         <About>
           <h1>Como se inscrever</h1>
-          <span>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita
-            omnis architecto magnam dignissimos iusto possimus ducimus nihil
-            minus perferendis, fugiat, tempore nam aliquid vel itaque quibusdam
-            laborum, et consequatur libero.
-          </span>
-          <span>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita
-            omnis architecto magnam dignissimos iusto possimus ducimus nihil
-            minus perferendis, fugiat, tempore nam aliquid vel itaque quibusdam
-            laborum, et consequatur libero.
-          </span>
-          <span>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita
-            omnis architecto magnam dignissimos iusto possimus ducimus nihil
-            minus perferendis, fugiat, tempore nam aliquid vel itaque quibusdam
-            laborum, et consequatur libero.
-          </span>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, voluptate. Fuga ut ipsa expedita magnam. Deleniti aliquam porro facilis vitae illo veniam quos voluptas, illum cum explicabo, fuga repudiandae sequi?</p>
            <StepsHome />
         </About>
       </ContainerHome>
