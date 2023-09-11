@@ -3,27 +3,41 @@ import { Container } from "../../form";
 import { FormField } from "../register/styles";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { EmailFormSchemaType, EmailFormSchema } from "../../../schema/emailSchema";
+import { useNavigate } from "react-router-dom";
+import {
+  EmailFormSchemaType,
+  EmailFormSchema,
+} from "../../../schema/emailSchema";
+import axios from "axios";
 
 export const EmailPage = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<EmailFormSchemaType>({
+  const { handleSubmit, register } = useForm<EmailFormSchemaType>({
     resolver: zodResolver(EmailFormSchema),
   });
+  const navigate = useNavigate()
+  const handleSubmitLogin = handleSubmit(async (data) => {
+    try {
+      const response = await axios.post(
+        "http://back.ilhabelatech.com:8000/users/email_check/",
+        { email: data.email }
+      );
 
-  function handleSubmitLogin(data: any) {
-    console.log(data);
-  }
-  console.log(errors);
+      if (response.status === 200) {
+        console.log("OK");
+        localStorage.setItem("email", data.email);
+        navigate('/auth')
+      }
+    } catch (error) {
+      console.log(data.email)
+      console.error("Erro");
+    }
+  });
 
   return (
     <Container>
       <h1>Qual seu email?</h1>
       <form
-        onSubmit={handleSubmit(handleSubmitLogin)}
+        onSubmit={handleSubmitLogin}
         style={{
           width: "30rem",
         }}
@@ -33,6 +47,7 @@ export const EmailPage = () => {
           <InputText
             id="email"
             {...register("email")}
+            required
             aria-describedby="email-help"
             placeholder="Email"
           />
@@ -45,7 +60,7 @@ export const EmailPage = () => {
           }}
           type="submit"
         >
-         Prosseguir
+          Prosseguir
         </button>
         <br />
         <br />

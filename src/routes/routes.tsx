@@ -6,12 +6,13 @@ import { RegisterPage } from "../pages/auth/register";
 
 import { EmailPage } from "../pages/auth/email";
 import { LoginPage } from "../pages/auth/login";
+import { PrivateRoute } from "./private";
 
 export function Router() {
   return (
     <Routes>
       <Route path="/" element={<DefaultLayout />}>
-        <Route path="/inscricao" element={<FormPage />} />
+        <Route path="/inscricao" element={<PrivateRoute> <FormPage /> </PrivateRoute>} />
         <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<EmailPage />} />

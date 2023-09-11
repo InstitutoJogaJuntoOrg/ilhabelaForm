@@ -5,20 +5,39 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { LoginFormInputs, loginFormSchema } from "../../../schema/loginSchema";
 import { Link } from "react-router-dom";
-
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 export const LoginPage = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginFormInputs>({
+  const { register, handleSubmit } = useForm<LoginFormInputs>({
     resolver: zodResolver(loginFormSchema),
   });
+  const [email, setEmail] = useState(localStorage.getItem("email") || "");
+  const [data, setData] = useState();
+  const navigate = useNavigate();
+  const handleSubmitLogin = handleSubmit(async (data) => {
+    try {
+      const response = await axios.post(
+        "http://back.ilhabelatech.com:8000/users/login/",
+        { email: data.email, password: data.password }
+      );
 
-  function handleSubmitLogin(data: any) {
-    console.log(data);
-  }
-  console.log(errors);
+      if (response.status === 200) {
+        console.log("logado");
+        setData(response.data);
+        localStorage.setItem("token", response.data.access);
+        localStorage.setItem("refresh", response.data.refresh);
+        localStorage.setItem("username", response.data.username);
+        navigate("/inscricao");
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(data.email);
+      console.error("Erro");
+    }
+  });
+
+  console.log(data);
 
   return (
     <Container>
@@ -34,8 +53,10 @@ export const LoginPage = () => {
           <InputText
             id="email"
             {...register("email")}
+            onChange={(e) => setEmail(e.target.value)}
             aria-describedby="email-help"
             placeholder="Email"
+            value={email}
           />
         </FormField>
 
