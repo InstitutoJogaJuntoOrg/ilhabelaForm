@@ -10,6 +10,30 @@ export const HeaderContainer = styled.header`
     height: 93px;
     justify-content: space-between;
     padding: 0.2rem 4rem;
+
+    li {
+      z-index: 10;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #54993a;
+
+  &:hover {
+    color: white;
+    background-color: #54993a;
+    border-radius: 60px;
+  }
+
+  &.active {
+    color: white;
+    background-color: #54993a;
+    border-radius: 60px;
+  }
+    }
   }
 
   ul {

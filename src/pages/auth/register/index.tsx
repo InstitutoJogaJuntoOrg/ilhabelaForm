@@ -8,8 +8,15 @@ import {
   RegisterSchema,
 } from "../../../schema/registerSchema";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 export const RegisterPage = () => {
+  const navigate = useNavigate();
+  const notifySuccess = () => toast.success("Usuário cadastrado com sucesso!");
+  const [email, setEmail] = useState(localStorage.getItem("email") || "");
   const {
     register,
     handleSubmit,
@@ -17,14 +24,39 @@ export const RegisterPage = () => {
   } = useForm<RegisterSchemaType>({
     resolver: zodResolver(RegisterSchema),
   });
+  function handleSubmitRegister(data: RegisterSchemaType) {
+    const requestData = {
+      username: data.name,
+      password: data.password,
+      email: data.email,
+    };
 
-  function handleSubmitRegister(data: any) {
-    console.log(data);
+    axios
+      .post("http://back.ilhabelatech.com:8000/users/", requestData)
+      .then((response) => {
+        notifySuccess();
+        if (response.status === 201) {
+          setTimeout(() => {
+            navigate("/auth");
+          }, 2000);
+        }
+      })
+      .catch((error) => {
+        if (error.response && error.response.status === 400) {
+          let response = error.response.data.message;
+          console.error("Erro ao cadastrar o usuário:", response);
+          toast.error(response);
+        } else {
+          console.error("Erro ao cadastrar o usuário:", error);
+        }
+      });
   }
+
   console.log(errors);
 
   return (
     <Container>
+      <ToastContainer />
       <h1>Registro</h1>
       <form
         onSubmit={handleSubmit(handleSubmitRegister)}
@@ -47,8 +79,10 @@ export const RegisterPage = () => {
           <InputText
             id="email"
             {...register("email")}
+            onChange={(e) => setEmail(e.target.value)}
             aria-describedby="email-help"
             placeholder="Email"
+            value={email}
           />
         </FormField>
 

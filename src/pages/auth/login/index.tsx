@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 export const LoginPage = () => {
   const { register, handleSubmit } = useForm<LoginFormInputs>({
     resolver: zodResolver(loginFormSchema),
@@ -21,26 +22,38 @@ export const LoginPage = () => {
         "http://back.ilhabelatech.com:8000/users/login/",
         { email: data.email, password: data.password }
       );
-
+  
       if (response.status === 200) {
         console.log("logado");
         setData(response.data);
         localStorage.setItem("token", response.data.access);
         localStorage.setItem("refresh", response.data.refresh);
         localStorage.setItem("username", response.data.username);
-        navigate("/inscricao");
-        window.location.reload();
+        toast.success("Autenticado com sucesso!");
+  
+        setTimeout(() => {
+          navigate('/inscricao');
+          window.location.reload();
+        }, 2000);
       }
     } catch (error) {
-      console.log(data.email);
-      console.error("Erro");
+      if (axios.isAxiosError(error) && error.response) {
+        if (error.response.status === 401) {
+          console.log("Erro de autenticação:", error.response.data.error);
+          toast.error(error.response.data.error);
+        } else {
+          console.error("Erro ao fazer login:", error);
+        }
+      }
     }
   });
+  
 
   console.log(data);
 
   return (
     <Container>
+        <ToastContainer />
       <h1>Login</h1>
       <form
         onSubmit={handleSubmit(handleSubmitLogin)}

@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import "primereact/resources/primereact.min.css";
 //theme
 import "primereact/resources/themes/lara-light-indigo/theme.css";
-
+import 'react-toastify/dist/ReactToastify.css';
 export const GlobalStyle = createGlobalStyle`
 
 * {

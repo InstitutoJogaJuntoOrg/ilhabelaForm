@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { HeaderContainer, StyledNavLink } from "./styles";
 import { FaBars, FaTimes } from "react-icons/fa";
 import MobileMenu from "./mobile";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import MyDropdown from "./profile";
 
 export const Header = () => {
   const [showLinks, setShowLinks] = useState(false);
@@ -51,9 +52,15 @@ export const Header = () => {
         </Link>
         <ul className={windowWidth <= 800 && showLinks ? "hidden" : ""}>
           <StyledNavLink to={"/"}>Home</StyledNavLink>
-          <StyledNavLink to={userEmail ? "/inscricao" : "/login"}>
-            {userEmail ? `Olá, ${userEmail}` : "Fazer login"}
-          </StyledNavLink>
+          {!userEmail && <StyledNavLink to="/login">Fazer login</StyledNavLink>}
+    
+          {userEmail && <MyDropdown />}
+
+          {userEmail && (
+            <StyledNavLink to={userEmail ? "/inscricao" : "/auth"}>
+              Inscrição
+            </StyledNavLink>
+          )}
         </ul>
         <div className="hamburger-icon" onClick={toggleLinks}>
           {showLinks ? <FaTimes /> : <FaBars />}
