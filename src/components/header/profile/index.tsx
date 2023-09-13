@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Dropdown } from 'primereact/dropdown';
 
 const options = [
-  { label: 'Perfil', value: 'profile' },
   { label: 'Sair', value: 'logout' },
 ];
 

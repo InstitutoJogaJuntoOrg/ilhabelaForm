@@ -39,14 +39,14 @@ export const Container = styled.div`
 
     @media only screen and (max-width: 600px) {
       padding: 1rem;
-      width: 21rem!important;
+      width: 21rem !important;
     }
     gap: 4rem;
     border-radius: 15px;
     box-shadow: 0px 15px 57px 0px rgba(0, 0, 0, 0.25);
     margin-top: 2rem;
     margin-bottom: 2rem;
-    width: 49rem;
+    width: 51rem;
     padding: 2rem 4rem 1rem 4rem;
     background-color: #72b65a;
     div {
@@ -92,12 +92,13 @@ export const ContainerFlexInputs = styled.div`
 export const ContainerButtons = styled.div`
   margin-top: 0.5rem;
   display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
   width: 100%;
   gap: 5rem;
   @media only screen and (max-width: 600px) {
     gap: 1.5rem;
   }
-  justify-content: space-between;
   .back {
     background-color: #95d07f;
   }

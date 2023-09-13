@@ -1,8 +1,7 @@
 export const collor = [
-    { name: 'Clara', code: 'C' },
-    { name: 'Parda', code: 'P' },
-    { name: 'Morena', code: 'M' },
-    { name: 'Negra', code: 'N' },
-    { name: 'Indígena', code: 'I' },
-    { name: 'Amarela', code: 'A' },
+    { name: 'branca', value: 'branca' },
+    { name: 'Preta', value: 'preta' },
+    { name: 'Amarela', value: 'amarela' },
+    { name: 'Parda', value: 'parda' },
+    { name: 'Indígena', value: 'indigena' },
 ];

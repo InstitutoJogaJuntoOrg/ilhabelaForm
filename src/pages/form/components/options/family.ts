@@ -1,4 +1,4 @@
-export const childrens = [
+export const family = [
     { name: '0', code: '0' },
     { name: '1', code: '1' },
     { name: '2', code: '2' },

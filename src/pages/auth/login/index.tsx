@@ -28,7 +28,7 @@ export const LoginPage = () => {
         setData(response.data);
         localStorage.setItem("token", response.data.access);
         localStorage.setItem("refresh", response.data.refresh);
-        localStorage.setItem("username", response.data.username);
+        localStorage.setItem("username", response.data.user);
         toast.success("Autenticado com sucesso!");
   
         setTimeout(() => {

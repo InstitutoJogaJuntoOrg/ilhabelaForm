@@ -8,11 +8,6 @@ import {
   ContainerSteps,
 } from ".";
 import { states } from "./components/options/state";
-import { deficiency } from "./components/options/deficiency";
-import { collor } from "./components/options/collor";
-import { gender } from "./components/options/gender";
-import { guildance } from "./components/options/guidance";
-import { childrens } from "./components/options/childrens";
 import { TabView, TabPanel } from "primereact/tabview";
 import { InputText } from "primereact/inputtext";
 import { InputMask } from "primereact/inputmask";
@@ -21,15 +16,13 @@ import { useContext, useRef, useState } from "react";
 import { Steps } from "primereact/steps";
 import { FileUpload } from "primereact/fileupload";
 import { ImageContext } from "../../context/image";
-import { benefits } from "./components/options/benefits";
-import { scholl } from "./components/options/scholl";
-import { connect } from "./components/options/conect";
-import { displays } from "./components/options/display";
 import { Toast } from "primereact/toast";
 import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
 import Timer from "./components/timer";
 import { Prova } from "./components/prova";
+import { SocioEconomico } from "./components/socioeconomico";
+import axios from "axios";
 
 interface City {
   name: string;
@@ -40,26 +33,13 @@ export const FormPage = () => {
   const { image, setImage } = useContext(ImageContext);
   const [activeTab, setActiveTab] = useState(0);
   const toast = useRef<Toast | null>(null);
-  const [isTabEnabled, setTabEnabled] = useState(true);
+  const [isTabEnabled, setTabEnabled] = useState(false);
   const [isTabEnabledSocial, setIsTabEnabledSocial] = useState(false);
   const [isTabEnabledDate, setIsTabEnabledDate] = useState(false);
   const [visible, setVisible] = useState<boolean>(false);
   const [activeIndex, setActiveIndex] = useState<number>(0);
-  const [cpfValue, setCpfValue] = useState<any>("");
   const [dateValue, setDateValue] = useState<any>("");
   const [selectedCity, setSelectedCity] = useState<City | null>(null);
-  const [selectedcollor, setSelectedcollor] = useState<City | null>(null);
-  const [selectedchildrens, setSelectedchildrens] = useState<City | null>(null);
-  const [selectedconexao, setSelectedconexao] = useState<City | null>(null);
-  const [selectedguildance, setSelectedguildance] = useState<City | null>(null);
-  const [selecteddisplay, setSelecteddisplay] = useState<City | null>(null);
-  const [selectedscholl, setSelectedscholl] = useState<City | null>(null);
-
-  const [selectedgender, setSelectedgender] = useState<City | null>(null);
-  const [selectedBenefits, setSelectedBenefits] = useState<City | null>(null);
-  const [selectedDeficiency, SetSelectedDeficiency] = useState<City | null>(
-    null
-  );
 
   const items = [
     {
@@ -100,34 +80,6 @@ export const FormPage = () => {
     }
   };
 
-  const showResultMessage = (data: any) => {
-    const validationResult = FormSchema.safeParse(data);
-    if (validationResult.success) {
-      if (toast.current) {
-        toast.current.show({
-          severity: "success",
-          summary: "Sucesso",
-          detail: "Seu formulário foi enviado com sucesso!",
-          life: 3000,
-        });
-      } else {
-        console.error("Toast não foi inicializado corretamente.");
-      }
-    } else {
-      if (toast.current) {
-        toast.current.show({
-          severity: "error",
-          summary: "Campos incorretos!",
-          detail: " validationResult.error.message",
-          life: 5000,
-          closable: true,
-        });
-      } else {
-        console.error("Toast não foi inicializado corretamente.");
-      }
-    }
-  };
-
   const {
     register,
     handleSubmit,
@@ -137,15 +89,39 @@ export const FormPage = () => {
     resolver: zodResolver(FormSchema),
   });
 
-  function handleForm(data: FormSchemaType) {
-   console.log(data);
-    console.log("imagem enviada", image);
-    setTabEnabled(false);
-    setIsTabEnabledSocial(true)
-    setIsTabEnabledDate(true)
-    setActiveTab(2)
-    setVisible(true)
-    
+  const apiUrl = "http://back.ilhabelatech.com:8000/personalinfo/";
+
+  async function sendPersonalInfo(data: FormSchemaType) {
+    try {
+      const token = localStorage.getItem("token"); // Obter o token do localStorage
+      const response = await axios.post(
+        apiUrl,
+        {
+          cpf: data.cpf,
+          first_name: data.first_name,
+          social_name: data.socialName,
+          phone: data.phone,
+          date_of_birth: data.date,
+          living_uf: data.state.name,
+          city: data.state.name,
+          country: data.state.name,
+          civil_state: data.civil_state,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setIsTabEnabledSocial(true);
+      setIsTabEnabledDate(true);
+      setActiveTab(1);
+      console.log("imagem enviada", image);
+      console.log("Data sent successfully:", response.data);
+    } catch (error) {
+      console.error("Error sending data:", error);
+    }
   }
 
   console.log(errors);
@@ -178,14 +154,21 @@ export const FormPage = () => {
             >
               Inscrição realizada!
             </p>
-            <span>A partir daqui, a prova será iniciada e você terá <strong>30 minutos</strong> para respondê-la</span>
+            <span>
+              A partir daqui, a prova será iniciada e você terá{" "}
+              <strong>30 minutos</strong> para respondê-la
+            </span>
             <div className="card flex justify-content-center">
               <br />
-                <Button onClick={() => setVisible(false)} icon="pi pi-check" label="Iniciar" />
+              <Button
+                onClick={() => setVisible(false)}
+                icon="pi pi-check"
+                label="Iniciar"
+              />
             </div>
           </div>
         </Dialog>
-        <form onSubmit={handleSubmit(handleForm)}>
+        <form onSubmit={handleSubmit(sendPersonalInfo)}>
           <div
             style={{
               display: "flex",
@@ -200,7 +183,6 @@ export const FormPage = () => {
                   onTabChange={(e) => setActiveTab(e.index)}
                 >
                   <TabPanel header="Dados pessoais" disabled={isTabEnabledDate}>
-                    <div></div>
                     <ContainerFlexInputs>
                       <div>
                         <div
@@ -209,7 +191,7 @@ export const FormPage = () => {
                             flexDirection: "column",
                           }}
                         >
-                          <label>Nome</label>
+                          <label>Nome completo</label>
                           <InputText
                             {...register("name")}
                             id="username"
@@ -226,10 +208,8 @@ export const FormPage = () => {
                           }}
                         >
                           <label>CPF:</label>
-                          <InputMask
-                            value={cpfValue ?? ""}
-                            onComplete={(e) => setCpfValue(e.value || "")}
-                            mask="999.999.999-99"
+                          <InputText
+                            maxLength={11}
                             {...register("cpf")}
                             placeholder="___.___.___-__"
                             className={errors.cpf ? "p-invalid" : ""}
@@ -247,8 +227,8 @@ export const FormPage = () => {
                             onComplete={(e) => setDateValue(e.value || "")}
                             {...register("date")}
                             id="date"
-                            mask="99/99/9999"
-                            placeholder="dd/mm/yyyy"
+                            mask="9999-99-99"
+                            placeholder="dd-mm-yyyy"
                             className={errors.date ? "p-invalid" : ""}
                           />
                         </div>
@@ -265,9 +245,37 @@ export const FormPage = () => {
                             className={errors.phone ? "p-invalid" : ""}
                           />
                         </div>
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                          }}
+                        >
+                          <label>Estado civil</label>
+                          <InputText
+                            {...register("civil_state")}
+                            placeholder="Estado civil"
+                            className={errors.civil_state ? "p-invalid" : ""}
+                          />
+                        </div>
                       </div>
 
                       <div>
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                          }}
+                        >
+                          <label>Primeiro Nome</label>
+                          <InputText
+                            {...register("first_name")}
+                            id="primeiro nome"
+                            aria-describedby="username-help"
+                            placeholder="Primeiro nome"
+                            className={errors.first_name ? "p-invalid" : ""}
+                          />
+                        </div>
                         <div
                           style={{
                             display: "flex",
@@ -345,10 +353,7 @@ export const FormPage = () => {
                           />
                         </div>
                         <ContainerButtons className="flexEnd">
-                          <button
-                            className="buttonForm"
-                            onClick={() => setActiveTab(1)}
-                          >
+                          <button className="buttonForm" type="submit">
                             Próximo
                           </button>
                         </ContainerButtons>
@@ -362,300 +367,19 @@ export const FormPage = () => {
                       />
                     </ContainerSteps>
                   </TabPanel>
-                  <TabPanel header="Dados socioeconômicos" disabled={isTabEnabledSocial}>
-                    <div></div>
+                  <TabPanel
+                    header="Dados socioeconômicos"
+                    disabled={isTabEnabledSocial}
+                  >
                     <br />
                     <div className="dadosSocieconomicos">
                       <ContainerFlexInputs>
-                        <div>
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              gap: ".0rem",
-                            }}
-                            className="card flex justify-content-center"
-                          >
-                            <label>
-                              Possui algum tipo de deficiência física?
-                            </label>
-                            <Dropdown
-                              value={selectedDeficiency}
-                              options={deficiency}
-                              optionLabel="name"
-                              onChange={(e) => {
-                                SetSelectedDeficiency(e.value);
-                                setValue("deficiency", e.value);
-                              }}
-                              placeholder="Selecione"
-                              className={
-                                errors.deficiency
-                                  ? "p-invalid w-full md:w-14rem"
-                                  : "w-full md:w-14rem"
-                              }
-                            />
-                          </div>
-
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              gap: ".0rem",
-                            }}
-                            className="card flex justify-content-center"
-                          >
-                            <label>Qual gênero você se identifica?</label>
-                            <Dropdown
-                              value={selectedgender}
-                              options={gender}
-                              optionLabel="name"
-                              onChange={(e) => {
-                                setSelectedgender(e.value);
-                                setValue("gender", e.value);
-                              }}
-                              placeholder="Selecione"
-                              className={
-                                errors.gender
-                                  ? "p-invalid w-full md:w-14rem"
-                                  : "w-full md:w-14rem"
-                              }
-                              showClear
-                            />
-                          </div>
-
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              gap: ".0rem",
-                            }}
-                            className="card flex justify-content-center"
-                          >
-                            <label>Tem filhos?</label>
-                            <Dropdown
-                              value={selectedchildrens}
-                              options={childrens}
-                              optionLabel="name"
-                              onChange={(e) => {
-                                setSelectedchildrens(e.value);
-                                setValue("children", e.value);
-                              }}
-                              placeholder="Selecione"
-                              className={
-                                errors.children
-                                  ? "p-invalid w-full md:w-14rem"
-                                  : "w-full md:w-14rem"
-                              }
-                              showClear
-                            />
-                          </div>
-
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label
-                              htmlFor="currency-us"
-                              className="font-bold block mb-2"
-                            >
-                              Qual a renda média mensal da sua família?
-                            </label>
-                            <InputText
-                              {...register("income")}
-                              id="renda"
-                              aria-describedby="username-help"
-                              className={
-                                errors.income
-                                  ? "p-invalid w-full md:w-14rem"
-                                  : "w-full md:w-14rem"
-                              }
-                              placeholder="R$"
-                            />
-                          </div>
-
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              gap: ".0rem",
-                            }}
-                            className="card flex justify-content-center"
-                          >
-                            <label>Tipos de conexão</label>
-                            <Dropdown
-                              value={selectedconexao}
-                              options={connect}
-                              optionLabel="name"
-                              onChange={(e) => {
-                                setSelectedconexao(e.value);
-                                setValue("connect", e.value);
-                              }}
-                              placeholder="Selecione"
-                              className={
-                                errors.color
-                                  ? "p-invalid w-full md:w-14rem"
-                                  : "w-full md:w-14rem"
-                              }
-                            />
-                          </div>
-                        </div>
-
-                        <div>
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              gap: ".0rem",
-                            }}
-                            className="card flex justify-content-center"
-                          >
-                            <label>Cor/raça:</label>
-                            <Dropdown
-                              value={selectedcollor}
-                              options={collor}
-                              optionLabel="name"
-                              onChange={(e) => {
-                                setSelectedcollor(e.value);
-                                setValue("color", e.value);
-                              }}
-                              placeholder="Selecione"
-                              className={
-                                errors.color
-                                  ? "p-invalid w-full md:w-14rem"
-                                  : "w-full md:w-14rem"
-                              }
-                            />
-                          </div>
-
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              gap: ".0rem",
-                            }}
-                            className="card flex justify-content-center"
-                          >
-                            <label>Qual sua orientação sexual?</label>
-                            <Dropdown
-                              value={selectedguildance}
-                              options={guildance}
-                              optionLabel="name"
-                              onChange={(e) => {
-                                setSelectedguildance(e.value);
-                                setValue("guidance", e.value);
-                              }}
-                              placeholder="Selecione"
-                              className={
-                                errors.guidance
-                                  ? "p-invalid w-full md:w-14rem"
-                                  : "w-full md:w-14rem"
-                              }
-                              showClear
-                            />
-                          </div>
-
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              gap: ".0rem",
-                            }}
-                            className="card flex justify-content-center"
-                          >
-                            <label>Qual sua escolaridade</label>
-                            <Dropdown
-                              value={selectedscholl}
-                              options={scholl}
-                              optionLabel="name"
-                              onChange={(e) => {
-                                setSelectedscholl(e.value);
-                                setValue("schooling", e.value);
-                              }}
-                              placeholder="Selecione"
-                              className={
-                                errors.benefit
-                                  ? "p-invalid w-full md:w-14rem"
-                                  : "w-full md:w-14rem"
-                              }
-                            />
-                          </div>
-
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              gap: ".0rem",
-                            }}
-                            className="card flex justify-content-center"
-                          >
-                            <label>
-                              Benefício governamental seu ou da sua família
-                            </label>
-                            <Dropdown
-                              value={selectedBenefits}
-                              options={benefits}
-                              optionLabel="name"
-                              onChange={(e) => {
-                                setSelectedBenefits(e.value);
-                                setValue("benefit", e.value);
-                              }}
-                              placeholder="Selecione"
-                              className={
-                                errors.benefit
-                                  ? "p-invalid w-full md:w-14rem"
-                                  : "w-full md:w-14rem"
-                              }
-                              showClear
-                            />
-                          </div>
-
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              gap: ".0rem",
-                            }}
-                            className="card flex justify-content-center"
-                          >
-                            <label>
-                              Tipo de dispositivo para acessar as aulas
-                            </label>
-                            <Dropdown
-                              value={selecteddisplay}
-                              options={displays}
-                              optionLabel="name"
-                              onChange={(e) => {
-                                setSelecteddisplay(e.value);
-                                setValue("display", e.value);
-                              }}
-                              placeholder="Selecione"
-                              className={
-                                errors.gender
-                                  ? "p-invalid w-full md:w-14rem"
-                                  : "w-full md:w-14rem"
-                              }
-                              showClear
-                            />
-                          </div>
-                        </div>
+                        <SocioEconomico
+                          setTabEnabled={setTabEnabled}
+                          setActiveTab={setActiveTab}
+                          setVisible={setVisible}
+                        />
                       </ContainerFlexInputs>
-                      <ContainerButtons>
-                        <button
-                          className="buttonForm back"
-                          onClick={() => setActiveTab(0)}
-                        >
-                          Voltar
-                        </button>
-                        <button
-                          className="buttonFormSubmit"
-                          type="submit"
-                          onClick={showResultMessage}
-                        >
-                          Enviar
-                        </button>
-                      </ContainerButtons>
                     </div>
                     <ContainerSteps>
                       <Steps
@@ -667,8 +391,8 @@ export const FormPage = () => {
                   </TabPanel>
 
                   <TabPanel header="Prova" disabled={isTabEnabled}>
-                            <Timer />
-                            <Prova />
+                    <Timer />
+                    <Prova />
                     <ContainerSteps>
                       <Steps
                         model={items}

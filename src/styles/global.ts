@@ -51,12 +51,15 @@ export const GlobalStyle = createGlobalStyle`
   }
   label {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    font-weight: 600;
+    align-items: flex-end;
+    font-weight: 400;
     color: white;
-    height: 4rem;
-    padding: 1rem 0rem;
+
+    padding: 1.4rem 0rem;
+    justify-content: center;
+    align-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
   }
   .p-inputtext:enabled:focus {
     box-shadow: none;

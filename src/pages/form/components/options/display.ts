@@ -1,3 +1,5 @@
 export const displays = [
-    { name: 'dispositivos', code: '0' },
+    { name: 'celular', code: '0' },
+    { name: 'computador', code: '1' },
+    { name: 'tablet', code: '0' },
 ];

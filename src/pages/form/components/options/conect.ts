@@ -1,3 +1,4 @@
 export const connect = [
-    { name: 'conexão', code: '0' },
+    { name: 'Móvel', value: 'movel' },
+    { name: 'Banda Larga', value: 'banda_larga' },
 ];
