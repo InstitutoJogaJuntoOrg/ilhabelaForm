@@ -1,3 +1,4 @@
 export const benefits = [
-    { name: 'Beneficios', code: '0' },
+    { name: 'Sim', value: true },
+    { name: 'Não', value: false },
 ];

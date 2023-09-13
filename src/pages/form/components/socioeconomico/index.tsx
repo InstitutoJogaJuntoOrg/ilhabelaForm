@@ -62,15 +62,15 @@ export const SocioEconomico = ({
     localStorage.setItem("socioeconomicForm", 'true');
     try {
       const formData = new FormData();
-      formData.append("deficiency", data.deficiency.name);
+      formData.append("deficiency", data.deficiency);
       formData.append("average_monthly_income", data.income);
       formData.append("race", data.color);
       formData.append("gender", data.gender);
       formData.append("sexual_orientation", data.guidance);
-      formData.append("children", data.children.name);
+      formData.append("children", data.children);
       formData.append("education_level", data.schooling);
-      formData.append("benefit", data.benefit.name);
-      formData.append("device_type", data.display.name);
+      formData.append("benefit", data.benefit);
+      formData.append("device_type", data.display);
       formData.append("internet_connection_type", data.connect);
       formData.append("income", data.income);
       formData.append("household_count", data.family.name);
@@ -159,7 +159,7 @@ export const SocioEconomico = ({
           <Dropdown
             value={selectedgender}
             options={gender}
-            optionLabel="value"
+            optionLabel="name"
             onChange={(e) => {
               setSelectedgender(e.value);
               setValue("gender", e.value);

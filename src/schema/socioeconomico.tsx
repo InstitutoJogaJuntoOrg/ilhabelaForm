@@ -1,13 +1,10 @@
 import * as z from "zod";
 
 export const SocioeconomicoSchema = z.object({
-    deficiency: z.object({
-        name: z
-          .string({
-            required_error: "messages.required",
-          })
-          .min(1, { message: "messages.required" }),
-      }),
+    deficiency:z
+    .string({
+      required_error: "messages.required",
+    }),
       color:  z
       .string({
         required_error: "messages.required",
@@ -28,12 +25,9 @@ export const SocioeconomicoSchema = z.object({
           .min(1, { message: "messages.required" }),
       }),
       
-      children: z.object({
-        name: z
-          .string({
-            required_error: "messages.required",
-          })
-          .min(1, { message: "messages.required" }),
+      children: z
+      .string({
+        required_error: "messages.required",
       }),
     
       schooling: z
@@ -46,21 +40,15 @@ export const SocioeconomicoSchema = z.object({
         required_error: "messages.required",
       }),
     
-      benefit: z.object({
-        name: z
-          .string({
-            required_error: "messages.required",
-          })
-          .min(1, { message: "messages.required" }),
+      benefit: z
+      .boolean({
+        required_error: "messages.required",
       }),
     
     
-      display: z.object({
-        name: z
-          .string({
-            required_error: "messages.required",
-          })
-          .min(1, { message: "messages.required" }),
+      display: z
+      .string({
+        required_error: "messages.required",
       }),
     
       connect: z

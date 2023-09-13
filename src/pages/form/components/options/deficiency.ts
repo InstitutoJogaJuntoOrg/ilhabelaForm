@@ -1,4 +1,7 @@
 export const deficiency = [
-    { name: 'Sim', code: 'YES' },
-    { name: 'Não', code: 'NO' },
+    { name: 'Nenhuma', value: 'nenhuma' },
+    { name: 'Visual', value: 'visual' },
+    { name: 'Auditiva', value: 'hearing' },
+    { name: 'Motora', value: 'motor' },
+    { name: 'Intelectual', value: 'intellectual' },
 ];
