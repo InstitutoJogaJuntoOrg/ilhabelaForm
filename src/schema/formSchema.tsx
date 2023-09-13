@@ -1,10 +1,11 @@
 import * as z from "zod";
 
 export const FormSchema = z.object({
-  name: z.string().min(3, "Campo obrigatório"),
   civil_state: z.string().min(3, "Campo obrigatório"),
   socialName: z.string().min(1, "Campo obrigatório"),
   first_name: z.string().min(1, "Campo obrigatório"),
+  last_name: z.string().min(1, "Campo obrigatório"),
+  city: z.string().min(1, "Campo obrigatório"),
   cpf: z
   .string({
     required_error: "messages.required",

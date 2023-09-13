@@ -23,6 +23,7 @@ import Timer from "./components/timer";
 import { Prova } from "./components/prova";
 import { SocioEconomico } from "./components/socioeconomico";
 import axios from "axios";
+import { civilState } from "./components/options/civil_state";
 
 interface City {
   name: string;
@@ -31,6 +32,10 @@ interface City {
 
 export const FormPage = () => {
   const { image, setImage } = useContext(ImageContext);
+
+  const [user, setUser] = useState(localStorage.getItem("username") || "");
+  const [email, setEmail] = useState(localStorage.getItem("email") || "");
+
   const [activeTab, setActiveTab] = useState(0);
   const toast = useRef<Toast | null>(null);
 
@@ -42,6 +47,7 @@ export const FormPage = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [dateValue, setDateValue] = useState<any>("");
   const [selectedCity, setSelectedCity] = useState<City | null>(null);
+  const [selectedStateSocial, setelectedStateSocial] = useState<City | null>(null);
   const [data, setData] = useState();
 
   console.log(data);
@@ -152,13 +158,14 @@ export const FormPage = () => {
       const response = await axios.post(
         apiUrl,
         {
-          cpf: data.cpf.replace(/\D/g, ''),
+          cpf: data.cpf.replace(/\D/g, ""),
           first_name: data.first_name,
+          last_name: data.first_name,
           social_name: data.socialName,
+          city: data.city,
           phone: data.phone,
           date_of_birth: data.date,
           living_uf: data.state.name,
-          city: data.state.name,
           country: data.state.name,
           civil_state: data.civil_state,
         },
@@ -268,16 +275,17 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>Nome completo</label>
+                            <label>Nome</label>
                             <InputText
-                              {...register("name")}
+                              {...register("first_name")}
                               id="username"
+                              onChange={(e) => setUser(e.target.value)}
+                              value={user}
                               aria-describedby="username-help"
                               placeholder="Nome"
-                              className={errors.name ? "p-invalid" : ""}
+                              className={errors.first_name ? "p-invalid" : ""}
                             />
                           </div>
-
                           <div
                             style={{
                               display: "flex",
@@ -323,20 +331,48 @@ export const FormPage = () => {
                               className={errors.phone ? "p-invalid" : ""}
                             />
                           </div>
+                       
                           <div
                             style={{
                               display: "flex",
                               flexDirection: "column",
                             }}
                           >
-                            <label>Estado civil</label>
+                            <label>Estado</label>
+                            <Dropdown
+                            options={states}
+                              value={selectedCity}
+                              optionLabel="name"
+                              onChange={(e) => {
+                                setSelectedCity(e.value);
+                                setValue("state", e.value);
+                              }}
+                              placeholder="Estado"
+                              className={
+                                errors.civil_state
+                                  ? "p-invalid w-full md:w-14rem"
+                                  : "w-full md:w-14rem"
+                              }
+                              showClear
+                            />
+                          </div>
+                          
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <label>Cidade</label>
                             <InputText
-                              {...register("civil_state")}
-                              placeholder="Estado civil"
-                              className={errors.civil_state ? "p-invalid" : ""}
+                              maxLength={15}
+                              {...register("city")}
+                              placeholder="Cidade"
+                              className={errors.city ? "p-invalid" : ""}
                             />
                           </div>
                         </div>
+                     
 
                         <div>
                           <div
@@ -345,13 +381,13 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>Primeiro Nome</label>
+                            <label>Sorenome</label>
                             <InputText
-                              {...register("first_name")}
-                              id="primeiro nome"
+                              {...register("last_name")}
+                              id="Sobrenome"
                               aria-describedby="username-help"
-                              placeholder="Primeiro nome"
-                              className={errors.first_name ? "p-invalid" : ""}
+                              placeholder="Sobrenome"
+                              className={errors.last_name ? "p-invalid" : ""}
                             />
                           </div>
                           <div
@@ -379,6 +415,8 @@ export const FormPage = () => {
                               <label>Email</label>
                               <InputText
                                 {...register("email")}
+                                onChange={(e) => setEmail(e.target.value)}
+                                value={email}
                                 placeholder="Email"
                                 className={errors.email ? "p-invalid" : ""}
                               />
@@ -408,28 +446,27 @@ export const FormPage = () => {
                             style={{
                               display: "flex",
                               flexDirection: "column",
-                              gap: ".0rem",
                             }}
-                            className="card flex justify-content-center"
                           >
-                            <label>Estado:</label>
+                            <label>Estado civil</label>
                             <Dropdown
-                              value={selectedCity}
-                              options={states}
+                            options={civilState}
+                              value={selectedStateSocial}
                               optionLabel="name"
                               onChange={(e) => {
-                                setSelectedCity(e.value);
-                                setValue("state", e.value);
+                                setelectedStateSocial(e.value);
+                                setValue("civil_state", e.value);
                               }}
-                              placeholder="Selecione"
+                              placeholder="Estado civil"
                               className={
-                                errors.date
+                                errors.civil_state
                                   ? "p-invalid w-full md:w-14rem"
                                   : "w-full md:w-14rem"
                               }
                               showClear
                             />
                           </div>
+                          
                           <ContainerButtons className="flexEnd">
                             <button className="buttonForm" type="submit">
                               Próximo

@@ -1,5 +1,5 @@
 export const collor = [
-    { name: 'branca', value: 'branca' },
+    { name: 'Branca', value: 'branca' },
     { name: 'Preta', value: 'preta' },
     { name: 'Amarela', value: 'amarela' },
     { name: 'Parda', value: 'parda' },
