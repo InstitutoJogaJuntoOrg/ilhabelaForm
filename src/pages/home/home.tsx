@@ -9,7 +9,7 @@ import {
 import { Link } from "react-router-dom";
 
 export const HomePage = () => {
-
+  const auth = localStorage.getItem("token");
   return (
     <div
       style={{
@@ -30,13 +30,10 @@ export const HomePage = () => {
         <section>
           <ContainerTitle className="InitialMessage">
             <h1>ILHABELA TECH</h1>
-            <span>
-              Você está a um clique do futuro
-            </span>
-            <Link to={"/login"}>
-              
+            <span>Você está a um clique do futuro</span>
+            <Link to={auth ? "/inscricao" : "/login"}>
               <button>Inscrever-se</button>
-              </Link>
+            </Link>
           </ContainerTitle>
         </section>
         <ContainerCardLayout>
@@ -56,8 +53,11 @@ export const HomePage = () => {
         </ContainerCardLayout>
         <About>
           <h1>Como participar</h1>
-          <p>Para concorrer a uma das vagas do Ilhabela Tech é bem simples, as etapas iniciais do processo ocorrerão neste site e são: </p>
-           <StepsHome />
+          <p>
+            Para concorrer a uma das vagas do Ilhabela Tech é bem simples, as
+            etapas iniciais do processo ocorrerão neste site e são:{" "}
+          </p>
+          <StepsHome />
         </About>
       </ContainerHome>
     </div>
