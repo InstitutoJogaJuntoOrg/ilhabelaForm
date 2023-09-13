@@ -454,6 +454,7 @@ export const FormPage = () => {
                                 {...register("email")}
                                 onChange={(e) => setEmail(e.target.value)}
                                 value={email}
+                                
                                 placeholder="Email"
                                 className={errors.email ? "p-invalid" : ""}
                               />
@@ -471,6 +472,7 @@ export const FormPage = () => {
                               {...register("rg")}
                               className="custom-file-input input-img"
                               type="file"
+                              required
                             />
                           </div>
 

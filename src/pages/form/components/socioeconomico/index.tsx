@@ -4,6 +4,7 @@ import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { ContainerButtons } from "../..";
 import {
   SocioeconomicoSchema,
@@ -84,10 +85,15 @@ export const SocioEconomico = ({
   async function sendSocioEconomicInfo(data: SocioeconomicoSchemaType) {
     localStorage.setItem("socioeconomicForm", "true");
 
+    try {
+      
     const residency_proof = data.residency_proof[0];
     const enrollment_proof = data.enrollment_proof[0];
 
-    try {
+    if (enrollment_proof === 0) {
+      toast.error("Por favor, envie os comprovantes necessários.");
+      return;
+    }
       const formData = new FormData();
       formData.append("deficiency", data.deficiency);
       formData.append("average_monthly_income", data.income);
@@ -443,21 +449,24 @@ export const SocioEconomico = ({
               flexDirection: "column",
             }}
           >
-            <label htmlFor="date">Comprovante de residencia</label>
+            <label htmlFor="residency_proof">Comprovante de residencia</label>
             <input
+            required
               {...register("residency_proof")}
               className="custom-file-input input-img"
               type="file"
             />
           </div>
+
           <div
             style={{
               display: "flex",
               flexDirection: "column",
             }}
           >
-            <label htmlFor="date">Comprovante de inscrição</label>
+            <label htmlFor="date">Comprovante de matrícula em um colégio</label>
             <input
+            required
               {...register("enrollment_proof")}
               className="custom-file-input input-img"
               type="file"
@@ -510,7 +519,7 @@ export const SocioEconomico = ({
         </div>
       </div>
       <ContainerButtons>
-        <button type="button" onClick={handleSubmit(sendSocioEconomicInfo)}>
+        <button type="submit" onClick={handleSubmit(sendSocioEconomicInfo)}>
           Enviar
         </button>
       </ContainerButtons>
