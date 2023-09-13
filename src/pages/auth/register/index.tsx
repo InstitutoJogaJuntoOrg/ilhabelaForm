@@ -1,13 +1,12 @@
 import { InputText } from "primereact/inputtext";
 import { Container } from "../../form";
-import { FormField, Register } from "./styles";
+import { FormField } from "./styles";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {
   RegisterSchemaType,
   RegisterSchema,
 } from "../../../schema/registerSchema";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -65,7 +64,7 @@ export const RegisterPage = () => {
         }}
       >
         <FormField>
-          <label>Nome</label>
+          <label>Qual o seu primeiro nome?</label>
           <InputText
             id="name"
             {...register("name")}
@@ -121,12 +120,12 @@ export const RegisterPage = () => {
         <br />
       </form>
 
-      <Register>
+      {/* <Register>
         <h3>Já tem uma conta?</h3>
         <span className="register">
           <Link to={"/auth"}>Fazer login</Link>
         </span>
-      </Register>
+      </Register> */}
     </Container>
   );
 };

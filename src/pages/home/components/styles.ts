@@ -22,6 +22,8 @@ export const ContainerCard = styled.div`
   &:hover {
     box-shadow: 0px 15px 39px 0px rgba(0, 0, 0, 0.5);
   }
+
+ 
 `;
 
 export const StepsContainer = styled.div`
@@ -57,6 +59,7 @@ export const StepsContainer = styled.div`
       color: white;
     font-size: 1.5rem;
  text-align: center;
+ 
 
     margin-bottom: 1rem;
     font-weight: 500;
@@ -64,6 +67,10 @@ export const StepsContainer = styled.div`
   }
   .pass {
    display: none;
+  }
+
+  p {
+    font-size: .5rem;
   }
 `;
 
@@ -85,9 +92,11 @@ export const CardsContainer = styled.div`
     max-width: 20rem;
     text-align: left;
     border-radius: 22px;
+    display: flex;
+    align-items: center;
     p {
       color: white;
-      font-size: 1rem;
+      font-size: 1.5rem;
     }
     @media (max-width: 775px) {
       max-width: 20rem;

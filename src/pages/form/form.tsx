@@ -313,7 +313,7 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>Nome</label>
+                            <label>Nome: </label>
                             <InputText
                               {...register("first_name")}
                               id="username"
@@ -361,10 +361,10 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>Telefone (WhatsApp)</label>
+                            <label>Telefone (WhatsApp):</label>
                             <InputText
                               {...register("phone")}
-                              placeholder="11999999999"
+                              placeholder="12 999999999"
                               maxLength={15}
                               className={errors.phone ? "p-invalid" : ""}
                             />
@@ -376,7 +376,7 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>Estado</label>
+                            <label>Estado:</label>
                             <Dropdown
                               options={states}
                               value={selectedCity}
@@ -418,7 +418,7 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>Sorenome</label>
+                            <label>Sorenome:</label>
                             <InputText
                               {...register("last_name")}
                               id="Sobrenome"
@@ -433,7 +433,7 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>Nome social</label>
+                            <label>Nome social:</label>
                             <InputText
                               {...register("socialName")}
                               id="socialName"
@@ -449,7 +449,7 @@ export const FormPage = () => {
                                 flexDirection: "column",
                               }}
                             >
-                              <label>Email</label>
+                              <label>Email:</label>
                               <InputText
                                 {...register("email")}
                                 onChange={(e) => setEmail(e.target.value)}

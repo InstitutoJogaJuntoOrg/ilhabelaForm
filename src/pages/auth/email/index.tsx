@@ -15,8 +15,8 @@ export const EmailPage = () => {
   });
   const navigate = useNavigate();
 
-  const notifySuccess = () => toast.success("Usuário encontrado no banco de dados");
-  const notifyError = () => toast.info("Usuário não encontrado no banco de dados");
+  const notifySuccess = () => toast.success("Usuário encontrado");
+  const notifyError = () => toast.info("Crie uma conta para prosseguir");
 
   const handleSubmitLogin = async (data: EmailFormSchemaType) => {
     try {
