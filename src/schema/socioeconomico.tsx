@@ -41,7 +41,7 @@ export const SocioeconomicoSchema = z.object({
       }),
     
       benefit: z
-      .boolean({
+      .any({
         required_error: "messages.required",
       }),
     

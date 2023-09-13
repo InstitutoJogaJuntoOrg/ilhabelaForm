@@ -1,17 +1,17 @@
 import { createContext, useState } from "react";
 
 interface FuelDataContextType {
-  image: Record<string, any>; // Usar um tipo Record para representar um objeto vazio
-  setImage: React.Dispatch<React.SetStateAction<Record<string, any>>>;
+  image: File | null; // Definindo image como File ou null
+  setImage: React.Dispatch<React.SetStateAction<File | null>>; // Definindo setImage como uma função que aceita File ou null
 }
 
 export const ImageContext = createContext<FuelDataContextType>({
-  image: {},
+  image: null, // Inicializando image como null
   setImage: () => {},
 });
 
 export const FuelDataProvider = ({ children }: any) => {
-  const [image, setImage] = useState<Record<string, any>>({}); // Inicializar com um objeto vazio
+  const [image, setImage] = useState<File | null>(null); // Inicializando image como null
 
   return (
     <ImageContext.Provider value={{ image, setImage }}>

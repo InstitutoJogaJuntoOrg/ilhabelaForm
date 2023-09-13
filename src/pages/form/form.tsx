@@ -12,11 +12,10 @@ import { TabView, TabPanel } from "primereact/tabview";
 import { InputText } from "primereact/inputtext";
 import { InputMask } from "primereact/inputmask";
 import { Dropdown } from "primereact/dropdown";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Steps } from "primereact/steps";
-import { FileUpload } from "primereact/fileupload";
 import { ImageContext } from "../../context/image";
-import { Toast } from "primereact/toast";
+import { ToastContainer, toast } from "react-toastify";
 import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
 import Timer from "./components/timer";
@@ -31,13 +30,12 @@ interface City {
 }
 
 export const FormPage = () => {
-  const { image, setImage } = useContext(ImageContext);
+  const { image } = useContext(ImageContext);
 
   const [user, setUser] = useState(localStorage.getItem("username") || "");
   const [email, setEmail] = useState(localStorage.getItem("email") || "");
 
   const [activeTab, setActiveTab] = useState(0);
-  const toast = useRef<Toast | null>(null);
 
   const [isTabEnabled, setTabEnabled] = useState(true);
   const [isTabEnabledSocial, setIsTabEnabledSocial] = useState(false);
@@ -47,10 +45,43 @@ export const FormPage = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [dateValue, setDateValue] = useState<any>("");
   const [selectedCity, setSelectedCity] = useState<City | null>(null);
-  const [selectedStateSocial, setelectedStateSocial] = useState<City | null>(null);
+  const [selectedStateSocial, setelectedStateSocial] = useState<City | null>(
+    null
+  );
   const [data, setData] = useState();
 
   console.log(data);
+
+  function ErrosSending() {
+    if (errors.cpf) {
+      toast.error("Por favor informe um CPF válido");
+    }
+    if (errors.city) {
+      toast.error("Por favor informe um Cidade válida");
+    }
+    if (errors.date) {
+      toast.error("Por favor informe uma Data válida");
+    }
+    if (errors.civil_state) {
+      toast.error("Por favor informe seu Estado Civil");
+    }
+    if (errors.first_name) {
+      toast.error("Por favor informe seu Nome");
+    }
+    if (errors.last_name) {
+      toast.error("Por favor informe seu Sobrenome");
+    }
+    if (errors.phone) {
+      toast.error("Por favor informe seu Número para contato");
+    }
+    if (errors.socialName) {
+      toast.error("Por favor informe seu Nome social");
+    }
+    if (errors.state) {
+      toast.error("Por favor informe seu Estado");
+    }
+  }
+
   useEffect(() => {
     const personalForm = localStorage.getItem("personalForm");
     const socioeconomicForm = localStorage.getItem("socioeconomicForm");
@@ -113,33 +144,6 @@ export const FormPage = () => {
     },
   ];
 
-  function fileToJSON(file: any) {
-    return {
-      name: file.name,
-      size: file.size,
-      type: file.type,
-      lastModified: file.lastModified,
-      lastModifiedDate: new Date(file.lastModifiedDate),
-      webkitRelativePath: file.webkitRelativePath,
-    };
-  }
-  const handleUpload = (event: { files: any[] }) => {
-    const uploadedFile = event.files[0];
-    const validationResult = FormSchema.safeParse(event);
-    if (validationResult.success) {
-      console.log(event);
-      console.log("imagem enviada", image);
-    } else {
-      if (uploadedFile instanceof File) {
-        if (uploadedFile.size > 0) {
-          image.name = "reenviar novo arquivo";
-        }
-        const imageJSON = fileToJSON(uploadedFile);
-        setImage(imageJSON);
-      }
-    }
-  };
-
   const {
     register,
     handleSubmit,
@@ -149,32 +153,66 @@ export const FormPage = () => {
     resolver: zodResolver(FormSchema),
   });
 
-  const apiUrl = "https://back.ilhabelatech.com/personalinfo/";
+  async function convertFileToBase64Blob(file: File): Promise<Blob> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
 
+      reader.onload = () => {
+        const result = reader.result;
+        if (result instanceof ArrayBuffer) {
+          const blob = new Blob([new Uint8Array(result)], { type: file.type });
+          resolve(blob);
+        } else {
+          reject(new Error("Error reading file as ArrayBuffer"));
+        }
+      };
+
+      reader.onerror = (error) => {
+        reject(error);
+      };
+
+      reader.readAsArrayBuffer(file);
+    });
+  }
+
+  const apiUrl = "https://back.ilhabelatech.com/personalinfo/";
   async function sendPersonalInfo(data: FormSchemaType) {
+    console.log("Enviando dados:", data);
     localStorage.setItem("personalForm", "true");
+
+    const file = data.rg[0];
+
+    const formData = new FormData();
+    formData.append("cpf", data.cpf.replace(/\D/g, ""));
+    formData.append("first_name", data.first_name);
+    formData.append("last_name", data.first_name);
+    formData.append("social_name", data.socialName);
+    formData.append("city", data.city);
+    formData.append("phone", data.phone);
+    formData.append("date_of_birth", data.date);
+    formData.append("living_uf", data.state.name);
+    formData.append("country", data.state.name);
+    formData.append("civil_state", data.civil_state);
+
+    if (file) {
+      try {
+        const blob = await convertFileToBase64Blob(file);
+
+        formData.append("rg", blob, file.name);
+      } catch (error) {
+        console.error("Error converting file:", error);
+        return;
+      }
+    }
+
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.post(
-        apiUrl,
-        {
-          cpf: data.cpf.replace(/\D/g, ""),
-          first_name: data.first_name,
-          last_name: data.first_name,
-          social_name: data.socialName,
-          city: data.city,
-          phone: data.phone,
-          date_of_birth: data.date,
-          living_uf: data.state.name,
-          country: data.state.name,
-          civil_state: data.civil_state,
+      const response = await axios.post(apiUrl, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      });
 
       setIsTabEnabledSocial(true);
       setIsTabEnabledDate(true);
@@ -209,7 +247,7 @@ export const FormPage = () => {
         socioeconomicForm === "true"
       ) && (
         <Container>
-          <Toast ref={toast} />
+          <ToastContainer />
           <Dialog
             header=""
             visible={visible}
@@ -293,9 +331,9 @@ export const FormPage = () => {
                             }}
                           >
                             <label>CPF:</label>
-                            <InputText
-                              maxLength={15}
-                              {...register("cpf")}
+                            <InputMask
+                              mask="999.999.999-99"
+                              {...register("cpf", { required: true })}
                               placeholder="___.___.___-__"
                               className={errors.cpf ? "p-invalid" : ""}
                             />
@@ -331,7 +369,7 @@ export const FormPage = () => {
                               className={errors.phone ? "p-invalid" : ""}
                             />
                           </div>
-                       
+
                           <div
                             style={{
                               display: "flex",
@@ -340,7 +378,7 @@ export const FormPage = () => {
                           >
                             <label>Estado</label>
                             <Dropdown
-                            options={states}
+                              options={states}
                               value={selectedCity}
                               optionLabel="name"
                               onChange={(e) => {
@@ -349,14 +387,14 @@ export const FormPage = () => {
                               }}
                               placeholder="Estado"
                               className={
-                                errors.civil_state
+                                errors.state
                                   ? "p-invalid w-full md:w-14rem"
                                   : "w-full md:w-14rem"
                               }
                               showClear
                             />
                           </div>
-                          
+
                           <div
                             style={{
                               display: "flex",
@@ -372,7 +410,6 @@ export const FormPage = () => {
                             />
                           </div>
                         </div>
-                     
 
                         <div>
                           <div
@@ -430,15 +467,10 @@ export const FormPage = () => {
                             }}
                           >
                             <label htmlFor="date">RG:</label>
-                            <FileUpload
-                              onSelect={handleUpload}
-                              mode="basic"
-                              accept="image/*"
-                              maxFileSize={1000000}
-                              onUpload={handleUpload}
-                              chooseLabel={
-                                image.name ? image.name : "Selecionar imagem"
-                              }
+                            <input
+                              {...register("rg")}
+                              className="custom-file-input input-img"
+                              type="file"
                             />
                           </div>
 
@@ -450,7 +482,7 @@ export const FormPage = () => {
                           >
                             <label>Estado civil</label>
                             <Dropdown
-                            options={civilState}
+                              options={civilState}
                               value={selectedStateSocial}
                               optionLabel="name"
                               onChange={(e) => {
@@ -466,9 +498,13 @@ export const FormPage = () => {
                               showClear
                             />
                           </div>
-                          
+
                           <ContainerButtons className="flexEnd">
-                            <button className="buttonForm" type="submit">
+                            <button
+                              className="buttonForm"
+                              type="submit"
+                              onClick={ErrosSending}
+                            >
                               Próximo
                             </button>
                           </ContainerButtons>

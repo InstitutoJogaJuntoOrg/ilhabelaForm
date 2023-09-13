@@ -1,7 +1,8 @@
 import * as z from "zod";
-
 export const FormSchema = z.object({
   civil_state: z.string().min(3, "Campo obrigatório"),
+  rg: z
+  .any(),
   socialName: z.string().min(1, "Campo obrigatório"),
   first_name: z.string().min(1, "Campo obrigatório"),
   last_name: z.string().min(1, "Campo obrigatório"),
