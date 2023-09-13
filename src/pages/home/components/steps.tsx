@@ -24,30 +24,22 @@ export default function StepsHome() {
         <div>
         <span className="pass">1 Passo</span>
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae
-            doloribus assumenda saepe ut facilis non debitis. Accusantium quidem
-            natus ratione quisquam? Tempora, molestiae. Magni id suscipit
-            dignissimos possimus quidem distinctio.
+          Realize seu cadastro no site, preencha as informações pessoais e o questionário socioeconômico
           </p>
         </div>
         <div>
         <span className="pass">2 Passo</span>
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae
-            doloribus assumenda saepe ut facilis non debitis. Accusantium quidem
-            natus ratione quisquam? Tempora, molestiae. Magni id suscipit
-            dignissimos possimus quidem distinctio.
+          Faça a prova online com duração de 6 horas
           </p>
         </div>
         <div>
         <span className="pass">3 Passo</span>
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae
-            doloribus assumenda saepe ut facilis non debitis. Accusantium quidem
-            natus ratione quisquam? Tempora, molestiae. Magni id suscipit
-            dignissimos possimus quidem distinctio.
+          Caso seja aprovado, compareça  à IETEC com seus documentos para efetuar matrícula.
           </p>
         </div>
+
       </CardsContainer>
     </StepsContainer>
   );

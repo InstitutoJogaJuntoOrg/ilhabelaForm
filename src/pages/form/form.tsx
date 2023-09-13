@@ -275,7 +275,7 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>Nome</label>
+                            <label>Nome: </label>
                             <InputText
                               {...register("first_name")}
                               id="username"
@@ -296,6 +296,7 @@ export const FormPage = () => {
                             <InputText
                               maxLength={15}
                               {...register("cpf")}
+                              
                               placeholder="___.___.___-__"
                               className={errors.cpf ? "p-invalid" : ""}
                             />
@@ -323,10 +324,10 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>Telefone (WhatsApp)</label>
+                            <label>Telefone (WhatsApp):</label>
                             <InputText
                               {...register("phone")}
-                              placeholder="11999999999"
+                              placeholder="12 999999999"
                               maxLength={15}
                               className={errors.phone ? "p-invalid" : ""}
                             />
@@ -338,7 +339,7 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>Estado</label>
+                            <label>Estado:</label>
                             <Dropdown
                             options={states}
                               value={selectedCity}
@@ -357,21 +358,24 @@ export const FormPage = () => {
                             />
                           </div>
                           
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label>Cidade</label>
-                            <InputText
-                              maxLength={15}
-                              {...register("city")}
-                              placeholder="Cidade"
-                              className={errors.city ? "p-invalid" : ""}
+                          <label>Estado civil:</label>
+                            <Dropdown
+                            options={civilState}
+                              value={selectedStateSocial}
+                              optionLabel="name"
+                              onChange={(e) => {
+                                setelectedStateSocial(e.value);
+                                setValue("civil_state", e.value);
+                              }}
+                              placeholder="Estado civil"
+                              className={
+                                errors.civil_state
+                                  ? "p-invalid w-full md:w-14rem"
+                                  : "w-full md:w-14rem"
+                              }
+                              showClear
                             />
                           </div>
-                        </div>
                      
 
                         <div>
@@ -381,7 +385,7 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>Sorenome</label>
+                            <label>Sorenome:</label>
                             <InputText
                               {...register("last_name")}
                               id="Sobrenome"
@@ -396,7 +400,7 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>Nome social</label>
+                            <label>Nome social:</label>
                             <InputText
                               {...register("socialName")}
                               id="socialName"
@@ -412,7 +416,7 @@ export const FormPage = () => {
                                 flexDirection: "column",
                               }}
                             >
-                              <label>Email</label>
+                              <label>Email:</label>
                               <InputText
                                 {...register("email")}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -448,24 +452,22 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>Estado civil</label>
-                            <Dropdown
-                            options={civilState}
-                              value={selectedStateSocial}
-                              optionLabel="name"
-                              onChange={(e) => {
-                                setelectedStateSocial(e.value);
-                                setValue("civil_state", e.value);
-                              }}
-                              placeholder="Estado civil"
-                              className={
-                                errors.civil_state
-                                  ? "p-invalid w-full md:w-14rem"
-                                  : "w-full md:w-14rem"
-                              }
-                              showClear
+                            <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <label>Cidade:</label>
+                            <InputText
+                              maxLength={15}
+                              {...register("city")}
+                              placeholder="Cidade"
+                              className={errors.city ? "p-invalid" : ""}
                             />
                           </div>
+                        </div>
+                            
                           
                           <ContainerButtons className="flexEnd">
                             <button className="buttonForm" type="submit">

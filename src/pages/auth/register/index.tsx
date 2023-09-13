@@ -65,7 +65,7 @@ export const RegisterPage = () => {
         }}
       >
         <FormField>
-          <label>Nome</label>
+          <label>Qual o seu primeiro nome?</label>
           <InputText
             id="name"
             {...register("name")}
@@ -121,12 +121,12 @@ export const RegisterPage = () => {
         <br />
       </form>
 
-      <Register>
+      {/* <Register>
         <h3>Já tem uma conta?</h3>
         <span className="register">
           <Link to={"/auth"}>Fazer login</Link>
         </span>
-      </Register>
+      </Register> */}
     </Container>
   );
 };

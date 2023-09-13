@@ -89,6 +89,7 @@ export const ContainerTitle = styled.div`
 
   gap: 1rem;
   span {
+    font-size: 1.5rem;
     font-weight: 500;
   }
   button {
@@ -118,9 +119,11 @@ export const About = styled.div`
   h1 {
     font-size: 5rem;
     color: #54993A;
+    padding: 2rem;
   }
   p {
-    font-size: 1rem;
+    font-size: 1.5rem;
+    
     color: #54993A;
   }
 `;

@@ -6,6 +6,7 @@ import {
   ContainerHome,
   ContainerTitle,
 } from "./styles";
+import { Link } from "react-router-dom";
 
 export const HomePage = () => {
 
@@ -22,7 +23,7 @@ export const HomePage = () => {
         <div>
           <img
             src="https://cdn.discordapp.com/attachments/566850308702208001/1146146822100897905/Rectangle_35.png"
-            alt="banner ilhabela IJJ"
+            alt="banner com a imagem de fundo da IETEC de ilhabela, e uma mulher em um notebook"
           />
         </div>
 
@@ -30,12 +31,12 @@ export const HomePage = () => {
           <ContainerTitle className="InitialMessage">
             <h1>ILHABELA TECH</h1>
             <span>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Reiciendis molestiae voluptas quod alias delectus unde
-              perspiciatis illum officia ratione beatae nihil veniam a cumque
-              ipsum facere vel esse, aspernatur ut!
+              Você está a um clique do futuro
             </span>
-            <button>Inscrever-se</button>
+            <Link to={"/login"}>
+              
+              <button>Inscrever-se</button>
+              </Link>
           </ContainerTitle>
         </section>
         <ContainerCardLayout>
@@ -54,8 +55,8 @@ export const HomePage = () => {
           />
         </ContainerCardLayout>
         <About>
-          <h1>Como se inscrever</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, voluptate. Fuga ut ipsa expedita magnam. Deleniti aliquam porro facilis vitae illo veniam quos voluptas, illum cum explicabo, fuga repudiandae sequi?</p>
+          <h1>Como participar</h1>
+          <p>Para concorrer a uma das vagas do Ilhabela Tech é bem simples, as etapas iniciais do processo ocorrerão neste site e são: </p>
            <StepsHome />
         </About>
       </ContainerHome>
