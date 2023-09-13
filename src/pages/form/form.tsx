@@ -152,7 +152,7 @@ export const FormPage = () => {
       const response = await axios.post(
         apiUrl,
         {
-          cpf: data.cpf,
+          cpf: data.cpf.replace(/\D/g, ''),
           first_name: data.first_name,
           social_name: data.socialName,
           phone: data.phone,
@@ -286,7 +286,7 @@ export const FormPage = () => {
                           >
                             <label>CPF:</label>
                             <InputText
-                              maxLength={11}
+                              maxLength={15}
                               {...register("cpf")}
                               placeholder="___.___.___-__"
                               className={errors.cpf ? "p-invalid" : ""}

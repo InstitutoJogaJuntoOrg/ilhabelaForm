@@ -99,7 +99,7 @@ export const SocioEconomico = ({
     const checkFormSubmission = async () => {
       try {
         const response = await axios.get(
-          "http://back.ilhabelatech.com/socioeconomics/"
+          "https://back.ilhabelatech.com/socioeconomics/"
         );
 
         if (response.status === 200) {
