@@ -19,7 +19,7 @@ export const LoginPage = () => {
   const handleSubmitLogin = handleSubmit(async (data) => {
     try {
       const response = await axios.post(
-        "http://back.ilhabelatech.com:8000/users/login/",
+        "https://back.ilhabelatech.com/users/login/",
         { email: data.email, password: data.password }
       );
   
@@ -29,6 +29,9 @@ export const LoginPage = () => {
         localStorage.setItem("token", response.data.access);
         localStorage.setItem("refresh", response.data.refresh);
         localStorage.setItem("username", response.data.user);
+        localStorage.setItem("personalForm", response.data.personal_form);
+        localStorage.setItem("socioeconomicForm", response.data.socioeconomic_form);
+        localStorage.setItem("quizForm", response.data.quiz_form);
         toast.success("Autenticado com sucesso!");
   
         setTimeout(() => {

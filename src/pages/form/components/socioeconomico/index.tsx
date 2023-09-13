@@ -56,9 +56,10 @@ export const SocioEconomico = ({
   });
 
   console.log(hasFormBeenSubmitted)
-  const apiUrl = "http://back.ilhabelatech.com:8000/socioeconomics/";
+  const apiUrl = "https://back.ilhabelatech.com/socioeconomics/";
 
   async function sendSocioEconomicInfo(data: SocioeconomicoSchemaType) {
+    localStorage.setItem("socioeconomicForm", 'true');
     try {
       const formData = new FormData();
       formData.append("deficiency", data.deficiency.name);

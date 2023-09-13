@@ -58,7 +58,9 @@ export const Prova = () => {
 
     if (response.ok) {
       const responseData = await response.json();
+      localStorage.setItem("quizForm", 'true');
       console.log(responseData);
+      window.location.reload();
     } else {
       console.error("Erro ao enviar os dados para a API");
     }

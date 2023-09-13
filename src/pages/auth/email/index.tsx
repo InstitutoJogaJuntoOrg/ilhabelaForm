@@ -21,7 +21,7 @@ export const EmailPage = () => {
   const handleSubmitLogin = async (data: EmailFormSchemaType) => {
     try {
       const response = await axios.post(
-        "http://back.ilhabelatech.com:8000/users/email_check/",
+        "https://back.ilhabelatech.com:8000/users/email_check/",
         { email: data.email }
       );
 

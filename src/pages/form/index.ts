@@ -1,6 +1,18 @@
 import { styled } from "styled-components";
 
 export const Container = styled.div`
+.success {
+  text-align: center;
+margin-top: 10rem;
+padding: 5rem;
+border-radius: 6px;
+  background-color: #54993a;
+  color: white;
+  font-weight: 600;
+  p {
+    font-weight: 400;
+  }
+}
   justify-content: center;
   align-items: center;
   display: flex;

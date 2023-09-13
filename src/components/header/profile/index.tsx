@@ -22,6 +22,9 @@ const MyDropdown = () => {
 
   return (
     <Dropdown
+    style={{
+      zIndex: 4
+    }}
       value={selectedOption}
       options={options}
       onChange={handleDropdownChange}

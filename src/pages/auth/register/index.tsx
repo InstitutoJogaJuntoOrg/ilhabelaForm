@@ -32,7 +32,7 @@ export const RegisterPage = () => {
     };
 
     axios
-      .post("http://back.ilhabelatech.com:8000/users/", requestData)
+      .post("https://back.ilhabelatech.com/users/", requestData)
       .then((response) => {
         notifySuccess();
         if (response.status === 201) {
