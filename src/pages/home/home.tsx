@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card } from "./components/card";
 import StepsHome from "./components/steps";
 import {
@@ -9,6 +9,8 @@ import {
 } from "./styles";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+// import { Cookies } from "js-cookie"; // Importe a biblioteca
+
 
 const Overlay = styled.div`
   position: absolute;
@@ -39,6 +41,20 @@ export const HomePage = () => {
   const auth = localStorage.getItem("token");
   const [showText, setShowText] = useState(false);
 
+
+  const setCookie = (name: string) => {
+    document.cookie = name
+  };
+
+  // Função para coletar um cookie
+  // const getCookie = (name: string) => {
+  //   // return Cookies.get(name);
+  // };
+
+  useEffect(() => {
+    setCookie("example");
+    // console.log("Cookie example:", getCookie("example"));
+  }, []);
   return (
     <div
       style={{
