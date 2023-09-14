@@ -23,6 +23,7 @@ import { Prova } from "./components/prova";
 import { SocioEconomico } from "./components/socioeconomico";
 import axios from "axios";
 import { civilState } from "./components/options/civil_state";
+import { Footer } from "../../components/footer";
 
 interface City {
   name: string;
@@ -523,16 +524,16 @@ export const FormPage = () => {
                       header="Dados socioeconômicos"
                       disabled={isTabEnabledSocial}
                     >
-                      <br />
-                      <div className="dadosSocieconomicos">
-                        <ContainerFlexInputs>
+                     
+           
+               
                           <SocioEconomico
                             setTabEnabled={setTabEnabled}
                             setActiveTab={setActiveTab}
                             setVisible={setVisible}
                           />
-                        </ContainerFlexInputs>
-                      </div>
+      
+                    
                       <ContainerSteps>
                         <Steps
                           model={items}
@@ -572,6 +573,7 @@ export const FormPage = () => {
             </div>
           </Container>
         )}
+        <Footer />
     </>
   );
 };

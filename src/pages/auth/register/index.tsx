@@ -13,6 +13,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { Checkbox } from "primereact/checkbox";
+import { Footer } from "../../../components/footer";
 
 export const RegisterPage = () => {
   const navigate = useNavigate();
@@ -62,6 +63,7 @@ export const RegisterPage = () => {
   }
 
   return (
+  <>
     <Container>
       <ToastContainer />
       <h1>Registro</h1>
@@ -161,5 +163,7 @@ export const RegisterPage = () => {
         <br />
       </form>
     </Container>
+          <Footer />
+          </>
   );
 };

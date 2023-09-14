@@ -8,6 +8,7 @@ import { EmailFormSchemaType, EmailFormSchema } from "../../../schema/emailSchem
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Footer } from "../../../components/footer";
 
 export const EmailPage = () => {
   const { handleSubmit, register } = useForm<EmailFormSchemaType>({
@@ -48,7 +49,8 @@ export const EmailPage = () => {
     <>
       <ToastContainer />
       <Container>
-        <h1>Qual seu email?</h1>
+        <h1>Qual é seu email?</h1>
+  <div className="h">
         <form
           onSubmit={handleSubmit(handleSubmitLogin)}
           style={{
@@ -56,7 +58,11 @@ export const EmailPage = () => {
           }}
         >
           <FormField>
-            <label>Email</label>
+            <br />
+        <span style={{
+          color: 'white'
+        }}>email</span>
+        <br />
             <InputText
               id="email"
               {...register("email")}
@@ -78,7 +84,9 @@ export const EmailPage = () => {
           <br />
           <br />
         </form>
+  </div>
       </Container>
+      <Footer />
     </>
   );
 };

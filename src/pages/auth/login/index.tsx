@@ -9,6 +9,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import { Footer } from "../../../components/footer";
 export const LoginPage = () => {
   const { register, handleSubmit } = useForm<LoginFormInputs>({
     resolver: zodResolver(loginFormSchema),
@@ -61,70 +62,77 @@ export const LoginPage = () => {
   console.log(data);
 
   return (
-    <Container>
-      <ToastContainer />
-      <h1>Login</h1>
-      <form
-        onSubmit={handleSubmit(handleSubmitLogin)}
-        style={{
-          width: "30rem",
-        }}
-      >
-        <FormField>
-          <label>Email</label>
-          <InputText
-            id="email"
-            {...register("email")}
-            onChange={(e) => setEmail(e.target.value)}
-            aria-describedby="email-help"
-            placeholder="Email"
-            value={email}
-          />
-        </FormField>
-
-        <FormField>
-          <label>Senha</label>
-          <InputText
-            id="password"
-            {...register("password")}
-            aria-describedby="password-help"
-            placeholder="Senha"
-            type="password"
-          />
-        </FormField>
-
-        <div
+    <>
+      <Container>
+        <ToastContainer />
+        <h1>Login</h1>
+<div className="h">
+        <form
+          onSubmit={handleSubmit(handleSubmitLogin)}
           style={{
-            marginTop: "1rem",
-            color: "white",
-            width: "100%",
-            display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "flex-end",
+            width: "30rem",
           }}
         >
-          <span>Esqueci minha senha</span>
-        </div>
+          <FormField>
+            <label>Email</label>
+            <InputText
+              id="email"
+              {...register("email")}
+              onChange={(e) => setEmail(e.target.value)}
+              aria-describedby="email-help"
+              placeholder="Email"
+              value={email}
+            />
+          </FormField>
 
-        <button
-          style={{
-            fontSize: "16px",
-            borderRadius: "26px",
-          }}
-          type="submit"
-        >
-          Fazer login
-        </button>
-        <br />
-        <br />
-      </form>
+          <FormField>
+            <label>Senha</label>
+            <InputText
+              id="password"
+              {...register("password")}
+              aria-describedby="password-help"
+              placeholder="Senha"
+              type="password"
+            />
+          </FormField>
 
-      <Register>
-        <h3>Ainda não tem uma conta?</h3>
-        <span className="register">
-          <Link to={"/register"}>Clique aqui e registre-se</Link>
-        </span>
-      </Register>
-    </Container>
+          <div
+            style={{
+              marginTop: "1rem",
+              color: "white",
+              width: "100%",
+              display: "flex",
+              justifyContent: "flex-end",
+              alignItems: "flex-end",
+            }}
+          >
+            <span>Esqueci minha senha</span>
+          </div>
+
+          <button
+            style={{
+              fontSize: "16px",
+              borderRadius: "26px",
+            }}
+            type="submit"
+          >
+            Fazer login
+          </button>
+          <br />
+          <br />
+        </form>
+
+        <Register>
+          <h3>Ainda não tem uma conta?</h3>
+          <span className="register">
+            <Link to={"/register"}>Clique aqui e registre-se</Link>
+          </span>
+        </Register>
+</div>
+      </Container>
+      <br />
+      <br />
+      <Footer />
+    </>
   );
 };

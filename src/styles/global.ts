@@ -48,6 +48,10 @@ export const GlobalStyle = createGlobalStyle`
   }
   .boxSh {
     box-shadow: none!important;
+    @media only screen and (max-width : 800px) {
+      max-width: min-content; 
+  }
+
   }
   .icon {
     fill: white;
@@ -72,6 +76,10 @@ export const GlobalStyle = createGlobalStyle`
     align-content: flex-start;
     flex-direction: column;
     flex-wrap: wrap;
+
+    @media only screen and (max-width : 800px) {
+      padding: 3rem 0rem;
+  }
   }
   .p-inputtext:enabled:focus {
     box-shadow: none;

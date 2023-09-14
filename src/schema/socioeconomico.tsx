@@ -48,20 +48,7 @@ export const SocioeconomicoSchema = z.object({
       .any({
         required_error: "messages.required",
       }),
-    
-    
-      display: z
-      .string({
-        required_error: "messages.required",
-      }),
-    
-      connect: z
-      .string({
-        required_error: "messages.required",
-      }),
-    
-    
-    
+     
       income: z.string({
         required_error: "messages.required",
       }).min(1, { message: "messages.required" }),
