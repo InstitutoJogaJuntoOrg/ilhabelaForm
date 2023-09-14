@@ -53,7 +53,7 @@ export const Header = () => {
         <ul className={windowWidth <= 800 && showLinks ? "hidden" : ""}>
           <StyledNavLink to={"/"}>Home</StyledNavLink>
           {!userEmail && <StyledNavLink to="/login">Fazer login</StyledNavLink>}
-    
+
           {userEmail && <MyDropdown />}
 
           {userEmail && (

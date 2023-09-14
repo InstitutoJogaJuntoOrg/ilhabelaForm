@@ -21,23 +21,25 @@ export const LoginPage = () => {
       const response = await axios.post(
         "https://back.ilhabelatech.com/users/login/",
         { email: data.email, password: data.password }
-        
       );
       console.log(data.email);
       if (response.status === 200) {
-        localStorage.setItem('email', email)
+        localStorage.setItem("email", email);
         console.log("logado");
         setData(response.data);
         localStorage.setItem("token", response.data.access);
         localStorage.setItem("refresh", response.data.refresh);
         localStorage.setItem("username", response.data.user);
         localStorage.setItem("personalForm", response.data.personal_form);
-        localStorage.setItem("socioeconomicForm", response.data.socioeconomic_form);
+        localStorage.setItem(
+          "socioeconomicForm",
+          response.data.socioeconomic_form
+        );
         localStorage.setItem("quizForm", response.data.quiz_form);
         toast.success("Autenticado com sucesso!");
-  
+
         setTimeout(() => {
-          navigate('/inscricao');
+          navigate("/inscricao");
           window.location.reload();
         }, 2000);
       }
@@ -48,7 +50,6 @@ export const LoginPage = () => {
           console.log(data.email);
           console.log(data.password);
 
-
           toast.error(error.response.data.error);
         } else {
           console.error("Erro ao fazer login:", error);
@@ -56,13 +57,12 @@ export const LoginPage = () => {
       }
     }
   });
-  
 
   console.log(data);
 
   return (
     <Container>
-        <ToastContainer />
+      <ToastContainer />
       <h1>Login</h1>
       <form
         onSubmit={handleSubmit(handleSubmitLogin)}
