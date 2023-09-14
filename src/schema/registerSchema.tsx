@@ -9,8 +9,8 @@ export const RegisterSchema = z
         },
       })
       .email(),
-    password: z.string(),
-    confirmPassword: z.string(),
+    password: z.string().min(3),
+    confirmPassword: z.string().min(3),
     name: z.string({
       errorMap: () => {
         return { message: "Digite um nome válido" }; // Corrigi a mensagem de erro para "Digite um nome válido"

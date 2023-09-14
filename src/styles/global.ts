@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import "primereact/resources/primereact.min.css";
 //theme
 import "primereact/resources/themes/lara-light-indigo/theme.css";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 export const GlobalStyle = createGlobalStyle`
 
 * {
@@ -49,7 +49,15 @@ export const GlobalStyle = createGlobalStyle`
   .boxSh {
     box-shadow: none!important;
   }
-
+  .icon {
+    fill: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    position: absolute;
+      right: 20px;
+      top: 13px;
+ 
+    }
   .margintop {
     margin-top: 5rem;
   }

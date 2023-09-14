@@ -3,6 +3,7 @@ import { Container } from "../../form";
 import { FormField } from "./styles";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { BiShow } from "react-icons/bi";
 import {
   RegisterSchemaType,
   RegisterSchema,
@@ -17,7 +18,12 @@ export const RegisterPage = () => {
   const navigate = useNavigate();
   const notifySuccess = () => toast.success("Usuário cadastrado com sucesso!");
   const [checked, setChecked] = useState<boolean>(false);
-  const [email, setEmail] = useState(localStorage.getItem("email") || "");
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showConfirmPassword, setShowConfirmPassword] =
+    useState<boolean>(false);
+  const [email, setEmail] = useState<string>(
+    localStorage.getItem("email") || ""
+  );
   const {
     register,
     handleSubmit,
@@ -25,6 +31,7 @@ export const RegisterPage = () => {
   } = useForm<RegisterSchemaType>({
     resolver: zodResolver(RegisterSchema),
   });
+
   function handleSubmitRegister(data: RegisterSchemaType) {
     const requestData = {
       username: data.name,
@@ -37,7 +44,7 @@ export const RegisterPage = () => {
       .then((response) => {
         notifySuccess();
         if (response.status === 201) {
-          localStorage.setItem('email', email)
+          localStorage.setItem("email", email);
           setTimeout(() => {
             navigate("/auth");
           }, 2000);
@@ -53,8 +60,6 @@ export const RegisterPage = () => {
         }
       });
   }
-
-  console.log(errors);
 
   return (
     <Container>
@@ -91,37 +96,58 @@ export const RegisterPage = () => {
 
         <FormField>
           <label>Senha</label>
-          <InputText
-            id="password"
-            {...register("password")}
-            aria-describedby="password-help"
-            placeholder="Senha"
-            type="password"
-          />
+          <div style={{ position: "relative", display: "flex" }}>
+            <InputText
+              id="password"
+              {...register("password")}
+              aria-describedby="password-help"
+              placeholder="Senha"
+              type={showPassword ? "text" : "password"}
+              className={errors.confirmPassword ? "p-invalid" : ""}
+            />
+            <BiShow
+              className="icon"
+              onClick={() => setShowPassword(!showPassword)}
+            />
+          </div>
         </FormField>
 
         <FormField>
           <label>Repetir Senha</label>
-          <InputText
-            id="repeatPassword"
-            {...register("confirmPassword")}
-            aria-describedby="repeatPassword-help"
-            placeholder="Repetir Senha"
-            type="password"
-          />
+          <div style={{ position: "relative", display: "flex" }}>
+            <InputText
+              id="repeatPassword"
+              {...register("confirmPassword")}
+              aria-describedby="repeatPassword-help"
+              placeholder="Repetir Senha"
+              className={errors.confirmPassword ? "p-invalid" : ""}
+              type={showConfirmPassword ? "text" : "password"}
+            />
+            <BiShow
+              className="icon"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            />
+          </div>
         </FormField>
-        <div className="card flex justify-content-center" style={{
-          display: 'flex',
-          width: '100%',
-          marginTop: '1rem',
-          justifyContent: 'center',
-          color: 'white'
-        }}>
-                  <Checkbox style={{maxWidth: '30px'}} onChange={e => setChecked(!!e.checked)} checked={checked}></Checkbox>
-        Aceitar os termos
+        <div
+          className="card flex justify-content-center"
+          style={{
+            display: "flex",
+            width: "100%",
+            marginTop: "1rem",
+            justifyContent: "center",
+            color: "white",
+          }}
+        >
+          <Checkbox
+            style={{ maxWidth: "30px" }}
+            onChange={(e) => setChecked(!!e.checked)}
+            checked={checked}
+            required
+          ></Checkbox>
+          Aceitar os termos
         </div>
 
-        
         <button
           style={{
             fontSize: "16px",
@@ -134,13 +160,6 @@ export const RegisterPage = () => {
         <br />
         <br />
       </form>
-
-      {/* <Register>
-        <h3>Já tem uma conta?</h3>
-        <span className="register">
-          <Link to={"/auth"}>Fazer login</Link>
-        </span>
-      </Register> */}
     </Container>
   );
 };
