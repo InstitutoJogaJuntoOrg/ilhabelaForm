@@ -84,6 +84,7 @@ export const RegisterPage = () => {
             onChange={(e) => setEmail(e.target.value)}
             aria-describedby="email-help"
             placeholder="Email"
+            className={errors.email ? "p-invalid" : ""}
             value={email}
           />
         </FormField>
