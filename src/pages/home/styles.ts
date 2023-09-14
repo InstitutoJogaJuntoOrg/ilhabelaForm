@@ -119,11 +119,17 @@ export const About = styled.div`
   h1 {
     font-size: 5rem;
     color: #54993A;
-    padding: 2rem;
+    @media (max-width: 1000px) {
+      font-size: 2rem;
+    }
   }
   p {
     font-size: 1.5rem;
-    
+    padding: 1rem 0;
+    @media (max-width: 1000px) {
+      font-size: 1rem;
+      padding: 1rem 0
+    }
     color: #54993A;
   }
 `;

@@ -27,6 +27,8 @@ const Overlay = styled.div`
 
 const ImageContainer = styled.div`
   position: relative;
+  display:flex;
+  align-items: center;
 `;
 
 const Image = styled.img`
@@ -84,9 +86,7 @@ export const HomePage = () => {
             alt="img"
           />
           <Card
-            description="O curso, que tem data de início prevista para 16.10, com duração de 148 horas, ocorrerá de forma presencial no laboratório de informática da IETEC, nos períodos da tarde (das 14h às 17h) ou noite (das 17:30 às 21:30).   
-            Serão abordados temáticas de gestão de projetos e qualidade de software, além de conteúdos comportamentais! 
-            Ainda, você terá a oportunidade de participar dos nossos workshops com especialistas nas áreas de finanças, recursos humanos, projetos e outros, tudo para preparar você para atuar nesse mercado de trabalho tão promissor."
+            description="O curso, que tem data de início prevista para 16.10, com duração de 148 horas, ocorrerá de forma presencial no laboratório de informática da IETEC, nos períodos da tarde (das 14h às 17h) ou noite (das 17:30 às 21:30).   "
             titleCard="Sobre o QA"
             image="https://cdn.discordapp.com/attachments/566850308702208001/1146220725309546546/Rectangle_28.png"
             key={1}

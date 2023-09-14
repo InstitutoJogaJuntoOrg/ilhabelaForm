@@ -21,8 +21,9 @@ export const LoginPage = () => {
       const response = await axios.post(
         "https://back.ilhabelatech.com/users/login/",
         { email: data.email, password: data.password }
+        
       );
-  
+      console.log(data.email);
       if (response.status === 200) {
         console.log("logado");
         setData(response.data);
@@ -43,6 +44,10 @@ export const LoginPage = () => {
       if (axios.isAxiosError(error) && error.response) {
         if (error.response.status === 401) {
           console.log("Erro de autenticação:", error.response.data.error);
+          console.log(data.email);
+          console.log(data.password);
+
+
           toast.error(error.response.data.error);
         } else {
           console.error("Erro ao fazer login:", error);

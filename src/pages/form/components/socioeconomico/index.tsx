@@ -472,7 +472,7 @@ export const SocioEconomico = ({
               type="file"
             />
           </div>
-          <label>Benefício governamental seu ou da sua família</label>
+          <label>Você ou alguém da sua família recebe algum benefício social?</label>
           <Dropdown
             value={selectedBenefits}
             options={benefits}

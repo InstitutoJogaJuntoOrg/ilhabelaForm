@@ -361,6 +361,7 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
+                            
                             <label>Telefone (WhatsApp):</label>
                             <InputText
                               {...register("phone")}
@@ -381,11 +382,12 @@ export const FormPage = () => {
                               options={states}
                               value={selectedCity}
                               optionLabel="name"
+                              defaultValue={'SP'}
                               onChange={(e) => {
                                 setSelectedCity(e.value);
                                 setValue("state", e.value);
                               }}
-                              placeholder="Estado"
+                              placeholder="Selecione o estado"
                               className={
                                 errors.state
                                   ? "p-invalid w-full md:w-14rem"
@@ -407,6 +409,7 @@ export const FormPage = () => {
                               {...register("city")}
                               placeholder="Cidade"
                               className={errors.city ? "p-invalid" : ""}
+                              defaultValue={"Ilhabela"}
                             />
                           </div>
                         </div>
