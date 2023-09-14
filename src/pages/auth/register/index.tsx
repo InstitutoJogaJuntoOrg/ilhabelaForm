@@ -11,10 +11,12 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import { Checkbox } from "primereact/checkbox";
 
 export const RegisterPage = () => {
   const navigate = useNavigate();
   const notifySuccess = () => toast.success("Usuário cadastrado com sucesso!");
+  const [checked, setChecked] = useState<boolean>(false);
   const [email, setEmail] = useState(localStorage.getItem("email") || "");
   const {
     register,
@@ -107,7 +109,18 @@ export const RegisterPage = () => {
             type="password"
           />
         </FormField>
+        <div className="card flex justify-content-center" style={{
+          display: 'flex',
+          width: '100%',
+          marginTop: '1rem',
+          justifyContent: 'center',
+          color: 'white'
+        }}>
+                  <Checkbox style={{maxWidth: '30px'}} onChange={e => setChecked(!!e.checked)} checked={checked}></Checkbox>
+        Aceitar os termos
+        </div>
 
+        
         <button
           style={{
             fontSize: "16px",
