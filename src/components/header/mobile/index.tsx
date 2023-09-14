@@ -24,7 +24,7 @@ const MobileMenu = ({ closeMenu }: any) => {
         Saiba mais
       </StyledNavLink>
       <div>
-        {!user && <StyledNavLink to="/login">Fazer login</StyledNavLink>}
+        {!user && <StyledNavLink to="/login" onClick={closeMenu}>Fazer login</StyledNavLink>}
         <div>
         {user && <MyDropdown />}
         </div>
