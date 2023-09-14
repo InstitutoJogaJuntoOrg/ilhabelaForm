@@ -43,7 +43,6 @@ export const FormPage = () => {
   const [isTabEnabledDate, setIsTabEnabledDate] = useState(false);
   const [visible, setVisible] = useState<boolean>(false);
   const [activeIndex, setActiveIndex] = useState<number>(0);
-  const [dateValue, setDateValue] = useState<any>("");
   const [selectedCity, setSelectedCity] = useState<City | null>(null);
   const [selectedStateSocial, setelectedStateSocial] = useState<City | null>(
     null
@@ -59,9 +58,7 @@ export const FormPage = () => {
     if (errors.city) {
       toast.error("Por favor informe um Cidade válida");
     }
-    if (errors.date) {
-      toast.error("Por favor informe uma Data válida");
-    }
+
     if (errors.civil_state) {
       toast.error("Por favor informe seu Estado Civil");
     }
@@ -345,23 +342,23 @@ export const FormPage = () => {
                             }}
                           >
                             <label htmlFor="date">Data de nascimento:</label>
-                            <InputMask
-                              value={dateValue ?? ""}
-                              onComplete={(e) => setDateValue(e.value || "")}
+                            <input
                               {...register("date")}
                               id="date"
-                              mask="9999-99-99"
+                            
+                              type="date"
                               placeholder="dd-mm-yyyy"
                               className={errors.date ? "p-invalid" : ""}
                             />
                           </div>
+
+
                           <div
                             style={{
                               display: "flex",
                               flexDirection: "column",
                             }}
                           >
-                            
                             <label>Telefone (WhatsApp):</label>
                             <InputText
                               {...register("phone")}
@@ -382,7 +379,7 @@ export const FormPage = () => {
                               options={states}
                               value={selectedCity}
                               optionLabel="name"
-                              defaultValue={'SP'}
+                              defaultValue={"SP"}
                               onChange={(e) => {
                                 setSelectedCity(e.value);
                                 setValue("state", e.value);
@@ -457,7 +454,6 @@ export const FormPage = () => {
                                 {...register("email")}
                                 onChange={(e) => setEmail(e.target.value)}
                                 value={email}
-                                
                                 placeholder="Email"
                                 className={errors.email ? "p-invalid" : ""}
                               />

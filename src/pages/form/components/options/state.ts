@@ -1,4 +1,5 @@
 export const states = [
+    { name: 'SP', code: 'SP' },
     { name: 'AC', code: 'AC' },
     { name: 'AL', code: 'AL' },
     { name: 'AP', code: 'AP' },
@@ -23,7 +24,6 @@ export const states = [
     { name: 'RO', code: 'RO' },
     { name: 'RR', code: 'RR' },
     { name: 'SC', code: 'SC' },
-    { name: 'SP', code: 'SP' },
     { name: 'SE', code: 'SE' },
     { name: 'TO', code: 'TO' }
 ];

@@ -1,6 +1,13 @@
 import { styled } from "styled-components";
 
 export const Container = styled.div`
+#date {
+  padding: 1rem;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 6px;
+  color: white;
+}
 .success {
   text-align: center;
 margin-top: 10rem;

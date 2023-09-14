@@ -49,6 +49,10 @@ export const GlobalStyle = createGlobalStyle`
   .boxSh {
     box-shadow: none!important;
   }
+
+  .margintop {
+    margin-top: 5rem;
+  }
   label {
     display: flex;
     align-items: flex-end;
