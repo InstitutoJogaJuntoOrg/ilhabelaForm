@@ -35,6 +35,7 @@ export const RegisterPage = () => {
       .then((response) => {
         notifySuccess();
         if (response.status === 201) {
+          localStorage.setItem('email', email)
           setTimeout(() => {
             navigate("/auth");
           }, 2000);

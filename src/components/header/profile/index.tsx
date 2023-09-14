@@ -16,6 +16,7 @@ const MyDropdown = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("refresh");
         localStorage.removeItem("username");
+        localStorage.removeItem("email");
         window.location.reload();
     }
   };

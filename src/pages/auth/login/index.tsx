@@ -25,6 +25,7 @@ export const LoginPage = () => {
       );
       console.log(data.email);
       if (response.status === 200) {
+        localStorage.setItem('email', email)
         console.log("logado");
         setData(response.data);
         localStorage.setItem("token", response.data.access);
