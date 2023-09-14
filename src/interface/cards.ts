@@ -3,4 +3,5 @@ export interface CardsProps {
     alt: string;
     className?: string;
     titleCard: string;
+    description: string;
 }

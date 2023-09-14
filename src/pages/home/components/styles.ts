@@ -22,8 +22,6 @@ export const ContainerCard = styled.div`
   &:hover {
     box-shadow: 0px 15px 39px 0px rgba(0, 0, 0, 0.5);
   }
-
- 
 `;
 
 export const StepsContainer = styled.div`
@@ -55,22 +53,21 @@ export const StepsContainer = styled.div`
       display: none;
     }
     .pass {
-      display: block !important;;
+      display: block !important;
       color: white;
-    font-size: 1.5rem;
- text-align: center;
- 
+      font-size: 1.5rem;
+      text-align: center;
 
-    margin-bottom: 1rem;
-    font-weight: 500;
+      margin-bottom: 1rem;
+      font-weight: 500;
     }
   }
   .pass {
-   display: none;
+    display: none;
   }
 
   p {
-    font-size: .5rem;
+    font-size: 0.5rem;
   }
 `;
 
@@ -133,7 +130,7 @@ export const OpacityOverlay = styled.div`
 
   .titleOpacity {
     position: absolute;
-    top: 90%;
+    top: 85%;
     left: 10%;
     font-size: 40px;
     font-style: normal;
@@ -143,6 +140,18 @@ export const OpacityOverlay = styled.div`
       top: 80%;
       left: 10%;
       font-size: 30px;
+    }
+  }
+  p {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: black;
+    font-weight: 600;
+    padding: 1rem;
+    font-size: 1.4rem;
+    @media (max-width: 900px) {
+      font-size: 1rem;
     }
   }
 `;
