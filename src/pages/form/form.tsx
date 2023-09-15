@@ -250,7 +250,9 @@ export const FormPage = () => {
           <Dialog
             header=""
             visible={visible}
-            style={{ width: "20vw" }}
+
+            className="modals"
+
             onHide={() => setVisible(false)}
           >
             <div className="modal">

@@ -1,28 +1,31 @@
 import { styled } from "styled-components";
 
 export const Container = styled.div`
-.h {
-  height: 75vh;
-}
-#date {
-  padding: 1rem;
-  background-color: transparent;
-  border: 1px solid white;
-  border-radius: 6px;
-  color: white;
-}
-.success {
-  text-align: center;
-margin-top: 10rem;
-padding: 5rem;
-border-radius: 6px;
-  background-color: #54993a;
-  color: white;
-  font-weight: 600;
-  p {
-    font-weight: 400;
+  .modals {
+    width: 42rem;
   }
-}
+  .h {
+    height: 75vh;
+  }
+  #date {
+    padding: 1rem;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 6px;
+    color: white;
+  }
+  .success {
+    text-align: center;
+    margin-top: 10rem;
+    padding: 5rem;
+    border-radius: 6px;
+    background-color: #54993a;
+    color: white;
+    font-weight: 600;
+    p {
+      font-weight: 400;
+    }
+  }
   justify-content: center;
   align-items: center;
   display: flex;
@@ -36,7 +39,7 @@ border-radius: 6px;
     font-size: 46px;
     @media (max-width: 800px) {
       font-size: 36px;
-        }
+    }
   }
 
   .dadosSocieconomicos {
