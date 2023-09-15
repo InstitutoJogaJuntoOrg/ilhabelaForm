@@ -66,69 +66,75 @@ export const LoginPage = () => {
       <Container>
         <ToastContainer />
         <h1>Login</h1>
-<div className="h">
-        <form
-          onSubmit={handleSubmit(handleSubmitLogin)}
-          style={{
-            width: "30rem",
-          }}
-        >
-          <FormField>
-            <label>Email</label>
-            <InputText
-              id="email"
-              {...register("email")}
-              onChange={(e) => setEmail(e.target.value)}
-              aria-describedby="email-help"
-              placeholder="Email"
-              value={email}
-            />
-          </FormField>
-
-          <FormField>
-            <label>Senha</label>
-            <InputText
-              id="password"
-              {...register("password")}
-              aria-describedby="password-help"
-              placeholder="Senha"
-              type="password"
-            />
-          </FormField>
-
-          <div
+        <div className="h">
+          <form
+            onSubmit={handleSubmit(handleSubmitLogin)}
             style={{
-              marginTop: "1rem",
-              color: "white",
-              width: "100%",
-              display: "flex",
-              justifyContent: "flex-end",
-              alignItems: "flex-end",
+              width: "30rem",
             }}
           >
-            <span>Esqueci minha senha</span>
-          </div>
+            <FormField>
+              <label>Email</label>
+              <InputText
+                id="email"
+                {...register("email")}
+                onChange={(e) => setEmail(e.target.value)}
+                aria-describedby="email-help"
+                placeholder="Email"
+                value={email}
+              />
+            </FormField>
 
-          <button
-            style={{
-              fontSize: "16px",
-              borderRadius: "26px",
-            }}
-            type="submit"
-          >
-            Fazer login
-          </button>
-          <br />
-          <br />
-        </form>
+            <FormField>
+              <label>Senha</label>
+              <InputText
+                id="password"
+                {...register("password")}
+                aria-describedby="password-help"
+                placeholder="Senha"
+                type="password"
+              />
+            </FormField>
 
-        <Register>
-          <h3>Ainda não tem uma conta?</h3>
-          <span className="register">
-            <Link to={"/register"}>Clique aqui e registre-se</Link>
-          </span>
-        </Register>
-</div>
+            <div
+              style={{
+                marginTop: "1rem",
+                color: "white",
+                width: "100%",
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "flex-end",
+              }}
+            >
+              <Register>
+                <span className="">
+                  <span>
+                    <Link to={"/reset"}>Esqueci minha senha</Link>
+                  </span>
+                </span>
+              </Register>
+            </div>
+
+            <button
+              style={{
+                fontSize: "16px",
+                borderRadius: "26px",
+              }}
+              type="submit"
+            >
+              Fazer login
+            </button>
+            <br />
+            <br />
+          </form>
+
+          <Register>
+            <h3>Ainda não tem uma conta?</h3>
+            <span className="register">
+              <Link to={"/register"}>Clique aqui e registre-se</Link>
+            </span>
+          </Register>
+        </div>
       </Container>
       <br />
       <br />

@@ -46,6 +46,9 @@ export const GlobalStyle = createGlobalStyle`
     color: black;
     fill: black;
   }
+  .heigh {
+    height: 80vh;
+  }
   .boxSh {
     box-shadow: none!important;
     @media only screen and (max-width : 800px) {

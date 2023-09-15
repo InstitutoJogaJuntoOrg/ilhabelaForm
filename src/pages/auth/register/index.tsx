@@ -75,6 +75,8 @@ export const RegisterPage = () => {
     <>
       <Container>
         <ToastContainer />
+        <br />
+
         <h1>Registro</h1>
         <form
           onSubmit={handleSubmit(handleSubmitRegister)}
@@ -183,7 +185,12 @@ export const RegisterPage = () => {
           <br />
         </form>
       </Container>
+      <br />
+      <br />
+      <br />
+      <br />
       <Footer />
+      
     </>
   );
 };
