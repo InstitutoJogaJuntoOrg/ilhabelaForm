@@ -10,6 +10,7 @@ import { PrivateRoute } from "./private";
 import { PasswordReset } from "../pages/auth/password";
 import { NewPassword } from "../pages/auth/password/confirm";
 
+
 export function Router() {
   return (
     <Routes>
