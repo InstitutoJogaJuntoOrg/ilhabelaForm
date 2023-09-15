@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
 export const ContainerHome = styled.div`
+.subDescp {
+  @media (max-width: 900px) {
+      font-size: 12px;
+    
+    }
+}
   width: 100%;
   height: 100vh;
   position: relative;
@@ -74,6 +80,7 @@ export const ContainerCardLayout = styled.div`
   }
 `;
 export const ContainerTitle = styled.div`
+  
   display: flex;
   flex-direction: column;
   width: 100%;

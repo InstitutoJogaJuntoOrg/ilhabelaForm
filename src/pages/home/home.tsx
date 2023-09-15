@@ -85,7 +85,7 @@ export const HomePage = () => {
         <section>
           <ContainerTitle className="InitialMessage">
             <h1>ILHABELA TECH</h1>
-            <span>Você está a um clique do futuro</span>
+            <span className="subDescp">Você está a um clique do futuro</span>
             <Link to={auth ? "/inscricao" : "/login"}>
               <button>Inscreva-se</button>
             </Link>
