@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { CardOne } from "./components/card";
 import { CardTwo } from "./components/cardTwo";
 import StepsHome from "./components/steps";
+import video from '../../../public/jogajunto'
 import {
   About,
   ContainerCardLayout,
@@ -34,10 +35,21 @@ const ImageContainer = styled.div`
   align-items: center;
 `;
 
-const Image = styled.img`
+const VideoBackground = styled.div`
+  position: relative;
   width: 100%;
+  height: 100vh;
+  overflow: hidden;
 `;
 
+const Video = styled.video`
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
 export const HomePage = () => {
   const auth = localStorage.getItem("token");
   const [showText, setShowText] = useState(false);
@@ -66,10 +78,11 @@ export const HomePage = () => {
     >
       <ContainerHome>
         <ImageContainer>
-          <Image
-            src="https://cdn.discordapp.com/attachments/566850308702208001/1146146822100897905/Rectangle_35.png"
-            alt="banner com a imagem de fundo da IETEC de ilhabela, e uma mulher em um notebook"
-          />
+        <VideoBackground>
+      <Video autoPlay muted loop>
+        <source src={video} type="mov" />
+      </Video>
+    </VideoBackground>
           <Overlay
             onMouseOver={() => setShowText(true)}
             onMouseOut={() => setShowText(false)}
