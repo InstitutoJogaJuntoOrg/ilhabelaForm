@@ -89,7 +89,7 @@ export const ContainerTitle = styled.div`
 
   gap: 1rem;
   span {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 500;
   }
   button {

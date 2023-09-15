@@ -157,11 +157,11 @@ export const OpacityOverlay = styled.div`
     color: #1b512d;
     
     
-   margin-top: 40%;
+   /* margin-top: 40%; */
 
     font-weight: 600;
-    padding:  0rem 2rem;
-    font-size: 1.4rem;
+    padding:  1rem 2rem;
+    font-size: 1rem;
     @media (max-width: 900px) {
       font-size: 1rem;
     }
