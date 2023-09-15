@@ -13,9 +13,7 @@ import {
 import { benefits } from "../options/benefits";
 import { childrens } from "../options/childrens";
 import { collor } from "../options/collor";
-import { connect } from "../options/conect";
 import { deficiency } from "../options/deficiency";
-import { displays } from "../options/display";
 import { emprego } from "../options/emprego";
 import { family } from "../options/family";
 import { gender } from "../options/gender";
@@ -33,11 +31,9 @@ export const SocioEconomico = ({
   }
   const [selectedcollor, setSelectedcollor] = useState<City | null>(null);
   const [selectedchildrens, setSelectedchildrens] = useState<City | null>(null);
-  const [selectedconexao, setSelectedconexao] = useState<City | null>(null);
   const [selectedemprego, setSelectedEmprego] = useState<City | null>(null);
   const [selectedguildance, setSelectedguildance] = useState<City | null>(null);
   const [selectedfamily, setSelectedfamily] = useState<City | null>(null);
-  const [selecteddisplay, setSelecteddisplay] = useState<City | null>(null);
   const [selectedscholl, setSelectedscholl] = useState<City | null>(null);
   const [selectedgender, setSelectedgender] = useState<City | null>(null);
   const [selectedBenefits, setSelectedBenefits] = useState<City | null>(null);
@@ -103,8 +99,7 @@ export const SocioEconomico = ({
       formData.append("children", data.children);
       formData.append("education_level", data.schooling);
       formData.append("benefit", data.benefit);
-      formData.append("device_type", data.display);
-      formData.append("internet_connection_type", data.connect);
+
       formData.append("income", data.income);
       formData.append("household_count", data.family.name);
       formData.append("employment_status", data.employment_status);
@@ -174,7 +169,10 @@ export const SocioEconomico = ({
   }, []);
 
   return (
-    <form onSubmit={handleSubmit(sendSocioEconomicInfo)} className="boxSh">
+    <div style={{
+      width: '2rem'
+    }}>
+      <form onSubmit={handleSubmit(sendSocioEconomicInfo)} className="boxSh">
       <div>
         <div
           style={{
@@ -305,29 +303,6 @@ export const SocioEconomico = ({
           />
         </div>
 
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: ".0rem",
-          }}
-          className="card flex justify-content-center"
-        >
-          <label>Tipos de conexão</label>
-          <Dropdown
-            value={selectedconexao}
-            options={connect}
-            optionLabel="name"
-            onChange={(e) => {
-              setSelectedconexao(e.value);
-              setValue("connect", e.value);
-            }}
-            placeholder="Selecione"
-            className={
-              errors.color ? "p-invalid w-full md:w-14rem" : "w-full md:w-14rem"
-            }
-          />
-        </div>
       </div>
       <div>
         <div
@@ -491,32 +466,6 @@ export const SocioEconomico = ({
           />
         </div>
 
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: ".0rem",
-          }}
-          className="card flex justify-content-center"
-        >
-          <label>Tipo de dispositivo para acessar as aulas</label>
-          <Dropdown
-            value={selecteddisplay}
-            options={displays}
-            optionLabel="name"
-            onChange={(e) => {
-              setSelecteddisplay(e.value);
-              setValue("display", e.value);
-            }}
-            placeholder="Selecione"
-            className={
-              errors.display
-                ? "p-invalid w-full md:w-14rem"
-                : "w-full md:w-14rem"
-            }
-            showClear
-          />
-        </div>
       </div>
       <ContainerButtons>
         <button type="submit" onClick={handleSubmit(sendSocioEconomicInfo)}>
@@ -524,5 +473,6 @@ export const SocioEconomico = ({
         </button>
       </ContainerButtons>
     </form>
+    </div>
   );
 };

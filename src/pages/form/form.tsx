@@ -23,6 +23,7 @@ import { Prova } from "./components/prova";
 import { SocioEconomico } from "./components/socioeconomico";
 import axios from "axios";
 import { civilState } from "./components/options/civil_state";
+import { Footer } from "../../components/footer";
 
 interface City {
   name: string;
@@ -43,7 +44,6 @@ export const FormPage = () => {
   const [isTabEnabledDate, setIsTabEnabledDate] = useState(false);
   const [visible, setVisible] = useState<boolean>(false);
   const [activeIndex, setActiveIndex] = useState<number>(0);
-  const [dateValue, setDateValue] = useState<any>("");
   const [selectedCity, setSelectedCity] = useState<City | null>(null);
   const [selectedStateSocial, setelectedStateSocial] = useState<City | null>(
     null
@@ -59,9 +59,7 @@ export const FormPage = () => {
     if (errors.city) {
       toast.error("Por favor informe um Cidade válida");
     }
-    if (errors.date) {
-      toast.error("Por favor informe uma Data válida");
-    }
+
     if (errors.civil_state) {
       toast.error("Por favor informe seu Estado Civil");
     }
@@ -181,14 +179,14 @@ export const FormPage = () => {
     localStorage.setItem("personalForm", "true");
 
     const file = data.rg[0];
-
+    const cleanedPhone = data.phone.replace(/[\s\.-]/g, '');
     const formData = new FormData();
     formData.append("cpf", data.cpf.replace(/\D/g, ""));
     formData.append("first_name", data.first_name);
     formData.append("last_name", data.first_name);
     formData.append("social_name", data.socialName);
     formData.append("city", data.city);
-    formData.append("phone", data.phone);
+    formData.append("phone", cleanedPhone);
     formData.append("date_of_birth", data.date);
     formData.append("living_uf", data.state.name);
     formData.append("country", data.state.name);
@@ -345,23 +343,23 @@ export const FormPage = () => {
                             }}
                           >
                             <label htmlFor="date">Data de nascimento:</label>
-                            <InputMask
-                              value={dateValue ?? ""}
-                              onComplete={(e) => setDateValue(e.value || "")}
+                            <input
                               {...register("date")}
                               id="date"
-                              mask="9999-99-99"
+                            
+                              type="date"
                               placeholder="dd-mm-yyyy"
                               className={errors.date ? "p-invalid" : ""}
                             />
                           </div>
+
+
                           <div
                             style={{
                               display: "flex",
                               flexDirection: "column",
                             }}
                           >
-                            
                             <label>Telefone (WhatsApp):</label>
                             <InputText
                               {...register("phone")}
@@ -382,7 +380,7 @@ export const FormPage = () => {
                               options={states}
                               value={selectedCity}
                               optionLabel="name"
-                              defaultValue={'SP'}
+                              defaultValue={"SP"}
                               onChange={(e) => {
                                 setSelectedCity(e.value);
                                 setValue("state", e.value);
@@ -457,7 +455,6 @@ export const FormPage = () => {
                                 {...register("email")}
                                 onChange={(e) => setEmail(e.target.value)}
                                 value={email}
-                                
                                 placeholder="Email"
                                 className={errors.email ? "p-invalid" : ""}
                               />
@@ -527,16 +524,16 @@ export const FormPage = () => {
                       header="Dados socioeconômicos"
                       disabled={isTabEnabledSocial}
                     >
-                      <br />
-                      <div className="dadosSocieconomicos">
-                        <ContainerFlexInputs>
+                     
+           
+               
                           <SocioEconomico
                             setTabEnabled={setTabEnabled}
                             setActiveTab={setActiveTab}
                             setVisible={setVisible}
                           />
-                        </ContainerFlexInputs>
-                      </div>
+      
+                    
                       <ContainerSteps>
                         <Steps
                           model={items}
@@ -576,6 +573,7 @@ export const FormPage = () => {
             </div>
           </Container>
         )}
+        <Footer />
     </>
   );
 };

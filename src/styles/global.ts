@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import "primereact/resources/primereact.min.css";
 //theme
 import "primereact/resources/themes/lara-light-indigo/theme.css";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 export const GlobalStyle = createGlobalStyle`
 
 * {
@@ -48,6 +48,22 @@ export const GlobalStyle = createGlobalStyle`
   }
   .boxSh {
     box-shadow: none!important;
+    @media only screen and (max-width : 800px) {
+      max-width: min-content; 
+  }
+
+  }
+  .icon {
+    fill: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    position: absolute;
+      right: 20px;
+      top: 13px;
+ 
+    }
+  .margintop {
+    margin-top: 5rem;
   }
   label {
     display: flex;
@@ -60,6 +76,10 @@ export const GlobalStyle = createGlobalStyle`
     align-content: flex-start;
     flex-direction: column;
     flex-wrap: wrap;
+
+    @media only screen and (max-width : 800px) {
+      padding: 3rem 0rem;
+  }
   }
   .p-inputtext:enabled:focus {
     box-shadow: none;

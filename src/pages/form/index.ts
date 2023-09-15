@@ -1,6 +1,16 @@
 import { styled } from "styled-components";
 
 export const Container = styled.div`
+.h {
+  height: 75vh;
+}
+#date {
+  padding: 1rem;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 6px;
+  color: white;
+}
 .success {
   text-align: center;
 margin-top: 10rem;
@@ -24,6 +34,9 @@ border-radius: 6px;
     line-height: normal;
     color: #72b65a;
     font-size: 46px;
+    @media (max-width: 800px) {
+      font-size: 36px;
+        }
   }
 
   .dadosSocieconomicos {

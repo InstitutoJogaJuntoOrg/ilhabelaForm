@@ -9,6 +9,7 @@ import {
 } from "./styles";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { Footer } from "../../components/footer";
 // import { Cookies } from "js-cookie"; // Importe a biblioteca
 
 
@@ -117,6 +118,7 @@ export const HomePage = () => {
           </p>
           <StepsHome />
         </About>
+        <Footer />
       </ContainerHome>
     </div>
   );
