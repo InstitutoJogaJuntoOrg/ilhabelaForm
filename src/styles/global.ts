@@ -49,6 +49,11 @@ export const GlobalStyle = createGlobalStyle`
   .heigh {
     height: 80vh;
   }
+  .adopt-c-dDnXt {
+        color: rgb(255, 255, 255) !important;
+        border: 1px solid rgb(255, 255, 255) !important;
+        background-color: rgb(114, 182, 90) !important;
+      }
   .boxSh {
     box-shadow: none!important;
     @media only screen and (max-width : 800px) {
