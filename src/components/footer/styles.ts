@@ -15,12 +15,13 @@ export const Container = styled.footer`
         display: flex;
 
         grid-template-columns: no-repeat(1fr, 2);
-        gap: 10rem;
+        gap: 5rem;
         align-items: center;
         text-align: left;
         @media (max-width: 800px) {
             display: flex;
             flex-direction: column;
+            gap: 2rem;
         }
         p {
             font-size: 1rem;
@@ -40,14 +41,14 @@ export const Container = styled.footer`
             flex-direction: column;
             margin: 0;
             padding: 0;
-            
             gap: 1rem;
             p {
                 max-width: 80%;
                 margin: 0;
-            padding: 0;
+                padding: 0;
             }
         }
+        
     }
     padding: 2rem;
 
