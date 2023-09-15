@@ -10,7 +10,7 @@ import {
 } from "../../../schema/registerSchema";
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { Footer } from "../../../components/footer";
 
@@ -160,8 +160,12 @@ export const RegisterPage = () => {
               {...register("checked")}
             />
             <label htmlFor="myCheckbox">
-      
-              Aceito receber comunicações referentes ao processo seletivo
+              <p>
+
+
+              Concordo em receber comunicações e com a <span>
+               <Link to="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/Aviso+de+Privacidade+IlhaBela+Tech.pdf" target='_blank'> política de privacidade de dados</Link> </span> 
+              </p>
             </label>
           </div>
 
