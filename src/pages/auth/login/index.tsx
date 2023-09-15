@@ -107,11 +107,13 @@ export const LoginPage = () => {
               }}
             >
               <Register>
+                {/*
                 <span className="">
                   <span>
                     <Link to={"/reset"}>Esqueci minha senha</Link>
                   </span>
                 </span>
+                */}
               </Register>
             </div>
 
