@@ -78,11 +78,11 @@ export const HomePage = () => {
     >
       <ContainerHome>
         <ImageContainer>
-        <VideoBackground>
-      <Video autoPlay muted loop>
-        <source src={video} type="mov" />
-      </Video>
-    </VideoBackground>
+          <VideoBackground>
+            <Video autoPlay muted loop>
+              <source src={"video"} type="mov" />
+            </Video>
+          </VideoBackground>
           <Overlay
             onMouseOver={() => setShowText(true)}
             onMouseOut={() => setShowText(false)}
