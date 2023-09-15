@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { CardOne } from "./components/card";
 import { CardTwo } from "./components/cardTwo";
 import StepsHome from "./components/steps";
+import video from '../../assets/video.mp4'
 
 import {
   About,
@@ -46,7 +47,7 @@ const Video = styled.video`
   object-fit: cover;
   width: 100%;
   height: 100%;
-  position: absolute;
+
   top: 0;
   left: 0;
 `;
@@ -79,9 +80,7 @@ export const HomePage = () => {
       <ContainerHome>
         <ImageContainer>
           <VideoBackground>
-            <Video autoPlay muted loop>
-              <source src={"video"} type="mov" />
-            </Video>
+            <Video src={video} autoPlay muted loop />
           </VideoBackground>
           <Overlay
             onMouseOver={() => setShowText(true)}
@@ -97,10 +96,10 @@ export const HomePage = () => {
 
         <section>
           <ContainerTitle className="InitialMessage">
-            <h1>ILHABELA TECH</h1>
-            <span className="subDescp">Você está a um clique do futuro</span>
-            <Link to={auth ? "/inscricao" : "/login"}>
-              <button>Inscreva-se</button>
+          <h1 style={{ textShadow: '14px 14px 18px rgba(0, 0, 0, 10.5)' }}>ILHABELA TECH</h1>
+            <span className="subDescp" style={{ textShadow: '14px 14px 18px rgba(0, 0, 0, 10.5)' }}>Você está a um clique do futuro</span>
+            <Link style={{ textShadow: '14px 14px 18px rgba(0, 0, 0, 10.5)' }} to={auth ? "/inscricao" : "/login"}>
+              <button >Inscreva-se</button>
             </Link>
           </ContainerTitle>
         </section>
