@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CardsProps } from "../../../interface/cards";
+import { cardOne } from "../../../utils/cardone";
 import {
   ContainerCard,
   Background,
@@ -7,7 +8,12 @@ import {
   OpacityOverlay,
 } from "./styles";
 
-export const Card = ({ image, alt, className, titleCard, description }: CardsProps) => {
+export const CardOne = ({
+  image,
+  alt,
+  className,
+  titleCard,
+}: CardsProps) => {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -24,7 +30,28 @@ export const Card = ({ image, alt, className, titleCard, description }: CardsPro
           </OpacityOverlay>
         </ImageWrapper>
         <OpacityOverlay style={{ display: hovered ? "block" : "none" }}>
-          <p>{description}</p>
+          {cardOne.map((item) => {
+            return (
+              <div className="Card mtop">
+                <span className="titleCard">
+                  <strong>{item.title}</strong>
+                </span>
+                <span>{item.description}</span>
+                <span className="date">
+                  <strong>Data de inicio:</strong> {item.startDate}
+                </span>
+                <span className="date">
+                  <strong>Modalidade:</strong> {item.modalidade}
+                </span>
+                <span className="periods">
+                  <strong>Periodos:</strong> {item.periods}
+                </span>
+                <span className="location">
+                  <strong>Local:</strong> {item.location}
+                </span>
+              </div>
+            );
+          })}
         </OpacityOverlay>
       </ContainerCard>
     </Background>

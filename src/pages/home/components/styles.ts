@@ -80,10 +80,9 @@ export const CardsContainer = styled.div`
   justify-content: center;
   justify-items: center;
   align-items: center;
-  
+
   @media (max-width: 775px) {
     grid-template-columns: repeat(1, 3fr);
-   
   }
   div {
     padding: 2rem;
@@ -98,11 +97,10 @@ export const CardsContainer = styled.div`
       color: white;
       font-size: 1.5rem;
       @media (max-width: 1000px) {
-      font-size: 1.2rem;
-      padding: 1rem 1rem;
-      text-align: center;
-    }
-   
+        font-size: 1.2rem;
+        padding: 1rem 1rem;
+        text-align: center;
+      }
     }
     @media (max-width: 775px) {
       max-width: 20rem;
@@ -132,12 +130,56 @@ export const OpacityOverlay = styled.div`
     #54993a 0%,
     rgba(255, 255, 255, 0) 100%
   );
+  .titletwo {
+    @media (max-width: 900px) {
+      font-size: 0.7rem!important;
+    }
+  }
   pointer-events: none;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: 1s linear;
+  .tiitlecard {
+    font-size: 1.2rem;
+    @media (max-width: 900px) {
+      font-size: 0.7rem;
+    }
+  }
+  .Card {
+    padding: 2rem;
+    display: flex;
+    gap: 1rem;
+    color: #1b512d;
+    line-height: 22px;
+    flex-direction: column;
+    @media (max-width: 900px) {
+      font-size: 0.7rem;
+      line-height: 12px;
+    }
+  }
+  .mtop {
+    margin-top: 22%;
+    @media (max-width: 900px) {
+      margin-top: 0%;
+    }
+  }
+  .mtoptwo {
+    margin-top: 5%;
+    @media (max-width: 900px) {
+      margin-top: 0%;
+    }
+  }
+  .titleCard {
+    font-size: 1.5rem;
+    @media (max-width: 900px) {
+      font-size: .8rem!important;
+    }
 
+  }
+  .desc {
+    margin-top: -5px !important;
+  }
   .titleOpacity {
     position: absolute;
     top: 85%;
@@ -147,6 +189,7 @@ export const OpacityOverlay = styled.div`
     font-weight: 800;
     color: white;
     transition: 1s linear;
+
 
     @media (max-width: 900px) {
       top: 80%;
@@ -159,15 +202,9 @@ export const OpacityOverlay = styled.div`
     align-items: center;
     display: flex;
     color: #1b512d;
-    
-    
-   margin-top: 40%;
-
+    margin-top: 40%;
     font-weight: 600;
-    padding:  1rem 2rem;
+    padding: 1rem 2rem;
     font-size: 1rem;
-    @media (max-width: 900px) {
-      font-size: 1rem;
-    }
   }
 `;

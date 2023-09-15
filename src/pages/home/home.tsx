@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Card } from "./components/card";
+import { CardOne } from "./components/card";
+import { CardTwo } from "./components/cardTwo";
 import StepsHome from "./components/steps";
 import {
   About,
@@ -11,7 +12,6 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Footer } from "../../components/footer";
 // import { Cookies } from "js-cookie"; // Importe a biblioteca
-
 
 const Overlay = styled.div`
   position: absolute;
@@ -30,7 +30,7 @@ const Overlay = styled.div`
 
 const ImageContainer = styled.div`
   position: relative;
-  display:flex;
+  display: flex;
   align-items: center;
 `;
 
@@ -42,9 +42,8 @@ export const HomePage = () => {
   const auth = localStorage.getItem("token");
   const [showText, setShowText] = useState(false);
 
-
   const setCookie = (name: string) => {
-    document.cookie = name
+    document.cookie = name;
   };
 
   // Função para coletar um cookie
@@ -93,18 +92,18 @@ export const HomePage = () => {
           </ContainerTitle>
         </section>
         <ContainerCardLayout>
-          <Card
+          <CardOne
             description="
-            Ilhabela Tech é um programa da Prefeitura de Ilhabela em parceria com a ONG Instituto Joga Junto que visa capacitar, acelerar e incluir, prioritariamente, jovens de baixa renda no universo da tecnologia."
+            Ilhabela Tech é um programa da Prefeitura de Ilhabela em parceria com a ONG Instituto Joga Junto que visa capacitar e incluir, prioritariamente, jovens de baixa renda, entre 17 e 24 anos, residentes na Ilhabela, beneficiários do CadÚnico, provenientes de escola pública, no universo da tecnologia."
             className="secondImg"
-            titleCard="Ilhabela Tech"
+            titleCard="O que é"
             image="https://cdn.discordapp.com/attachments/566850308702208001/1146214276537786438/Group.png"
             key={2}
             alt="img"
           />
-          <Card
-            description="O curso, que tem data de início prevista para 16.10, com duração de 148 horas, ocorrerá de forma presencial no laboratório de informática da IETEC, nos períodos da tarde (das 14h às 17h) ou noite (das 17:30 às 21:30).   "
-            titleCard="Sobre o QA"
+          <CardTwo
+          description=""
+          titleCard="O programa"
             image="https://cdn.discordapp.com/attachments/566850308702208001/1146220725309546546/Rectangle_28.png"
             key={1}
             alt="img"
@@ -112,7 +111,6 @@ export const HomePage = () => {
         </ContainerCardLayout>
         <About>
           <h1>Como participar</h1>
-         
           <StepsHome />
         </About>
         <Footer />
