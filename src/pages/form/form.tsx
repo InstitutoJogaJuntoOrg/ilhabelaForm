@@ -223,6 +223,7 @@ export const FormPage = () => {
 
       if (response.status === 200) {
         console.log("logado");
+        console.log("Enviando dados:", data);
         setData(response.data);
         localStorage.setItem("token", response.data.access);
         localStorage.setItem("refresh", response.data.refresh);

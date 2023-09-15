@@ -172,7 +172,9 @@ export const SocioEconomico = ({
     <div style={{
       width: '2rem'
     }}>
-      <form onSubmit={handleSubmit(sendSocioEconomicInfo)} className="boxSh">
+      <form onSubmit={handleSubmit(sendSocioEconomicInfo)} className="boxSh" style={{
+        maxWidth: '40rem'
+      }}>
       <div>
         <div
           style={{

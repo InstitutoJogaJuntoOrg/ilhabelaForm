@@ -49,7 +49,8 @@ export const GlobalStyle = createGlobalStyle`
   .boxSh {
     box-shadow: none!important;
     @media only screen and (max-width : 800px) {
-      max-width: min-content; 
+      max-width: min-content;
+      max-width: 15rem!important;
   }
 
   }
