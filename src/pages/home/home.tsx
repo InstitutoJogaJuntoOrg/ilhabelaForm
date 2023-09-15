@@ -88,7 +88,7 @@ export const HomePage = () => {
             <h1>ILHABELA TECH</h1>
             <span>Você está a um clique do futuro</span>
             <Link to={auth ? "/inscricao" : "/login"}>
-              <button>Inscrever-se</button>
+              <button>Inscreva-se</button>
             </Link>
           </ContainerTitle>
         </section>
@@ -112,10 +112,7 @@ export const HomePage = () => {
         </ContainerCardLayout>
         <About>
           <h1>Como participar</h1>
-          <p>
-            Para concorrer a uma das vagas do Ilhabela Tech é bem simples, as
-            etapas iniciais do processo ocorrerão neste site e são:{" "}
-          </p>
+         
           <StepsHome />
         </About>
         <Footer />

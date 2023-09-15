@@ -79,6 +79,8 @@ export const CardsContainer = styled.div`
   grid-row-gap: 0px;
   justify-content: center;
   justify-items: center;
+  align-items: center;
+  
   @media (max-width: 775px) {
     grid-template-columns: repeat(1, 3fr);
    
@@ -97,8 +99,10 @@ export const CardsContainer = styled.div`
       font-size: 1.5rem;
       @media (max-width: 1000px) {
       font-size: 1.2rem;
-      padding: 1rem 1rem
+      padding: 1rem 1rem;
+      text-align: center;
     }
+   
     }
     @media (max-width: 775px) {
       max-width: 20rem;
@@ -157,7 +161,7 @@ export const OpacityOverlay = styled.div`
     color: #1b512d;
     
     
-   /* margin-top: 40%; */
+   margin-top: 40%;
 
     font-weight: 600;
     padding:  1rem 2rem;

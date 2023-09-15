@@ -2,8 +2,11 @@ import { Steps } from "primereact/steps";
 import { MenuItem } from "primereact/menuitem";
 import "./styles";
 import { CardsContainer, StepsContainer } from "./styles";
+import { Link } from "react-router-dom";
 
 export default function StepsHome() {
+  const auth = localStorage.getItem("token");
+
   const items: MenuItem[] = [
     {
       label: "",
@@ -23,20 +26,22 @@ export default function StepsHome() {
       <CardsContainer>
         <div>
         <span className="pass">1 Passo</span>
+        <Link to={auth ? "/inscricao" : "/login"}>
           <p>
-          Realize seu cadastro no site, preencha as informações pessoais e o questionário socioeconômico
+          Realize seu cadastro aqui no site
           </p>
+            </Link>
         </div>
         <div>
         <span className="pass">2 Passo</span>
           <p>
-          Faça a prova online com duração de 6 horas
+          Faça o teste online
           </p>
         </div>
         <div>
         <span className="pass">3 Passo</span>
           <p>
-          Caso seja aprovado, compareça  à IETEC com seus documentos para efetuar matrícula.
+          Foi aprovado? Compareça à IETEC 
           </p>
         </div>
 

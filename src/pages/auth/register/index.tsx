@@ -142,12 +142,13 @@ export const RegisterPage = () => {
           }}
         >
           <Checkbox
-            style={{ maxWidth: "30px" }}
+            style={{ maxWidth: "20px", margin: "0.5rem" }}
             onChange={(e) => setChecked(!!e.checked)}
             checked={checked}
             required
           ></Checkbox>
-          Aceitar os termos
+           <span>
+            Aceito receber comunicações referentes ao processo seletivo</span>
         </div>
 
         <button
