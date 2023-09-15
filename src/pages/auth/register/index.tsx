@@ -12,13 +12,11 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import { Checkbox } from "primereact/checkbox";
 import { Footer } from "../../../components/footer";
 
 export const RegisterPage = () => {
   const navigate = useNavigate();
   const notifySuccess = () => toast.success("Usuário cadastrado com sucesso!");
-  const [checked, setChecked] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showConfirmPassword, setShowConfirmPassword] =
     useState<boolean>(false);
@@ -32,6 +30,14 @@ export const RegisterPage = () => {
   } = useForm<RegisterSchemaType>({
     resolver: zodResolver(RegisterSchema),
   });
+
+  function ErrosSending() {
+    if (errors.checked) {
+      toast.error(
+        "Por aceite os termos para receber comunicações referentes ao processo seletivo"
+      );
+    }
+  }
 
   function handleSubmitRegister(data: RegisterSchemaType) {
     const requestData = {
@@ -61,110 +67,116 @@ export const RegisterPage = () => {
         }
       });
   }
-
+  console.log(errors);
   return (
-  <>
-    <Container>
-      <ToastContainer />
-      <h1>Registro</h1>
-      <form
-        onSubmit={handleSubmit(handleSubmitRegister)}
-        style={{
-          width: "30rem",
-        }}
-      >
-        <FormField>
-          <label>Qual o seu primeiro nome?</label>
-          <InputText
-            id="name"
-            {...register("name")}
-            aria-describedby="email-help"
-            placeholder="Nome"
-          />
-        </FormField>
-
-        <FormField>
-          <label>Email</label>
-          <InputText
-            id="email"
-            {...register("email")}
-            onChange={(e) => setEmail(e.target.value)}
-            aria-describedby="email-help"
-            placeholder="Email"
-            className={errors.email ? "p-invalid" : ""}
-            value={email}
-          />
-        </FormField>
-
-        <FormField>
-          <label>Senha</label>
-          <div style={{ position: "relative", display: "flex" }}>
-            <InputText
-              id="password"
-              {...register("password")}
-              aria-describedby="password-help"
-              placeholder="Senha"
-              type={showPassword ? "text" : "password"}
-              className={errors.confirmPassword ? "p-invalid" : ""}
-            />
-            <BiShow
-              className="icon"
-              onClick={() => setShowPassword(!showPassword)}
-            />
-          </div>
-        </FormField>
-
-        <FormField>
-          <label>Repetir Senha</label>
-          <div style={{ position: "relative", display: "flex" }}>
-            <InputText
-              id="repeatPassword"
-              {...register("confirmPassword")}
-              aria-describedby="repeatPassword-help"
-              placeholder="Repetir Senha"
-              className={errors.confirmPassword ? "p-invalid" : ""}
-              type={showConfirmPassword ? "text" : "password"}
-            />
-            <BiShow
-              className="icon"
-              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-            />
-          </div>
-        </FormField>
-        <div
-          className="card flex justify-content-center"
+    <>
+      <Container>
+        <ToastContainer />
+        <h1>Registro</h1>
+        <form
+          onSubmit={handleSubmit(handleSubmitRegister)}
           style={{
-            display: "flex",
-            width: "100%",
-            marginTop: "1rem",
-            justifyContent: "center",
-            color: "white",
+            width: "30rem",
           }}
         >
-          <Checkbox
-            style={{ maxWidth: "20px", margin: "0.5rem" }}
-            onChange={(e) => setChecked(!!e.checked)}
-            checked={checked}
-            required
-          ></Checkbox>
-           <span>
-            Aceito receber comunicações referentes ao processo seletivo</span>
-        </div>
+          <FormField>
+            <label>Qual o seu primeiro nome?</label>
+            <InputText
+              id="name"
+              {...register("name")}
+              aria-describedby="email-help"
+              placeholder="Nome"
+            />
+          </FormField>
 
-        <button
-          style={{
-            fontSize: "16px",
-            borderRadius: "26px",
-          }}
-          type="submit"
-        >
-          Registrar
-        </button>
-        <br />
-        <br />
-      </form>
-    </Container>
-          <Footer />
-          </>
+          <FormField>
+            <label>Email</label>
+            <InputText
+              id="email"
+              {...register("email")}
+              onChange={(e) => setEmail(e.target.value)}
+              aria-describedby="email-help"
+              placeholder="Email"
+              className={errors.email ? "p-invalid" : ""}
+              value={email}
+            />
+          </FormField>
+
+          <FormField>
+            <label>Senha</label>
+            <div style={{ position: "relative", display: "flex" }}>
+              <InputText
+                id="password"
+                {...register("password")}
+                aria-describedby="password-help"
+                placeholder="Senha"
+                type={showPassword ? "text" : "password"}
+                className={errors.confirmPassword ? "p-invalid" : ""}
+              />
+              <BiShow
+                className="icon"
+                onClick={() => setShowPassword(!showPassword)}
+              />
+            </div>
+          </FormField>
+
+          <FormField>
+            <label>Repetir Senha</label>
+            <div style={{ position: "relative", display: "flex" }}>
+              <InputText
+                id="repeatPassword"
+                {...register("confirmPassword")}
+                aria-describedby="repeatPassword-help"
+                placeholder="Repetir Senha"
+                className={errors.confirmPassword ? "p-invalid" : ""}
+                type={showConfirmPassword ? "text" : "password"}
+              />
+              <BiShow
+                className="icon"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              />
+            </div>
+          </FormField>
+          <div
+            className="card flex justify-content-center"
+            style={{
+              display: "flex",
+              width: "100%",
+              marginTop: "1rem",
+              justifyContent: "center",
+              color: "white",
+            }}
+          >
+            <input
+              id="myCheckbox"
+              style={{
+                width: "30px",
+                marginRight: "10px",
+              }}
+              type="checkbox"
+              {...register("checked")}
+            />
+            <label htmlFor="myCheckbox">
+      
+              Aceito receber comunicações referentes ao processo seletivo
+            </label>
+          </div>
+
+          <button
+            style={{
+              fontSize: "16px",
+              borderRadius: "26px",
+            }}
+            type="submit"
+            onClick={ErrosSending}
+          >
+            Registrar
+          </button>
+          <br />
+          <br />
+        </form>
+      </Container>
+      <Footer />
+    </>
   );
 };

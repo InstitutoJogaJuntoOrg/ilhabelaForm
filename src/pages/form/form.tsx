@@ -179,7 +179,7 @@ export const FormPage = () => {
     localStorage.setItem("personalForm", "true");
 
     const file = data.rg[0];
-    const cleanedPhone = data.phone.replace(/[\s\.-]/g, '');
+    const cleanedPhone = data.phone.replace(/[\s\.-]/g,'');
     const formData = new FormData();
     formData.append("cpf", data.cpf.replace(/\D/g, ""));
     formData.append("first_name", data.first_name);

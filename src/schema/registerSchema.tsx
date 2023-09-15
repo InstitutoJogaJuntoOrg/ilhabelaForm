@@ -10,6 +10,10 @@ export const RegisterSchema = z
       })
       .email(),
     password: z.string().min(3),
+    checked: z.boolean().refine(value => value === true, {
+      message: "O campo deve ser marcado",
+      path: ["checked"],
+    }),
     confirmPassword: z.string().min(3),
     name: z.string({
       errorMap: () => {
