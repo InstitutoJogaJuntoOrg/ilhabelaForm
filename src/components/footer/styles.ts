@@ -40,7 +40,7 @@ export const Container = styled.footer`
             flex-direction: column;
             margin: 0;
             padding: 0;
-            background-color: blue;
+            
             gap: 1rem;
             p {
                 max-width: 80%;
