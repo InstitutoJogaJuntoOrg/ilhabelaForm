@@ -15,7 +15,7 @@ export const Container = styled.footer`
         display: flex;
 
         grid-template-columns: no-repeat(1fr, 2);
-        gap: 1rem;
+        gap: 10rem;
         align-items: center;
         text-align: left;
         @media (max-width: 800px) {
@@ -34,6 +34,19 @@ export const Container = styled.footer`
         a {
             text-decoration: none;
             color: white;
+        }
+        div {
+            display:flex ;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+            background-color: blue;
+            gap: 1rem;
+            p {
+                max-width: 80%;
+                margin: 0;
+            padding: 0;
+            }
         }
     }
     padding: 2rem;

@@ -26,7 +26,7 @@ export default function StepsHome() {
       <CardsContainer>
         <div>
         <span className="pass">1 Passo</span>
-        <Link to={auth ? "/inscricao" : "/login"}>
+        <Link to={auth ? "/inscricao" : "/login"} style={{ textDecoration: 'none'}}>
           <p>
           Realize seu cadastro aqui no site
           </p>
