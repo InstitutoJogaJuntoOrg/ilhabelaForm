@@ -166,7 +166,7 @@ export const RegisterPage = () => {
 
 
               Concordo em receber comunicações e com a <span>
-               <Link to="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/Aviso+de+Privacidade+IlhaBela+Tech.pdf" target='_blank'> política de privacidade de dados</Link> </span> 
+               <Link to="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/Aviso+de+Privacidade+IlhaBela+Tech+IV.pdf" target='_blank'> política de privacidade de dados</Link> </span>  e com os <Link to="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/TERMOS+DE+USO+SITE+ILHABELA+TECH+II.pdf" target='_blank'> termos de uso do site </Link>.
               </p>
             </label>
           </div>
