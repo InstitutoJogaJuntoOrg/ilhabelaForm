@@ -4,7 +4,7 @@ import { FormField } from "../register/styles";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
@@ -16,8 +16,10 @@ import {
 import { BiShow } from "react-icons/bi";
 
 export const NewPassword = () => {
+  const [uid, setUuid] = useState<string>('');
+  const [token, setToken] = useState<string>('');
   const navigate = useNavigate();
-  const notifySuccess = () => toast.success("Senhas alteradas com sucesso!");
+  const notifySuccess = () => toast.success('Senhas alteradas com sucesso!');
 
   useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -50,20 +52,23 @@ export const NewPassword = () => {
 
 
   function handleSubmitRegister(data: newPasswordType) {
+    
     const requestData = {
       password: data.password,
       confirmPassword: data.confirmPassword,
     };
-
+    // const url = ;
     axios
-      .post("", requestData)
+      .post(`https://back.ilhabelatech.com/password_reset/${uid}/${token}/`, requestData)
       .then((response) => {
         notifySuccess();
         setTimeout(() => {
           navigate("/auth");
         }, 2000);
-        if (response.status === 201) {
+        console.log(response.status)
+          if (response.status === 201) {
           localStorage.setItem("email", email);
+          
           setTimeout(() => {
             navigate("/auth");
           }, 2000);
@@ -79,6 +84,35 @@ export const NewPassword = () => {
         }
       });
   }
+
+  useEffect(() => {
+    function getUrlParams(): Record<string, string> {
+        const params: Record<string, string> = {};
+
+        // Primeiro, dividimos a URL na primeira ocorrência de '?'
+        const parts = window.location.search.split('?');
+        parts.shift();  // Remove o primeiro item vazio
+
+        // Itera sobre todas as partes
+        for (let part of parts) {
+            const [key, value] = part.split('=');
+            params[key] = decodeURIComponent(value); // decodifica os valores dos parâmetros
+        }
+
+        return params;
+    }
+
+    const params = getUrlParams();
+    if (params.uid) {
+        setUuid(params.uid);
+        console.log(params.uid)
+
+    }
+    if (params.token) {
+        setToken(params.token);
+    }
+}, []);
+
   console.log(errors);
   return (
     <>

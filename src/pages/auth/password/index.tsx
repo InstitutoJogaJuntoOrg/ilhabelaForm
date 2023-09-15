@@ -42,11 +42,11 @@ export const PasswordReset = () => {
     };
     console.log(errors);
     axios
-      .post("", requestData)
+      .post("https://back.ilhabelatech.com/password_reset/", requestData)
       .then((response) => {
         notifySuccess();
         setTimeout(() => {
-          navigate("/newpassword");
+          navigate("/");
         }, 2000);
         if (response.status === 201) {
           localStorage.setItem("email", email);

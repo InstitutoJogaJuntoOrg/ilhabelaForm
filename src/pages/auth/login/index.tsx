@@ -109,7 +109,7 @@ export const LoginPage = () => {
               <Register>
                 <span className="">
                   <span>
-                    <Link to={"/reset"}>Esqueci minha senha aaaaa</Link>
+                    <Link to={"/reset"} style={{textDecoration: 'none', color: 'white'}}>Esqueci minha senha</Link>
                   </span>
                 </span>
               </Register>
