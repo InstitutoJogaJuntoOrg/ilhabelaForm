@@ -50,6 +50,9 @@ export const RegisterPage = () => {
       .post("https://back.ilhabelatech.com/users/", requestData)
       .then((response) => {
         notifySuccess();
+        setTimeout(() => {
+          navigate("/auth");
+        }, 2000);
         if (response.status === 201) {
           localStorage.setItem("email", email);
           setTimeout(() => {
