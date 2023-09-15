@@ -102,8 +102,8 @@ export const HomePage = () => {
             alt="img"
           />
           <CardTwo
-          description=""
-          titleCard="O programa"
+            description=""
+            titleCard="O programa"
             image="https://cdn.discordapp.com/attachments/566850308702208001/1146220725309546546/Rectangle_28.png"
             key={1}
             alt="img"
