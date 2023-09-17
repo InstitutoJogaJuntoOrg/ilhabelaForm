@@ -222,6 +222,7 @@ export const FormPage = () => {
       localStorage.getItem("quizForm");
 
       if (response.status === 200) {
+        toast.success('Formulário enviado com sucesso!')
         console.log("logado");
         console.log("Enviando dados:", data);
         setData(response.data);
@@ -229,8 +230,24 @@ export const FormPage = () => {
         localStorage.setItem("refresh", response.data.refresh);
         localStorage.setItem("username", response.data.user);
       }
+      if (response.status === 201) {
+        toast.success('Formulário enviado com sucesso!')
+        console.log("logado");
+        console.log("Enviando dados:", data);
+        setData(response.data);
+        localStorage.setItem("token", response.data.access);
+        localStorage.setItem("refresh", response.data.refresh);
+        localStorage.setItem("username", response.data.user);
+      }
+      if (response.status === 401) {
+        toast.error('Erro ao enviar formulario')
+      }
+      if (response.status === 400) {
+        toast.error('Erro ao enviar formulario')
+      }
     } catch (error) {
       console.error("Error sending data:", error);
+      toast.error('Erro ao enviar formulario')
     }
   }
   console.log(errors);

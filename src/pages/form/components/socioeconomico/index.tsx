@@ -134,6 +134,7 @@ export const SocioEconomico = ({
           "Content-Type": "multipart/form-data",
         },
       });
+      toast.success('Formulário enviado com sucesso!')
       console.log(data);
       setTabEnabled(false);
       setActiveTab(2);
@@ -151,23 +152,31 @@ export const SocioEconomico = ({
         const response = await axios.get(
           "https://back.ilhabelatech.com/socioeconomics/"
         );
-
-        if (response.status === 200) {
-          console.log("nao enviou");
+  
+        if (response.status === 200 || response.status === 201) {
+          toast.success('Formulário enviado com sucesso!')
           setHasFormBeenSubmitted(true);
+        } else if (response.status === 400) {
+          toast.error('Erro ao enviar formulário')
+        } else if (response.status === 401) {
+          if (response.data && response.data.detail) {
+            toast.error(response.data.detail); // Exibir a mensagem de erro da API
+          } else {
+            toast.error('Erro ao enviar formulário'); // Mensagem de erro padrão
+          }
         }
       } catch (error: any) {
-        // Se a API retornar um erro 500, você pode tratar isso aqui
         if (error.response && error.response.status === 500) {
-          console.log("ja enviou");
+          toast.error('Erro ao enviar formulário')
           setTabEnabled(false);
         }
       }
     };
-
+  
     checkFormSubmission();
   }, []);
-
+  
+  
   return (
     <div style={{
       width: '2rem'
