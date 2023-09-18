@@ -88,7 +88,7 @@ export const HomePage = () => {
           >
             {showText && (
               <div>
-                Texto que será exibido quando o mouse passar sobre a imagem
+                Texto que será exibido quando o mouse passar sobre a imagemm
               </div>
             )}
           </Overlay>
