@@ -102,9 +102,15 @@ export const SocioEconomico = ({
         return;
       }
 
+      const salario = Number(data.income)
+      if(Number.isNaN(salario)) {
+        toast.error("Salario com valor incorreto.");
+        return
+      }
+
       const formData = new FormData();
       formData.append("deficiency", data.deficiency);
-      formData.append("average_monthly_income", data.income);
+      formData.append("average_monthly_income", salario.toString());
       formData.append("race", data.color);
       formData.append("gender", data.gender);
       formData.append("sexual_orientation", data.guidance);
@@ -112,7 +118,7 @@ export const SocioEconomico = ({
       formData.append("education_level", data.schooling);
       formData.append("benefit", data.benefit);
 
-      formData.append("income", data.income);
+      formData.append("income", salario.toString());
       formData.append("household_count", data.family.name);
       formData.append("employment_status", data.employment_status);
 
