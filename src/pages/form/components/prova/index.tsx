@@ -30,12 +30,12 @@ export const Prova = () => {
       questionThirteen: parseInt(data.questionThirteen),
       questionFourteen: parseInt(data.questionFourteen),
     };
-    const token = localStorage.getItem('token');
-    const response = await fetch('https://back.ilhabelatech.com/quiz/', {
-      method: 'POST',
+    const token = localStorage.getItem("token");
+    const response = await fetch("https://back.ilhabelatech.com/quiz/", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         question_1: transformedData.questionOne,
@@ -52,13 +52,13 @@ export const Prova = () => {
         question_12: transformedData.questionTwelve,
         question_13: transformedData.questionThirteen,
         question_14: transformedData.questionFourteen,
-        question_15: 1, 
+        question_15: 1,
       }),
     });
 
     if (response.ok) {
       const responseData = await response.json();
-      localStorage.setItem("quizForm", 'true');
+      localStorage.setItem("quizForm", "true");
       console.log(responseData);
       window.location.reload();
     } else {
@@ -912,7 +912,6 @@ export const Prova = () => {
         </div>
 
         <div className="options">
-
           <h1 style={{ fontSize: "1rem" }}>
             14: Um algoritmo é uma sequência finita e ordenada de ações
             executáveis ou instruções que visam obter uma solução para um
@@ -924,9 +923,13 @@ export const Prova = () => {
             furado de um carro, quais seriam as alternativas que preencheriam,
             de forma lógica, as lacunas em branco?
           </h1>
-          <img style={{
-            width: '100%'
-          }} src="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/prova.jpg" alt="img prova" />
+          <img
+            style={{
+              width: "100%",
+            }}
+            src="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/prova.jpg"
+            alt="img prova"
+          />
           <label className="hLabel" htmlFor="q14-option1">
             <input
               className="inputWidth"
