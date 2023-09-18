@@ -912,6 +912,7 @@ export const Prova = () => {
         </div>
 
         <div className="options">
+
           <h1 style={{ fontSize: "1rem" }}>
             14: Um algoritmo é uma sequência finita e ordenada de ações
             executáveis ou instruções que visam obter uma solução para um
@@ -923,6 +924,9 @@ export const Prova = () => {
             furado de um carro, quais seriam as alternativas que preencheriam,
             de forma lógica, as lacunas em branco?
           </h1>
+          <img style={{
+            width: '100%'
+          }} src="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/prova.jpg" alt="img prova" />
           <label className="hLabel" htmlFor="q14-option1">
             <input
               className="inputWidth"

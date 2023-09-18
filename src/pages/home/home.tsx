@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { CardOne } from "./components/card";
 import { CardTwo } from "./components/cardTwo";
 import StepsHome from "./components/steps";
-import video from '../../assets/video.mp4'
+import video from '../../assets/ilhabela.mp4'
 
 import {
   About,
