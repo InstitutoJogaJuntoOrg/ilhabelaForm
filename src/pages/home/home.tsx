@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { CardOne } from "./components/card";
 import { CardTwo } from "./components/cardTwo";
 import StepsHome from "./components/steps";
+import video from '../../assets/ilhabela.mp4'
+
 import {
   About,
   ContainerCardLayout,
@@ -34,10 +36,21 @@ const ImageContainer = styled.div`
   align-items: center;
 `;
 
-const Image = styled.img`
+const VideoBackground = styled.div`
+  position: relative;
   width: 100%;
+  height: 100vh;
+  overflow: hidden;
 `;
 
+const Video = styled.video`
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+
+  top: 0;
+  left: 0;
+`;
 export const HomePage = () => {
   const auth = localStorage.getItem("token");
   const [showText, setShowText] = useState(false);
@@ -66,10 +79,9 @@ export const HomePage = () => {
     >
       <ContainerHome>
         <ImageContainer>
-          <Image
-            src="https://cdn.discordapp.com/attachments/566850308702208001/1146146822100897905/Rectangle_35.png"
-            alt="banner com a imagem de fundo da IETEC de ilhabela, e uma mulher em um notebook"
-          />
+          <VideoBackground>
+            <Video src={video} autoPlay muted loop />
+          </VideoBackground>
           <Overlay
             onMouseOver={() => setShowText(true)}
             onMouseOut={() => setShowText(false)}
@@ -84,10 +96,10 @@ export const HomePage = () => {
 
         <section>
           <ContainerTitle className="InitialMessage">
-            <h1>ILHABELA TECH</h1>
-            <span className="subDescp">Você está a um clique do futuro</span>
-            <Link to={auth ? "/inscricao" : "/login"}>
-              <button>Inscreva-se</button>
+          <h1 style={{ textShadow: '14px 14px 18px rgba(0, 0, 0, 10.5)' }}>ILHABELA TECH</h1>
+            <span className="subDescp" style={{ textShadow: '14px 14px 18px rgba(0, 0, 0, 10.5)' }}>Você está a um clique do futuro</span>
+            <Link style={{ textShadow: '14px 14px 18px rgba(0, 0, 0, 10.5)' }} to={auth ? "/inscricao" : "/login"}>
+              <button >Inscreva-se</button>
             </Link>
           </ContainerTitle>
         </section>
@@ -102,8 +114,8 @@ export const HomePage = () => {
             alt="img"
           />
           <CardTwo
-          description=""
-          titleCard="O programa"
+            description=""
+            titleCard="O programa"
             image="https://cdn.discordapp.com/attachments/566850308702208001/1146220725309546546/Rectangle_28.png"
             key={1}
             alt="img"

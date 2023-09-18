@@ -80,7 +80,7 @@ export const ContainerCardLayout = styled.div`
   }
 `;
 export const ContainerTitle = styled.div`
-  
+
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -103,10 +103,10 @@ export const ContainerTitle = styled.div`
     cursor: pointer;
     margin-top: 1rem;
     background-color: #72b65a;
-    box-shadow: 0px 4px 75px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 10px 4px 75px 0px rgba(0, 0, 0, 0.25);
     border-radius: 53px;
     border: none;
-    padding: 0.75rem 2rem;
+    padding: 1rem 5rem;
     font-size: 30px;
     color: white;
     font-weight: 600;
