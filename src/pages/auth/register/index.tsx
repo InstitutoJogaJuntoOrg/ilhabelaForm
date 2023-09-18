@@ -185,10 +185,7 @@ export const RegisterPage = () => {
           <br />
         </form>
       </Container>
-      <br />
-      <br />
-      <br />
-      <br />
+
       <Footer />
       
     </>

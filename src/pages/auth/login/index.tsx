@@ -126,8 +126,7 @@ export const LoginPage = () => {
             >
               Fazer login
             </button>
-            <br />
-            <br />
+ <br /><br />
           </form>
 
           <Register>
@@ -138,8 +137,7 @@ export const LoginPage = () => {
           </Register>
         </div>
       </Container>
-      <br />
-      <br />
+  
       <Footer />
     </>
   );
