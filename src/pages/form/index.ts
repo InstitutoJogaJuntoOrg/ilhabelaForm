@@ -1,7 +1,11 @@
 import { styled } from "styled-components";
 
 export const Container = styled.div`
-  .modals {
+background: url('https://cdn.discordapp.com/attachments/566850308702208001/1153381517091934280/Group_168.png');
+background-size: cover;
+  padding-bottom: 5rem;
+  width: 100%;
+.modals {
     width: 42rem;
   }
   .h {
@@ -73,7 +77,7 @@ export const Container = styled.div`
     border-radius: 15px;
     box-shadow: 0px 15px 57px 0px rgba(0, 0, 0, 0.25);
     margin-top: 2rem;
-    margin-bottom: 2rem;
+  
     width: 51rem;
     padding: 2rem 4rem 1rem 4rem;
     background-color: #72b65a;

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { CardOne } from "./components/card";
 import { CardTwo } from "./components/cardTwo";
 import StepsHome from "./components/steps";
-import video from '/Ilhabela.mp4'
+import video from "/Ilhabela.mp4";
 
 import {
   About,
@@ -94,15 +94,24 @@ export const HomePage = () => {
           </Overlay>
         </ImageContainer>
 
-<br />
-<br />
-<br />
+        <br />
+        <br />
         <section>
           <ContainerTitle className="InitialMessage">
-          <h1 style={{ textShadow: '14px 14px 18px rgba(0, 0, 0, 10.5)' }}>ILHABELA TECH</h1>
-            <span className="subDescp" style={{ textShadow: '14px 14px 18px rgba(0, 0, 0, 10.5)' }}>Você está a um clique do futuro</span>
-            <Link style={{ textShadow: '14px 14px 18px rgba(0, 0, 0, 10.5)' }} to={auth ? "/inscricao" : "/login"}>
-              <button >Inscreva-se</button>
+            <h1 style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}>
+              ILHABELA TECH
+            </h1>
+            <span
+              className="subDescp"
+              style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
+            >
+              Você está a um clique do futuro
+            </span>
+            <Link
+              style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
+              to={auth ? "/inscricao" : "/login"}
+            >
+              <button>Inscreva-se</button>
             </Link>
           </ContainerTitle>
         </section>
