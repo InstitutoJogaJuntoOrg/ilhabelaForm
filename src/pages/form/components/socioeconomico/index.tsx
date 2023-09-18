@@ -80,6 +80,7 @@ export const SocioEconomico = ({
 
   async function sendSocioEconomicInfo(data: SocioeconomicoSchemaType) {
     localStorage.setItem("socioeconomicForm", "true");
+    const allowedFiles = ["image/png", "image/jpeg"]
 
     try {
       const residency_proof = data.residency_proof[0];
@@ -89,6 +90,17 @@ export const SocioEconomico = ({
         toast.error("Por favor, envie os comprovantes necessários.");
         return;
       }
+
+      if (!allowedFiles.includes(residency_proof.type)) {
+        toast.error("E apenas permitido imagens como comprovante de residencia.");
+        return;
+      }
+
+      if (!allowedFiles.includes(enrollment_proof.type)) {
+        toast.error("E apenas permitido imagens como comprovante de matricula.");
+        return;
+      }
+
       const formData = new FormData();
       formData.append("deficiency", data.deficiency);
       formData.append("average_monthly_income", data.income);
@@ -106,7 +118,6 @@ export const SocioEconomico = ({
       if (residency_proof) {
         try {
           const blob = await convertFileToBase64Blob(residency_proof);
-
           formData.append("residency_proof", blob, residency_proof.name);
         } catch (error) {
           console.error("Error converting file:", error);
@@ -117,7 +128,6 @@ export const SocioEconomico = ({
       if (enrollment_proof) {
         try {
           const blob = await convertFileToBase64Blob(enrollment_proof);
-
           formData.append("enrollment_proof", blob, enrollment_proof.name);
         } catch (error) {
           console.error("Error converting file:", error);
@@ -133,19 +143,25 @@ export const SocioEconomico = ({
           "Content-Type": "multipart/form-data",
         },
       });
-      toast.success("Formulário enviado com sucesso!");
-      console.log(data);
-      setTabEnabled(false);
-      setActiveTab(2);
-      setVisible(true);
-      console.log("Data sent successfully:", response.data);
+
+      if(response.status == 200 || response.status == 201) {
+        toast.success("Formulário enviado com sucesso!");
+        setTabEnabled(false);
+        setActiveTab(2);
+        setVisible(true);
+        return
+      }
+
+      toast.error("Erro ao enviar o formulario, tente novaente mais tarde!");
     } catch (error) {
-      console.error("Error sending data:", error);
+      toast.error("Erro ao enviar o formulario, tente novaente mais tarde!");
+      console.log('error: ', error)
     }
   }
+
   console.log(errors);
-  const token = localStorage.getItem('token')
-  console.log(token)
+  const token = localStorage.getItem("token");
+  console.log(token);
 
   useEffect(() => {
     const checkFormSubmission = async () => {
@@ -448,6 +464,7 @@ export const SocioEconomico = ({
                 {...register("residency_proof")}
                 className="custom-file-input input-img"
                 type="file"
+                accept="image/png, image/jpeg"
               />
             </div>
 
@@ -465,6 +482,7 @@ export const SocioEconomico = ({
                 {...register("enrollment_proof")}
                 className="custom-file-input input-img"
                 type="file"
+                accept="image/png, image/jpeg"
               />
             </div>
             <label>

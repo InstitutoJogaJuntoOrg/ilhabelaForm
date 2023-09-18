@@ -179,7 +179,7 @@ export const FormPage = () => {
     localStorage.setItem("personalForm", "true");
 
     const file = data.rg[0];
-    const cleanedPhone = data.phone.replace(/[\s\.-]/g,'');
+    const cleanedPhone = data.phone.replace(/[\s\.-]/g, "");
     const formData = new FormData();
     formData.append("cpf", data.cpf.replace(/\D/g, ""));
     formData.append("first_name", data.first_name);
@@ -212,6 +212,8 @@ export const FormPage = () => {
         },
       });
 
+      console.log('response: ', response)
+
       setIsTabEnabledSocial(true);
       setIsTabEnabledDate(true);
       setActiveTab(1);
@@ -222,7 +224,7 @@ export const FormPage = () => {
       localStorage.getItem("quizForm");
 
       if (response.status === 200) {
-        toast.success('Formulário enviado com sucesso!')
+        toast.success("Formulário enviado com sucesso!");
         console.log("logado");
         console.log("Enviando dados:", data);
         setData(response.data);
@@ -230,7 +232,7 @@ export const FormPage = () => {
         localStorage.setItem("username", response.data.user);
       }
       if (response.status === 201) {
-        toast.success('Formulário enviado com sucesso!')
+        toast.success("Formulário enviado com sucesso!");
         console.log("logado");
         console.log("Enviando dados:", data);
         setData(response.data);
@@ -238,16 +240,17 @@ export const FormPage = () => {
         localStorage.setItem("username", response.data.user);
       }
       if (response.status === 401) {
-        toast.error('Erro ao enviar formulario')
+        toast.error("Erro ao enviar formulario");
       }
       if (response.status === 400) {
-        toast.error('Erro ao enviar formulario')
+        toast.error("Erro ao enviar formulario");
       }
     } catch (error) {
       console.error("Error sending data:", error);
-      toast.error('Erro ao enviar formulario')
+      toast.error("Erro ao enviar formulario");
     }
   }
+
   console.log(errors);
   const personalForm = localStorage.getItem("personalForm");
   const socioeconomicForm = localStorage.getItem("socioeconomicForm");
@@ -265,9 +268,7 @@ export const FormPage = () => {
           <Dialog
             header=""
             visible={visible}
-
             className="modals"
-
             onHide={() => setVisible(false)}
           >
             <div className="modal">
@@ -364,13 +365,11 @@ export const FormPage = () => {
                             <input
                               {...register("date")}
                               id="date"
-                            
                               type="date"
                               placeholder="dd-mm-yyyy"
                               className={errors.date ? "p-invalid" : ""}
                             />
                           </div>
-
 
                           <div
                             style={{
@@ -542,16 +541,12 @@ export const FormPage = () => {
                       header="Dados socioeconômicos"
                       disabled={isTabEnabledSocial}
                     >
-                     
-           
-               
-                          <SocioEconomico
-                            setTabEnabled={setTabEnabled}
-                            setActiveTab={setActiveTab}
-                            setVisible={setVisible}
-                          />
-      
-                    
+                      <SocioEconomico
+                        setTabEnabled={setTabEnabled}
+                        setActiveTab={setActiveTab}
+                        setVisible={setVisible}
+                      />
+
                       <ContainerSteps>
                         <Steps
                           model={items}
@@ -591,7 +586,7 @@ export const FormPage = () => {
             </div>
           </Container>
         )}
-        <Footer />
+      <Footer />
     </>
   );
 };
