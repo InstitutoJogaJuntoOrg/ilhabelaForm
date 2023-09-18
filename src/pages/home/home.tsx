@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { CardOne } from "./components/card";
 import { CardTwo } from "./components/cardTwo";
 import StepsHome from "./components/steps";
-
+import video from '/Ilhabela.mp4'
 
 import {
   About,
@@ -36,12 +36,21 @@ const ImageContainer = styled.div`
   align-items: center;
 `;
 
-
-const Image = styled.img`
+const VideoBackground = styled.div`
+  position: relative;
   width: 100%;
+  height: 100vh;
+  overflow: hidden;
 `;
 
+const Video = styled.video`
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 
+  top: 0;
+  left: 0;
+`;
 export const HomePage = () => {
   const auth = localStorage.getItem("token");
   const [showText, setShowText] = useState(false);
@@ -70,10 +79,9 @@ export const HomePage = () => {
     >
       <ContainerHome>
         <ImageContainer>
-        <Image
-            src="https://cdn.discordapp.com/attachments/566850308702208001/1146146822100897905/Rectangle_35.png"
-            alt="banner com a imagem de fundo da IETEC de ilhabela, e uma mulher em um notebook"
-          />
+          <VideoBackground>
+            <Video src={video} autoPlay muted loop />
+          </VideoBackground>
           <Overlay
             onMouseOver={() => setShowText(true)}
             onMouseOut={() => setShowText(false)}
@@ -86,6 +94,9 @@ export const HomePage = () => {
           </Overlay>
         </ImageContainer>
 
+<br />
+<br />
+<br />
         <section>
           <ContainerTitle className="InitialMessage">
           <h1 style={{ textShadow: '14px 14px 18px rgba(0, 0, 0, 10.5)' }}>ILHABELA TECH</h1>
