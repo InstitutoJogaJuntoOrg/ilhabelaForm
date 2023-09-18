@@ -183,16 +183,11 @@ export const NewPassword = () => {
             >
               Enviar
             </button>
-            <br />
-            <br />
+            
           </form>
         </Container>
       </div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+ 
       <Footer />
     </>
   );

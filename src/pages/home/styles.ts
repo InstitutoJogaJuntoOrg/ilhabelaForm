@@ -29,6 +29,7 @@ export const ContainerHome = styled.div`
     }
   }
   section {
+    
     position: absolute;
     top: -12%;
     display: flex;
