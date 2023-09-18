@@ -82,6 +82,7 @@ export const SocioEconomico = ({
     localStorage.setItem("socioeconomicForm", "true");
     const allowedFiles = ["image/png", "image/jpeg"]
 
+    console.log('data: ', data)
     try {
       const residency_proof = data.residency_proof[0];
       const enrollment_proof = data.enrollment_proof[0];
@@ -136,6 +137,7 @@ export const SocioEconomico = ({
       }
 
       const token = localStorage.getItem("token");
+      console.log('formData: ', formData)
 
       const response = await axios.post(apiUrl, formData, {
         headers: {
