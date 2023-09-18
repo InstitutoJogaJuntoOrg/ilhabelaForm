@@ -192,23 +192,15 @@ export const FormPage = () => {
     formData.append("country", data.state.name);
     formData.append("civil_state", data.civil_state);
 
-    if (!file) {
-      toast.error("Por favor, envie o RG.");
-      return;
-    }
+    if (file) {
+      try {
+        const blob = await convertFileToBase64Blob(file);
 
-    const allowedFiles = ["image/png", "image/jpeg"];
-    if (!allowedFiles.includes(file.type)) {
-      toast.error("E apenas permitido imagens como RG.");
-      return;
-    }
-
-    try {
-      const blob = await convertFileToBase64Blob(file);
-      formData.append("rg", blob, file.name);
-    } catch (error) {
-      console.error("Error converting file:", error);
-      return;
+        formData.append("rg", blob, file.name);
+      } catch (error) {
+        console.error("Error converting file:", error);
+        return;
+      }
     }
 
     try {
@@ -220,7 +212,7 @@ export const FormPage = () => {
         },
       });
 
-      console.log("response: ", response);
+      console.log('response: ', response)
 
       setIsTabEnabledSocial(true);
       setIsTabEnabledDate(true);
