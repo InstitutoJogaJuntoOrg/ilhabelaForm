@@ -74,6 +74,12 @@ export const GlobalStyle = createGlobalStyle`
   .margintop {
     margin-top: 5rem;
   }
+  .accontDelete {
+
+    #pr_id_2_header {
+      padding: 1rem;
+    }
+  }
   label {
     display: flex;
     align-items: flex-end;

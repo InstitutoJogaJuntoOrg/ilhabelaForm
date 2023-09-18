@@ -226,7 +226,6 @@ export const FormPage = () => {
         console.log("logado");
         console.log("Enviando dados:", data);
         setData(response.data);
-        localStorage.setItem("token", response.data.access);
         localStorage.setItem("refresh", response.data.refresh);
         localStorage.setItem("username", response.data.user);
       }
@@ -235,7 +234,6 @@ export const FormPage = () => {
         console.log("logado");
         console.log("Enviando dados:", data);
         setData(response.data);
-        localStorage.setItem("token", response.data.access);
         localStorage.setItem("refresh", response.data.refresh);
         localStorage.setItem("username", response.data.user);
       }

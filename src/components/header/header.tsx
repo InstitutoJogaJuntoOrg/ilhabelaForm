@@ -42,6 +42,7 @@ export const Header = () => {
   }, []);
 
   return (
+    
     <HeaderContainer className={showLinks ? "show-links" : ""}>
       <nav>
         <Link to={"/"}>
