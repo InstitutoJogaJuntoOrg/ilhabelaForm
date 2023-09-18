@@ -9,7 +9,7 @@ export const Header = () => {
   const [showLinks, setShowLinks] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [userEmail, setUserEmail] = useState("");
-
+  const emailFromLocalStorage = localStorage.getItem("username");
   const closeMenu = () => {
     setShowLinks(false);
   };
@@ -53,12 +53,12 @@ export const Header = () => {
         </Link>
         <ul className={windowWidth <= 800 && showLinks ? "hidden" : ""}>
           <StyledNavLink to={"/"}>Home</StyledNavLink>
-          {!userEmail && <StyledNavLink to="/login">Fazer login</StyledNavLink>}
+          {!emailFromLocalStorage && <StyledNavLink to="/login">Fazer login</StyledNavLink>}
 
-          {userEmail && <MyDropdown />}
+          {emailFromLocalStorage && <MyDropdown />}
 
-          {userEmail && (
-            <StyledNavLink to={userEmail ? "/inscricao" : "/auth"}>
+          {emailFromLocalStorage && (
+            <StyledNavLink to={emailFromLocalStorage ? "/inscricao" : "/auth"}>
               Inscrição
             </StyledNavLink>
           )}
