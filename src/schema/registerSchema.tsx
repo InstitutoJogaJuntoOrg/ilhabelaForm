@@ -19,7 +19,7 @@ export const RegisterSchema = z
       errorMap: () => {
         return { message: "Digite um nome válido" }; // Corrigi a mensagem de erro para "Digite um nome válido"
       },
-    }),
+    }).min(3),
   })
   .refine((fields) => fields.password === fields.confirmPassword, {
     path: ["confirmPassword"],

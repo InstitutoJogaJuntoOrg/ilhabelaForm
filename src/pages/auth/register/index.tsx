@@ -37,6 +37,11 @@ export const RegisterPage = () => {
         "Por aceite os termos para receber comunicações referentes ao processo seletivo"
       );
     }
+    if (errors.name) {
+      toast.error(
+        "Por favor informe um nome válido"
+      );
+    }
   }
 
   function handleSubmitRegister(data: RegisterSchemaType) {
@@ -91,6 +96,7 @@ export const RegisterPage = () => {
               {...register("name")}
               aria-describedby="email-help"
               placeholder="Nome"
+              className={errors.name ? "p-invalid" : ""}
             />
           </FormField>
 
