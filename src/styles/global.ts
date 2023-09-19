@@ -80,6 +80,9 @@ export const GlobalStyle = createGlobalStyle`
       padding: 1rem;
     }
   }
+  #adopt-accept-all-button {
+    background-color: rgb(114, 182, 90)!important;
+  }
   label {
     display: flex;
     align-items: flex-end;
