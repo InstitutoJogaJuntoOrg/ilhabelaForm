@@ -9,6 +9,7 @@ import { LoginPage } from "../pages/auth/login";
 import { PrivateRoute } from "./private";
 import { PasswordReset } from "../pages/auth/password";
 import { NewPassword } from "../pages/auth/password/confirm";
+import ResponsibleForm from "../pages/responsibleForm";
 
 
 export function Router() {
@@ -22,6 +23,8 @@ export function Router() {
         <Route path="/auth" element={<LoginPage />} />
         <Route path="/reset" element={<PasswordReset />} />
         <Route path="/newpassword" element={<NewPassword />} />
+        <Route path="/portal-do-titular" element={<ResponsibleForm />} />
+
       </Route>
     </Routes>
   );

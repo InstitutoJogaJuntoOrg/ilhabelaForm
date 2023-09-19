@@ -14,8 +14,14 @@ export const Footer = () => {
             alt="ilhabela prefeitura"
             />
         </Link>
+        <div>
+
         <a href="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/Aviso+de+Privacidade+IlhaBela+Tech+IV.pdf" target="blank"> Política de Privacidade </a>
         <a href="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/TERMOS+DE+USO+SITE+ILHABELA+TECH+II.pdf" target="blank"> Termos de uso do site </a>
+        <Link to={'/portal-do-titular'}>
+          Portal do titular
+        </Link>
+        </div>
         <div>
         <p>IETEC</p>
         <a href="tel:1238956402">Telefone: (12) 3895-6402</a>

@@ -176,6 +176,25 @@ export const RegisterPage = () => {
               </p>
             </label>
           </div>
+          <div
+            className="card flex justify-content-center"
+            style={{
+              display: "flex",
+              width: "100%",
+              marginTop: "1rem",
+              justifyContent: "center",
+              color: "white",
+            }}
+          >
+            
+              <p>
+
+
+              Caso o inscrito seja menor de idade, seu responsável deverá fazer o cadastro também
+               <Link to="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/Aviso+de+Privacidade+IlhaBela+Tech+IV.pdf" target='_blank'>  no portal do titular </Link>
+              </p>
+            
+          </div>
 
           <button
             style={{
