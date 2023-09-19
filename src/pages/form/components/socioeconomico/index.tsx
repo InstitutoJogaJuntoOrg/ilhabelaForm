@@ -80,27 +80,14 @@ export const SocioEconomico = ({
 
   async function sendSocioEconomicInfo(data: SocioeconomicoSchemaType) {
     localStorage.setItem("socioeconomicForm", "true");
-    const allowedFiles = ["image/png", "image/jpeg"]
+    //const allowedFiles = ["image/png", "image/jpeg"]
 
     console.log('data: ', data)
+
     try {
+  
       const residency_proof = data.residency_proof[0];
       const enrollment_proof = data.enrollment_proof[0];
-
-      if (enrollment_proof === 0) {
-        toast.error("Por favor, envie os comprovantes necessários.");
-        return;
-      }
-
-      if (!allowedFiles.includes(residency_proof.type)) {
-        toast.error("E apenas permitido imagens como comprovante de residencia.");
-        return;
-      }
-
-      if (!allowedFiles.includes(enrollment_proof.type)) {
-        toast.error("E apenas permitido imagens como comprovante de matricula.");
-        return;
-      }
 
       const salario = Number(data.income)
       if(Number.isNaN(salario)) {
@@ -468,7 +455,7 @@ export const SocioEconomico = ({
             >
               <label htmlFor="residency_proof">Comprovante de residencia</label>
               <input
-                required
+    
                 {...register("residency_proof")}
                 className="custom-file-input input-img"
                 type="file"
@@ -486,7 +473,7 @@ export const SocioEconomico = ({
                 Comprovante de matrícula em um colégio
               </label>
               <input
-                required
+             
                 {...register("enrollment_proof")}
                 className="custom-file-input input-img"
                 type="file"

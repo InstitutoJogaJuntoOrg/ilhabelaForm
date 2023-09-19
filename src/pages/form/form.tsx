@@ -35,7 +35,8 @@ export const FormPage = () => {
 
   const [user, setUser] = useState(localStorage.getItem("username") || "");
   const [email, setEmail] = useState(localStorage.getItem("email") || "");
-
+  const [date, setDate] = useState("");
+  const [youngerAge, setYoungerAge] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState(0);
 
   const [isTabEnabled, setTabEnabled] = useState(true);
@@ -151,7 +152,23 @@ export const FormPage = () => {
     resolver: zodResolver(FormSchema),
   });
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const inputDate = event.target.value;
+    setDate(inputDate);
+  
+    const today = new Date();
+    const birthDate = new Date(inputDate);
+    const age = today.getFullYear() - birthDate.getFullYear();
+  
+    if (age < 18) {
+      setYoungerAge(false);
+    } else {
+      setYoungerAge(false);
+    }
+  };
+
   async function convertFileToBase64Blob(file: File): Promise<Blob> {
+
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
 
@@ -212,7 +229,7 @@ export const FormPage = () => {
         },
       });
 
-      console.log('response: ', response)
+      console.log("response: ", response);
 
       setIsTabEnabledSocial(true);
       setIsTabEnabledDate(true);
@@ -229,7 +246,7 @@ export const FormPage = () => {
         console.log("Enviando dados:", data);
         setData(response.data);
         localStorage.setItem("refresh", response.data.refresh);
-        localStorage.setItem("username", response.data.user);
+  
       }
       if (response.status === 201) {
         toast.success("Formulário enviado com sucesso!");
@@ -237,7 +254,7 @@ export const FormPage = () => {
         console.log("Enviando dados:", data);
         setData(response.data);
         localStorage.setItem("refresh", response.data.refresh);
-        localStorage.setItem("username", response.data.user);
+
       }
       if (response.status === 401) {
         toast.error("Erro ao enviar formulario");
@@ -265,6 +282,39 @@ export const FormPage = () => {
       ) && (
         <Container>
           <ToastContainer />
+
+          <Dialog
+            header=""
+            visible={youngerAge}
+            className="modals"
+            onHide={() => setYoungerAge(false)}
+          >
+            <div className="modal">
+  
+              <p
+                style={{
+                  fontSize: "1.2rem",
+                  fontWeight: "600",
+                }}
+                className="m-0"
+              >
+                Aviso para menores de idade
+              </p>
+              <span>
+                A partir daqui, a prova será iniciada e você terá{" "}
+                <strong>30 minutos</strong> para respondê-la
+              </span>
+              <div className="card flex justify-content-center">
+                <br />
+                <Button
+                  onClick={() => setVisible(false)}
+                  icon="pi pi-check"
+                  label="Iniciar"
+                />
+              </div>
+            </div>
+          </Dialog>
+
           <Dialog
             header=""
             visible={visible}
@@ -366,6 +416,8 @@ export const FormPage = () => {
                               {...register("date")}
                               id="date"
                               type="date"
+                              value={date}
+                              onChange={handleChange}
                               placeholder="dd-mm-yyyy"
                               className={errors.date ? "p-invalid" : ""}
                             />

@@ -40,9 +40,8 @@ export const Header = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
+  console.log(userEmail);
   return (
-    
     <HeaderContainer className={showLinks ? "show-links" : ""}>
       <nav>
         <Link to={"/"}>
@@ -53,7 +52,9 @@ export const Header = () => {
         </Link>
         <ul className={windowWidth <= 800 && showLinks ? "hidden" : ""}>
           <StyledNavLink to={"/"}>Home</StyledNavLink>
-          {!emailFromLocalStorage && <StyledNavLink to="/login">Fazer login</StyledNavLink>}
+          {!emailFromLocalStorage && (
+            <StyledNavLink to="/login">Fazer login</StyledNavLink>
+          )}
 
           {emailFromLocalStorage && <MyDropdown />}
 

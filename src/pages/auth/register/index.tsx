@@ -34,8 +34,11 @@ export const RegisterPage = () => {
   function ErrosSending() {
     if (errors.checked) {
       toast.error(
-        "Por aceite os termos para receber comunicações referentes ao processo seletivo"
+        "Por favor aceite os termos de uso do site"
       );
+    }
+    if (errors.checkedtWO) {
+      toast.error("Por favor aceite os termos de política de privacidade de dados")
     }
     if (errors.name) {
       toast.error(
@@ -154,14 +157,14 @@ export const RegisterPage = () => {
               display: "flex",
               width: "100%",
               marginTop: "1rem",
-              justifyContent: "center",
+         
               color: "white",
             }}
           >
             <input
               id="myCheckbox"
               style={{
-                width: "30px",
+                width: "20px",
                 marginRight: "10px",
               }}
               type="checkbox"
@@ -169,12 +172,41 @@ export const RegisterPage = () => {
             />
             <label htmlFor="myCheckbox">
               <p>
-
-
-              Concordo em receber comunicações e com a <span>
-               <Link to="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/Aviso+de+Privacidade+IlhaBela+Tech+IV.pdf" target='_blank'> política de privacidade de dados</Link> </span>  e com os <Link to="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/TERMOS+DE+USO+SITE+ILHABELA+TECH+II.pdf" target='_blank'> termos de uso do site </Link>.
+              Estou ciente dos
+              <span>
+            <Link to="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/TERMOS+DE+USO+SITE+ILHABELA+TECH+II.pdf" target='_blank'> termos de uso do site </Link>.
+            </span>
               </p>
             </label>
+            
+          </div>
+
+          <div
+            className="card flex justify-content-center"
+            style={{
+              display: "flex",
+              width: "100%",
+              marginTop: "1rem",
+     
+              color: "white",
+            }}
+          >
+            <input
+              id="myCheckboxtWO"
+              style={{
+                width: "24px",
+                marginRight: "10px",
+              }}
+              type="checkbox"
+              {...register("checkedtWO")}
+            />
+            <label htmlFor="myCheckboxtWO">
+              <p>
+              Estou ciente da <span>
+               <Link to="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/Aviso+de+Privacidade+IlhaBela+Tech+IV.pdf" target='_blank'> política de privacidade de dados</Link> </span> 
+              </p>
+            </label>
+            
           </div>
           <div
             className="card flex justify-content-center"
@@ -187,12 +219,6 @@ export const RegisterPage = () => {
             }}
           >
             
-              <p>
-
-
-              Caso o inscrito seja menor de idade, seu responsável deverá fazer o cadastro também
-               <Link to="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/Aviso+de+Privacidade+IlhaBela+Tech+IV.pdf" target='_blank'>  no portal do titular </Link>
-              </p>
             
           </div>
 
