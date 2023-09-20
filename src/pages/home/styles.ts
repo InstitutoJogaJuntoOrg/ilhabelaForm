@@ -1,12 +1,80 @@
 import styled from "styled-components";
 
-export const ContainerHome = styled.div`
-.subDescp {
-  @media (max-width: 900px) {
-      font-size: 12px;
-    
-    }
+export const ModalHome = styled.div`
+
+  background-image: url('https://cdn.discordapp.com/attachments/566850308702208001/1154148681788960939/Group_178_2.png'); /* Substitua pelo caminho real da sua imagem */
+  background-size: cover;
+  background-repeat: no-repeat;
+width: 800px;
+height: 400px;
+
+a {
+  color: white;
 }
+@media (max-width: 900px) {
+  width: 270px;
+height: 200px;
+    }
+  border-radius: 6px;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  color: white;
+  flex-direction: row;
+  text-align: start;
+  .contact {
+    max-width: 300px;
+    @media (max-width: 900px) {
+     max-width: 80px;
+    }
+  }
+ div>h1 {
+  max-width: 480px;
+  font-size: 3rem;
+  @media (max-width: 900px) {
+      font-size: 1rem;
+    }
+ }
+ div>p{
+  @media (max-width: 900px) {
+      font-size: .7rem;
+    }
+ }
+  .cadastro {
+    display: flex;
+    text-align: start;
+    justify-content: center;
+    flex-direction: column;
+  }
+  button {
+    border: none;
+    padding: 1.5rem 0rem;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 2rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: 600;
+    text-align: start;
+    gap: .5rem;
+    
+    @media (max-width: 900px) {
+      svg {
+        width: 20px;
+      }
+      font-size: .7rem;
+    }
+  }
+`;
+export const ContainerHome = styled.div`
+  .subDescp {
+    @media (max-width: 900px) {
+      font-size: 12px;
+    }
+  }
+
   width: 100%;
   height: 100vh;
   position: relative;
@@ -29,7 +97,6 @@ export const ContainerHome = styled.div`
     }
   }
   section {
-    
     position: absolute;
     top: -12%;
     display: flex;
@@ -81,7 +148,6 @@ export const ContainerCardLayout = styled.div`
   }
 `;
 export const ContainerTitle = styled.div`
-
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -126,7 +192,7 @@ export const About = styled.div`
   background-color: white;
   h1 {
     font-size: 5rem;
-    color: #54993A;
+    color: #54993a;
     @media (max-width: 1000px) {
       font-size: 2rem;
     }
@@ -136,8 +202,8 @@ export const About = styled.div`
     padding: 1rem 0;
     @media (max-width: 1000px) {
       font-size: 1rem;
-      padding: 1rem 0
+      padding: 1rem 0;
     }
-    color: #54993A;
+    color: #54993a;
   }
 `;

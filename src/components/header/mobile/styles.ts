@@ -14,7 +14,7 @@ export const MobileMenuContainer = styled.div`
   gap: 2rem;
   align-items: center;
   justify-content: center;
-  @media (max-width: 800px) {
+  @media (max-width: 1000px) {
   ul {
     display: block;
     list-style: none;

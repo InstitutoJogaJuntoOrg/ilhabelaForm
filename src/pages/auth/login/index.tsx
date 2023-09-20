@@ -40,7 +40,7 @@ export const LoginPage = () => {
         toast.success("Autenticado com sucesso!");
 
         setTimeout(() => {
-          navigate("/inscricao");
+          navigate("/");
           window.location.reload();
         }, 2000);
       }
@@ -107,13 +107,16 @@ export const LoginPage = () => {
               }}
             >
               <Register>
-                
                 <span className="">
                   <span>
-                    <Link to={"/reset"} style={{textDecoration: 'none', color: 'white'}}>Esqueci minha senha</Link>
+                    <Link
+                      to={"/reset"}
+                      style={{ textDecoration: "none", color: "white" }}
+                    >
+                      Esqueci minha senha
+                    </Link>
                   </span>
                 </span>
-               
               </Register>
             </div>
 
@@ -126,7 +129,8 @@ export const LoginPage = () => {
             >
               Fazer login
             </button>
- <br /><br />
+            <br />
+            <br />
           </form>
 
           <Register>
@@ -137,7 +141,7 @@ export const LoginPage = () => {
           </Register>
         </div>
       </Container>
-  
+
       <Footer />
     </>
   );
