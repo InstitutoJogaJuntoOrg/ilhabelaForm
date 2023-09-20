@@ -98,6 +98,10 @@ export const GlobalStyle = createGlobalStyle`
     @media only screen and (max-width : 800px) {
       padding: 3rem 0rem;
   }
+  @media only screen and (max-width : 600px) {
+      padding: 1rem 0rem;
+  }
+  
   }
   .p-inputtext:enabled:focus {
     box-shadow: none;

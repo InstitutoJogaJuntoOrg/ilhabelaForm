@@ -119,6 +119,7 @@ export const ContainerFlexInputs = styled.div`
   @media only screen and (max-width: 600px) {
     display: flex;
     flex-direction: column;
+    gap: 0rem;
   }
 `;
 export const ContainerButtons = styled.div`
