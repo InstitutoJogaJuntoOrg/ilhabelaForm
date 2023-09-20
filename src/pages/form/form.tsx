@@ -155,11 +155,11 @@ export const FormPage = () => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputDate = event.target.value;
     setDate(inputDate);
-  
+
     const today = new Date();
     const birthDate = new Date(inputDate);
     const age = today.getFullYear() - birthDate.getFullYear();
-  
+
     if (age < 18) {
       setYoungerAge(false);
     } else {
@@ -168,7 +168,6 @@ export const FormPage = () => {
   };
 
   async function convertFileToBase64Blob(file: File): Promise<Blob> {
-
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
 
@@ -246,7 +245,6 @@ export const FormPage = () => {
         console.log("Enviando dados:", data);
         setData(response.data);
         localStorage.setItem("refresh", response.data.refresh);
-  
       }
       if (response.status === 201) {
         toast.success("Formulário enviado com sucesso!");
@@ -254,7 +252,6 @@ export const FormPage = () => {
         console.log("Enviando dados:", data);
         setData(response.data);
         localStorage.setItem("refresh", response.data.refresh);
-
       }
       if (response.status === 401) {
         toast.error("Erro ao enviar formulario");
@@ -290,7 +287,6 @@ export const FormPage = () => {
             onHide={() => setYoungerAge(false)}
           >
             <div className="modal">
-  
               <p
                 style={{
                   fontSize: "1.2rem",
@@ -374,13 +370,30 @@ export const FormPage = () => {
                     >
                       <ContainerFlexInputs>
                         <div>
+                        <span style={{
+                          color: 'white',
+                          fontSize: '12px'
+                        }}>* Campos obrigatórios</span>
                           <div
                             style={{
                               display: "flex",
                               flexDirection: "column",
                             }}
                           >
-                            <label>Nome: </label>
+                            <label
+                              style={{
+                                display: "block",
+                              }}
+                            >
+                              Nome:{" "}
+                              <label
+                                style={{
+                                  color: "red",
+                                }}
+                              >
+                                *
+                              </label>
+                            </label>
                             <InputText
                               {...register("first_name")}
                               id="username"
@@ -397,7 +410,20 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>CPF:</label>
+                            <label
+                              style={{
+                                display: "block",
+                              }}
+                            >
+                              CPF:{" "}
+                              <label
+                                style={{
+                                  color: "red",
+                                }}
+                              >
+                                *
+                              </label>
+                            </label>
                             <InputMask
                               mask="999.999.999-99"
                               {...register("cpf", { required: true })}
@@ -411,7 +437,20 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label htmlFor="date">Data de nascimento:</label>
+                            <label
+                              style={{
+                                display: "block",
+                              }}
+                            >
+                              Data de nascimento:{" "}
+                              <label
+                                style={{
+                                  color: "red",
+                                }}
+                              >
+                                *
+                              </label>
+                            </label>
                             <input
                               {...register("date")}
                               id="date"
@@ -429,7 +468,20 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>Telefone (WhatsApp):</label>
+                            <label
+                              style={{
+                                display: "block",
+                              }}
+                            >
+                              Telefone (WhatsApp):{" "}
+                              <label
+                                style={{
+                                  color: "red",
+                                }}
+                              >
+                                *
+                              </label>
+                            </label>
                             <InputText
                               {...register("phone")}
                               placeholder="12 999999999"
@@ -444,7 +496,20 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>Estado:</label>
+                            <label
+                              style={{
+                                display: "block",
+                              }}
+                            >
+                              Estado:{" "}
+                              <label
+                                style={{
+                                  color: "red",
+                                }}
+                              >
+                                *
+                              </label>
+                            </label>
                             <Dropdown
                               options={states}
                               value={selectedCity}
@@ -470,7 +535,20 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>Cidade</label>
+                            <label
+                              style={{
+                                display: "block",
+                              }}
+                            >
+                              Cidade:{" "}
+                              <label
+                                style={{
+                                  color: "red",
+                                }}
+                              >
+                                *
+                              </label>
+                            </label>
                             <InputText
                               maxLength={15}
                               {...register("city")}
@@ -488,7 +566,20 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>Sorenome:</label>
+                            <label
+                              style={{
+                                display: "block",
+                              }}
+                            >
+                              Sobrenome:{" "}
+                              <label
+                                style={{
+                                  color: "red",
+                                }}
+                              >
+                                *
+                              </label>
+                            </label>
                             <InputText
                               {...register("last_name")}
                               id="Sobrenome"
@@ -519,7 +610,20 @@ export const FormPage = () => {
                                 flexDirection: "column",
                               }}
                             >
-                              <label>Email:</label>
+                              <label
+                                style={{
+                                  display: "block",
+                                }}
+                              >
+                                Email:{" "}
+                                <label
+                                  style={{
+                                    color: "red",
+                                  }}
+                                >
+                                  *
+                                </label>
+                              </label>
                               <InputText
                                 {...register("email")}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -536,7 +640,20 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label htmlFor="date">RG:</label>
+                              <label
+                                style={{
+                                  display: "block",
+                                }}
+                              >
+                                RG:{" "}
+                                <label
+                                  style={{
+                                    color: "red",
+                                  }}
+                                >
+                                  *
+                                </label>
+                              </label>
                             <input
                               {...register("rg")}
                               className="custom-file-input input-img"
@@ -551,7 +668,20 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>Estado civil</label>
+                            <label
+                              style={{
+                                display: "block",
+                              }}
+                            >
+                              Estado civil:{" "}
+                              <label
+                                style={{
+                                  color: "red",
+                                }}
+                              >
+                                *
+                              </label>
+                            </label>
                             <Dropdown
                               options={civilState}
                               value={selectedStateSocial}
@@ -612,6 +742,7 @@ export const FormPage = () => {
                       <Timer />
                       <Prova />
                       <ContainerSteps>
+                        <span>aa</span>
                         <Steps
                           model={items}
                           activeIndex={2}

@@ -82,17 +82,16 @@ export const SocioEconomico = ({
     localStorage.setItem("socioeconomicForm", "true");
     //const allowedFiles = ["image/png", "image/jpeg"]
 
-    console.log('data: ', data)
+    console.log("data: ", data);
 
     try {
-  
       const residency_proof = data.residency_proof[0];
       const enrollment_proof = data.enrollment_proof[0];
 
-      const salario = Number(data.income)
-      if(Number.isNaN(salario)) {
+      const salario = Number(data.income);
+      if (Number.isNaN(salario)) {
         toast.error("Salario com valor incorreto.");
-        return
+        return;
       }
 
       const formData = new FormData();
@@ -130,7 +129,7 @@ export const SocioEconomico = ({
       }
 
       const token = localStorage.getItem("token");
-      console.log('formData: ', formData)
+      console.log("formData: ", formData);
 
       const response = await axios.post(apiUrl, formData, {
         headers: {
@@ -139,18 +138,18 @@ export const SocioEconomico = ({
         },
       });
 
-      if(response.status == 200 || response.status == 201) {
+      if (response.status == 200 || response.status == 201) {
         toast.success("Formulário enviado com sucesso!");
         setTabEnabled(false);
         setActiveTab(2);
         setVisible(true);
-        return
+        return;
       }
 
       toast.error("Erro ao enviar o formulario, tente novaente mais tarde!");
     } catch (error) {
       toast.error("Erro ao enviar o formulario, tente novaente mais tarde!");
-      console.log('error: ', error)
+      console.log("error: ", error);
     }
   }
 
@@ -210,7 +209,21 @@ export const SocioEconomico = ({
             }}
             className="card flex justify-content-center"
           >
-            <label>Possui algum tipo de deficiência física?</label>
+            <label
+              style={{
+                display: "block",
+              }}
+            >
+              Possui algum tipo de deficiência física?{" "}
+              <label
+                style={{
+                  color: "red",
+                }}
+              >
+                *
+              </label>
+            </label>
+
             <Dropdown
               value={selectedDeficiency}
               options={deficiency}
@@ -236,7 +249,20 @@ export const SocioEconomico = ({
             }}
             className="card flex justify-content-center"
           >
-            <label>Qual gênero você se identifica?</label>
+            <label
+              style={{
+                display: "block",
+              }}
+            >
+              Qual gênero você se identifica?{" "}
+              <label
+                style={{
+                  color: "red",
+                }}
+              >
+                *
+              </label>
+            </label>
             <Dropdown
               value={selectedgender}
               options={gender}
@@ -263,7 +289,21 @@ export const SocioEconomico = ({
             }}
             className="card flex justify-content-center"
           >
-            <label>Qual sua situação de emprego?</label>
+
+            <label
+              style={{
+                display: "block",
+              }}
+            >
+             Qual sua situação de emprego?{" "}
+              <label
+                style={{
+                  color: "red",
+                }}
+              >
+                *
+              </label>
+            </label>
             <Dropdown
               value={selectedemprego}
               options={emprego}
@@ -290,7 +330,20 @@ export const SocioEconomico = ({
             }}
             className="card flex justify-content-center"
           >
-            <label>Tem filhos?</label>
+            <label
+              style={{
+                display: "block",
+              }}
+            >
+             Tem filhos?{" "}
+              <label
+                style={{
+                  color: "red",
+                }}
+              >
+                *
+              </label>
+            </label>
             <Dropdown
               value={selectedchildrens}
               options={childrens}
@@ -315,8 +368,23 @@ export const SocioEconomico = ({
               flexDirection: "column",
             }}
           >
-            <label htmlFor="currency-us" className="font-bold block mb-2">
-              Qual a renda média mensal da sua família?
+
+
+            <label
+              style={{
+                display: "block",
+              }}
+            >
+                    <label htmlFor="currency-us" className="font-bold block mb-2">
+              Qual a renda média mensal da sua família?{" "}
+            </label>
+              <label
+                style={{
+                  color: "red",
+                }}
+              >
+                *
+              </label>
             </label>
             <InputText
               {...register("income")}
@@ -340,7 +408,20 @@ export const SocioEconomico = ({
             }}
             className="card flex justify-content-center"
           >
-            <label>Cor/raça:</label>
+            <label
+              style={{
+                display: "block",
+              }}
+            >
+             Cor/raça:{" "}
+              <label
+                style={{
+                  color: "red",
+                }}
+              >
+                *
+              </label>
+            </label>
             <Dropdown
               value={selectedcollor}
               options={collor}
@@ -366,7 +447,20 @@ export const SocioEconomico = ({
             }}
             className="card flex justify-content-center"
           >
-            <label>Qual sua orientação sexual?</label>
+            <label
+              style={{
+                display: "block",
+              }}
+            >
+             Qual sua orientação sexual?:{" "}
+              <label
+                style={{
+                  color: "red",
+                }}
+              >
+                *
+              </label>
+            </label>
             <Dropdown
               value={selectedguildance}
               options={guildance}
@@ -393,7 +487,20 @@ export const SocioEconomico = ({
             }}
             className="card flex justify-content-center"
           >
-            <label>Números de membros da família</label>
+            <label
+              style={{
+                display: "block",
+              }}
+            >
+             Números de membros da família?:{" "}
+              <label
+                style={{
+                  color: "red",
+                }}
+              >
+                *
+              </label>
+            </label>
             <Dropdown
               value={selectedfamily}
               options={family}
@@ -420,7 +527,21 @@ export const SocioEconomico = ({
             }}
             className="card flex justify-content-center"
           >
-            <label>Qual sua escolaridade</label>
+
+            <label
+              style={{
+                display: "block",
+              }}
+            >
+             Qual sua escolaridade:{" "}
+              <label
+                style={{
+                  color: "red",
+                }}
+              >
+                *
+              </label>
+            </label>
             <Dropdown
               value={selectedscholl}
               options={scholl}
@@ -455,7 +576,6 @@ export const SocioEconomico = ({
             >
               <label htmlFor="residency_proof">Comprovante de residencia</label>
               <input
-    
                 {...register("residency_proof")}
                 className="custom-file-input input-img"
                 type="file"
@@ -472,16 +592,29 @@ export const SocioEconomico = ({
               <label htmlFor="date">
                 Comprovante de matrícula em um colégio
               </label>
+
+              
               <input
-             
                 {...register("enrollment_proof")}
                 className="custom-file-input input-img"
                 type="file"
                 accept="image/png, image/jpeg"
               />
             </div>
-            <label>
-              Você ou alguém da sua família recebe algum benefício social?
+
+            <label
+              style={{
+                display: "block",
+              }}
+            >
+            Você ou alguém da sua família recebe algum benefício social?:{" "}
+              <label
+                style={{
+                  color: "red",
+                }}
+              >
+                *
+              </label>
             </label>
             <Dropdown
               value={selectedBenefits}
