@@ -3,12 +3,15 @@ import { CardOne } from "./components/card";
 import { CardTwo } from "./components/cardTwo";
 import StepsHome from "./components/steps";
 import video from "/Ilhabela.mp4";
+import { Dialog } from "primereact/dialog";
+import { FaSquareWhatsapp } from "react-icons/fa6";
 
 import {
   About,
   ContainerCardLayout,
   ContainerHome,
   ContainerTitle,
+  ModalHome,
 } from "./styles";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -52,12 +55,26 @@ const Video = styled.video`
   left: 0;
 `;
 export const HomePage = () => {
+  const [display, setDisplay] = useState(true);
   const auth = localStorage.getItem("token");
   const [showText, setShowText] = useState(false);
 
   const setCookie = (name: string) => {
     document.cookie = name;
   };
+  useEffect(() => {
+    const hasVisitedHomePage = localStorage.getItem("hasVisitedHomePage");
+
+    if (hasVisitedHomePage) {
+      setDisplay(false);
+    } else {
+      localStorage.setItem("hasVisitedHomePage", "true");
+    }
+  }, []);
+
+  function canceldelete() {
+    setDisplay(false);
+  }
 
   // Função para coletar um cookie
   // const getCookie = (name: string) => {
@@ -77,6 +94,46 @@ export const HomePage = () => {
         width: "100%",
       }}
     >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          height: "100vh",
+          width: "100%",
+        }}
+      >
+        {display && (
+          <Dialog
+          
+            className="accontDelete"
+            visible={display}
+            onHide={canceldelete}
+            header=""
+            footer={
+              <ModalHome className="modalHomepage">
+                <div className="cadastro">
+                  <h1>Teve problemas com seu cadastro? </h1>
+                  <p>
+                    Tente novamente ou entre em contato com nosso suporte no
+                    WhatsApp
+                  </p>
+                  <button>
+                    <FaSquareWhatsapp size={50} />
+                    <a href="https://wa.me/5511945950731" target="_blank">(11) 94595-0731</a>
+                  </button>
+                </div>
+
+                <div
+                className="contact"
+
+                >
+
+                </div>
+              </ModalHome>
+            }
+          ></Dialog>
+        )}
+      </div>
       <ContainerHome>
         <ImageContainer>
           <VideoBackground>

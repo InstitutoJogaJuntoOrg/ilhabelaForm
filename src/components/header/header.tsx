@@ -50,7 +50,7 @@ export const Header = () => {
             alt="ilhabela prefeitura"
           />
         </Link>
-        <ul className={windowWidth <= 800 && showLinks ? "hidden" : ""}>
+        <ul className={windowWidth <= 1000 && showLinks ? "hidden" : ""}>
           <StyledNavLink to={"/"}>Home</StyledNavLink>
           {!emailFromLocalStorage && (
             <StyledNavLink to="/login">Fazer login</StyledNavLink>
@@ -63,11 +63,15 @@ export const Header = () => {
               Inscrição
             </StyledNavLink>
           )}
+           <li><a style={{
+            textDecoration: 'none',
+            color: '#54993a'
+           }} href="https://wa.me/5511945950731" target={"_blank"}>Ajuda</a></li>
         </ul>
         <div className="hamburger-icon" onClick={toggleLinks}>
           {showLinks ? <FaTimes /> : <FaBars />}
         </div>
-        {showLinks && windowWidth <= 800 && (
+        {showLinks && windowWidth <= 1000 && (
           <MobileMenu closeMenu={closeMenu} />
         )}
       </nav>

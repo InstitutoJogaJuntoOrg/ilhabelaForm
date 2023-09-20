@@ -24,6 +24,10 @@ const MobileMenu = ({ closeMenu }: any) => {
         Saiba mais
       </StyledNavLink>
       <div>
+      <li><a style={{
+            textDecoration: 'none',
+            color: '#f8fcf7'
+           }} href="https://wa.me/5511945950731" target={"_blank"}>Ajuda</a></li>
         {!user && <StyledNavLink to="/login" onClick={closeMenu}>Fazer login</StyledNavLink>}
         <div>
         {user && <MyDropdown />}
@@ -35,6 +39,7 @@ const MobileMenu = ({ closeMenu }: any) => {
             Inscrição
           </StyledNavLink>
         )}
+        
       </div>
     </MobileMenuContainer>
   );

@@ -22,11 +22,7 @@ export const HeaderContainer = styled.header`
   text-decoration: none;
   color: #54993a;
 
-  &:hover {
-    color: white;
-    background-color: #54993a;
-    border-radius: 60px;
-  }
+ 
 
   &.active {
     color: white;
@@ -49,8 +45,7 @@ export const HeaderContainer = styled.header`
     cursor: pointer;
   }
 
-  @media (max-width: 800px) {
-
+  @media (max-width: 1000px) {
     top: 1rem;
     z-index: 10;
     img {
