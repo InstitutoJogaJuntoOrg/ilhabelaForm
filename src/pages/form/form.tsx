@@ -370,30 +370,21 @@ export const FormPage = () => {
                     >
                       <ContainerFlexInputs>
                         <div>
-                        <span style={{
-                          color: 'white',
-                          fontSize: '12px'
-                        }}>* Campos obrigatórios</span>
+                          <span
+                            style={{
+                              color: "white",
+                              fontSize: "12px",
+                            }}
+                          >
+                            * Campos obrigatórios
+                          </span>
                           <div
                             style={{
                               display: "flex",
                               flexDirection: "column",
                             }}
                           >
-                            <label
-                              style={{
-                                display: "block",
-                              }}
-                            >
-                              Nome:{" "}
-                              <label
-                                style={{
-                                  color: "red",
-                                }}
-                              >
-                                *
-                              </label>
-                            </label>
+                             <label>Nome completo *</label>
                             <InputText
                               {...register("first_name")}
                               id="username"
@@ -410,20 +401,7 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label
-                              style={{
-                                display: "block",
-                              }}
-                            >
-                              CPF:{" "}
-                              <label
-                                style={{
-                                  color: "red",
-                                }}
-                              >
-                                *
-                              </label>
-                            </label>
+                            <label>CPF: *</label>
                             <InputMask
                               mask="999.999.999-99"
                               {...register("cpf", { required: true })}
@@ -437,20 +415,7 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label
-                              style={{
-                                display: "block",
-                              }}
-                            >
-                              Data de nascimento:{" "}
-                              <label
-                                style={{
-                                  color: "red",
-                                }}
-                              >
-                                *
-                              </label>
-                            </label>
+                           <label>Data de nascimento *</label>
                             <input
                               {...register("date")}
                               id="date"
@@ -468,20 +433,8 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label
-                              style={{
-                                display: "block",
-                              }}
-                            >
-                              Telefone (WhatsApp):{" "}
-                              <label
-                                style={{
-                                  color: "red",
-                                }}
-                              >
-                                *
-                              </label>
-                            </label>
+                             <label> Telefone (WhatsApp) *</label>
+                           
                             <InputText
                               {...register("phone")}
                               placeholder="12 999999999"
@@ -496,20 +449,7 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label
-                              style={{
-                                display: "block",
-                              }}
-                            >
-                              Estado:{" "}
-                              <label
-                                style={{
-                                  color: "red",
-                                }}
-                              >
-                                *
-                              </label>
-                            </label>
+                           <label>Estado: *</label>
                             <Dropdown
                               options={states}
                               value={selectedCity}
@@ -535,20 +475,7 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label
-                              style={{
-                                display: "block",
-                              }}
-                            >
-                              Cidade:{" "}
-                              <label
-                                style={{
-                                  color: "red",
-                                }}
-                              >
-                                *
-                              </label>
-                            </label>
+                            <label>Cidade *</label>
                             <InputText
                               maxLength={15}
                               {...register("city")}
@@ -566,20 +493,7 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label
-                              style={{
-                                display: "block",
-                              }}
-                            >
-                              Sobrenome:{" "}
-                              <label
-                                style={{
-                                  color: "red",
-                                }}
-                              >
-                                *
-                              </label>
-                            </label>
+                            <label>Sobrenome: *</label>
                             <InputText
                               {...register("last_name")}
                               id="Sobrenome"
@@ -610,20 +524,8 @@ export const FormPage = () => {
                                 flexDirection: "column",
                               }}
                             >
-                              <label
-                                style={{
-                                  display: "block",
-                                }}
-                              >
-                                Email:{" "}
-                                <label
-                                  style={{
-                                    color: "red",
-                                  }}
-                                >
-                                  *
-                                </label>
-                              </label>
+                              <label>Email: *</label>
+
                               <InputText
                                 {...register("email")}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -640,20 +542,7 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                              <label
-                                style={{
-                                  display: "block",
-                                }}
-                              >
-                                RG:{" "}
-                                <label
-                                  style={{
-                                    color: "red",
-                                  }}
-                                >
-                                  *
-                                </label>
-                              </label>
+                           <label>RG: *</label>
                             <input
                               {...register("rg")}
                               className="custom-file-input input-img"
@@ -668,20 +557,8 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label
-                              style={{
-                                display: "block",
-                              }}
-                            >
-                              Estado civil:{" "}
-                              <label
-                                style={{
-                                  color: "red",
-                                }}
-                              >
-                                *
-                              </label>
-                            </label>
+                             <label>Estado civil: *</label>
+                       
                             <Dropdown
                               options={civilState}
                               value={selectedStateSocial}
@@ -742,7 +619,6 @@ export const FormPage = () => {
                       <Timer />
                       <Prova />
                       <ContainerSteps>
-                        
                         <Steps
                           model={items}
                           activeIndex={2}

@@ -209,20 +209,7 @@ export const SocioEconomico = ({
             }}
             className="card flex justify-content-center"
           >
-            <label
-              style={{
-                display: "block",
-              }}
-            >
-              Possui algum tipo de deficiência física?{" "}
-              <label
-                style={{
-                  color: "red",
-                }}
-              >
-                *
-              </label>
-            </label>
+            <label>Possui algum tipo de deficiência física? *</label>
 
             <Dropdown
               value={selectedDeficiency}
@@ -249,20 +236,7 @@ export const SocioEconomico = ({
             }}
             className="card flex justify-content-center"
           >
-            <label
-              style={{
-                display: "block",
-              }}
-            >
-              Qual gênero você se identifica?{" "}
-              <label
-                style={{
-                  color: "red",
-                }}
-              >
-                *
-              </label>
-            </label>
+            <label>Qual gênero você se identifica? *</label>
             <Dropdown
               value={selectedgender}
               options={gender}
@@ -290,20 +264,7 @@ export const SocioEconomico = ({
             className="card flex justify-content-center"
           >
 
-            <label
-              style={{
-                display: "block",
-              }}
-            >
-             Qual sua situação de emprego?{" "}
-              <label
-                style={{
-                  color: "red",
-                }}
-              >
-                *
-              </label>
-            </label>
+            <label>Qual sua situação de emprego? *</label>
             <Dropdown
               value={selectedemprego}
               options={emprego}
@@ -330,20 +291,7 @@ export const SocioEconomico = ({
             }}
             className="card flex justify-content-center"
           >
-            <label
-              style={{
-                display: "block",
-              }}
-            >
-             Tem filhos?{" "}
-              <label
-                style={{
-                  color: "red",
-                }}
-              >
-                *
-              </label>
-            </label>
+            <label>Tem filhos? *</label>
             <Dropdown
               value={selectedchildrens}
               options={childrens}
@@ -370,22 +318,7 @@ export const SocioEconomico = ({
           >
 
 
-            <label
-              style={{
-                display: "block",
-              }}
-            >
-                    <label htmlFor="currency-us" className="font-bold block mb-2">
-              Qual a renda média mensal da sua família?{" "}
-            </label>
-              <label
-                style={{
-                  color: "red",
-                }}
-              >
-                *
-              </label>
-            </label>
+           <label>Qual a renda média mensal da sua família? *</label>
             <InputText
               {...register("income")}
               id="renda"
@@ -408,20 +341,7 @@ export const SocioEconomico = ({
             }}
             className="card flex justify-content-center"
           >
-            <label
-              style={{
-                display: "block",
-              }}
-            >
-             Cor/raça:{" "}
-              <label
-                style={{
-                  color: "red",
-                }}
-              >
-                *
-              </label>
-            </label>
+            <label>Cor/raça *</label>
             <Dropdown
               value={selectedcollor}
               options={collor}
@@ -447,20 +367,7 @@ export const SocioEconomico = ({
             }}
             className="card flex justify-content-center"
           >
-            <label
-              style={{
-                display: "block",
-              }}
-            >
-             Qual sua orientação sexual?:{" "}
-              <label
-                style={{
-                  color: "red",
-                }}
-              >
-                *
-              </label>
-            </label>
+           <label>Qual sua orientação sexual? *</label>
             <Dropdown
               value={selectedguildance}
               options={guildance}
@@ -487,20 +394,7 @@ export const SocioEconomico = ({
             }}
             className="card flex justify-content-center"
           >
-            <label
-              style={{
-                display: "block",
-              }}
-            >
-             Números de membros da família?:{" "}
-              <label
-                style={{
-                  color: "red",
-                }}
-              >
-                *
-              </label>
-            </label>
+            <label>Números de membros da família? *</label>
             <Dropdown
               value={selectedfamily}
               options={family}
@@ -528,20 +422,7 @@ export const SocioEconomico = ({
             className="card flex justify-content-center"
           >
 
-            <label
-              style={{
-                display: "block",
-              }}
-            >
-             Qual sua escolaridade:{" "}
-              <label
-                style={{
-                  color: "red",
-                }}
-              >
-                *
-              </label>
-            </label>
+           <label>Qual sua escolaridade: *</label>
             <Dropdown
               value={selectedscholl}
               options={scholl}
@@ -602,20 +483,8 @@ export const SocioEconomico = ({
               />
             </div>
 
-            <label
-              style={{
-                display: "block",
-              }}
-            >
-            Você ou alguém da sua família recebe algum benefício social?:{" "}
-              <label
-                style={{
-                  color: "red",
-                }}
-              >
-                *
-              </label>
-            </label>
+           <label>Você ou alguém da sua família recebe algum benefício social? *</label>
+            
             <Dropdown
               value={selectedBenefits}
               options={benefits}
