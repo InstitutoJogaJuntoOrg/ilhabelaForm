@@ -75,7 +75,9 @@ export const GlobalStyle = createGlobalStyle`
     margin-top: 5rem;
   }
   .accontDelete {
-
+    #pr_id_4_header {
+      padding: 1rem;
+    }
     #pr_id_2_header {
       padding: 1rem;
     }
@@ -102,6 +104,13 @@ export const GlobalStyle = createGlobalStyle`
       padding: 1rem 0rem;
   }
   
+  }
+  .p-dialog .p-dialog-content {
+    display: none;
+  }
+  .textFieldInput {
+    background: #c1c1c1;
+    color: black;
   }
   .p-inputtext:enabled:focus {
     box-shadow: none;
@@ -164,6 +173,13 @@ export const GlobalStyle = createGlobalStyle`
   .p-steps .p-steps-item.p-highlight .p-steps-number{
     color: black;
   }
+  .inputPasswordDeleteAccount {
+ 
+  color: black!important;
+  border-radius: 8px;
+  padding: .7rem;
+  border: 1px solid black;
+}
   .p-steps .p-steps-item.p-highlight .p-steps-title {
     color: white;
   }
