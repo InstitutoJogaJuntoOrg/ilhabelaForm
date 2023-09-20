@@ -742,7 +742,7 @@ export const FormPage = () => {
                       <Timer />
                       <Prova />
                       <ContainerSteps>
-                        <span>aa</span>
+                        
                         <Steps
                           model={items}
                           activeIndex={2}
