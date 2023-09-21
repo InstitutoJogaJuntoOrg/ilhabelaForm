@@ -548,7 +548,7 @@ export const FormPage = () => {
                               className="custom-file-input input-img"
                               type="file"
                               required
-                              accept="image/png/pdf/.pdf, image/jpeg"
+                              accept="pdf/image"
                               
                             />
                           </div>
