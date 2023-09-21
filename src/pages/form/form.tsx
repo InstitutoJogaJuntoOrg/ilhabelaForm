@@ -186,8 +186,9 @@ export const FormPage = () => {
       };
 
       reader.readAsArrayBuffer(file);
-    });
-  }
+    })
+
+}
 
   const apiUrl = "https://back.ilhabelatech.com/personalinfo/";
   async function sendPersonalInfo(data: FormSchemaType) {
@@ -211,7 +212,6 @@ export const FormPage = () => {
     if (file) {
       try {
         const blob = await convertFileToBase64Blob(file);
-
         formData.append("rg", blob, file.name);
       } catch (error) {
         console.error("Error converting file:", error);
@@ -548,7 +548,8 @@ export const FormPage = () => {
                               className="custom-file-input input-img"
                               type="file"
                               required
-                              accept=".pdf"
+                              accept="image/png/pdf/.pdf, image/jpeg"
+                              
                             />
                           </div>
 
