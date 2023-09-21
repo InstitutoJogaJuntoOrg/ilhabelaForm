@@ -384,7 +384,7 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                             <label>Nome completo *</label>
+                             <label>Nome *</label>
                             <InputText
                               {...register("first_name")}
                               id="username"
