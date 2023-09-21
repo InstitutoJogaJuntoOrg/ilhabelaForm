@@ -209,25 +209,7 @@ export const RegisterPage = () => {
             </label>
             
           </div>
-          <div
-            className="card flex justify-content-center"
-            style={{
-              display: "flex",
-              width: "100%",
-              marginTop: "1rem",
-              justifyContent: "center",
-              color: "white",
-            }}
-          >
-            
-              <p>
 
-
-              Caso o inscrito seja menor de idade, seu responsável deverá fazer o cadastro também
-               <Link to="/portal-do-titular" target='_blank'>  no portal do titular </Link>
-              </p>
-            
-          </div>
 
           <button
             style={{

@@ -40,7 +40,7 @@ export const LoginPage = () => {
         toast.success("Autenticado com sucesso!");
 
         setTimeout(() => {
-          navigate("/");
+          navigate("/inscricao");
           window.location.reload();
         }, 2000);
       }

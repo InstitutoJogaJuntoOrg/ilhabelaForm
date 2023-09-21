@@ -195,6 +195,7 @@ export const FormPage = () => {
     localStorage.setItem("personalForm", "true");
 
     const file = data.rg[0];
+
     const cleanedPhone = data.phone.replace(/[\s\.-]/g, "");
     const formData = new FormData();
     formData.append("cpf", data.cpf.replace(/\D/g, ""));
@@ -207,7 +208,6 @@ export const FormPage = () => {
     formData.append("living_uf", data.state.name);
     formData.append("country", data.state.name);
     formData.append("civil_state", data.civil_state);
-
     if (file) {
       try {
         const blob = await convertFileToBase64Blob(file);
@@ -384,7 +384,7 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                             <label>Nome *</label>
+                            <label>Nome *</label>
                             <InputText
                               {...register("first_name")}
                               id="username"
@@ -415,7 +415,7 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                           <label>Data de nascimento *</label>
+                            <label>Data de nascimento *</label>
                             <input
                               {...register("date")}
                               id="date"
@@ -433,8 +433,8 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                             <label> Telefone (WhatsApp) *</label>
-                           
+                            <label> Telefone (WhatsApp) *</label>
+
                             <InputText
                               {...register("phone")}
                               placeholder="12 999999999"
@@ -449,7 +449,7 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                           <label>Estado: *</label>
+                            <label>Estado: *</label>
                             <Dropdown
                               options={states}
                               value={selectedCity}
@@ -542,12 +542,13 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                           <label>RG: *</label>
+                            <label>RG: *</label>
                             <input
                               {...register("rg")}
                               className="custom-file-input input-img"
                               type="file"
                               required
+                              accept=".pdf"
                             />
                           </div>
 
@@ -557,8 +558,8 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                             <label>Estado civil: *</label>
-                       
+                            <label>Estado civil: *</label>
+
                             <Dropdown
                               options={civilState}
                               value={selectedStateSocial}
