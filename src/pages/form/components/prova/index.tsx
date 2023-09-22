@@ -69,7 +69,7 @@ export const Prova = () => {
   console.log(errors);
   return (
     <Container>
-      <form onSubmit={handleSubmit(handleForm)} className="boxSh">
+      <form onSubmit={handleSubmit(handleForm)} className="boxSh responsiveProva">
         <div className="options">
           <h1 style={{ fontSize: "1rem" }}>
             1: O computador é uma máquina destinada ao processamento de dados,
