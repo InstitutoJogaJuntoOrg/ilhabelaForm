@@ -8,6 +8,13 @@ export const GlobalStyle = createGlobalStyle`
 * {
   margin: 0;
 }
+.responsiveProva {
+  label {
+    @media only screen and (max-width : 600px) {
+      padding: 3rem 0rem!important
+  }
+  }
+}
   body {
     width: 100%;
     margin: 0;
@@ -106,7 +113,7 @@ export const GlobalStyle = createGlobalStyle`
   
   }
   .p-dialog .p-dialog-content {
-    display: none;
+    display: block;
   }
   .textFieldInput {
     background: #c1c1c1;
