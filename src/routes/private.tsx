@@ -7,7 +7,7 @@ interface PrivateRouterType {
 
 export function PrivateRoute({ children }: PrivateRouterType) {
   useEffect(() => {
-    const tokenExpiryTime = 10 * 60 * 60 * 1000;
+    const tokenExpiryTime = 60 * 60 * 1000;
     const storedToken = localStorage.getItem('token');
 
     if (storedToken) {
