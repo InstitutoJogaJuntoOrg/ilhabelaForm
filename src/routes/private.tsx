@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 
 interface PrivateRouterType {
@@ -6,21 +6,23 @@ interface PrivateRouterType {
 }
 
 export function PrivateRoute({ children }: PrivateRouterType) {
-  useEffect(() => {
-    const tokenExpiryTime = 1 * 60 * 1000;
-    const storedToken = localStorage.getItem('token');
+  const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
 
-    if (storedToken) {
+  useEffect(() => {
+    const tokenExpiryTime = 10 * 60 * 60 * 1000; // 10 horas em milissegundos
+
+    if (token) {
       setTimeout(() => {
         alert('Sua sessão expirou, faça o login novamente!');
         localStorage.removeItem('token');
         localStorage.removeItem('username');
+        setToken(null); // Atualiza o estado do token
         window.location.reload();
       }, tokenExpiryTime);
     }
-  }, []); 
+  }, [token]);
 
-  const isAuth = localStorage.getItem('token');
+  const isAuth = token;
 
   return isAuth ? <>{children}</> : <Navigate to="/auth" />;
 }
