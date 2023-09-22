@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 
 export const Container = styled.div`
+
 background: url('https://cdn.discordapp.com/attachments/566850308702208001/1153381517091934280/Group_168.png');
 background-size: cover;
   padding-bottom: 5rem;
