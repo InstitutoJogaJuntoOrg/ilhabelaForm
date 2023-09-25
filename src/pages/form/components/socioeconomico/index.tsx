@@ -54,6 +54,27 @@ export const SocioEconomico = ({
 
   console.log(hasFormBeenSubmitted);
 
+  async function convertFileToBase64Blob(file: File): Promise<Blob> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        const result = reader.result;
+        if (result instanceof ArrayBuffer) {
+          const blob = new Blob([new Uint8Array(result)], { type: file.type });
+          resolve(blob);
+        } else {
+          reject(new Error("Error reading file as ArrayBuffer"));
+        }
+      };
+
+      reader.onerror = (error) => {
+        reject(error);
+      };
+
+      reader.readAsArrayBuffer(file);
+    });
+  }
 
   const apiUrl = "https://back.ilhabelatech.com/socioeconomics/";
 
@@ -64,6 +85,8 @@ export const SocioEconomico = ({
     console.log("data: ", data);
 
     try {
+      const residency_proof = data.residency_proof[0];
+      const enrollment_proof = data.enrollment_proof[0];
 
       const salario = Number(data.income);
       if (Number.isNaN(salario)) {
@@ -85,6 +108,25 @@ export const SocioEconomico = ({
       formData.append("household_count", data.family.name);
       formData.append("employment_status", data.employment_status);
 
+      if (residency_proof) {
+        try {
+          const blob = await convertFileToBase64Blob(residency_proof);
+          formData.append("residency_proof", blob, residency_proof.name);
+        } catch (error) {
+          console.error("Error converting file:", error);
+          return;
+        }
+      }
+
+      if (enrollment_proof) {
+        try {
+          const blob = await convertFileToBase64Blob(enrollment_proof);
+          formData.append("enrollment_proof", blob, enrollment_proof.name);
+        } catch (error) {
+          console.error("Error converting file:", error);
+          return;
+        }
+      }
 
       const token = localStorage.getItem("token");
       console.log("formData: ", formData);
@@ -407,6 +449,39 @@ export const SocioEconomico = ({
             }}
             className="card flex justify-content-center"
           >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <label htmlFor="residency_proof">Comprovante de residencia</label>
+              <input
+                {...register("residency_proof")}
+                className="custom-file-input input-img"
+                type="file"
+                accept="image/png, image/jpeg"
+              />
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <label htmlFor="date">
+                Comprovante de matrícula em um colégio
+              </label>
+
+              
+              <input
+                {...register("enrollment_proof")}
+                className="custom-file-input input-img"
+                type="file"
+                accept="image/png, image/jpeg"
+              />
+            </div>
 
            <label>Você ou alguém da sua família recebe algum benefício social? *</label>
             
