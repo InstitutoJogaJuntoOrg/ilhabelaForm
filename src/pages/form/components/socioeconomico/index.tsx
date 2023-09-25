@@ -85,8 +85,6 @@ export const SocioEconomico = ({
     console.log("data: ", data);
 
     try {
-      const residency_proof = data.residency_proof[0];
-      const enrollment_proof = data.enrollment_proof[0];
 
       const salario = Number(data.income);
       if (Number.isNaN(salario)) {
@@ -108,25 +106,6 @@ export const SocioEconomico = ({
       formData.append("household_count", data.family.name);
       formData.append("employment_status", data.employment_status);
 
-      if (residency_proof) {
-        try {
-          const blob = await convertFileToBase64Blob(residency_proof);
-          formData.append("residency_proof", blob, residency_proof.name);
-        } catch (error) {
-          console.error("Error converting file:", error);
-          return;
-        }
-      }
-
-      if (enrollment_proof) {
-        try {
-          const blob = await convertFileToBase64Blob(enrollment_proof);
-          formData.append("enrollment_proof", blob, enrollment_proof.name);
-        } catch (error) {
-          console.error("Error converting file:", error);
-          return;
-        }
-      }
 
       const token = localStorage.getItem("token");
       console.log("formData: ", formData);
