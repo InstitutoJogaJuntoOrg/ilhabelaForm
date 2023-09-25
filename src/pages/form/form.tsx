@@ -500,7 +500,7 @@ export const FormPage = () => {
 
                               <InputText
                                 {...register("email")}
-                                disabled
+                                
                                 value={email}
                                 placeholder="Email"
                                 className={errors.email ? "p-invalid" : ""}
