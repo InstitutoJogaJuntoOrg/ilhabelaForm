@@ -400,38 +400,37 @@ export const FormPage = () => {
                               className={errors.first_name ? "p-invalid" : ""}
                             />
                           </div>
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label>CPF: *</label>
-                            <InputMask
-                              mask="999.999.999-99"
-                              {...register("cpf", { required: true })}
-                              placeholder="___.___.___-__"
-                              className={errors.cpf ? "p-invalid" : ""}
-                            />
-                          </div>
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label>Data de nascimento *</label>
-                            <input
-                              {...register("date")}
-                              id="date"
-                              type="date"
-                              value={date}
-                              onChange={handleChange}
-                              placeholder="dd-mm-yyyy"
-                              className={errors.date ? "p-invalid" : ""}
-                            />
-                          </div>
 
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <label>Sobrenome: *</label>
+                            <InputText
+                              {...register("last_name")}
+                              id="Sobrenome"
+                              aria-describedby="username-help"
+                              placeholder="Sobrenome"
+                              className={errors.last_name ? "p-invalid" : ""}
+                            />
+                          </div>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <label>Nome social:</label>
+                            <InputText
+                              {...register("socialName")}
+                              id="socialName"
+                              aria-describedby="username-help"
+                              placeholder="Nome social"
+                              className={errors.socialName ? "p-invalid" : ""}
+                            />
+                          </div>
                           <div
                             style={{
                               display: "flex",
@@ -492,19 +491,18 @@ export const FormPage = () => {
                         </div>
 
                         <div>
-                          <div
+                        <div
                             style={{
                               display: "flex",
                               flexDirection: "column",
                             }}
                           >
-                            <label>Sobrenome: *</label>
-                            <InputText
-                              {...register("last_name")}
-                              id="Sobrenome"
-                              aria-describedby="username-help"
-                              placeholder="Sobrenome"
-                              className={errors.last_name ? "p-invalid" : ""}
+                            <label>CPF: *</label>
+                            <InputMask
+                              mask="999.999.999-99"
+                              {...register("cpf", { required: true })}
+                              placeholder="___.___.___-__"
+                              className={errors.cpf ? "p-invalid" : ""}
                             />
                           </div>
                           <div
@@ -513,15 +511,19 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>Nome social:</label>
-                            <InputText
-                              {...register("socialName")}
-                              id="socialName"
-                              aria-describedby="username-help"
-                              placeholder="Nome social"
-                              className={errors.socialName ? "p-invalid" : ""}
+                            <label>Data de nascimento *</label>
+                            <input
+                              {...register("date")}
+                              id="date"
+                              type="date"
+                              value={date}
+                              onChange={handleChange}
+                              placeholder="dd-mm-yyyy"
+                              className={errors.date ? "p-invalid" : ""}
                             />
                           </div>
+
+  
                           <div>
                             <div
                               style={{
