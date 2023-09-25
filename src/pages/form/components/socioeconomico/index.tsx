@@ -449,39 +449,7 @@ export const SocioEconomico = ({
             }}
             className="card flex justify-content-center"
           >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <label htmlFor="residency_proof">Comprovante de residencia</label>
-              <input
-                {...register("residency_proof")}
-                className="custom-file-input input-img"
-                type="file"
-                accept="image/png, image/jpeg"
-              />
-            </div>
 
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <label htmlFor="date">
-                Comprovante de matrícula em um colégio
-              </label>
-
-              
-              <input
-                {...register("enrollment_proof")}
-                className="custom-file-input input-img"
-                type="file"
-                accept="image/png, image/jpeg"
-              />
-            </div>
 
            <label>Você ou alguém da sua família recebe algum benefício social? *</label>
             
