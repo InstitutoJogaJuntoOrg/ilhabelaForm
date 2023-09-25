@@ -189,7 +189,6 @@ export const FormPage = () => {
     formData.append("living_uf", data.state.name);
     formData.append("country", data.state.name);
     formData.append("civil_state", data.civil_state);
-    
 
     try {
       const token = localStorage.getItem("token");
@@ -398,7 +397,6 @@ export const FormPage = () => {
                               className={errors.socialName ? "p-invalid" : ""}
                             />
                           </div>
-  
 
                           <div
                             style={{
@@ -444,7 +442,7 @@ export const FormPage = () => {
                         </div>
 
                         <div>
-                        <div
+                          <div
                             style={{
                               display: "flex",
                               flexDirection: "column",
@@ -464,21 +462,21 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                                                  <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label> Telefone (WhatsApp) *</label>
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                              }}
+                            >
+                              <label> Telefone (WhatsApp) *</label>
 
-                            <InputText
-                              {...register("phone")}
-                              placeholder="11 999999999"
-                              maxLength={15}
-                              className={errors.phone ? "p-invalid" : ""}
-                            />
-                          </div>
+                              <InputText
+                                {...register("phone")}
+                                placeholder="11 999999999"
+                                maxLength={15}
+                                className={errors.phone ? "p-invalid" : ""}
+                              />
+                            </div>
                             <label>Data de nascimento *</label>
                             <input
                               {...register("date")}
@@ -491,7 +489,6 @@ export const FormPage = () => {
                             />
                           </div>
 
-  
                           <div>
                             <div
                               style={{
@@ -503,14 +500,13 @@ export const FormPage = () => {
 
                               <InputText
                                 {...register("email")}
-                                onChange={(e) => setEmail(e.target.value)}
+                                disabled
                                 value={email}
                                 placeholder="Email"
                                 className={errors.email ? "p-invalid" : ""}
                               />
                             </div>
                           </div>
-
 
                           <div
                             style={{
