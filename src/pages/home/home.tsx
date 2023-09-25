@@ -115,7 +115,7 @@ export const HomePage = () => {
                   <h1>Teve problemas com seu cadastro? </h1>
                   <p>
                     Tente novamente ou entre em contato com nosso suporte no
-                    WhatsApp
+                    WhatsApp!!
                   </p>
                   <button>
                     <FaSquareWhatsapp size={50} />

@@ -406,14 +406,16 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>CPF: *</label>
-                            <InputMask
-                              mask="999.999.999-99"
-                              {...register("cpf", { required: true })}
-                              placeholder="___.___.___-__"
-                              className={errors.cpf ? "p-invalid" : ""}
+                            <label>Sobrenome: *</label>
+                            <InputText
+                              {...register("last_name")}
+                              id="Sobrenome"
+                              aria-describedby="username-help"
+                              placeholder="Sobrenome"
+                              className={errors.last_name ? "p-invalid" : ""}
                             />
                           </div>
+                          
                           <div
                             style={{
                               display: "flex",
@@ -431,23 +433,6 @@ export const FormPage = () => {
                               className={errors.date ? "p-invalid" : ""}
                             />
                           </div>
-
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label> Telefone (WhatsApp) *</label>
-
-                            <InputText
-                              {...register("phone")}
-                              placeholder="12 999999999"
-                              maxLength={15}
-                              className={errors.phone ? "p-invalid" : ""}
-                            />
-                          </div>
-
                           <div
                             style={{
                               display: "flex",
@@ -492,21 +477,7 @@ export const FormPage = () => {
                         </div>
 
                         <div>
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label>Sobrenome: *</label>
-                            <InputText
-                              {...register("last_name")}
-                              id="Sobrenome"
-                              aria-describedby="username-help"
-                              placeholder="Sobrenome"
-                              className={errors.last_name ? "p-invalid" : ""}
-                            />
-                          </div>
+
                           <div
                             style={{
                               display: "flex",
@@ -522,6 +493,20 @@ export const FormPage = () => {
                               className={errors.socialName ? "p-invalid" : ""}
                             />
                           </div>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <label>CPF: *</label>
+                            <InputMask
+                              mask="999.999.999-99"
+                              {...register("cpf", { required: true })}
+                              placeholder="___.___.___-__"
+                              className={errors.cpf ? "p-invalid" : ""}
+                            />
+                          </div>
                           <div>
                             <div
                               style={{
@@ -533,7 +518,6 @@ export const FormPage = () => {
 
                               <InputText
                                 {...register("email")}
-                                onChange={(e) => setEmail(e.target.value)}
                                 value={email}
                                 placeholder="Email"
                                 className={errors.email ? "p-invalid" : ""}
@@ -541,22 +525,23 @@ export const FormPage = () => {
                             </div>
                           </div>
 
+
                           <div
                             style={{
                               display: "flex",
                               flexDirection: "column",
                             }}
                           >
-                            <label>RG: *</label>
-                            <input
-                              {...register("rg")}
-                              className="custom-file-input input-img"
-                              type="file"
-                              required
-                              accept="pdf/image"
-                              
+                            <label> Telefone (WhatsApp) *</label>
+
+                            <InputText
+                              {...register("phone")}
+                              placeholder="12 999999999"
+                              maxLength={15}
+                              className={errors.phone ? "p-invalid" : ""}
                             />
                           </div>
+
 
                           <div
                             style={{
