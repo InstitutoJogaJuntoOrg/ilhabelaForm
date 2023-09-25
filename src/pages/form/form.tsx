@@ -71,7 +71,7 @@ export const FormPage = () => {
       toast.error("Por favor informe seu Sobrenome");
     }
     if (errors.phone) {
-      toast.error("Por favor informe seu Número para contato");
+      toast.error("Por favor informe um número válido");
     }
     if (errors.socialName) {
       toast.error("Por favor informe seu Nome social");
@@ -198,6 +198,11 @@ export const FormPage = () => {
     const file = data.rg[0];
 
     const cleanedPhone = data.phone.replace(/[\s\.-]/g, "");
+
+    if (cleanedPhone.length !== 11) {
+      console.error("Número de telefone deve ter exatamente 11 dígitos.");
+      return;
+    }
     const formData = new FormData();
     formData.append("cpf", data.cpf.replace(/\D/g, ""));
     formData.append("first_name", data.first_name);
