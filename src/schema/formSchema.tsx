@@ -21,10 +21,11 @@ export const FormSchema = z.object({
       .min(1, { message: "messages.required" }),
   }),
   phone: z
-    .string({
-      required_error: "messages.required",
-    })
-    .min(1, { message: "messages.required" }),
+  .string()
+  .nonempty({ message: "O campo de telefone é obrigatório" })
+  .regex(/^\d{11}$/, {
+    message: "O telefone deve conter exatamente 11 dígitos",
+  }),
 });
 
 export type FormSchemaType = z.infer<typeof FormSchema>;
