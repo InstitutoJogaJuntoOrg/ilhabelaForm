@@ -167,10 +167,35 @@ export const FormPage = () => {
     }
   };
 
+  async function convertFileToBase64Blob(file: File): Promise<Blob> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        const result = reader.result;
+        if (result instanceof ArrayBuffer) {
+          const blob = new Blob([new Uint8Array(result)], { type: file.type });
+          resolve(blob);
+        } else {
+          reject(new Error("Error reading file as ArrayBuffer"));
+        }
+      };
+
+      reader.onerror = (error) => {
+        reject(error);
+      };
+
+      reader.readAsArrayBuffer(file);
+    })
+
+}
+
   const apiUrl = "https://back.ilhabelatech.com/personalinfo/";
   async function sendPersonalInfo(data: FormSchemaType) {
     console.log("Enviando dados:", data);
     localStorage.setItem("personalForm", "true");
+
+    const file = data.rg[0];
 
     const cleanedPhone = data.phone.replace(/[\s\.-]/g, "");
 
@@ -181,7 +206,7 @@ export const FormPage = () => {
     const formData = new FormData();
     formData.append("cpf", data.cpf.replace(/\D/g, ""));
     formData.append("first_name", data.first_name);
-    formData.append("last_name", data.last_name);
+    formData.append("last_name", data.first_name);
     formData.append("social_name", data.socialName);
     formData.append("city", data.city);
     formData.append("phone", cleanedPhone);
@@ -189,6 +214,15 @@ export const FormPage = () => {
     formData.append("living_uf", data.state.name);
     formData.append("country", data.state.name);
     formData.append("civil_state", data.civil_state);
+    if (file) {
+      try {
+        const blob = await convertFileToBase64Blob(file);
+        formData.append("rg", blob, file.name);
+      } catch (error) {
+        console.error("Error converting file:", error);
+        return;
+      }
+    }
 
     try {
       const token = localStorage.getItem("token");
@@ -366,20 +400,18 @@ export const FormPage = () => {
                               className={errors.first_name ? "p-invalid" : ""}
                             />
                           </div>
-
                           <div
                             style={{
                               display: "flex",
                               flexDirection: "column",
                             }}
                           >
-                            <label>Sobrenome: *</label>
-                            <InputText
-                              {...register("last_name")}
-                              id="Sobrenome"
-                              aria-describedby="username-help"
-                              placeholder="Sobrenome"
-                              className={errors.last_name ? "p-invalid" : ""}
+                            <label>CPF: *</label>
+                            <InputMask
+                              mask="999.999.999-99"
+                              {...register("cpf", { required: true })}
+                              placeholder="___.___.___-__"
+                              className={errors.cpf ? "p-invalid" : ""}
                             />
                           </div>
                           <div
@@ -388,13 +420,31 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>Nome social:</label>
+                            <label>Data de nascimento *</label>
+                            <input
+                              {...register("date")}
+                              id="date"
+                              type="date"
+                              value={date}
+                              onChange={handleChange}
+                              placeholder="dd-mm-yyyy"
+                              className={errors.date ? "p-invalid" : ""}
+                            />
+                          </div>
+
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <label> Telefone (WhatsApp) *</label>
+
                             <InputText
-                              {...register("socialName")}
-                              id="socialName"
-                              aria-describedby="username-help"
-                              placeholder="Nome social"
-                              className={errors.socialName ? "p-invalid" : ""}
+                              {...register("phone")}
+                              placeholder="12 999999999"
+                              maxLength={15}
+                              className={errors.phone ? "p-invalid" : ""}
                             />
                           </div>
 
@@ -448,12 +498,13 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>CPF: *</label>
-                            <InputMask
-                              mask="999.999.999-99"
-                              {...register("cpf", { required: true })}
-                              placeholder="___.___.___-__"
-                              className={errors.cpf ? "p-invalid" : ""}
+                            <label>Sobrenome: *</label>
+                            <InputText
+                              {...register("last_name")}
+                              id="Sobrenome"
+                              aria-describedby="username-help"
+                              placeholder="Sobrenome"
+                              className={errors.last_name ? "p-invalid" : ""}
                             />
                           </div>
                           <div
@@ -462,33 +513,15 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <div
-                              style={{
-                                display: "flex",
-                                flexDirection: "column",
-                              }}
-                            >
-                              <label> Telefone (WhatsApp) *</label>
-
-                              <InputText
-                                {...register("phone")}
-                                placeholder="11 999999999"
-                                maxLength={15}
-                                className={errors.phone ? "p-invalid" : ""}
-                              />
-                            </div>
-                            <label>Data de nascimento *</label>
-                            <input
-                              {...register("date")}
-                              id="date"
-                              type="date"
-                              value={date}
-                              onChange={handleChange}
-                              placeholder="dd-mm-yyyy"
-                              className={errors.date ? "p-invalid" : ""}
+                            <label>Nome social:</label>
+                            <InputText
+                              {...register("socialName")}
+                              id="socialName"
+                              aria-describedby="username-help"
+                              placeholder="Nome social"
+                              className={errors.socialName ? "p-invalid" : ""}
                             />
                           </div>
-
                           <div>
                             <div
                               style={{
@@ -500,12 +533,28 @@ export const FormPage = () => {
 
                               <InputText
                                 {...register("email")}
-                                
                                 value={email}
                                 placeholder="Email"
                                 className={errors.email ? "p-invalid" : ""}
                               />
                             </div>
+                          </div>
+
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <label>RG: *</label>
+                            <input
+                              {...register("rg")}
+                              className="custom-file-input input-img"
+                              type="file"
+                              required
+                              accept="pdf/image"
+                              
+                            />
                           </div>
 
                           <div
