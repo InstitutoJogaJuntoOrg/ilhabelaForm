@@ -63,12 +63,12 @@ export const HomePage = () => {
     document.cookie = name;
   };
   useEffect(() => {
-    const hasVisitedHomePage = localStorage.getItem("anuncio");
+    const hasVisitedHomePage = localStorage.getItem("anuncioo");
 
     if (hasVisitedHomePage) {
       setDisplay(false);
     } else {
-      localStorage.setItem("anuncio", "true");
+      localStorage.setItem("anuncioo", "true");
     }
   }, []);
 
