@@ -66,7 +66,7 @@ export const HomePage = () => {
     const hasVisitedHomePage = localStorage.getItem("anuncio");
 
     if (hasVisitedHomePage) {
-      setDisplay(false);
+      setDisplay(true);
     } else {
       localStorage.setItem("anuncio", "true");
     }
@@ -110,9 +110,11 @@ export const HomePage = () => {
             onHide={canceldelete}
             header=""
             footer={
-              <ModalHome className="modalHomepage">
+              <a href="https://wa.me/5511945950731" target="_blank">
+                <ModalHome className="modalHomepage">
               
               </ModalHome>
+              </a>
             }
           ></Dialog>
         )}

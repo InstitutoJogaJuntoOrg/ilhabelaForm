@@ -7,6 +7,7 @@ export const ModalHome = styled.div`
   background-repeat: no-repeat;
 width: 800px;
 height: 470px;
+margin-top: -2.5rem;
 
 a {
   color: white;
