@@ -125,6 +125,9 @@ export const GlobalStyle = createGlobalStyle`
   .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
     color: black;
   }
+  #pr_id_6_content, #pr_id_2_content {
+    display: none!important;;
+  }
   .p-tabview .p-tabview-panels {
     background: transparent;
   }
