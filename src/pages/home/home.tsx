@@ -63,12 +63,12 @@ export const HomePage = () => {
     document.cookie = name;
   };
   useEffect(() => {
-    const hasVisitedHomePage = localStorage.getItem("hasVisitedHomePage");
+    const hasVisitedHomePage = localStorage.getItem("anuncioo");
 
     if (hasVisitedHomePage) {
       setDisplay(false);
     } else {
-      localStorage.setItem("hasVisitedHomePage", "true");
+      localStorage.setItem("anuncioo", "true");
     }
   }, []);
 
@@ -110,26 +110,11 @@ export const HomePage = () => {
             onHide={canceldelete}
             header=""
             footer={
-              <ModalHome className="modalHomepage">
-                <div className="cadastro">
-                  <h1>Teve problemas com seu cadastro? </h1>
-                  <p>
-                    Tente novamente ou entre em contato com nosso suporte no
-                    WhatsApp!!
-                  </p>
-                  <button>
-                    <FaSquareWhatsapp size={50} />
-                    <a href="https://wa.me/5511945950731" target="_blank">(11) 94595-0731</a>
-                  </button>
-                </div>
-
-                <div
-                className="contact"
-
-                >
-
-                </div>
+              <a href="https://wa.me/5511945950731" target="_blank">
+                <ModalHome className="modalHomepage">
+              
               </ModalHome>
+              </a>
             }
           ></Dialog>
         )}

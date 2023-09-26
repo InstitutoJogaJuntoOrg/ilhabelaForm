@@ -2,18 +2,21 @@ import styled from "styled-components";
 
 export const ModalHome = styled.div`
 
-  background-image: url('https://cdn.discordapp.com/attachments/566850308702208001/1154148681788960939/Group_178_2.png'); /* Substitua pelo caminho real da sua imagem */
+  background-image: url('https://cdn.discordapp.com/attachments/566850308702208001/1156265866074263682/Aviso_Inscricoes.png?ex=65145800&is=65130680&hm=48457d919cd2966ed528ebbe5aee83ae037ab0c493bb8ef15a7d9442e2e4615b&'); /* Substitua pelo caminho real da sua imagem */
   background-size: cover;
   background-repeat: no-repeat;
 width: 800px;
-height: 400px;
+height: 470px;
+margin-top: -2.5rem;
 
 a {
   color: white;
 }
 @media (max-width: 900px) {
   width: 270px;
-height: 200px;
+height: 170px;
+padding: 0rem;
+background-size: contain;
     }
   border-radius: 6px;
   padding: 1rem;

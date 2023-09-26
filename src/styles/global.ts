@@ -125,6 +125,7 @@ export const GlobalStyle = createGlobalStyle`
   .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
     color: black;
   }
+
   .p-tabview .p-tabview-panels {
     background: transparent;
   }
