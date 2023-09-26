@@ -66,7 +66,7 @@ export const HomePage = () => {
     const hasVisitedHomePage = localStorage.getItem("anuncio");
 
     if (hasVisitedHomePage) {
-      setDisplay(true);
+      setDisplay(false);
     } else {
       localStorage.setItem("anuncio", "true");
     }
