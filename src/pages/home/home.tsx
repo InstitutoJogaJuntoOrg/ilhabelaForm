@@ -63,12 +63,12 @@ export const HomePage = () => {
     document.cookie = name;
   };
   useEffect(() => {
-    const hasVisitedHomePage = localStorage.getItem("anuncioo");
+    const hasVisitedHomePage = localStorage.getItem("final");
 
     if (hasVisitedHomePage) {
-      setDisplay(false);
+      setDisplay(true);
     } else {
-      localStorage.setItem("anuncioo", "true");
+      localStorage.setItem("final", "true");
     }
   }, []);
 
@@ -104,16 +104,13 @@ export const HomePage = () => {
       >
         {display && (
           <Dialog
-          
             className="accontDelete"
             visible={display}
             onHide={canceldelete}
             header=""
             footer={
-              <a href="https://wa.me/5511945950731" target="_blank">
-                <ModalHome className="modalHomepage">
-              
-              </ModalHome>
+              <a href="https://www.instagram.com/ilhabela.tech/" target={"_blank"}>
+                <ModalHome className="modalHomepage"></ModalHome>
               </a>
             }
           ></Dialog>
@@ -147,14 +144,14 @@ export const HomePage = () => {
               className="subDescp"
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
             >
-              Você está a um clique do futuro
+              Fique de olho no nosso Instagram <a href="https://www.instagram.com/ilhabela.tech/" target={"_blank"}>ilhabela.tech</a> para saber quando abrirem novas vagas!
             </span>
-            <Link
+            {/* <Link
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
               to={auth ? "/inscricao" : "/login"}
             >
               <button>Inscreva-se</button>
-            </Link>
+            </Link> */}
           </ContainerTitle>
         </section>
         <ContainerCardLayout>
