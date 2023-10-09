@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ModalHome = styled.div`
 
-  background-image: url('https://cdn.discordapp.com/attachments/566850308702208001/1156977979826647140/Group_191.png?ex=6516ef36&is=65159db6&hm=41d03abcf818b6889e076000d21a067a8a58e6ab9586c64b6b0c9ab1ddbdb496&'); /* Substitua pelo caminho real da sua imagem */
+  background-image: url('https://estaticos-ijj.s3.sa-east-1.amazonaws.com/Pop+UP+Resultados.png'); /* Substitua pelo caminho real da sua imagem */
   background-size: cover;
   background-repeat: no-repeat;
 width: 800px;

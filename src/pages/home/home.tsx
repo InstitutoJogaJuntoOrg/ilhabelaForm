@@ -140,18 +140,18 @@ export const HomePage = () => {
             <h1 style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}>
               ILHABELA TECH
             </h1>
-            <span
+            {/* <span
               className="subDescp"
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
             >
               Fique de olho no nosso Instagram <a href="https://www.instagram.com/ilhabela.tech/" target={"_blank"}>ilhabela.tech</a> para saber quando abrirem novas vagas!
-            </span>
-            {/* <Link
+            </span> */}
+            <Link
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
-              to={auth ? "/inscricao" : "/login"}
+              to={"https://estaticos-ijj.s3.sa-east-1.amazonaws.com/2023+05+23+-+RELAT%C3%93RIO+DE+GEST%C3%83O+-+Referente+a+2022.pdf"}
             >
-              <button>Inscreva-se</button>
-            </Link> */}
+              <button>Clique e confira os resultados</button>
+            </Link>
           </ContainerTitle>
         </section>
         <ContainerCardLayout>
