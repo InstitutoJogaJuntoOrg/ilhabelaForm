@@ -149,6 +149,7 @@ export const HomePage = () => {
             <Link
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
               to={"https://estaticos-ijj.s3.sa-east-1.amazonaws.com/classifica-ilha-tech.pdf"}
+              target={"_blank"}
             >
               <button>Clique e confira os resultados</button>
             </Link>
