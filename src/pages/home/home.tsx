@@ -109,7 +109,7 @@ export const HomePage = () => {
             onHide={canceldelete}
             header=""
             footer={
-              <a href="https://www.instagram.com/ilhabela.tech/" target={"_blank"}>
+              <a href="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/classifica-ilha-tech.pdf" target={"_blank"}>
                 <ModalHome className="modalHomepage"></ModalHome>
               </a>
             }
@@ -148,7 +148,7 @@ export const HomePage = () => {
             </span> */}
             <Link
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
-              to={"https://estaticos-ijj.s3.sa-east-1.amazonaws.com/2023+05+23+-+RELAT%C3%93RIO+DE+GEST%C3%83O+-+Referente+a+2022.pdf"}
+              to={"https://estaticos-ijj.s3.sa-east-1.amazonaws.com/classifica-ilha-tech.pdf"}
             >
               <button>Clique e confira os resultados</button>
             </Link>
