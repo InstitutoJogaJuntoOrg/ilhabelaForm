@@ -109,7 +109,7 @@ export const HomePage = () => {
             onHide={canceldelete}
             header=""
             footer={
-              <a href="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/classifica-ilha-tech.pdf" target={"_blank"}>
+              <a href="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/lista_CR_ILHABELATECH.pdf" target={"_blank"}>
                 <ModalHome className="modalHomepage"></ModalHome>
               </a>
             }
@@ -148,10 +148,9 @@ export const HomePage = () => {
             </span> */}
             <Link
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
-              to={"https://estaticos-ijj.s3.sa-east-1.amazonaws.com/classifica-ilha-tech.pdf"}
-              target={"_blank"}
+              to={"https://estaticos-ijj.s3.sa-east-1.amazonaws.com/lista_CR_ILHABELATECH.pdf"} target={"_blank"}
             >
-              <button>Clique e confira os resultados</button>
+              <button>Confira as vagas remanescentes</button>
             </Link>
           </ContainerTitle>
         </section>
