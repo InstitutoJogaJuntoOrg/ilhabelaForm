@@ -52,6 +52,7 @@ export const RegisterPage = () => {
       username: data.name,
       password: data.password,
       email: data.email,
+      project: "ilhabela"
     };
 
     axios
