@@ -8,6 +8,7 @@ import { FaSquareWhatsapp } from "react-icons/fa6";
 
 import {
   About,
+  BannerContainer,
   ContainerCardLayout,
   ContainerHome,
   ContainerTitle,
@@ -16,6 +17,8 @@ import {
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Footer } from "../../components/footer";
+import { Modules } from "../../components/modules/modules";
+import FAQs from "./components/FAQ/faq";
 // import { Cookies } from "js-cookie"; // Importe a biblioteca
 
 const Overlay = styled.div`
@@ -66,9 +69,10 @@ export const HomePage = () => {
     const hasVisitedHomePage = localStorage.getItem("final");
 
     if (hasVisitedHomePage) {
-      setDisplay(true);
+      setDisplay(false);
     } else {
       localStorage.setItem("final", "true");
+      setDisplay(false);
     }
   }, []);
 
@@ -109,7 +113,10 @@ export const HomePage = () => {
             onHide={canceldelete}
             header=""
             footer={
-              <a href="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/lista_CR_ILHABELATECH.pdf" target={"_blank"}>
+              <a
+                href="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/lista_CR_ILHABELATECH.pdf"
+                target={"_blank"}
+              >
                 <ModalHome className="modalHomepage"></ModalHome>
               </a>
             }
@@ -148,7 +155,10 @@ export const HomePage = () => {
             </span> */}
             <Link
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
-              to={"https://estaticos-ijj.s3.sa-east-1.amazonaws.com/lista_CR_ILHABELATECH.pdf"} target={"_blank"}
+              to={
+                "https://estaticos-ijj.s3.sa-east-1.amazonaws.com/lista_CR_ILHABELATECH.pdf"
+              }
+              target={"_blank"}
             >
               <button>Confira as vagas remanescentes</button>
             </Link>
@@ -172,10 +182,29 @@ export const HomePage = () => {
             alt="img"
           />
         </ContainerCardLayout>
+
+        <BannerContainer>
+          <img src="/public/banner.svg" className="" />
+        </BannerContainer>
+
+        <div
+          style={{
+            display: "flex",
+            alignContent: "center",
+            flexDirection: "column",
+            justifyContent: "center",
+
+            alignItems: "center",
+            gap: "2rem",
+          }}
+        >
+          <Modules />
+        </div>
         <About>
           <h1>Como participar</h1>
           <StepsHome />
         </About>
+        <FAQs />
         <Footer />
       </ContainerHome>
     </div>

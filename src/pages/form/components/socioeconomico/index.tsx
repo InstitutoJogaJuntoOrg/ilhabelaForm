@@ -19,6 +19,7 @@ import { family } from "../options/family";
 import { gender } from "../options/gender";
 import { guildance } from "../options/guidance";
 import { scholl } from "../options/scholl";
+import { schollPublic } from "../options/schollPublic";
 
 export const SocioEconomico = ({
   setTabEnabled,
@@ -37,6 +38,7 @@ export const SocioEconomico = ({
   const [selectedscholl, setSelectedscholl] = useState<City | null>(null);
   const [selectedgender, setSelectedgender] = useState<City | null>(null);
   const [selectedBenefits, setSelectedBenefits] = useState<City | null>(null);
+  const [selectedSchollPublic, setselectedSchollPublic] = useState<City | null>(null);
   const [selectedDeficiency, SetSelectedDeficiency] = useState<City | null>(
     null
   );
@@ -101,7 +103,7 @@ export const SocioEconomico = ({
       formData.append("children", data.children);
       formData.append("education_level", data.schooling);
       formData.append("benefit", data.benefit);
-
+      formData.append("public_school", data.schollPublic);
       formData.append("income", salario.toString());
       formData.append("household_count", data.family.name);
       formData.append("employment_status", data.employment_status);
@@ -443,6 +445,37 @@ export const SocioEconomico = ({
               placeholder="Selecione"
               className={
                 errors.benefit
+                  ? "p-invalid w-full md:w-14rem"
+                  : "w-full md:w-14rem"
+              }
+              showClear
+            />
+          </div>
+
+          
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: ".0rem",
+            }}
+            className="card flex justify-content-center"
+          >
+
+
+           <label>É aluno de escola pública? *</label>
+            
+            <Dropdown
+              value={selectedSchollPublic}
+              options={schollPublic}
+              optionLabel="name"
+              onChange={(e) => {
+                setselectedSchollPublic(e.value);
+                setValue("schollPublic", e.value);
+              }}
+              placeholder="Selecione"
+              className={
+                errors.schollPublic
                   ? "p-invalid w-full md:w-14rem"
                   : "w-full md:w-14rem"
               }
