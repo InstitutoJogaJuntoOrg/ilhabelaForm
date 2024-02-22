@@ -191,6 +191,14 @@ export const ContainerTitle = styled.div`
     }
   }
 `;
+export const BannerContainer = styled.div`
+margin-top: 200px;
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Garante que a imagem não tenha espaço extra na parte inferior */
+  }
+`;
 export const About = styled.div`
   margin-top: 10rem;
   text-align: center;
