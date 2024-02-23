@@ -184,7 +184,7 @@ export const OpacityOverlay = styled.div`
     position: absolute;
     top: 85%;
     left: 10%;
-    font-size: 40px;
+    font-size: 34px;
     font-style: normal;
     font-weight: 800;
     color: white;

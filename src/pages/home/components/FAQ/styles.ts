@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
 export const FAQContainer = styled.div`
-
   .title {
     font-size: 3rem;
     color: #588b46;
   }
   .wrapper {
     max-width: 100rem;
+  }
+  .respQuestion {
+    max-width: 49rem;
   }
   margin: 20px;
   display: flex;
@@ -23,7 +25,6 @@ export const FAQContainer = styled.div`
 
 export const ContainerQuestions = styled.div`
   width: 100%;
-
   display: flex;
   justify-content: center;
   align-items: start;

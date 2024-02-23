@@ -12,7 +12,7 @@ export const Modules = ({}) => {
             </li>
             <li>
               <span className="circle">2</span>
-              Gestão de Python
+              Gestão de projetos
             </li>
             <li>
               <span className="circle">3</span>
@@ -25,18 +25,18 @@ export const Modules = ({}) => {
         </div>
 
         <div className="secondCard">
-          <h1>FORMAÇÃO BÁSICA</h1>
+          <h1>FORMAÇÃO AVANÇADA</h1>
           <ul>
             <li>
-              <span className="circle">4</span> Autoconhecimento
+              <span className="circle">4</span> Algorítimos
             </li>
             <li>
               <span className="circle">5</span>
-              Gestão de Python
+              Python
             </li>
             <li>
               <span className="circle">6</span>
-              Testes Manuais
+              Automação de testes
             </li>
           </ul>
           <footer>
