@@ -46,7 +46,7 @@ export const Header = () => {
       <nav>
         <Link to={"/"}>
           <img
-            src="https://cdn.discordapp.com/attachments/566850308702208001/1146230197813788702/Vector_1.png"
+            src="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/nav_logo_ilhabela.png"
             alt="ilhabela prefeitura"
           />
         </Link>
