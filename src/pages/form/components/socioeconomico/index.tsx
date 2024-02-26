@@ -78,7 +78,7 @@ export const SocioEconomico = ({
     });
   }
 
-  const apiUrl = "https://back.ilhabelatech.com/socioeconomics/";
+  const apiUrl = "https://api.jogajuntoinstituto.org/socioeconomics/";
 
   async function sendSocioEconomicInfo(data: SocioeconomicoSchemaType) {
     localStorage.setItem("socioeconomicForm", "true");
@@ -142,7 +142,7 @@ export const SocioEconomico = ({
     const checkFormSubmission = async () => {
       try {
         const response = await axios.get(
-          "https://back.ilhabelatech.com/socioeconomics/"
+          "https://api.jogajuntoinstituto.org/socioeconomics/"
         );
         localStorage.setItem("token", response.data.access);
         if (response.status === 200 || response.status === 201) {

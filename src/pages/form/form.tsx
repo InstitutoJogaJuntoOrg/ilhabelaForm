@@ -168,7 +168,7 @@ export const FormPage = () => {
   };
 
 
-  const apiUrl = "https://back.ilhabelatech.com/personalinfo/";
+  const apiUrl = "https://api.jogajuntoinstituto.org/personalinfo/";
   async function sendPersonalInfo(data: FormSchemaType) {
     console.log("Enviando dados:", data);
     localStorage.setItem("personalForm", "true");

@@ -56,7 +56,7 @@ export const RegisterPage = () => {
     };
 
     axios
-      .post("https://back.ilhabelatech.com/users/", requestData)
+      .post("https://api.jogajuntoinstituto.org/users/", requestData)
       .then((response) => {
         notifySuccess();
         setTimeout(() => {

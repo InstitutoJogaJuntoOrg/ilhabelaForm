@@ -42,7 +42,7 @@ export const PasswordReset = () => {
     };
     console.log(errors);
     axios
-      .post("https://back.ilhabelatech.com/password_reset/", requestData)
+      .post("https://api.jogajuntoinstituto.org/password_reset/", requestData)
       .then((response) => {
         notifySuccess();
         setTimeout(() => {
