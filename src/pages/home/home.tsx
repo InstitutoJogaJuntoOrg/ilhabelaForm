@@ -126,7 +126,12 @@ export const HomePage = () => {
       <ContainerHome>
         <ImageContainer>
           <VideoBackground>
-            <Video src="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/JogaJunto_Ilhabela.mp4" autoPlay muted loop />
+            <Video
+              src="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/JogaJunto_Ilhabela.mp4"
+              autoPlay
+              muted
+              loop
+            />
           </VideoBackground>
           <Overlay
             onMouseOver={() => setShowText(true)}
@@ -184,7 +189,9 @@ export const HomePage = () => {
         </ContainerCardLayout>
 
         <BannerContainer>
-          <img src="/public/banner.svg" className="" />
+          <img src="/banner.svg" style={{
+            display: 'block',
+          }} alt="icon" />
         </BannerContainer>
 
         <div

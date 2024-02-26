@@ -4,7 +4,7 @@ export const cardTwo = [
       Fases: [
         {
           Nome: "Escola",
-          Módulos: ["QA Básico", "QA Automação"],
+          Módulos: ["QA Básico", "QA Avançado"],
           Duração: "148 horas",
           Conteúdo: "Teóricos e autoinstrucionais",
           Temas: [

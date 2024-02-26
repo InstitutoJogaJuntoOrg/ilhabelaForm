@@ -51,7 +51,7 @@ export const Modules = ({}) => {
      }}>
      <FormationInfo>
         <div className="image">
-          <img src="/public/certificado.svg" alt="" />
+          <img src="/certificado.svg" alt="" />
         </div>
         <div className="content">
           <h2>+ de 140 horas de formação</h2>
