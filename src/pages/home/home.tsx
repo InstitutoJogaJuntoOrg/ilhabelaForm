@@ -170,14 +170,14 @@ export const HomePage = () => {
             É um programa da Prefeitura de Ilhabela em parceria com o que visa capacitar e incluir novos profissionais no mercado tecnológico por meio do conhecimento técnico de testador de Qualidade de Sofware (Q.A)`}
             className="secondImg"
             titleCard="O que é o Ilhabela tech:"
-            image="https://cdn.discordapp.com/attachments/566850308702208001/1146214276537786438/Group.png"
+            image="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/card_ilhabela_bannerlogo.png"
             key={2}
             alt="img"
           />
           <CardTwo
             description=""
             titleCard="O programa"
-            image="https://cdn.discordapp.com/attachments/566850308702208001/1146220725309546546/Rectangle_28.png"
+            image="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/card_ilhabela_IETEC.png"
             key={1}
             alt="img"
           />

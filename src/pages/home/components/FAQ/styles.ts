@@ -33,7 +33,7 @@ export const ContainerQuestions = styled.div`
   .openClass {
     cursor: pointer;
     background-color: #588b46;
-    padding: 10px;
+    padding: 2em;
     width: 50rem;
     margin-top: 20px;
     border-radius: 5px;
