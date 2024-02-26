@@ -13,22 +13,20 @@ export const HeaderContainer = styled.header`
 
     li {
       z-index: 10;
-  padding: 0.5rem 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-  font-weight: 700;
-  text-decoration: none;
-  color: #54993a;
+      padding: 0.5rem 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      font-weight: 700;
+      text-decoration: none;
+      color: #54993a;
 
- 
-
-  &.active {
-    color: white;
-    background-color: #54993a;
-    border-radius: 60px;
-  }
+      &.active {
+        color: white;
+        background-color: #54993a;
+        border-radius: 60px;
+      }
     }
   }
 
@@ -49,7 +47,7 @@ export const HeaderContainer = styled.header`
     top: 1rem;
     z-index: 10;
     img {
-        width:70%;
+      width: 70%;
     }
     ul {
       display: none;
