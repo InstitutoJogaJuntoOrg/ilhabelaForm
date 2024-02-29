@@ -108,7 +108,7 @@ const FAQ: React.FC<FAQProps> = ({ faqs }: any) => {
                             | undefined,
                           i: Key | null | undefined
                         ) => (
-                          <li key={i}>{item}</li>
+                          <li key={i} className="list">{item}</li>
                         )
                       )}
                     </ul>
@@ -131,9 +131,9 @@ const FAQ: React.FC<FAQProps> = ({ faqs }: any) => {
 const FAQs: React.FC = () => {
   const faqs: FAQItem[] = [
     {
-      question: "O que é o Ilhabela tech?",
+      question: "O que é o Ilhabela tech",
       answer:
-        "É um programa da Prefeitura de Ilhabela em parceria com o <a target='_blank' href='https://www.jogajuntoinstituto.org/'>Instituto JogaJunto</a> que visa capacitar e incluir novos profissionais no mercado tecnológico por meio do conhecimento técnico de testador de Qualidade de Sofware (Q.A)",
+        "• É um programa da Prefeitura de Ilhabela em parceria com o <a target='_blank' href='https://www.jogajuntoinstituto.org/'>Instituto JogaJunto</a> que visa capacitar e incluir novos profissionais no mercado tecnológico por meio do conhecimento técnico de testador de Qualidade de Sofware (Q.A)",
     },
     {
       question: "Vagas:",

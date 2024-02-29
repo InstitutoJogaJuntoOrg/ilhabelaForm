@@ -11,6 +11,7 @@ export const FAQContainer = styled.div`
   .respQuestion {
     max-width: 49rem;
   }
+
   margin: 20px;
   display: flex;
   justify-content: center;

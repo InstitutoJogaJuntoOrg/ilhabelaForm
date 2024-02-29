@@ -134,7 +134,7 @@ export const ContainerHome = styled.div`
 `;
 export const ContainerCardLayout = styled.div`
   display: flex;
-  margin-top: -27rem;
+  margin-top: -22rem;
   gap: 3rem;
   justify-content: center;
   width: 100%;
@@ -145,13 +145,13 @@ export const ContainerCardLayout = styled.div`
     margin-top: -10rem;
   }
   @media (max-width: 1600px) {
-    margin-top: -2rem;
+    margin-top: -10rem;
   }
   @media (max-width: 1300px) {
-    margin-top: 5rem;
+    margin-top: -10rem;
   }
   @media (max-width: 1100px) {
-    margin-top: 5rem;
+    margin-top: -5rem;
     flex-direction: column;
     align-items: center;
   }
@@ -192,7 +192,7 @@ export const ContainerTitle = styled.div`
   }
 `;
 export const BannerContainer = styled.div`
-margin-top: 200px;
+margin-top: 90px;
   img {
     max-width: 100%;
     height: auto;

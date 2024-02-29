@@ -202,4 +202,5 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 13px;
   }
   }
+  
 `;

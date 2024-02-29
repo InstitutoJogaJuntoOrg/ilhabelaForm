@@ -1,7 +1,12 @@
 import styled from "styled-components";
 
 export const ModuleContainer = styled.div`
-  margin: 20px;
+display: flex;
+gap: 2rem;
+     @media only screen and (max-width: 800px) {
+     display: flex;
+     flex-direction: column;
+    }
   div {
     color: #297531;
     background-color: #d9d9d9;
@@ -12,6 +17,7 @@ export const ModuleContainer = styled.div`
     gap: 2rem;
     justify-content: center;
     align-items: center;
+    width: 25rem;
   }
   h1 {
     font-weight: 800;
@@ -26,6 +32,7 @@ export const ModuleContainer = styled.div`
 
   .secondCard {
     margin-top: 50px;
+    max-width: 400px;
   }
   .circle {
     border-radius: 100%;
@@ -66,10 +73,10 @@ export const ModuleContainer = styled.div`
   }
 `;
 export const FormationInfo = styled.div`
-  max-width: 30rem;
+  max-width: 35rem;
   margin: 20px;
   margin-top: 4rem;
-  font-size: 1rem;
+  font-size: 1.2rem;
   border-radius: 8px;
   padding: 2rem;
   background-color: #9fdb89;
@@ -86,7 +93,7 @@ export const FormationInfo = styled.div`
     gap: 1rem;
 
     p {
-      font-size: 12px;
+      font-size: 16px;
     }
   }
 `;

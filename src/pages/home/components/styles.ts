@@ -73,7 +73,7 @@ export const StepsContainer = styled.div`
 
 export const CardsContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
@@ -81,21 +81,24 @@ export const CardsContainer = styled.div`
   justify-items: center;
   align-items: center;
 
-  @media (max-width: 775px) {
+  @media (max-width: 875px) {
+    grid-template-columns: repeat(1, 3fr);
+  }
+    @media (max-width: 975px) {
     grid-template-columns: repeat(1, 3fr);
   }
   div {
     padding: 2rem;
     margin-top: 22px;
     background-color: #54993a;
-    max-width: 20rem;
+    max-width: 15rem;
     text-align: left;
     border-radius: 22px;
     display: flex;
     align-items: center;
     p {
       color: white;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       @media (max-width: 1000px) {
         font-size: 1.2rem;
         padding: 1rem 1rem;
