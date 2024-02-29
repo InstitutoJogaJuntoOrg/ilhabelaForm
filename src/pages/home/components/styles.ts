@@ -146,6 +146,7 @@ export const OpacityOverlay = styled.div`
   transition: 1s linear;
   .tiitlecard {
     font-size: 1.2rem;
+    font-weight: 400;
     @media (max-width: 900px) {
       font-size: 0.7rem;
     }
@@ -186,7 +187,7 @@ export const OpacityOverlay = styled.div`
   }
   .titleOpacity {
     position: absolute;
-    top: 85%;
+    top: 80%;
     left: 10%;
     font-size: 34px;
     font-style: normal;
