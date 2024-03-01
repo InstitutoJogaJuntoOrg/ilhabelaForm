@@ -15,7 +15,7 @@ export const ContainerCard = styled.div`
 
   @media (max-width: 900px) {
     width: 320px;
-    height: 400px;
+    height: 300px;
     flex-direction: column;
     align-items: center;
   }
@@ -136,6 +136,7 @@ export const OpacityOverlay = styled.div`
   );
   .titletwo {
     @media (max-width: 900px) {
+
       font-size: 0.7rem!important;
     }
   }
@@ -197,9 +198,9 @@ export const OpacityOverlay = styled.div`
 
 
     @media (max-width: 900px) {
-      top: 80%;
-      left: 10%;
-      font-size: 30px;
+      top:76%;
+      left: 5%;
+      font-size: 24px;
     }
   }
   p {

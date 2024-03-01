@@ -40,6 +40,9 @@ export const RegisterPage = () => {
     if (errors.checkedtWO) {
       toast.error("Por favor aceite os termos de política de privacidade de dados")
     }
+    if (errors.checkedTree) {
+      toast.error("Por favor concorde com 'Eu entendo que é um curso de tecnologia' ")
+    }
     if (errors.name) {
       toast.error(
         "Por favor informe um nome válido"
@@ -209,8 +212,36 @@ export const RegisterPage = () => {
               </p>
             </label>
             
+            
           </div>
 
+          <div
+            className="card flex justify-content-center"
+            style={{
+              display: "flex",
+              width: "100%",
+              marginTop: "1rem",
+     
+              color: "white",
+            }}
+          >
+            <input
+              id="myCheckboxtTree"
+              style={{
+                width: "24px",
+                marginRight: "10px",
+              }}
+              type="checkbox"
+              {...register("checkedTree")}
+            />
+            <label htmlFor="myCheckboxtTree">
+              <p>
+              Eu entendo que é um curso de tecnologia
+              </p>
+            </label>
+            
+            
+          </div>
 
           <button
             style={{

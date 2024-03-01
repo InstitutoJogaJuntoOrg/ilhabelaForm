@@ -14,7 +14,10 @@ export const RegisterSchema = z
       message: "O campo deve ser marcado",
       path: ["checked"],
     }),
-
+    checkedTree: z.boolean().refine(value => value === true, {
+      message: "O campo deve ser marcado",
+      path: ["checkedTree"],
+    }),
     checkedtWO: z.boolean().refine(value => value === true, {
       message: "O campo deve ser marcado",
       path: ["checkedtWO"],

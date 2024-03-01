@@ -2,10 +2,13 @@ import styled from "styled-components";
 
 export const ModuleContainer = styled.div`
 display: flex;
+
 gap: 2rem;
      @media only screen and (max-width: 800px) {
      display: flex;
      flex-direction: column;
+     justify-content: center;
+     align-items: center;
     }
   div {
     color: #297531;
@@ -18,6 +21,9 @@ gap: 2rem;
     justify-content: center;
     align-items: center;
     width: 25rem;
+    @media only screen and (max-width: 800px) {
+      width: 22rem;
+    }
   }
   h1 {
     font-weight: 800;
@@ -25,6 +31,9 @@ gap: 2rem;
   }
   footer {
     font-size: 1.5rem;
+    @media only screen and (max-width: 800px) {
+      font-size: 1.2rem;
+    }
   }
   span {
     font-weight: 900;

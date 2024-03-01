@@ -2,10 +2,10 @@ import { FormationInfo, ModuleContainer } from "./styles";
 
 export const Modules = ({}) => {
   return (
-    <>
+    <div>
       <ModuleContainer>
        
-        <div className="">
+        <div>
           <h1>FORMAÇÃO BÁSICA</h1>
           <ul>
             <li>
@@ -67,6 +67,6 @@ export const Modules = ({}) => {
         </div>
       </FormationInfo>
      </div>
-    </>
+    </div>
   );
 };
