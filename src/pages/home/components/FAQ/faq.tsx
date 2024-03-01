@@ -196,6 +196,30 @@ const FAQs: React.FC = () => {
         "Sim. Todos os candidatos devem passar por todas as etapas do processo de seleção. Caso alguma etapa não seja concluída, haverá desclassificação.",
       ],
     },
+    {
+      question: "Tenho menos que 17 anos, posso fazer o curso?",
+      answer: [
+        "A idade mínima para fazer o curso é de 15 anos completos.",
+      ],
+    },
+    {
+      question: "Vou fazer 15 anos durante o curso, posso fazer minha inscrição?",
+      answer: [
+        "Não. No momento da sua inscrição, você já precisa ter 15 anos.",
+      ],
+    },
+    {
+      question: "Posso fazer o curso mesmo tendo mais de 24 anos?",
+      answer: [
+        "Sim, ainda que você tenha mais que 24 anos, você pode fazer o curso normalmente.",
+      ],
+    },
+    {
+      question: "Posso fazer o curso mesmo tendo estudado em escola particular?",
+      answer: [
+        "Sim, você pode fazer o curso normalmente.",
+      ],
+    },
   ];
 
   return (
