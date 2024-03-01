@@ -440,7 +440,7 @@ export const FormPage = () => {
                               {...register("city")}
                               placeholder="Cidade"
                               className={errors.city ? "p-invalid" : ""}
-                              defaultValue={"Ilhabela"}
+                          
                             />
                           </div>
                         </div>

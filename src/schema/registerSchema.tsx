@@ -19,6 +19,10 @@ export const RegisterSchema = z
       message: "O campo deve ser marcado",
       path: ["checkedtWO"],
     }),
+    checkedTree: z.boolean().refine(value => value === true, {
+      message: "O campo deve ser marcado",
+      path: ["checkedTree"],
+    }),
     confirmPassword: z.string().min(3),
     name: z.string({
       errorMap: () => {

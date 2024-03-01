@@ -8,7 +8,7 @@ export const Footer = () => {
         <div>
           <Link to={"/"}>
             <img
-              src="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/rodape_logo_ilhabela.png"
+              src="https://media.licdn.com/dms/image/C560BAQHqBelcvq8ocw/company-logo_200_200/0/1656708777466?e=2147483647&v=beta&t=0_pf68Bkigp0lmy3Feb6uVPEhkDIgrxDKUP2aSq36-8"
               alt="ilhabela prefeitura"
             />
           </Link>
@@ -32,7 +32,7 @@ export const Footer = () => {
           </div>
           <div>
             
-            <p>IETEC</p>
+            <p>Instituto JogaJunto</p>
             <a href="tel:1238956402">Telefone: (12) 3895-6402</a>
             <p>
               Endereço: Av. Profº Malaquias de O. Freitas, 448 - Barra Velha,
@@ -42,7 +42,7 @@ export const Footer = () => {
         </div>
        <a style={{
             textDecoration: 'underline',
-            color: '#f8fcf7'
+            color: '#000'
            }} href="https://wa.me/5511945950731" target={"_blank"}>Ajuda</a>
         <div>
           

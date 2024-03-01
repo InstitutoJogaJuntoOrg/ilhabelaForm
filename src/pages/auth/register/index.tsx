@@ -33,17 +33,18 @@ export const RegisterPage = () => {
 
   function ErrosSending() {
     if (errors.checked) {
-      toast.error(
-        "Por favor aceite os termos de uso do site"
-      );
+      toast.error("Por favor aceite os termos de uso do site");
+    }
+    if (errors.checkedTree) {
+      toast.error("Por favor concorde com 'Eu entendo que é um curso de tecnologia' ")
     }
     if (errors.checkedtWO) {
-      toast.error("Por favor aceite os termos de política de privacidade de dados")
+      toast.error(
+        "Por favor aceite os termos de política de privacidade de dados"
+      );
     }
     if (errors.name) {
-      toast.error(
-        "Por favor informe um nome válido"
-      );
+      toast.error("Por favor informe um nome válido");
     }
   }
 
@@ -52,7 +53,7 @@ export const RegisterPage = () => {
       username: data.name,
       password: data.password,
       email: data.email,
-      project: "ilhabela"
+      project: "comunidade",
     };
 
     axios
@@ -158,7 +159,7 @@ export const RegisterPage = () => {
               display: "flex",
               width: "100%",
               marginTop: "1rem",
-         
+
               color: "white",
             }}
           >
@@ -173,15 +174,23 @@ export const RegisterPage = () => {
             />
             <label htmlFor="myCheckbox">
               <p>
-              Estou ciente dos
-              <span>
-            <Link to="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/TERMOS+DE+USO+SITE+ILHABELA+TECH+II.pdf" target='_blank'> termos de uso do site </Link>.
-            </span>
+                Estou ciente dos
+                <span>
+                  <Link
+                    style={{
+                      color: "white",
+                    }}
+                    to="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/TERMOS+DE+USO+SITE+ILHABELA+TECH+II.pdf"
+                    target="_blank"
+                  >
+                    {" "}
+                    termos de uso do site{" "}
+                  </Link>
+                  .
+                </span>
               </p>
             </label>
-            
           </div>
-
 
           <div
             className="card flex justify-content-center"
@@ -189,7 +198,7 @@ export const RegisterPage = () => {
               display: "flex",
               width: "100%",
               marginTop: "1rem",
-     
+
               color: "white",
             }}
           >
@@ -204,14 +213,49 @@ export const RegisterPage = () => {
             />
             <label htmlFor="myCheckboxtWO">
               <p>
-              Estou ciente da <span>
-               <Link to="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/Aviso+de+Privacidade+IlhaBela+Tech+IV.pdf" target='_blank'> política de privacidade de dados</Link> </span> 
+                Estou ciente da{" "}
+                <span>
+                  <Link
+                    style={{
+                      color: "white",
+                    }}
+                    to="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/Aviso+de+Privacidade+IlhaBela+Tech+IV.pdf"
+                    target="_blank"
+                  >
+                    {" "}
+                    política de privacidade de dados
+                  </Link>{" "}
+                </span>
+              </p>
+            </label>
+          </div>
+          <div
+            className="card flex justify-content-center"
+            style={{
+              display: "flex",
+              width: "100%",
+              marginTop: "1rem",
+     
+              color: "white",
+            }}
+          >
+            <input
+              id="myCheckboxtTree"
+              style={{
+                width: "24px",
+                marginRight: "10px",
+              }}
+              type="checkbox"
+              {...register("checkedTree")}
+            />
+            <label htmlFor="myCheckboxtTree">
+              <p>
+              Eu entendo que é um curso de tecnologia
               </p>
             </label>
             
+            
           </div>
-
-
           <button
             style={{
               fontSize: "16px",
@@ -228,7 +272,6 @@ export const RegisterPage = () => {
       </Container>
 
       <Footer />
-      
     </>
   );
 };

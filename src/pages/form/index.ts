@@ -24,8 +24,8 @@ background-size: cover;
     margin-top: 10rem;
     padding: 5rem;
     border-radius: 6px;
-    background-color: #54993a;
-    color: white;
+    background-color: #FCD700;
+    color: #000;
     font-weight: 600;
     p {
       font-weight: 400;
@@ -40,7 +40,7 @@ background-size: cover;
     font-style: normal;
     font-weight: 900;
     line-height: normal;
-    color: #72b65a;
+    color: #FCD700;
     font-size: 46px;
     @media (max-width: 800px) {
       font-size: 36px;
@@ -81,7 +81,7 @@ background-size: cover;
   
     width: 51rem;
     padding: 2rem 4rem 1rem 4rem;
-    background-color: #72b65a;
+    background-color: #001219;
     div {
       width: 100%;
       input {
@@ -90,10 +90,10 @@ background-size: cover;
     }
     button {
       cursor: pointer;
-      color: white;
+      color: #001219;
       font-size: 1.5rem;
       margin-top: 2rem;
-      background-color: #54993a;
+      background-color: #fcd700;
 
       border: none;
       padding: 1rem;
@@ -105,7 +105,7 @@ background-size: cover;
       margin-top: 2rem;
       margin-bottom: 2rem;
       font-weight: 600;
-      color: white;
+      color: #FCD700;
     }
   }
 `;

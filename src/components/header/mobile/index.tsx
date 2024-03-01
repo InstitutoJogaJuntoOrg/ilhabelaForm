@@ -20,9 +20,7 @@ const MobileMenu = ({ closeMenu }: any) => {
 
   return (
     <MobileMenuContainer>
-      <StyledNavLink to={"/"} onClick={closeMenu}>
-        Home
-      </StyledNavLink>
+
       <div>
 
          {!user && <StyledNavLink to="/login" onClick={closeMenu}>Fazer login</StyledNavLink>} 

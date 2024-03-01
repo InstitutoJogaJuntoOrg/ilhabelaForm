@@ -862,7 +862,7 @@ flex-direction: column;
     width: 100%;
   }
   .p-inputtext {
-    color: white;
+    color: black;
   }
   .hLabel {
     height: 2rem;
@@ -942,7 +942,7 @@ flex-direction: column;
     background-color: transparent;
   }
   .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
-    background-color: #54993a!important;
+    background-color: #FCD700!important;
     color: white;
   }
   #pr_id_1_header_0:hover {
@@ -963,7 +963,7 @@ flex-direction: column;
     color: white;
   }
   .p-tabview .p-tabview-nav .p-tabview-ink-bar {
-    background-color: #54993a!important;
+    background-color: #FCD700!important;
   }
   .p-tabview .p-tabview-nav li .p-tabview-nav-link {
     padding: 1rem 3rem;

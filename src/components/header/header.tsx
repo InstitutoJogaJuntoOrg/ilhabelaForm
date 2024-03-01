@@ -46,12 +46,16 @@ export const Header = () => {
       <nav>
         <Link to={"/"}>
           <img
-            src="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/nav_logo_ilhabela.png"
-            alt="ilhabela prefeitura"
+            style={{
+              width: '50px',
+              borderRadius: '6px'
+            }}
+            src="https://media.licdn.com/dms/image/C560BAQHqBelcvq8ocw/company-logo_200_200/0/1656708777466?e=2147483647&v=beta&t=0_pf68Bkigp0lmy3Feb6uVPEhkDIgrxDKUP2aSq36-8"
+            alt="Instituto Joga Junto"
           />
         </Link>
         <ul className={windowWidth <= 1000 && showLinks ? "hidden" : ""}>
-          <StyledNavLink to={"/"}>Home</StyledNavLink>
+ 
          {!emailFromLocalStorage && (
             <StyledNavLink to="/login">Fazer login</StyledNavLink>
           )} 
@@ -65,7 +69,7 @@ export const Header = () => {
           )}
             <li><a style={{
             textDecoration: 'none',
-            color: '#54993a'
+            color: '#FCD700'
            }} href="https://wa.me/5511945950731" target={"_blank"}>Ajuda</a></li>
         </ul>
         <div className="hamburger-icon" onClick={toggleLinks}>

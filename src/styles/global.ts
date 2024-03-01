@@ -36,7 +36,7 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
   }
   .p-inputtext {
-    color: white;
+    color: black;
   }
   .hLabel {
     height: 2rem;
@@ -70,7 +70,7 @@ export const GlobalStyle = createGlobalStyle`
 
   }
   .icon {
-    fill: white;
+    fill: black;
     font-size: 1.2rem;
     cursor: pointer;
     position: absolute;
@@ -133,8 +133,8 @@ export const GlobalStyle = createGlobalStyle`
     background-color: transparent;
   }
   .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
-    background-color: #54993a!important;
-    color: white;
+    background-color: #FCD700!important;
+    color: black;
   }
   #pr_id_1_header_0:hover {
     color: white;
@@ -154,7 +154,7 @@ export const GlobalStyle = createGlobalStyle`
     color: white;
   }
   .p-tabview .p-tabview-nav .p-tabview-ink-bar {
-    background-color: #54993a!important;
+    background-color: #FCD700!important;
   }
   .p-tabview .p-tabview-nav li .p-tabview-nav-link {
     padding: 1rem 3rem;

@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import { DefaultLayout } from "../layout/default";
-import { HomePage } from "../pages/home";
 import { PrivateRoute } from "./private";
 import { LoginPage } from "../pages/auth/login";
 import { NewPassword } from "../pages/auth/password/confirm";
@@ -15,13 +14,13 @@ export function Router() {
     <Routes>
       <Route path="/" element={<DefaultLayout />}>
         <Route path="/inscricao" element={<PrivateRoute> <FormPage /> </PrivateRoute>} />
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/auth" element={<LoginPage  />} />
         <Route path="/reset" element={<PasswordReset  />} />
         <Route path="/newpassword" element={<NewPassword  />} />
-        <Route path="/portal-do-titular" element={<HomePage />} />
+        <Route path="/portal-do-titular" element={<LoginPage />} />
 
       </Route>
     </Routes>

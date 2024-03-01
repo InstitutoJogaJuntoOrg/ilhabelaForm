@@ -23,16 +23,18 @@ export const LoginPage = () => {
         "https://api.jogajuntoinstituto.org/users/login/",
         { email: data.email, password: data.password }
       );
-  
+
       console.log(data.email);
       if (response.status === 200) {
-        if (response.data.project != "ilhabela") {
-          alert('Sua conta não está configurada corretamente. Por favor, contate o suporte: 5511945950731');
+        if (response.data.project != "comunidade") {
+          alert(
+            "Sua conta não está configurada corretamente. Por favor, contate o suporte: 5511945950731"
+          );
           localStorage.clear(); // Remova todos os itens do localStorage
           window.location.reload();
           return;
         }
-  
+
         localStorage.setItem("email", data.email); // Use data.email em vez de email
         console.log("logado");
         setData(response.data);
@@ -40,10 +42,13 @@ export const LoginPage = () => {
         localStorage.setItem("refresh", response.data.refresh);
         localStorage.setItem("username", response.data.user);
         localStorage.setItem("personalForm", response.data.personal_form);
-        localStorage.setItem("socioeconomicForm", response.data.socioeconomic_form);
+        localStorage.setItem(
+          "socioeconomicForm",
+          response.data.socioeconomic_form
+        );
         localStorage.setItem("quizForm", response.data.quiz_form);
         toast.success("Autenticado com sucesso!");
-  
+
         setTimeout(() => {
           navigate("/inscricao");
           window.location.reload();
@@ -55,7 +60,7 @@ export const LoginPage = () => {
           console.log("Erro de autenticação:", error.response.data.error);
           console.log(data.email);
           console.log(data.password);
-  
+
           toast.error(error.response.data.error);
         } else {
           console.error("Erro ao fazer login:", error);
@@ -63,8 +68,6 @@ export const LoginPage = () => {
       }
     }
   });
-  
- 
 
   console.log(data);
 

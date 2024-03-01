@@ -2,8 +2,8 @@ import { styled } from "styled-components";
 
 
 export const Container = styled.footer`
-    background-color: #54993a;
-    color: white;
+    background-color: #FCD700;
+    color: #000;
     display: flex;
     width: 100%;
     justify-content: center;
@@ -34,7 +34,7 @@ export const Container = styled.footer`
         }
         a {
             text-decoration: none;
-            color: white;
+            color: #000;
         }
         div {
             display:flex ;
