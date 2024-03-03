@@ -167,13 +167,10 @@ export const FormPage = () => {
     }
   };
 
-
   const apiUrl = "https://api.jogajuntoinstituto.org/personalinfo/";
   async function sendPersonalInfo(data: FormSchemaType) {
     console.log("Enviando dados:", data);
     localStorage.setItem("personalForm", "true");
-
-
 
     const cleanedPhone = data.phone.replace(/[\s\.-]/g, "");
 
@@ -245,7 +242,17 @@ export const FormPage = () => {
   const quizForm = localStorage.getItem("quizForm");
 
   return (
-    <>
+   <div>
+     <div className="containerAll2">
+        {/* <div className="vector" style={{
+
+        }}>
+          <img src="/Vector.png" alt="" />
+        </div> */}
+        <div className="vector2">
+          <img src="/Vector2.png" alt="" />
+        </div>
+  
       {!(
         quizForm === "true" &&
         personalForm === "true" &&
@@ -280,6 +287,7 @@ export const FormPage = () => {
                   onClick={() => setVisible(false)}
                   icon="pi pi-check"
                   label="Iniciar"
+                  className="buttonYellow"
                 />
               </div>
             </div>
@@ -317,6 +325,7 @@ export const FormPage = () => {
               <div className="card flex justify-content-center">
                 <br />
                 <Button
+                className="buttonYellow"
                   onClick={() => setVisible(false)}
                   icon="pi pi-check"
                   label="Iniciar"
@@ -324,6 +333,7 @@ export const FormPage = () => {
               </div>
             </div>
           </Dialog>
+          <span className="titleForm">Inscrição</span>
           <form onSubmit={handleSubmit(sendPersonalInfo)}>
             <div
               style={{
@@ -333,6 +343,7 @@ export const FormPage = () => {
               }}
             >
               <div>
+                
                 <div className="card">
                   <TabView
                     activeIndex={activeTab}
@@ -344,21 +355,18 @@ export const FormPage = () => {
                     >
                       <ContainerFlexInputs>
                         <div>
-                          <span
+                          {/* <span
                             style={{
                               color: "white",
                               fontSize: "12px",
                             }}
                           >
                             * Campos obrigatórios
-                          </span>
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label>Nome *</label>
+                          </span> */}
+                          <div className="inputForm">
+                            <div>
+                              <span>Nome *</span>
+                            </div>
                             <InputText
                               {...register("first_name")}
                               id="username"
@@ -369,13 +377,11 @@ export const FormPage = () => {
                               className={errors.first_name ? "p-invalid" : ""}
                             />
                           </div>
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label>Sobrenome: *</label>
+                          <br />
+                          <div className="inputForm">
+                            <div>
+                              <span>Sobrenome *</span>
+                            </div>
                             <InputText
                               {...register("last_name")}
                               id="Sobrenome"
@@ -384,14 +390,11 @@ export const FormPage = () => {
                               className={errors.last_name ? "p-invalid" : ""}
                             />
                           </div>
-                          
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label>Data de nascimento *</label>
+                          <br />
+                          <div className="inputForm">
+                            <div>
+                              <span>Data de nascimento *</span>
+                            </div>
                             <input
                               {...register("date")}
                               id="date"
@@ -402,13 +405,11 @@ export const FormPage = () => {
                               className={errors.date ? "p-invalid" : ""}
                             />
                           </div>
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label>Estado: *</label>
+                          <br />
+                          <div className="inputForm">
+                            <div>
+                              <span>Estado *</span>
+                            </div>
                             <Dropdown
                               options={states}
                               value={selectedCity}
@@ -427,33 +428,25 @@ export const FormPage = () => {
                               showClear
                             />
                           </div>
-
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label>Cidade *</label>
+                          <br />
+                          <div className="inputForm">
+                            <div>
+                              <span>Cidade *</span>
+                            </div>
                             <InputText
                               maxLength={15}
                               {...register("city")}
                               placeholder="Cidade"
                               className={errors.city ? "p-invalid" : ""}
-                          
                             />
                           </div>
                         </div>
-
+<br />
                         <div>
-
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label>Nome social:</label>
+                          <div className="inputForm">
+                            <div>
+                              <span>Nome social *</span>
+                            </div>
                             <InputText
                               {...register("socialName")}
                               id="socialName"
@@ -462,13 +455,11 @@ export const FormPage = () => {
                               className={errors.socialName ? "p-invalid" : ""}
                             />
                           </div>
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label>CPF: *</label>
+                          <br />
+                          <div className="inputForm">
+                            <div>
+                              <span>CPF *</span>
+                            </div>
                             <InputMask
                               mask="999.999.999-99"
                               {...register("cpf", { required: true })}
@@ -476,14 +467,12 @@ export const FormPage = () => {
                               className={errors.cpf ? "p-invalid" : ""}
                             />
                           </div>
+                          <br />
                           <div>
-                            <div
-                              style={{
-                                display: "flex",
-                                flexDirection: "column",
-                              }}
-                            >
-                              <label>Email: *</label>
+                            <div className="inputForm">
+                              <div>
+                                <span>Email *</span>
+                              </div>
 
                               <InputText
                                 {...register("email")}
@@ -493,15 +482,13 @@ export const FormPage = () => {
                               />
                             </div>
                           </div>
-
-
+<br />
                           <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
+                            className="inputForm"
                           >
-                            <label> Telefone (WhatsApp) *</label>
+                            <div>
+                            <span> Telefone (WhatsApp) *</span>
+                            </div>
 
                             <InputText
                               {...register("phone")}
@@ -511,14 +498,13 @@ export const FormPage = () => {
                             />
                           </div>
 
-
+<br />
                           <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
+                             className="inputForm"
                           >
-                            <label>Estado civil: *</label>
+                            <div>
+                            <span>Estado civil: *</span>
+                            </div>
 
                             <Dropdown
                               options={civilState}
@@ -606,7 +592,12 @@ export const FormPage = () => {
             </div>
           </Container>
         )}
-    
-    </>
+    </div>
+   <div style={{
+    marginTop: "0rem"
+   }}>
+   <Footer />
+   </div>
+   </div>
   );
 };

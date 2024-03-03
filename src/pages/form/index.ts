@@ -2,6 +2,31 @@ import { styled } from "styled-components";
 
 export const Container = styled.div`
   position: relative;
+  .options {
+    background-color: #191919;
+    border-radius: 16px;
+    padding: 1rem;
+    max-width: 900px;
+    width: 100%;
+  }
+  padding-bottom: 6rem;
+  .buttonYellow {
+    background-color: #fcd700!important;
+  }
+  .inputForm {
+    width: 100%;
+    padding: 1rem 1rem;
+    gap: 1rem;
+    color: white;
+    background-color: #191919;
+display: flex;
+flex-direction: column;
+align-items: start;
+input {
+  background-color: transparent;
+}
+border-radius: 16px;
+  }
   .containerRegister {
     height: 100vh;
   }
@@ -114,7 +139,7 @@ export const Container = styled.div`
 
     width: 51rem;
     padding: 1.5rem 3rem 1rem 3rem;
-    background-color: #001219;
+    background-color: #000;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -151,7 +176,7 @@ export const ContainerSteps = styled.div`
 export const ContainerFlexInputs = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 5rem;
+  gap: 2.5rem;
 
   @media only screen and (max-width: 600px) {
     display: flex;
@@ -180,7 +205,7 @@ export const ContainerButtons = styled.div`
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: #fff;
+    color: #000;
     text-align: center;
     border-radius: 26px !important;
     font-size: 16px !important;
@@ -197,7 +222,7 @@ export const ContainerButtons = styled.div`
     align-items: center;
     text-align: center;
     flex-shrink: 0;
-    color: #fff;
+    color: black;
     text-align: center;
     border-radius: 26px !important;
     font-size: 16px !important;

@@ -7,7 +7,7 @@
   --surface-f: #ffffff;
   --text-color: #212121;
   --text-color-secondary: #fafafa;
-  --primary-color: #FCD700;
+
   --primary-color-text: #ffffff;
   --font-family: Lato, Helvetica, sans-serif;
   --surface-0: #ffffff;
@@ -146,11 +146,7 @@
   --green-100: #ccf2dc;
   --green-200: #a3e7c1;
   --green-300: #7adca6;
-  --green-400: #FCD700;
-  --green-500: #FCD700;
-  --green-600: #FCD700;
-  --green-700: #FCD700;
-  --green-800: #FCD700;
+
   --green-900: #10502c;
   --yellow-50: #fefdf6;
   --yellow-100: #fcf4d6;
@@ -571,7 +567,7 @@
   }
 }
 .p-cascadeselect {
-  background: #FCD700;
+
   border: 1px solid #fff;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s,
     box-shadow 0.2s;
@@ -680,7 +676,7 @@
 }
 .p-checkbox .p-checkbox-box {
   border: 2px solid #fff;
-  background: #FCD700;
+ 
   width: 22px;
   height: 22px;
   color: #212121;
@@ -698,8 +694,7 @@
   height: 14px;
 }
 .p-checkbox .p-checkbox-box.p-highlight {
-  border-color: #FCD700;
-  background: #FCD700;
+
 }
 .p-checkbox .p-checkbox-box.p-highlight:not(.p-disabled):hover {
   border-color: #4f7d3f;
@@ -788,7 +783,8 @@
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 .p-dropdown {
-  background: #FCD700;
+background-color: black;
+color: white;
   border: 1px solid #fff;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s,
     box-shadow 0.2s;
@@ -1011,7 +1007,7 @@
   border: 1px solid #dfe7ef;
 }
 .p-editor-container .p-editor-content .ql-editor {
-  background: #FCD700;
+
   color: #212121;
   border-bottom-right-radius: 6px;
   border-bottom-left-radius: 6px;
@@ -1343,7 +1339,7 @@
   background: #f2f2f2;
 }
 .p-multiselect {
-  background: #FCD700;
+
   border: 1px solid #fff;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s,
     box-shadow 0.2s;
@@ -1538,7 +1534,7 @@
 }
 .p-radiobutton .p-radiobutton-box {
   border: 2px solid #fff;
-  background: #FCD700;
+
   width: 22px;
   height: 22px;
   color: #212121;
@@ -1625,7 +1621,7 @@
   color: #e73d3e;
 }
 .p-selectbutton .p-button {
-  background: #FCD700;
+ 
   border: 1px solid #fff;
   color: #212121;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s,
@@ -1692,7 +1688,7 @@
   height: 1.143rem;
   width: 1.143rem;
   background: #fff;
-  border: 2px solid #588b46;
+  border: 2px solid #FCD700;
   border-radius: 50%;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s,
     box-shadow 0.2s;
@@ -1710,7 +1706,7 @@
   border-color: #588b46;
 }
 .p-treeselect {
-  background: #FCD700;
+
   border: 1px solid #fff;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s,
     box-shadow 0.2s;
@@ -1834,7 +1830,7 @@
   background-color: #fff;
 }
 .p-togglebutton.p-button {
-  background: #FCD700;
+
   border: 1px solid #fff;
   color: #212121;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s,
@@ -3967,7 +3963,7 @@
 .fc.fc-unthemed .fc-toolbar .fc-button.fc-dayGridMonth-button,
 .fc.fc-unthemed .fc-toolbar .fc-button.fc-timeGridWeek-button,
 .fc.fc-unthemed .fc-toolbar .fc-button.fc-timeGridDay-button {
-  background: #FCD700;
+
   border: 1px solid #fff;
   color: #212121;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s,
@@ -4175,7 +4171,7 @@
 .fc.fc-theme-standard .fc-toolbar .fc-button.fc-dayGridMonth-button,
 .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridWeek-button,
 .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridDay-button {
-  background: #FCD700;
+
   border: 1px solid #fff;
   color: #212121;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s,
@@ -5112,13 +5108,14 @@
   li:not(.p-highlight):not(.p-disabled):hover
   .p-tabview-nav-link {
   background: #fff;
-  border-color: #c6ccd7;
-  color: #fafafa;
+  border-color: #FCD700;
+  color: #FCD700;
 }
+
 .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
   background: #fff;
-  border-color: #588b46;
-  color: #588b46;
+  color: #FCD700;
+  border-color: #FCD700;
 }
 .p-tabview .p-tabview-close {
   margin-left: 0.5rem;

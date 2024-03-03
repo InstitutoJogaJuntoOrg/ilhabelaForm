@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
 .responsiveProva {
   label {
     @media only screen and (max-width : 600px) {
-      padding: 3rem 0rem!important
+      padding: 3rem 0.9rem!important
   }
   }
 }
@@ -40,6 +40,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   .hLabel {
     height: 2rem;
+    max-width: 600px;
   }
   .p-dialog-title {
     color: black;
@@ -148,7 +149,12 @@ position: relative;
   .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
     color: black;
   }
-
+  .titleForm {
+    margin-top: 4rem;
+    font-size: 4rem;
+    font-weight: 900;
+    color: black;
+  }
   .p-tabview .p-tabview-panels {
     background: transparent;
   }
@@ -156,8 +162,11 @@ position: relative;
     background-color: transparent;
   }
   .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
-    background-color: #FCD700!important;
-    color: black;
+    background-color: #191919!important;
+    color: #FCD700;
+  }
+  .buttonYellow {
+    background-color: #FCD700;
   }
   #pr_id_1_header_0:hover {
     color: white;
