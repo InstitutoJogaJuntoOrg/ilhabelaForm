@@ -74,7 +74,9 @@ export const PasswordReset = () => {
           <ToastContainer />
           <br />
 
-          <h1>Resetar senha</h1>
+          <h1 style={{
+            color: "black"
+          }}>Resetar senha</h1>
           <br />
           <p
             style={{
