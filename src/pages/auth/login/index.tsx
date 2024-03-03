@@ -72,87 +72,115 @@ export const LoginPage = () => {
   console.log(data);
 
   return (
-    <>
+   <div>
+     <div className="containerAll">
+              <div className="vector">
+          <img src="/Vector.png" alt="" />
+        </div>
+        <div className="vector2">
+          <img src="/Vector2.png" alt="" />
+        </div>
       <Container>
+      <br />
+      <br />
         <ToastContainer />
-        <h1>Login</h1>
-        <div className="h">
-          <form
-            onSubmit={handleSubmit(handleSubmitLogin)}
+
+        <div className="background-div"></div>
+      
+        <form
+        className="margintop"
+          onSubmit={handleSubmit(handleSubmitLogin)}
+          style={{
+            width: "30rem",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            position: "relative",
+          }}
+        >
+          <h1>Login</h1>
+          <FormField>
+            <label>Email</label>
+            <InputText
+              id="email"
+              {...register("email")}
+              onChange={(e) => setEmail(e.target.value)}
+              aria-describedby="email-help"
+              placeholder="Email"
+              value={email}
+            />
+          </FormField>
+
+          <FormField>
+            <label>Senha</label>
+            <InputText
+              id="password"
+              {...register("password")}
+              aria-describedby="password-help"
+              placeholder="Senha"
+              type="password"
+            />
+          </FormField>
+
+          <div
             style={{
-              width: "30rem",
+              marginTop: "1rem",
+              color: "white",
+              width: "100%",
+              display: "flex",
+              justifyContent: "flex-end",
+              alignItems: "flex-end",
             }}
           >
-            <FormField>
-              <label>Email</label>
-              <InputText
-                id="email"
-                {...register("email")}
-                onChange={(e) => setEmail(e.target.value)}
-                aria-describedby="email-help"
-                placeholder="Email"
-                value={email}
-              />
-            </FormField>
-
-            <FormField>
-              <label>Senha</label>
-              <InputText
-                id="password"
-                {...register("password")}
-                aria-describedby="password-help"
-                placeholder="Senha"
-                type="password"
-              />
-            </FormField>
-
-            <div
-              style={{
-                marginTop: "1rem",
-                color: "white",
-                width: "100%",
-                display: "flex",
-                justifyContent: "flex-end",
-                alignItems: "flex-end",
-              }}
-            >
-              <Register>
-                <span className="">
-                  <span>
-                    <Link
-                      to={"/reset"}
-                      style={{ textDecoration: "none", color: "white" }}
-                    >
-                      Esqueci minha senha
-                    </Link>
-                  </span>
+            <Register>
+              <span className="">
+                <span>
+                  <Link
+                    to={"/reset"}
+                    style={{
+                      textDecoration: "underline",
+                      color: "white",
+                      marginLeft: "1%",
+                      position: "absolute",
+                    }}
+                  >
+                    Esqueci minha senha
+                  </Link>
                 </span>
-              </Register>
-            </div>
+              </span>
+            </Register>
+          </div>
 
-            <button
-              style={{
-                fontSize: "16px",
-                borderRadius: "26px",
-              }}
-              type="submit"
-            >
-              Fazer login
-            </button>
-            <br />
-            <br />
-          </form>
-
+          <button
+            style={{
+              fontSize: "16px",
+              borderRadius: "26px",
+            }}
+            type="submit"
+          >
+            Login
+          </button>
+          <br />
           <Register>
             <h3>Ainda não tem uma conta?</h3>
             <span className="register">
-              <Link to={"/register"}>Clique aqui e registre-se</Link>
+              <Link
+                to={"/register"}
+                style={{
+                  color: "white",
+                }}
+              >
+                Clique aqui e registre-se
+              </Link>
             </span>
           </Register>
-        </div>
+        </form>
       </Container>
 
-      <Footer />
-    </>
+   
+    </div>
+    <Footer />
+   </div>
   );
 };

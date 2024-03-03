@@ -31,22 +31,7 @@ export const RegisterPage = () => {
     resolver: zodResolver(RegisterSchema),
   });
 
-  function ErrosSending() {
-    if (errors.checked) {
-      toast.error("Por favor aceite os termos de uso do site");
-    }
-    if (errors.checkedTree) {
-      toast.error("Por favor concorde com 'Eu entendo que é um curso de tecnologia' ")
-    }
-    if (errors.checkedtWO) {
-      toast.error(
-        "Por favor aceite os termos de política de privacidade de dados"
-      );
-    }
-    if (errors.name) {
-      toast.error("Por favor informe um nome válido");
-    }
-  }
+
 
   function handleSubmitRegister(data: RegisterSchemaType) {
     const requestData = {
@@ -82,196 +67,109 @@ export const RegisterPage = () => {
   }
   console.log(errors);
   return (
-    <>
-      <Container>
-        <ToastContainer />
-        <br />
+    <div>
+      <div className="containerAll2">
+        <div className="vector">
+          <img src="/Vector.png" alt="" />
+        </div>
+        <div className="vector2">
+          <img src="/Vector2.png" alt="" />
+        </div>
 
-        <h1>Registro</h1>
-        <form
-          onSubmit={handleSubmit(handleSubmitRegister)}
-          style={{
-            width: "30rem",
-          }}
-        >
-          <FormField>
-            <label>Qual o seu primeiro nome?</label>
-            <InputText
-              id="name"
-              {...register("name")}
-              aria-describedby="email-help"
-              placeholder="Nome"
-              className={errors.name ? "p-invalid" : ""}
-            />
-          </FormField>
-
-          <FormField>
-            <label>Email</label>
-            <InputText
-              id="email"
-              {...register("email")}
-              onChange={(e) => setEmail(e.target.value)}
-              aria-describedby="email-help"
-              placeholder="Email"
-              className={errors.email ? "p-invalid" : ""}
-              value={email}
-            />
-          </FormField>
-
-          <FormField>
-            <label>Senha</label>
-            <div style={{ position: "relative", display: "flex" }}>
-              <InputText
-                id="password"
-                {...register("password")}
-                aria-describedby="password-help"
-                placeholder="Senha"
-                type={showPassword ? "text" : "password"}
-                className={errors.confirmPassword ? "p-invalid" : ""}
-              />
-              <BiShow
-                className="icon"
-                onClick={() => setShowPassword(!showPassword)}
-              />
-            </div>
-          </FormField>
-
-          <FormField>
-            <label>Repetir Senha</label>
-            <div style={{ position: "relative", display: "flex" }}>
-              <InputText
-                id="repeatPassword"
-                {...register("confirmPassword")}
-                aria-describedby="repeatPassword-help"
-                placeholder="Repetir Senha"
-                className={errors.confirmPassword ? "p-invalid" : ""}
-                type={showConfirmPassword ? "text" : "password"}
-              />
-              <BiShow
-                className="icon"
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-              />
-            </div>
-          </FormField>
-          <div
-            className="card flex justify-content-center"
-            style={{
-              display: "flex",
-              width: "100%",
-              marginTop: "1rem",
-
-              color: "white",
-            }}
-          >
-            <input
-              id="myCheckbox"
-              style={{
-                width: "20px",
-                marginRight: "10px",
-              }}
-              type="checkbox"
-              {...register("checked")}
-            />
-            <label htmlFor="myCheckbox">
-              <p>
-                Estou ciente dos
-                <span>
-                  <Link
-                    style={{
-                      color: "white",
-                    }}
-                    to="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/TERMOS+DE+USO+SITE+ILHABELA+TECH+II.pdf"
-                    target="_blank"
-                  >
-                    {" "}
-                    termos de uso do site{" "}
-                  </Link>
-                  .
-                </span>
-              </p>
-            </label>
-          </div>
-
-          <div
-            className="card flex justify-content-center"
-            style={{
-              display: "flex",
-              width: "100%",
-              marginTop: "1rem",
-
-              color: "white",
-            }}
-          >
-            <input
-              id="myCheckboxtWO"
-              style={{
-                width: "24px",
-                marginRight: "10px",
-              }}
-              type="checkbox"
-              {...register("checkedtWO")}
-            />
-            <label htmlFor="myCheckboxtWO">
-              <p>
-                Estou ciente da{" "}
-                <span>
-                  <Link
-                    style={{
-                      color: "white",
-                    }}
-                    to="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/Aviso+de+Privacidade+IlhaBela+Tech+IV.pdf"
-                    target="_blank"
-                  >
-                    {" "}
-                    política de privacidade de dados
-                  </Link>{" "}
-                </span>
-              </p>
-            </label>
-          </div>
-          <div
-            className="card flex justify-content-center"
-            style={{
-              display: "flex",
-              width: "100%",
-              marginTop: "1rem",
-     
-              color: "white",
-            }}
-          >
-            <input
-              id="myCheckboxtTree"
-              style={{
-                width: "24px",
-                marginRight: "10px",
-              }}
-              type="checkbox"
-              {...register("checkedTree")}
-            />
-            <label htmlFor="myCheckboxtTree">
-              <p>
-              Eu entendo que é um curso de tecnologia
-              </p>
-            </label>
-            
-            
-          </div>
-          <button
-            style={{
-              fontSize: "16px",
-              borderRadius: "26px",
-            }}
-            type="submit"
-            onClick={ErrosSending}
-          >
-            Registrar
-          </button>
+        <Container>
+          <ToastContainer />
           <br />
           <br />
-        </form>
-      </Container>
+          <br />
+          <div className="background-div2"></div>
+          <div className="containerRegister">
+            <form
+              onSubmit={handleSubmit(handleSubmitRegister)}
+              style={{
+                width: "30rem",
+              }}
+            >
+              <h1>Registro</h1>
+              <FormField>
+                <label>Qual o seu primeiro nome?</label>
+                <InputText
+                  id="name"
+                  {...register("name")}
+                  aria-describedby="email-help"
+                  placeholder="Nome"
+                  className={errors.name ? "p-invalid" : ""}
+                />
+              </FormField>
 
+              <FormField>
+                <label>Email</label>
+                <InputText
+                  id="email"
+                  {...register("email")}
+                  onChange={(e) => setEmail(e.target.value)}
+                  aria-describedby="email-help"
+                  placeholder="Email"
+                  className={errors.email ? "p-invalid" : ""}
+                  value={email}
+                />
+              </FormField>
+
+              <FormField>
+                <label>Senha</label>
+                <div style={{ position: "relative", display: "flex" }}>
+                  <InputText
+                    id="password"
+                    {...register("password")}
+                    aria-describedby="password-help"
+                    placeholder="Senha"
+                    type={showPassword ? "text" : "password"}
+                    className={errors.confirmPassword ? "p-invalid" : ""}
+                  />
+                  <BiShow
+                    className="icon"
+                    onClick={() => setShowPassword(!showPassword)}
+                  />
+                </div>
+              </FormField>
+
+              <FormField>
+                <label>Repetir Senha</label>
+                <div style={{ position: "relative", display: "flex" }}>
+                  <InputText
+                    id="repeatPassword"
+                    {...register("confirmPassword")}
+                    aria-describedby="repeatPassword-help"
+                    placeholder="Repetir Senha"
+                    className={errors.confirmPassword ? "p-invalid" : ""}
+                    type={showConfirmPassword ? "text" : "password"}
+                  />
+                  <BiShow
+                    className="icon"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  />
+                </div>
+              </FormField>
+
+              <button
+                style={{
+                  fontSize: "16px",
+                  borderRadius: "26px",
+                }}
+                type="submit"
+          
+              >
+                Registrar
+              </button>
+              <br />
+              <br />
+            </form>
+          </div>
+          
+        </Container>
+        
+      </div>
+      
       <Footer />
-    </>
+    </div>
   );
 };

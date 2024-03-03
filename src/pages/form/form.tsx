@@ -606,7 +606,7 @@ export const FormPage = () => {
             </div>
           </Container>
         )}
-      <Footer />
+    
     </>
   );
 };

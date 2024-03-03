@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { styled } from "styled-components";
 
 export const HeaderContainer = styled.header`
-  background-color: #001219;
+  background-color: #FCD700;
   nav {
     display: flex;
     flex-direction: row;
@@ -20,10 +20,10 @@ export const HeaderContainer = styled.header`
       font-size: 20px;
       font-weight: 700;
       text-decoration: none;
- 
+   
 
       &.active {
-        color: white;
+        color: #FCD700;
         background-color: #FCD700;
         border-radius: 60px;
       }
@@ -70,7 +70,7 @@ export const HeaderContainer = styled.header`
     .hamburger-icon {
       display: block;
       z-index: 100;
-      color: #FCD700;
+      color: #000;
     }
   }
 `;
@@ -84,17 +84,17 @@ export const StyledNavLink = styled(NavLink)`
   font-size: 20px;
   font-weight: 700;
   text-decoration: none;
-  color: #FCD700;
+  color: #000;
 
   &:hover {
-    color: black;
-    background-color: #FCD700;
+    color: white;
+    background-color:#000;
     border-radius: 60px;
   }
 
   &.active {
-    color: black;
-    background-color:#FCD700;
+    color: white;
+    background-color:#000;
     border-radius: 60px;
   }
 `;

@@ -36,7 +36,7 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
   }
   .p-inputtext {
-    color: black;
+    color: white;
   }
   .hLabel {
     height: 2rem;
@@ -70,7 +70,7 @@ export const GlobalStyle = createGlobalStyle`
 
   }
   .icon {
-    fill: black;
+    fill: white;
     font-size: 1.2rem;
     cursor: pointer;
     position: absolute;
@@ -92,13 +92,36 @@ export const GlobalStyle = createGlobalStyle`
   #adopt-accept-all-button {
     background-color: rgb(114, 182, 90)!important;
   }
+  .containerAll2 {
+position: relative;
+
+  }
+  .containerAll {
+    height: calc(100vh - 93px);
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    }
+    .vector {
+    position: absolute;
+    bottom: -1%;
+    left: 0;
+
+}
+.vector2 {
+  position: absolute;
+  top: 0;
+    right: 0;
+}
   label {
     display: flex;
     align-items: flex-end;
     font-weight: 400;
     color: white;
 
-    padding: 1.4rem 0rem;
+    padding: 1rem 0rem;
     justify-content: center;
     align-content: flex-start;
     flex-direction: column;
