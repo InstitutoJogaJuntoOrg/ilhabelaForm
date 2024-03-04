@@ -17,15 +17,23 @@ export const Footer = () => {
           </Link>
 
           <div className="footerFlex">
-            <ul>
+            <ul style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1rem'
+            }}>
               <h1>Organização</h1>
-              <li>Sobre</li>
-              <li>Empresas</li>
-              <li>Eventos</li>
-              <li>Contato</li>
+              <li><a target="_blank" href="https://www.jogajuntoinstituto.org/#Sobre">Sobre</a></li>
+              <li><a target="_blank" href="https://www.jogajuntoinstituto.org/#metodologia">Método</a></li>
+              <li><a target="_blank" href="https://www.jogajuntoinstituto.org/#Projetos">Projetos</a></li>
+              <li><a target="_blank" href="https://www.jogajuntoinstituto.org/#Contato">Contato</a></li>
             </ul>
 
-            <ul>
+            <ul style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1rem'
+            }}>
               <h1>Projetos</h1>
               <li>Trip</li>
               <li>Farm</li>
