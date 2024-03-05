@@ -23,14 +23,14 @@ export const Container = styled.footer`
         color: #000;
         border: none;
         border-radius: 16px;
-        padding: 1rem 2rem;
+        padding: 1rem 1.2rem;
         font-weight: 600;
         font-size: 1rem;
     }
     div {
         display: flex;
         flex-direction: row;
-        gap: 1rem;
+        justify-content: center;
         font-size: 1.5rem;
     }
 }
