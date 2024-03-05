@@ -79,9 +79,7 @@ export const SocioEconomico = ({
       reader.readAsArrayBuffer(file);
     });
   }
-
-  const apiUrl = "https://api.jogajuntoinstituto.org/socioeconomics/";
-
+  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/socioeconomics/`;
   async function sendSocioEconomicInfo(data: SocioeconomicoSchemaType) {
     localStorage.setItem("socioeconomicForm", "true");
     //const allowedFiles = ["image/png", "image/jpeg"]

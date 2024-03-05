@@ -24,7 +24,6 @@ import { SocioEconomico } from "./components/socioeconomico";
 import axios from "axios";
 import { civilState } from "./components/options/civil_state";
 import { Footer } from "../../components/footer";
-
 interface City {
   name: string;
   code: string;
@@ -32,7 +31,6 @@ interface City {
 
 export const FormPage = () => {
   const { image } = useContext(ImageContext);
-
   const [user, setUser] = useState(localStorage.getItem("username") || "");
   const [email, setEmail] = useState(localStorage.getItem("email") || "");
   const [date, setDate] = useState("");
@@ -167,7 +165,7 @@ export const FormPage = () => {
     }
   };
 
-  const apiUrl = "https://api.jogajuntoinstituto.org/personalinfo/";
+  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/personalinfo/`;
   async function sendPersonalInfo(data: FormSchemaType) {
     console.log("Enviando dados:", data);
     localStorage.setItem("personalForm", "true");

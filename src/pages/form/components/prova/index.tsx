@@ -31,7 +31,7 @@ export const Prova = () => {
       questionFourteen: parseInt(data.questionFourteen),
     };
     const token = localStorage.getItem("token");
-    const response = await fetch("https://api.jogajuntoinstituto.org/quiz/", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/quiz/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

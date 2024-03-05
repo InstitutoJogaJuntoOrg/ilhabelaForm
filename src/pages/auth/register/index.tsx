@@ -10,9 +10,10 @@ import {
 } from "../../../schema/registerSchema";
 import { useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { Footer } from "../../../components/footer";
+
 
 export const RegisterPage = () => {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ export const RegisterPage = () => {
     };
 
     axios
-      .post("https://api.jogajuntoinstituto.org/users/", requestData)
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/users/`, requestData)
       .then((response) => {
         notifySuccess();
         setTimeout(() => {

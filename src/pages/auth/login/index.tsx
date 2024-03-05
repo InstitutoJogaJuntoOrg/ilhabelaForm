@@ -10,6 +10,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { Footer } from "../../../components/footer";
+
 export const LoginPage = () => {
   const { register, handleSubmit } = useForm<LoginFormInputs>({
     resolver: zodResolver(loginFormSchema),
@@ -20,7 +21,7 @@ export const LoginPage = () => {
   const handleSubmitLogin = handleSubmit(async (data) => {
     try {
       const response = await axios.post(
-        "https://api.jogajuntoinstituto.org/users/login/",
+        `${process.env.NEXT_PUBLIC_API_URL}/users/login/`,
         { email: data.email, password: data.password }
       );
 

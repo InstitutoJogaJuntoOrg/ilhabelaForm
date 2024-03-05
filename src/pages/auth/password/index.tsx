@@ -14,6 +14,7 @@ import {
   EmailFormSchemaPassType,
 } from "../../../schema/resetPassword";
 
+
 export const PasswordReset = () => {
   const navigate = useNavigate();
   const notifySuccess = () => toast.success("Email enviado com sucesso!");
@@ -42,7 +43,7 @@ export const PasswordReset = () => {
     };
     console.log(errors);
     axios
-      .post("https://api.jogajuntoinstituto.org/password_reset/", requestData)
+      .post(`${process.env.NEXT_PUBLIC_API_URL}password_reset/`, requestData)
       .then((response) => {
         notifySuccess();
         setTimeout(() => {
