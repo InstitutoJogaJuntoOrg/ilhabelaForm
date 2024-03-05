@@ -79,7 +79,7 @@ export const SocioEconomico = ({
       reader.readAsArrayBuffer(file);
     });
   }
-  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/socioeconomics/`;
+  const apiUrl = `${import.meta.env.VITE_API_URL}/socioeconomics/`;
   async function sendSocioEconomicInfo(data: SocioeconomicoSchemaType) {
     localStorage.setItem("socioeconomicForm", "true");
     //const allowedFiles = ["image/png", "image/jpeg"]

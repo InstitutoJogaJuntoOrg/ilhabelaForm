@@ -43,7 +43,7 @@ export const PasswordReset = () => {
     };
     console.log(errors);
     axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}password_reset/`, requestData)
+      .post(`${import.meta.env.VITE_API_URL}password_reset/`, requestData)
       .then((response) => {
         notifySuccess();
         setTimeout(() => {

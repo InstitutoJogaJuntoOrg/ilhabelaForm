@@ -165,7 +165,7 @@ export const FormPage = () => {
     }
   };
 
-  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/personalinfo/`;
+  const apiUrl = `${import.meta.env.VITE_API_URL}/personalinfo/`;
   async function sendPersonalInfo(data: FormSchemaType) {
     console.log("Enviando dados:", data);
     localStorage.setItem("personalForm", "true");

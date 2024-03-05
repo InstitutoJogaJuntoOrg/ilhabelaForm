@@ -21,7 +21,7 @@ export const LoginPage = () => {
   const handleSubmitLogin = handleSubmit(async (data) => {
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/users/login/`,
+        `${import.meta.env.VITE_API_URL}/users/login/`,
         { email: data.email, password: data.password }
       );
 

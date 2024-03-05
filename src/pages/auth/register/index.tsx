@@ -43,7 +43,7 @@ export const RegisterPage = () => {
     };
 
     axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/users/`, requestData)
+    .post(`${import.meta.env.VITE_API_URL}/users/`, requestData)
       .then((response) => {
         notifySuccess();
         setTimeout(() => {
