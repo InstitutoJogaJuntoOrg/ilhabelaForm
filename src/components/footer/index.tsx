@@ -75,7 +75,16 @@ export const Footer = () => {
               display: 'flex',
               flexDirection: 'column'
             }}>
-              <button>Doe</button>
+           
+              <a style={{
+                color: "black",
+                backgroundColor: "#f1c40f",
+                fontSize: '1rem',
+                fontWeight: '500',
+                borderRadius: '15px',
+                padding: '1rem 1.5rem'
+              }} href="https://www.paypal.com/donate/?hosted_button_id=ABNWG273YLYWU" target="`_b">Doe</a>
+            
               <div>
                 <a
                   target="_blank"
