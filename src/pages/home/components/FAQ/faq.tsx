@@ -205,13 +205,19 @@ const FAQs: React.FC = () => {
     {
       question: "Tenho menos que 17 anos, posso fazer o curso?",
       answer: [
-        "A idade mínima para fazer o curso é de 15 anos completos.",
+        "A idade mínima para fazer o curso é de 16 anos completos.",
       ],
     },
     {
-      question: "Vou fazer 15 anos durante o curso, posso fazer minha inscrição?",
+      question: "Vou fazer 16 anos durante o curso, posso fazer minha inscrição?",
       answer: [
-        "Não. No momento da sua inscrição, você já precisa ter 15 anos. ",
+        "Não. No momento da sua inscrição, você já precisa ter 16 anos.",
+      ],
+    },
+    {
+      question: "Posso fazer o curso mesmo tendo mais de 24 anos?",
+      answer: [
+        "Sim, ainda que você tenha mais que 24 anos, você pode fazer o curso normalmente.",
       ],
     },
     {
