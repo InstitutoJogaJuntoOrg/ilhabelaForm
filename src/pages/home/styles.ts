@@ -195,6 +195,7 @@ export const BannerContainer = styled.div`
 margin-top: 40px;
 width: 100%;
 
+
   img {
     max-width: 100%;
     height: auto;

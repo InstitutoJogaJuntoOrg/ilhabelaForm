@@ -189,7 +189,7 @@ export const HomePage = () => {
         </ContainerCardLayout>
 
         <BannerContainer>
-          <img src="/banner.svg" style={{
+          <img src="/banners.svg" style={{
             display: 'block',
           }} alt="icon" />
         </BannerContainer>
