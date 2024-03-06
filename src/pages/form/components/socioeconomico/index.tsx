@@ -76,7 +76,7 @@ export const SocioEconomico = ({
     });
   }
 
-  const apiUrl = "https://back.ilhabelatech.com/socioeconomics/";
+  const apiUrl = `${import.meta.env.VITE_API_URL}/socioeconomics/`;
 
   async function sendSocioEconomicInfo(data: SocioeconomicoSchemaType) {
     localStorage.setItem("socioeconomicForm", "true");

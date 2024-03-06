@@ -31,7 +31,7 @@ export const Prova = () => {
       questionFourteen: parseInt(data.questionFourteen),
     };
     const token = localStorage.getItem("token");
-    const response = await fetch("https://back.ilhabelatech.com/quiz/", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/quiz/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

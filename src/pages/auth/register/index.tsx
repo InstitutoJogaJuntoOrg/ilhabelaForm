@@ -55,7 +55,7 @@ export const RegisterPage = () => {
     };
 
     axios
-      .post("https://back.ilhabelatech.com/users/", requestData)
+      .post(`${import.meta.env.VITE_API_URL}/users/`, requestData)
       .then((response) => {
         notifySuccess();
         setTimeout(() => {

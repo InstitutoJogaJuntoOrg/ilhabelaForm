@@ -59,7 +59,7 @@ export const NewPassword = () => {
     };
     // const url = ;
     axios
-      .post(`https://back.ilhabelatech.com/password_reset/${uid}/${token}/`, requestData)
+      .post(`${import.meta.env.VITE_API_URL}/password_reset/${uid}/${token}/`, requestData)
       .then((response) => {
         notifySuccess();
         setTimeout(() => {

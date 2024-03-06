@@ -168,7 +168,7 @@ export const FormPage = () => {
   };
 
 
-  const apiUrl = "https://back.ilhabelatech.com/personalinfo/";
+  const apiUrl = `${import.meta.env.VITE_API_URL}/personalinfo/`;
   async function sendPersonalInfo(data: FormSchemaType) {
     console.log("Enviando dados:", data);
     localStorage.setItem("personalForm", "true");
