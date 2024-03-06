@@ -1,6 +1,5 @@
 import { Container } from "./styles";
 import { Link } from "react-router-dom";
-import { FaFacebookSquare } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 
