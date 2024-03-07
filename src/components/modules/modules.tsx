@@ -2,8 +2,9 @@ import { FormationInfo, ModuleContainer } from "./styles";
 
 export const Modules = ({}) => {
   return (
-    <>
+    <div>
       <ModuleContainer>
+       
         <div>
           <h1>FORMAÇÃO BÁSICA</h1>
           <ul>
@@ -24,8 +25,9 @@ export const Modules = ({}) => {
           </footer>
         </div>
 
-        <div className="secondCard">
-          <h1>FORMAÇÃO AVANÇADA</h1>
+   <div>
+    
+   <h1>FORMAÇÃO AVANÇADA</h1>
           <ul>
             <li>
               <span className="circle">4</span> Algorítimos
@@ -42,7 +44,9 @@ export const Modules = ({}) => {
           <footer>
             Certificado <span>QA Avançado</span>
           </footer>
-        </div>
+   </div>
+     
+
       </ModuleContainer>
      <div style={{
         width: "100%",
@@ -63,6 +67,6 @@ export const Modules = ({}) => {
         </div>
       </FormationInfo>
      </div>
-    </>
+    </div>
   );
 };

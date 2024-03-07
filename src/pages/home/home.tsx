@@ -161,18 +161,18 @@ export const HomePage = () => {
             <Link
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
               to={
-                "https://estaticos-ijj.s3.sa-east-1.amazonaws.com/lista_CR_ILHABELATECH.pdf"
+                "/inscricao"
               }
-              target={"_blank"}
+       
             >
-              <button>Confira as vagas remanescentes</button>
+              <button>Inscreva-se</button>
             </Link>
           </ContainerTitle>
         </section>
         <ContainerCardLayout>
           <CardOne
             description={`
-            É um programa da Prefeitura de Ilhabela em parceria com o que visa capacitar e incluir novos profissionais dsdsdsdsdsdsdsdsdsdsdno mercado tecnológico por meio do conhecimento técnico de testador de Qualidade de Sofware (Q.A)`}
+            É um programa da Prefeitura de Ilhabela em parceria com o Instituto Joga Junto que visa capacitar e incluir novos profissionais no mercado tecnológico por meio do conhecimento técnico de testador de Qualidade de Sofware (Q.A)`}
             className="secondImg"
             titleCard="O que é o Ilhabela tech:"
             image="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/card_ilhabela_bannerlogo.png"
@@ -181,7 +181,7 @@ export const HomePage = () => {
           />
           <CardTwo
             description=""
-            titleCard="O programa"
+            titleCard="O que é um testador de qualidade de software"
             image="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/card_ilhabela_IETEC.png"
             key={1}
             alt="img"

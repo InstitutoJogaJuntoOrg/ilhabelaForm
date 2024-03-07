@@ -108,7 +108,7 @@ const FAQ: React.FC<FAQProps> = ({ faqs }: any) => {
                             | undefined,
                           i: Key | null | undefined
                         ) => (
-                          <li key={i}>{item}</li>
+                          <li key={i} className="list">{item}</li>
                         )
                       )}
                     </ul>
@@ -131,12 +131,12 @@ const FAQ: React.FC<FAQProps> = ({ faqs }: any) => {
 const FAQs: React.FC = () => {
   const faqs: FAQItem[] = [
     {
-      question: "O que é o Ilhabela tech?",
+      question: "O que é o Ilhabela tech",
       answer:
-        "É um programa da Prefeitura de Ilhabela em parceria com o <a target='_blank' href='https://www.jogajuntoinstituto.org/'>Instituto JogaJunto</a> que visa capacitar e incluir novos profissionais no mercado tecnológico por meio do conhecimento técnico de testador de Qualidade de Sofware (Q.A)",
+        "• É um programa da Prefeitura de Ilhabela em parceria com o <a target='_blank' href='https://www.jogajuntoinstituto.org/'>Instituto JogaJunto</a> que visa capacitar e incluir novos profissionais no mercado tecnológico por meio do conhecimento técnico de testador de Qualidade de Sofware (Q.A)",
     },
     {
-      question: "Vagas:",
+      question: "Quantas vagas são disponibilizadas?",
       answer: [
         "São disponibilizadas 30 vagas para o curso, com no mínimo 20 aprovados para formação da turma.",
       ],
@@ -167,13 +167,13 @@ const FAQs: React.FC = () => {
       ],
     },
     {
-      question: "Critério de classificação:",
+      question: "Qual o critério de classificação?",
       answer: [
         "As 30 melhores classificações no teste de conhecimentos em informática básica.",
       ],
     },
     {
-      question: "Critério de desempate:",
+      question: "Qual o critério de desempate?",
       answer: [
         "Beneficiário de programas sociais do Governo Federal",
         "Maior tempo de experiência na área",
@@ -187,13 +187,37 @@ const FAQs: React.FC = () => {
     {
       question: "Preciso pagar para realizar o curso?",
       answer: [
-        "Não, o curso é realizado pelo  em parceria com a Prefeitura de Ilhabela e é oferecido gratuitamente para todos os aprovados no processo seletivo.",
+        "Não, o curso é realizado pelo Instituto Joga Junto  em parceria com a Prefeitura de Ilhabela e é oferecido gratuitamente para todos os aprovados no processo seletivo.",
       ],
     },
     {
       question: "Eu preciso passar por todas as etapas do processo de seleção?",
       answer: [
         "Sim. Todos os candidatos devem passar por todas as etapas do processo de seleção. Caso alguma etapa não seja concluída, haverá desclassificação.",
+      ],
+    },
+    {
+      question: "Tenho menos que 17 anos, posso fazer o curso?",
+      answer: [
+        "A idade mínima para fazer o curso é de 16 anos completos.",
+      ],
+    },
+    {
+      question: "Vou fazer 16 anos durante o curso, posso fazer minha inscrição?",
+      answer: [
+        "Não. No momento da sua inscrição, você já precisa ter 16 anos.",
+      ],
+    },
+    {
+      question: "Posso fazer o curso mesmo tendo mais de 24 anos?",
+      answer: [
+        "Sim, ainda que você tenha mais que 24 anos, você pode fazer o curso normalmente.",
+      ],
+    },
+    {
+      question: "Posso fazer o curso mesmo tendo estudado em escola particular?",
+      answer: [
+        "Sim, você pode fazer o curso normalmente.",
       ],
     },
   ];
