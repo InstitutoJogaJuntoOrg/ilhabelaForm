@@ -74,6 +74,7 @@ export const LoginPage = () => {
 
   return (
    <div>
+    <img src="" alt="" />
      <div className="containerAll">
               <div className="vector">
           <img src="/Vector.png" alt="" />
