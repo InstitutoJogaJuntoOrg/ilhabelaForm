@@ -19,6 +19,7 @@ import { family } from "../options/family";
 import { gender } from "../options/gender";
 import { guildance } from "../options/guidance";
 import { scholl } from "../options/scholl";
+import { schollPublic } from "../options/schollPublic";
 
 export const SocioEconomico = ({
   setTabEnabled,
@@ -37,6 +38,9 @@ export const SocioEconomico = ({
   const [selectedscholl, setSelectedscholl] = useState<City | null>(null);
   const [selectedgender, setSelectedgender] = useState<City | null>(null);
   const [selectedBenefits, setSelectedBenefits] = useState<City | null>(null);
+  const [selectedSchollPublic, setselectedSchollPublic] = useState<City | null>(
+    null
+  );
   const [selectedDeficiency, SetSelectedDeficiency] = useState<City | null>(
     null
   );
@@ -75,9 +79,13 @@ export const SocioEconomico = ({
       reader.readAsArrayBuffer(file);
     });
   }
+<<<<<<< HEAD
 
   const apiUrl = `${import.meta.env.VITE_API_URL}/socioeconomics/`;
 
+=======
+  const apiUrl = `${import.meta.env.VITE_API_URL}/socioeconomics/`;
+>>>>>>> fd1ae896109f1a7b0d4c9c92694e72cdfba6de57
   async function sendSocioEconomicInfo(data: SocioeconomicoSchemaType) {
     localStorage.setItem("socioeconomicForm", "true");
     //const allowedFiles = ["image/png", "image/jpeg"]
@@ -85,7 +93,6 @@ export const SocioEconomico = ({
     console.log("data: ", data);
 
     try {
-
       const salario = Number(data.income);
       if (Number.isNaN(salario)) {
         toast.error("Salario com valor incorreto.");
@@ -101,11 +108,10 @@ export const SocioEconomico = ({
       formData.append("children", data.children);
       formData.append("education_level", data.schooling);
       formData.append("benefit", data.benefit);
-
+      formData.append("public_school", data.schollPublic);
       formData.append("income", salario.toString());
       formData.append("household_count", data.family.name);
       formData.append("employment_status", data.employment_status);
-
 
       const token = localStorage.getItem("token");
       console.log("formData: ", formData);
@@ -140,7 +146,7 @@ export const SocioEconomico = ({
     const checkFormSubmission = async () => {
       try {
         const response = await axios.get(
-          "https://back.ilhabelatech.com/socioeconomics/"
+          "https://api.jogajuntoinstituto.org/socioeconomics/"
         );
         localStorage.setItem("token", response.data.access);
         if (response.status === 200 || response.status === 201) {
@@ -186,7 +192,7 @@ export const SocioEconomico = ({
               flexDirection: "column",
               gap: ".0rem",
             }}
-            className="card flex justify-content-center"
+            className="inputForm"
           >
             <label>Possui algum tipo de deficiência física? *</label>
 
@@ -206,14 +212,14 @@ export const SocioEconomico = ({
               }
             />
           </div>
-
+          <br />
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               gap: ".0rem",
             }}
-            className="card flex justify-content-center"
+            className="inputForm"
           >
             <label>Qual gênero você se identifica? *</label>
             <Dropdown
@@ -233,16 +239,15 @@ export const SocioEconomico = ({
               showClear
             />
           </div>
-
+          <br />
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               gap: ".0rem",
             }}
-            className="card flex justify-content-center"
+            className="inputForm"
           >
-
             <label>Qual sua situação de emprego? *</label>
             <Dropdown
               value={selectedemprego}
@@ -261,14 +266,14 @@ export const SocioEconomico = ({
               showClear
             />
           </div>
-
+          <br />
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               gap: ".0rem",
             }}
-            className="card flex justify-content-center"
+            className="inputForm"
           >
             <label>Tem filhos? *</label>
             <Dropdown
@@ -288,16 +293,15 @@ export const SocioEconomico = ({
               showClear
             />
           </div>
-
+          <br />
           <div
             style={{
               display: "flex",
               flexDirection: "column",
             }}
+            className="inputForm"
           >
-
-
-           <label>Qual a renda média mensal da sua família? *</label>
+            <label>Qual a renda média mensal da sua família? *</label>
             <InputText
               {...register("income")}
               id="renda"
@@ -311,6 +315,7 @@ export const SocioEconomico = ({
             />
           </div>
         </div>
+        <br />
         <div>
           <div
             style={{
@@ -318,7 +323,7 @@ export const SocioEconomico = ({
               flexDirection: "column",
               gap: ".0rem",
             }}
-            className="card flex justify-content-center"
+            className="inputForm"
           >
             <label>Cor/raça *</label>
             <Dropdown
@@ -337,16 +342,16 @@ export const SocioEconomico = ({
               }
             />
           </div>
-
+          <br />
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               gap: ".0rem",
             }}
-            className="card flex justify-content-center"
+            className="inputForm"
           >
-           <label>Qual sua orientação sexual? *</label>
+            <label>Qual sua orientação sexual? *</label>
             <Dropdown
               value={selectedguildance}
               options={guildance}
@@ -364,14 +369,14 @@ export const SocioEconomico = ({
               showClear
             />
           </div>
-
+          <br />
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               gap: ".0rem",
             }}
-            className="card flex justify-content-center"
+            className="inputForm"
           >
             <label>Números de membros da família? *</label>
             <Dropdown
@@ -391,17 +396,16 @@ export const SocioEconomico = ({
               showClear
             />
           </div>
-
+          <br />
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               gap: ".0rem",
             }}
-            className="card flex justify-content-center"
+            className="inputForm"
           >
-
-           <label>Qual sua escolaridade: *</label>
+            <label>Qual sua escolaridade: *</label>
             <Dropdown
               value={selectedscholl}
               options={scholl}
@@ -419,19 +423,19 @@ export const SocioEconomico = ({
               }
             />
           </div>
-
+          <br />
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               gap: ".0rem",
             }}
-            className="card flex justify-content-center"
+            className="inputForm"
           >
+            <label>
+              Você ou alguém da sua família recebe algum benefício social? *
+            </label>
 
-
-           <label>Você ou alguém da sua família recebe algum benefício social? *</label>
-            
             <Dropdown
               value={selectedBenefits}
               options={benefits}
@@ -443,6 +447,35 @@ export const SocioEconomico = ({
               placeholder="Selecione"
               className={
                 errors.benefit
+                  ? "p-invalid w-full md:w-14rem"
+                  : "w-full md:w-14rem"
+              }
+              showClear
+            />
+          </div>
+
+          <br />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: ".0rem",
+            }}
+            className="inputForm"
+          >
+            <label>É aluno de escola pública? *</label>
+
+            <Dropdown
+              value={selectedSchollPublic}
+              options={schollPublic}
+              optionLabel="name"
+              onChange={(e) => {
+                setselectedSchollPublic(e.value);
+                setValue("schollPublic", e.value);
+              }}
+              placeholder="Selecione"
+              className={
+                errors.schollPublic
                   ? "p-invalid w-full md:w-14rem"
                   : "w-full md:w-14rem"
               }

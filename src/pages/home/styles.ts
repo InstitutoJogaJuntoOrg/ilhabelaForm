@@ -191,6 +191,14 @@ export const ContainerTitle = styled.div`
     }
   }
 `;
+export const BannerContainer = styled.div`
+margin-top: 200px;
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Garante que a imagem não tenha espaço extra na parte inferior */
+  }
+`;
 export const About = styled.div`
   margin-top: 10rem;
   text-align: center;
@@ -201,7 +209,7 @@ export const About = styled.div`
   background-color: white;
   h1 {
     font-size: 5rem;
-    color: #54993a;
+    color: #FCD700;
     @media (max-width: 1000px) {
       font-size: 2rem;
     }
@@ -213,6 +221,6 @@ export const About = styled.div`
       font-size: 1rem;
       padding: 1rem 0;
     }
-    color: #54993a;
+    color: #FCD700;
   }
 `;

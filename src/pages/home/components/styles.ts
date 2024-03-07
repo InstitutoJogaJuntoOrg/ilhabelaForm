@@ -34,7 +34,7 @@ export const StepsContainer = styled.div`
     width: 5rem !important;
     height: 5rem !important;
     font-size: 3rem;
-    color: #54993a;
+    color: #FCD700;
     font-weight: 900;
   }
   .p-steps .p-steps-item .p-menuitem-link .p-steps-number {
@@ -87,7 +87,7 @@ export const CardsContainer = styled.div`
   div {
     padding: 2rem;
     margin-top: 22px;
-    background-color: #54993a;
+    background-color: #FCD700;
     max-width: 20rem;
     text-align: left;
     border-radius: 22px;
@@ -114,6 +114,7 @@ export const ImageWrapper = styled.div`
   img {
     width: 100%;
     height: 100%;
+    scale:1.7;
     object-fit: cover;
   }
 `;
@@ -127,7 +128,7 @@ export const OpacityOverlay = styled.div`
   background: linear-gradient(
     0deg,
     rgba(23, 23, 23, 0.91) 0%,
-    #54993a 0%,
+    #FCD700 0%,
     rgba(255, 255, 255, 0) 100%
   );
   .titletwo {
@@ -184,7 +185,7 @@ export const OpacityOverlay = styled.div`
     position: absolute;
     top: 85%;
     left: 10%;
-    font-size: 40px;
+    font-size: 34px;
     font-style: normal;
     font-weight: 800;
     color: white;

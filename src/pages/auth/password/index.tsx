@@ -14,6 +14,7 @@ import {
   EmailFormSchemaPassType,
 } from "../../../schema/resetPassword";
 
+
 export const PasswordReset = () => {
   const navigate = useNavigate();
   const notifySuccess = () => toast.success("Email enviado com sucesso!");
@@ -42,7 +43,11 @@ export const PasswordReset = () => {
     };
     console.log(errors);
     axios
+<<<<<<< HEAD
       .post(`${import.meta.env.VITE_API_URL}/password_reset/`, requestData)
+=======
+      .post(`${import.meta.env.VITE_API_URL}password_reset/`, requestData)
+>>>>>>> fd1ae896109f1a7b0d4c9c92694e72cdfba6de57
       .then((response) => {
         notifySuccess();
         setTimeout(() => {
@@ -74,7 +79,9 @@ export const PasswordReset = () => {
           <ToastContainer />
           <br />
 
-          <h1>Resetar senha</h1>
+          <h1 style={{
+            color: "black"
+          }}>Resetar senha</h1>
           <br />
           <p
             style={{
