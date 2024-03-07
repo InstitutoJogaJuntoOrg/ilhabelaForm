@@ -196,9 +196,12 @@ export const FormPage = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-
       console.log("response: ", response);
-
+      
+      if (data.socialName && data.socialName.length > 1) {
+        localStorage.setItem("username", data.socialName);
+        window.location.reload();
+      }
       setIsTabEnabledSocial(true);
       setIsTabEnabledDate(true);
       setActiveTab(1);
