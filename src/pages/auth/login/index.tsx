@@ -73,116 +73,132 @@ export const LoginPage = () => {
   console.log(data);
 
   return (
-   <div>
-    <img src="/banner-qa.svg" alt="banner svg" />
-     <div className="containerAll">
-              <div className="vector">
+    <div
+      style={{
+        width: "100%",
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+        }}
+      >
+        <a href="https://www.jogajuntoinstituto.org/" target="_blank">
+          <img
+            src="/banner-qa-2.svg"
+            alt="banner svg"
+            style={{
+              width: "100%",
+            }}
+          />
+        </a>
+      </div>
+      <div className="containerAll">
+        <div className="vector">
           <img src="/Vector.png" alt="" />
         </div>
         <div className="vector2">
           <img src="/Vector2.png" alt="" />
         </div>
-      <Container>
-      <br />
-      <br />
-        <ToastContainer />
+        <Container>
+          <br />
+          <br />
+          <ToastContainer />
 
-        <div className="background-div"></div>
-      
-        <form
-        className="margintop"
-          onSubmit={handleSubmit(handleSubmitLogin)}
-          style={{
-            width: "30rem",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            position: "relative",
-          }}
-        >
-          <h1>Login</h1>
-          <FormField>
-            <label>Email</label>
-            <InputText
-              id="email"
-              {...register("email")}
-              onChange={(e) => setEmail(e.target.value)}
-              aria-describedby="email-help"
-              placeholder="Email"
-              value={email}
-            />
-          </FormField>
+          <div className="background-div"></div>
 
-          <FormField>
-            <label>Senha</label>
-            <InputText
-              id="password"
-              {...register("password")}
-              aria-describedby="password-help"
-              placeholder="Senha"
-              type="password"
-            />
-          </FormField>
-
-          <div
+          <form
+            className="margintop"
+            onSubmit={handleSubmit(handleSubmitLogin)}
             style={{
-              marginTop: "1rem",
-              color: "white",
-              width: "100%",
+              width: "30rem",
               display: "flex",
-              justifyContent: "flex-end",
-              alignItems: "flex-end",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              position: "relative",
             }}
           >
-            <Register>
-              <span className="">
-                <span>
-                  <Link
-                    to={"/reset"}
-                    style={{
-                      textDecoration: "underline",
-                      color: "white",
-                      marginLeft: "1%",
-                      position: "absolute",
-                    }}
-                  >
-                    Esqueci minha senha
-                  </Link>
+            <h1>Login</h1>
+            <FormField>
+              <label>Email</label>
+              <InputText
+                id="email"
+                {...register("email")}
+                onChange={(e) => setEmail(e.target.value)}
+                aria-describedby="email-help"
+                placeholder="Email"
+                value={email}
+              />
+            </FormField>
+
+            <FormField>
+              <label>Senha</label>
+              <InputText
+                id="password"
+                {...register("password")}
+                aria-describedby="password-help"
+                placeholder="Senha"
+                type="password"
+              />
+            </FormField>
+
+            <div
+              style={{
+                marginTop: "1rem",
+                color: "white",
+                width: "100%",
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "flex-end",
+              }}
+            >
+              <Register>
+                <span className="">
+                  <span>
+                    <Link
+                      to={"/reset"}
+                      style={{
+                        textDecoration: "underline",
+                        color: "white",
+                        marginLeft: "1%",
+                        position: "absolute",
+                      }}
+                    >
+                      Esqueci minha senha
+                    </Link>
+                  </span>
                 </span>
+              </Register>
+            </div>
+
+            <button
+              style={{
+                fontSize: "16px",
+                borderRadius: "26px",
+              }}
+              type="submit"
+            >
+              Login
+            </button>
+            <br />
+            <Register>
+              <h3>Ainda não tem uma conta?</h3>
+              <span className="register">
+                <Link
+                  to={"/register"}
+                  style={{
+                    color: "white",
+                  }}
+                >
+                  Clique aqui e registre-se
+                </Link>
               </span>
             </Register>
-          </div>
-
-          <button
-            style={{
-              fontSize: "16px",
-              borderRadius: "26px",
-            }}
-            type="submit"
-          >
-            Login
-          </button>
-          <br />
-          <Register>
-            <h3>Ainda não tem uma conta?</h3>
-            <span className="register">
-              <Link
-                to={"/register"}
-                style={{
-                  color: "white",
-                }}
-              >
-                Clique aqui e registre-se
-              </Link>
-            </span>
-          </Register>
-        </form>
-      </Container>
-
-   
+          </form>
+        </Container>
+      </div>
+      <Footer />
     </div>
-    <Footer />
-   </div>
   );
 };

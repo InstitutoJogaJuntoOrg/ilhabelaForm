@@ -118,7 +118,9 @@ export const NewPassword = () => {
   return (
     <>
       <div className="heigh">
+        
         <Container>
+          
           <ToastContainer />
           <br />
 
