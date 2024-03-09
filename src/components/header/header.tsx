@@ -44,7 +44,7 @@ export const Header = () => {
   return (
     <HeaderContainer className={showLinks ? "show-links" : ""}>
       <nav>
-        <a target="_blank" href={"https://www.jogajuntoinstituto.org/"}>
+        <Link to={"/"}>
           <img
             style={{
               width: "150px",
@@ -53,10 +53,10 @@ export const Header = () => {
             src="https://www.jogajuntoinstituto.org/image/Logo_about.png"
             alt="Instituto Joga Junto"
           />
-        </a>
+        </Link>
         <ul className={windowWidth <= 1000 && showLinks ? "hidden" : ""}>
           {!emailFromLocalStorage && (
-            <StyledNavLink to="/login">Login</StyledNavLink>
+            <StyledNavLink to="/login">Inscrição</StyledNavLink>
           )}
 
           {emailFromLocalStorage && <MyDropdown />}

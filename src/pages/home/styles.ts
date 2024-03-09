@@ -226,3 +226,57 @@ export const About = styled.div`
     color: #FCD700;
   }
 `;
+
+export const HomeContainer = styled.div`
+  display: flex;
+  padding-top: 2rem;
+  p {
+    margin-top: 1rem;
+    max-width: 900px;
+  }
+  background-color: black;
+  padding-top: 3rem;
+  color: white;
+  padding: 5rem;
+  flex-direction: column;
+  font-size: 1.5rem;
+  gap: 2rem;
+  .button-help {
+      background-color: #fcd700;
+      border-radius: 16px;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  .banners {
+
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    justify-content: start;
+    align-items: center;
+    img {
+      width:25%;
+    }
+ 
+  }
+ .subtitle {
+    display: flex;
+    margin-top: 3rem;
+    flex-direction: column;
+    max-width: 100%;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    button {
+     padding: 1rem 2rem;
+    }
+    img {
+      max-width: 50%;
+    }
+  }
+`

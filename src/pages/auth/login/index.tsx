@@ -83,15 +83,6 @@ export const LoginPage = () => {
           width: "100%",
         }}
       >
-        <a href="https://www.jogajuntoinstituto.org/" target="_blank">
-          <img
-            src="/banner-qa-2.svg"
-            alt="banner svg"
-            style={{
-              width: "100%",
-            }}
-          />
-        </a>
       </div>
       <div className="containerAll">
         <div className="vector">

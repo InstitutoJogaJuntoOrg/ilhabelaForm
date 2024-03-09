@@ -14,7 +14,6 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { Footer } from "../../../components/footer";
 
-
 export const RegisterPage = () => {
   const navigate = useNavigate();
   const notifySuccess = () => toast.success("Usuário cadastrado com sucesso!");
@@ -32,7 +31,6 @@ export const RegisterPage = () => {
     resolver: zodResolver(RegisterSchema),
   });
 
-
   function handleSubmitRegister(data: RegisterSchemaType) {
     const requestData = {
       username: data.name,
@@ -42,7 +40,7 @@ export const RegisterPage = () => {
     };
 
     axios
-    .post(`${import.meta.env.VITE_API_URL}/users/`, requestData)
+      .post(`${import.meta.env.VITE_API_URL}/users/`, requestData)
       .then((response) => {
         notifySuccess();
         setTimeout(() => {
@@ -149,8 +147,6 @@ export const RegisterPage = () => {
                   />
                 </div>
               </FormField>
-        
-
 
               <button
                 style={{
@@ -158,7 +154,6 @@ export const RegisterPage = () => {
                   borderRadius: "26px",
                 }}
                 type="submit"
-          
               >
                 Registrar
               </button>
@@ -166,11 +161,9 @@ export const RegisterPage = () => {
               <br />
             </form>
           </div>
-          
         </Container>
-        
       </div>
-      
+
       <Footer />
     </div>
   );
