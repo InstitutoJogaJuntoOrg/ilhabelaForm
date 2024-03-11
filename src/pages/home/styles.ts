@@ -172,7 +172,7 @@ export const ContainerTitle = styled.div`
 
   gap: 1rem;
   span {
-    font-size: 2rem;
+    font-size: 1rem;
     font-weight: 500;
   }
   button {
@@ -240,6 +240,11 @@ export const HomeContainer = styled.div`
   padding: 5rem;
   flex-direction: column;
   font-size: 1.5rem;
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    gap: 0rem;
+  }
+
   gap: 2rem;
   .button-help {
       background-color: #fcd700;
@@ -252,14 +257,21 @@ export const HomeContainer = styled.div`
       align-items: center;
     }
   .banners {
-
+    align-items: start;
     display: flex;
+    flex-direction: column;
     gap: 2rem;
     width: 100%;
     justify-content: start;
-    align-items: center;
+ 
+    @media (max-width: 600px) {
+       margin-top: 4rem;
+  }
     img {
       width:25%;
+      @media (max-width: 600px) {
+        width:100%;
+  }
     }
  
   }
