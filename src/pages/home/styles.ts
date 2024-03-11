@@ -229,6 +229,7 @@ export const About = styled.div`
 
 export const HomeContainer = styled.div`
   display: flex;
+  height: 100vh;
   padding-top: 2rem;
   p {
     margin-top: 1rem;
@@ -264,12 +265,12 @@ export const HomeContainer = styled.div`
     width: 100%;
     justify-content: start;
  
-    @media (max-width: 600px) {
+    @media (max-width: 800px) {
        margin-top: 4rem;
   }
     img {
       width:25%;
-      @media (max-width: 600px) {
+      @media (max-width: 800px) {
         width:100%;
   }
     }
