@@ -229,7 +229,10 @@ export const About = styled.div`
 
 export const HomeContainer = styled.div`
   display: flex;
-  height: 100%;
+  height: 100vh;
+  @media (max-width: 800px) {
+    height: 100%;
+  }
   padding-top: 2rem;
   p {
     margin-top: 1rem;
@@ -241,7 +244,7 @@ export const HomeContainer = styled.div`
   padding: 5rem;
   flex-direction: column;
   font-size: 1.5rem;
-  @media (max-width: 600px) {
+  @media (max-width: 800px) {
     font-size: 1rem;
     gap: 0rem;
   }
