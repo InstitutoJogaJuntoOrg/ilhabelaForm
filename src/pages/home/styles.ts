@@ -229,7 +229,7 @@ export const About = styled.div`
 
 export const HomeContainer = styled.div`
   display: flex;
-  height: 100vh;
+  height: 100%;
   padding-top: 2rem;
   p {
     margin-top: 1rem;
