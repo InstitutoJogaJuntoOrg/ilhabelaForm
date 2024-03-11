@@ -7,8 +7,6 @@ export const HomePage = () => {
   return (
     <>
       <HomeContainer>
-    
-
         <div className="subtitle">
           <span
             style={{
@@ -16,12 +14,14 @@ export const HomePage = () => {
             }}
           >
             Turmas abertas!
-    
           </span>
-          <Link to="/inscricao"  style={{
-                cursor: "pointer",
-                textDecoration: "none",
-              }}>
+          <Link
+            to="/inscricao"
+            style={{
+              cursor: "pointer",
+              textDecoration: "none",
+            }}
+          >
             <button
               className="button-help"
               style={{
