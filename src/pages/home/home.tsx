@@ -36,7 +36,7 @@ export const HomePage = () => {
             </a>
             .
           </span>
-          <Link to="/login"  style={{
+          <Link to="/inscricao"  style={{
                 cursor: "pointer",
                 textDecoration: "none",
               }}>
@@ -61,7 +61,7 @@ export const HomePage = () => {
         >
           <div className="banners">
             <h3>Processos seletivos</h3>
-            <Link to="/login">
+            <Link to="/inscricao">
               <img src="/banner5.svg" alt="" />
             </Link>
           </div>
