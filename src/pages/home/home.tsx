@@ -7,34 +7,16 @@ export const HomePage = () => {
   return (
     <>
       <HomeContainer>
-        <div>
-          <h1>QA - Garanta a Qualidade do Software!</h1>
-          <p
-            style={{
-              fontWeight: "normal",
-            }}
-          >
-            Teste, Automatize, Garanta Qualidade! Fundamentos, Ferramentas,
-            DevOps, Comunicação, Segurança. Torne-se um Especialista!
-          </p>
-        </div>
+    
 
         <div className="subtitle">
           <span
             style={{
-              fontSize: "1rem",
+              fontSize: "2rem",
             }}
           >
-            Precisa de ajuda? Converse com o Instituto pelo{" "}
-            <a
-              style={{
-                color: "white",
-              }}
-              href=""
-            >
-              WhatsApp
-            </a>
-            .
+            Turmas abertas!
+    
           </span>
           <Link to="/inscricao"  style={{
                 cursor: "pointer",
