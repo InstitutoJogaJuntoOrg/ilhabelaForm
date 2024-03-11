@@ -60,7 +60,7 @@ export const NewPassword = () => {
     };
 
     axios
-      .post(`${import.meta.env.VITE_API_URL}/password_reset/${uid}/${token}/`, requestData)
+      .post(`https://devapi.jogajuntoinstituto.org/password_reset/${uid}/${token}/`, requestData)
       .then((response) => {
         notifySuccess();
         setTimeout(() => {

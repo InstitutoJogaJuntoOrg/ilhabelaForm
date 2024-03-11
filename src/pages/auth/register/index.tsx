@@ -40,7 +40,7 @@ export const RegisterPage = () => {
     };
 
     axios
-      .post(`${import.meta.env.VITE_API_URL}/users/`, requestData)
+      .post(`https://devapi.jogajuntoinstituto.org/users/`, requestData)
       .then((response) => {
         notifySuccess();
         setTimeout(() => {
