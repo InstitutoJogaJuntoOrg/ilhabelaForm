@@ -22,6 +22,7 @@ export const RegisterSchema = z
       message: "O campo deve ser marcado",
       path: ["checkedtWO"],
     }),
+
     confirmPassword: z.string().min(3),
     name: z.string({
       errorMap: () => {

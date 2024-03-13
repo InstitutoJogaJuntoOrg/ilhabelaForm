@@ -34,7 +34,7 @@ export const StepsContainer = styled.div`
     width: 5rem !important;
     height: 5rem !important;
     font-size: 3rem;
-    color: #54993a;
+    color: #FCD700;
     font-weight: 900;
   }
   .p-steps .p-steps-item .p-menuitem-link .p-steps-number {
@@ -90,8 +90,12 @@ export const CardsContainer = styled.div`
   div {
     padding: 2rem;
     margin-top: 22px;
+
+    background-color: #FCD700;
+    max-width: 20rem;
     background-color: #54993a;
     max-width: 15rem;
+
     text-align: left;
     border-radius: 22px;
     display: flex;
@@ -131,7 +135,7 @@ export const OpacityOverlay = styled.div`
   background: linear-gradient(
     0deg,
     rgba(23, 23, 23, 0.91) 0%,
-    #54993a 0%,
+    #FCD700 0%,
     rgba(255, 255, 255, 0) 100%
   );
   .titletwo {

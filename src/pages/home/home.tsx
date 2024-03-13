@@ -150,7 +150,7 @@ export const HomePage = () => {
         <section>
           <ContainerTitle className="InitialMessage">
             <h1 style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}>
-              ILHABELA TECH
+              ILHABELA TEaaaaaaaaaaaaaaaaaaCH
             </h1>
             {/* <span
               className="subDescp"
