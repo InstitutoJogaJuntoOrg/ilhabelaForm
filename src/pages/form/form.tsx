@@ -172,10 +172,7 @@ export const FormPage = () => {
 
     const cleanedPhone = data.phone.replace(/[\s\.-]/g, "");
 
-    if (cleanedPhone.length !== 11) {
-      console.error("Número de telefone deve ter exatamente 11 dígitos.");
-      return;
-    }
+  
     const formData = new FormData();
     formData.append("cpf", data.cpf.replace(/\D/g, ""));
     formData.append("first_name", data.first_name);
@@ -490,8 +487,8 @@ export const FormPage = () => {
 
                               <InputText
                                 {...register("phone")}
-                                placeholder="12 999999999"
-                                maxLength={15}
+                                placeholder="+55 12 949999999"
+                                maxLength={20}
                                 className={errors.phone ? "p-invalid" : ""}
                               />
                             </div>
