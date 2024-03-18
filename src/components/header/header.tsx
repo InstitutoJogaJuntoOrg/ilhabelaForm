@@ -52,9 +52,9 @@ export const Header = () => {
         </Link>
         <ul className={windowWidth <= 1000 && showLinks ? "hidden" : ""}>
           <StyledNavLink to={"/"}>Home</StyledNavLink>
-         {!emailFromLocalStorage && (
+          {/* {!emailFromLocalStorage && (
             <StyledNavLink to="/login">Fazer login</StyledNavLink>
-          )} 
+          )}
 
           {emailFromLocalStorage && <MyDropdown />}
 
@@ -62,11 +62,19 @@ export const Header = () => {
             <StyledNavLink to={emailFromLocalStorage ? "/inscricao" : "/auth"}>
               Inscrição
             </StyledNavLink>
-          )}
-            <li><a style={{
-            textDecoration: 'none',
-            color: '#54993a'
-           }} href="https://wa.me/5511945950731" target={"_blank"}>Ajuda</a></li>
+          )} */}
+          <li>
+            <a
+              style={{
+                textDecoration: "none",
+                color: "#54993a",
+              }}
+              href="https://wa.me/5511945950731"
+              target={"_blank"}
+            >
+              Ajuda
+            </a>
+          </li>
         </ul>
         <div className="hamburger-icon" onClick={toggleLinks}>
           {showLinks ? <FaTimes /> : <FaBars />}
