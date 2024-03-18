@@ -156,7 +156,7 @@ export const HomePage = () => {
               className="subDescp"
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)", background: "#54993A", padding: '2rem', borderRadius: '16px'}}
             >
-              Fique de olho no nosso Instagram <a href="https://www.instagram.com/ilhabela.tech/" target={"_blank"}>ilhabela.tech</a> para saber quando abrirem novas vagas!
+              Inscrições encerradas, fique de olho no nosso Instagram <a href="https://www.instagram.com/ilhabela.tech/" target={"_blank"}>ilhabela.tech</a> para saber quando abrirem novas vagas!
             </span>
             {/* <Link
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
