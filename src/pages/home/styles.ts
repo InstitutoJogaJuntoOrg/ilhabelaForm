@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ModalHome = styled.div`
 
-  background-image: url('https://estaticos-ijj.s3.sa-east-1.amazonaws.com/Frame+11.png'); /* Substitua pelo caminho real da sua imagem */
+  background-image: url('/banner2.png'); /* Substitua pelo caminho real da sua imagem */
   background-size: cover;
   background-repeat: no-repeat;
 width: 800px;
@@ -194,6 +194,7 @@ export const ContainerTitle = styled.div`
 export const BannerContainer = styled.div`
 margin-top: 40px;
 width: 100%;
+
 
   img {
     max-width: 100%;

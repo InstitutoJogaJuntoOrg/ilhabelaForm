@@ -69,7 +69,7 @@ export const HomePage = () => {
     const hasVisitedHomePage = localStorage.getItem("final");
 
     if (hasVisitedHomePage) {
-      setDisplay(false);
+      setDisplay(true);
     } else {
       localStorage.setItem("final", "true");
       setDisplay(false);
@@ -114,7 +114,7 @@ export const HomePage = () => {
             header=""
             footer={
               <a
-                href="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/lista_CR_ILHABELATECH.pdf"
+                href="https://www.instagram.com/ilhabela.tech/"
                 target={"_blank"}
               >
                 <ModalHome className="modalHomepage"></ModalHome>
@@ -149,16 +149,16 @@ export const HomePage = () => {
         <br />
         <section>
           <ContainerTitle className="InitialMessage">
-            <h1 style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}>
+             <h1 style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}>
               ILHABELA TECH
             </h1>
-            {/* <span
+             <span
               className="subDescp"
-              style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
+              style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)", background: "#54993A", padding: '2rem', borderRadius: '16px'}}
             >
-              Fique de olho no nosso Instagram <a href="https://www.instagram.com/ilhabela.tech/" target={"_blank"}>ilhabela.tech</a> para saber quando abrirem novas vagas!
-            </span> */}
-            <Link
+              Inscrições encerradas, fique de olho no nosso Instagram <a href="https://www.instagram.com/ilhabela.tech/" target={"_blank"}>ilhabela.tech</a> para saber quando abrirem novas vagas!
+            </span>
+            {/* <Link
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
               to={
                 "/inscricao"
@@ -166,7 +166,7 @@ export const HomePage = () => {
        
             >
               <button>Inscreva-se</button>
-            </Link>
+            </Link> */}
           </ContainerTitle>
         </section>
         <ContainerCardLayout>
@@ -189,7 +189,7 @@ export const HomePage = () => {
         </ContainerCardLayout>
 
         <BannerContainer>
-          <img src="/banner.svg" style={{
+          <img src="/banners.svg" style={{
             display: 'block',
           }} alt="icon" />
         </BannerContainer>
