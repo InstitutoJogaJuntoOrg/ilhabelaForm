@@ -16,12 +16,12 @@ export function Router() {
       <Route path="/" element={<DefaultLayout />}>
         <Route path="/inscricao" element={<PrivateRoute> <HomePage /> </PrivateRoute>} />
         <Route path="/" element={<HomePage />} />
-        <Route path="/register" element={<HomePage />} />
-        <Route path="/login" element={<HomePage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/auth" element={<HomePage  />} />
-        <Route path="/reset" element={<HomePage  />} />
-        <Route path="/newpassword" element={<HomePage  />} />
-        <Route path="/portal-do-titular" element={<HomePage />} />
+        <Route path="/reset" element={<PasswordReset  />} />
+        <Route path="/newpassword" element={<NewPassword  />} />
+        <Route path="/portal-do-titular" element={<FormPage />} />
 
       </Route>
     </Routes>

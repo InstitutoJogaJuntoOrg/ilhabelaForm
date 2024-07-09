@@ -28,12 +28,12 @@ export const LoginPage = () => {
       if (response.status === 200) {
         if (response.data.project != "ilhabela") {
           alert('Sua conta não está configurada corretamente. Por favor, contate o suporte: 5511945950731');
-          localStorage.clear(); // Remova todos os itens do localStorage
+          localStorage.clear(); 
           window.location.reload();
           return;
         }
   
-        localStorage.setItem("email", data.email); // Use data.email em vez de email
+        localStorage.setItem("email", data.email); 
         console.log("logado");
         setData(response.data);
         localStorage.setItem("token", response.data.access);
