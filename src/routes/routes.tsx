@@ -14,7 +14,7 @@ export function Router() {
   return (
     <Routes>
       <Route path="/" element={<DefaultLayout />}>
-        <Route path="/inscricao" element={<PrivateRoute> <HomePage /> </PrivateRoute>} />
+        <Route path="/inscricao" element={<PrivateRoute> <FormPage /> </PrivateRoute>} />
         <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />

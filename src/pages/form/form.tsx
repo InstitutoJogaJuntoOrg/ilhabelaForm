@@ -24,15 +24,28 @@ import { SocioEconomico } from "./components/socioeconomico";
 import axios from "axios";
 import { civilState } from "./components/options/civil_state";
 import { Footer } from "../../components/footer";
+import { differenceInYears, format } from "date-fns";
+import { institutoOptions } from "./components/options/instituto";
 
 interface City {
   name: string;
   code: string;
 }
-
+type CepResponse = {
+  cep: string;
+  logradouro: string;
+  complemento: string;
+  unidade: string;
+  bairro: string;
+  localidade: string;
+  uf: string;
+  ibge: string;
+  gia: string;
+  ddd: string;
+  siafi: string;
+};
 export const FormPage = () => {
   const { image } = useContext(ImageContext);
-
   const [user, setUser] = useState(localStorage.getItem("username") || "");
   const [email, setEmail] = useState(localStorage.getItem("email") || "");
   const [date, setDate] = useState("");
@@ -46,6 +59,8 @@ export const FormPage = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [selectedCity, setSelectedCity] = useState<City | null>(null);
+  const [selectedInstitutoOptions, setSelectedInstitutoOptions] =
+    useState(null);
   const [selectedStateSocial, setelectedStateSocial] = useState<City | null>(
     null
   );
@@ -151,29 +166,55 @@ export const FormPage = () => {
   } = useForm<FormSchemaType>({
     resolver: zodResolver(FormSchema),
   });
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [isUnderage, setIsUnderage] = useState(false);
+  const [cep, setCep] = useState("");
+  const [cepData, setCepData] = useState<CepResponse | null>(null);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const inputDate = event.target.value;
-    setDate(inputDate);
+  async function buscaCEP(cep: any) {
+    try {
+      const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+      setCepData(response.data);
+    } catch (error) {
+      console.log("CEP não encontrado");
+    }
+  }
 
-    const today = new Date();
-    const birthDate = new Date(inputDate);
-    const age = today.getFullYear() - birthDate.getFullYear();
+  const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const dateValue = event.target.value;
+    const date = dateValue ? new Date(dateValue) : null;
 
-    if (age < 18) {
-      setYoungerAge(false);
+    setSelectedDate(date);
+
+    if (date) {
+      const age = differenceInYears(new Date(), date);
+      setIsUnderage(age < 18);
+      setValue("date", format(date, "yyyy-MM-dd"));
+      setDate(dateValue);
     } else {
-      setYoungerAge(false);
+      setIsUnderage(false);
     }
   };
 
+  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const inputDate = event.target.value;
+  //   setDate(inputDate);
+
+  //   const today = new Date();
+  //   const birthDate = new Date(inputDate);
+  //   const age = today.getFullYear() - birthDate.getFullYear();
+
+  //   if (age < 18) {
+  //     setYoungerAge(false);
+  //   } else {
+  //     setYoungerAge(false);
+  //   }
+  // };
 
   const apiUrl = "https://api.jogajuntoinstituto.org/personalinfo/";
   async function sendPersonalInfo(data: FormSchemaType) {
     console.log("Enviando dados:", data);
     localStorage.setItem("personalForm", "true");
-
-
 
     const cleanedPhone = data.phone.replace(/[\s\.-]/g, "");
 
@@ -185,13 +226,24 @@ export const FormPage = () => {
     formData.append("cpf", data.cpf.replace(/\D/g, ""));
     formData.append("first_name", data.first_name);
     formData.append("last_name", data.first_name);
-    formData.append("social_name", data.socialName);
+    formData.append("social_name", data.socialName ?? "");
     formData.append("city", data.city);
     formData.append("phone", cleanedPhone);
     formData.append("date_of_birth", data.date);
     formData.append("living_uf", data.state.name);
     formData.append("country", data.state.name);
     formData.append("civil_state", data.civil_state);
+    formData.append(
+      "howDidYouHearAboutInstitute",
+      data.howDidYouHearAboutInstitute ?? ""
+    );
+
+    if (isUnderage) {
+      formData.append("resp_name", data.guardian?.name ?? "");
+      formData.append("resp_phone", data.guardian?.phone ?? "");
+      formData.append("resp_cpf", data.guardian?.cpf ?? "");
+      formData.append("resp_email", data.guardian?.email ?? "");
+    }
 
     try {
       const token = localStorage.getItem("token");
@@ -201,9 +253,7 @@ export const FormPage = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-
       console.log("response: ", response);
-
       setIsTabEnabledSocial(true);
       setIsTabEnabledDate(true);
       setActiveTab(1);
@@ -369,6 +419,27 @@ export const FormPage = () => {
                               className={errors.first_name ? "p-invalid" : ""}
                             />
                           </div>
+
+                          <div
+                            style={{ display: "flex", flexDirection: "column" }}
+                          >
+                            <label>CEP *</label>
+                            <InputText
+                              {...register("cep")}
+                              id="cep"
+                              onChange={(e) => {
+                                setCep(e.target.value);
+                                if (e.target.value.length === 8) {
+                                  // Certifique-se de que o CEP tenha 8 dígitos
+                                  buscaCEP(e.target.value);
+                                }
+                              }}
+                              value={cep}
+                              aria-describedby="cep-help"
+                              placeholder="CEP"
+                              className={errors.cep ? "p-invalid" : ""}
+                            />
+                          </div>
                           <div
                             style={{
                               display: "flex",
@@ -384,7 +455,7 @@ export const FormPage = () => {
                               className={errors.last_name ? "p-invalid" : ""}
                             />
                           </div>
-                          
+
                           <div
                             style={{
                               display: "flex",
@@ -392,15 +463,68 @@ export const FormPage = () => {
                             }}
                           >
                             <label>Data de nascimento *</label>
-                            <input
+                            <InputText
                               {...register("date")}
                               id="date"
                               type="date"
-                              value={date}
-                              onChange={handleChange}
+                              onChange={handleDateChange}
                               placeholder="dd-mm-yyyy"
                               className={errors.date ? "p-invalid" : ""}
                             />
+                            {isUnderage && (
+                              <div
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  gap: "1rem",
+                                  marginTop: "12px",
+                                }}
+                              >
+                                <span
+                                  style={{
+                                    color: "white",
+                                  }}
+                                >
+                                  Dados dos responsáveis
+                                </span>
+                                <InputText
+                                  {...register("guardian.name")}
+                                  id="Sobrenome"
+                                  aria-describedby="username-help"
+                                  placeholder="Nome do responsável"
+                                  className={
+                                    errors.guardian?.name ? "p-invalid" : ""
+                                  }
+                                />
+                                <InputText
+                                  {...register("guardian.email")}
+                                  id="Sobrenome"
+                                  aria-describedby="username-help"
+                                  placeholder="Email do responsável"
+                                  className={
+                                    errors.guardian?.email ? "p-invalid" : ""
+                                  }
+                                />
+                                <InputText
+                                  {...register("guardian.phone")}
+                                  id="Sobrenome"
+                                  aria-describedby="username-help"
+                                  placeholder="Telefone do responsável"
+                                  className={
+                                    errors.guardian?.phone ? "p-invalid" : ""
+                                  }
+                                />
+                                <InputText
+                                  {...register("guardian.cpf")}
+                                  id="Sobrenome"
+                                  aria-describedby="username-help"
+                                  placeholder="CPF do responsável"
+                                  className={
+                                    errors.guardian?.cpf ? "p-invalid" : ""
+                                  }
+                                />
+                              </div>
+                            )}
                           </div>
                           <div
                             style={{
@@ -413,12 +537,14 @@ export const FormPage = () => {
                               options={states}
                               value={selectedCity}
                               optionLabel="name"
-                              defaultValue={"SP"}
+                              defaultValue={cepData?.uf}
                               onChange={(e) => {
                                 setSelectedCity(e.value);
                                 setValue("state", e.value);
                               }}
-                              placeholder="Selecione o estado"
+                              placeholder={
+                                cepData?.uf ? cepData.uf : "Selecione o estado"
+                              }
                               className={
                                 errors.state
                                   ? "p-invalid w-full md:w-14rem"
@@ -440,13 +566,12 @@ export const FormPage = () => {
                               {...register("city")}
                               placeholder="Cidade"
                               className={errors.city ? "p-invalid" : ""}
-                              defaultValue={"Ilhabela"}
+                              defaultValue={cepData?.localidade}
                             />
                           </div>
                         </div>
 
                         <div>
-
                           <div
                             style={{
                               display: "flex",
@@ -494,7 +619,6 @@ export const FormPage = () => {
                             </div>
                           </div>
 
-
                           <div
                             style={{
                               display: "flex",
@@ -510,7 +634,6 @@ export const FormPage = () => {
                               className={errors.phone ? "p-invalid" : ""}
                             />
                           </div>
-
 
                           <div
                             style={{
@@ -531,6 +654,35 @@ export const FormPage = () => {
                               placeholder="Estado civil"
                               className={
                                 errors.civil_state
+                                  ? "p-invalid w-full md:w-14rem"
+                                  : "w-full md:w-14rem"
+                              }
+                              showClear
+                            />
+                          </div>
+
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <label>Onde conheceu o instituto? *</label>
+
+                            <Dropdown
+                              options={institutoOptions}
+                              value={selectedInstitutoOptions}
+                              optionLabel="name"
+                              onChange={(e) => {
+                                setSelectedInstitutoOptions(e.value);
+                                setValue(
+                                  "howDidYouHearAboutInstitute",
+                                  e.value
+                                );
+                              }}
+                              placeholder="Onde conheceu o instituto?"
+                              className={
+                                errors.howDidYouHearAboutInstitute
                                   ? "p-invalid w-full md:w-14rem"
                                   : "w-full md:w-14rem"
                               }

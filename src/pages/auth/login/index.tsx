@@ -20,7 +20,7 @@ export const LoginPage = () => {
   const handleSubmitLogin = handleSubmit(async (data) => {
     try {
       const response = await axios.post(
-        "https://api.jogajuntoinstituto.org/users/login/",
+        "http://api.jogajuntoinstituto.org/users/login/",
         { email: data.email, password: data.password }
       );
   

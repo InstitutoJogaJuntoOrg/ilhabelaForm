@@ -59,7 +59,7 @@ export const RegisterPage = () => {
     };
 
     axios
-      .post("https://api.jogajuntoinstituto.org/users/", requestData)
+      .post("http://api.jogajuntoinstituto.org/users/", requestData)
       .then((response) => {
         notifySuccess();
         setTimeout(() => {

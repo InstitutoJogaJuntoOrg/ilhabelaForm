@@ -35,10 +35,12 @@ export const SocioEconomico = ({
   const [selectedemprego, setSelectedEmprego] = useState<City | null>(null);
   const [selectedguildance, setSelectedguildance] = useState<City | null>(null);
   const [selectedfamily, setSelectedfamily] = useState<City | null>(null);
-  const [selectedscholl, setSelectedscholl] = useState<City | null>(null);
+  const [selectedscholl, setSelectedscholl] = useState<any | null>(null);
   const [selectedgender, setSelectedgender] = useState<City | null>(null);
   const [selectedBenefits, setSelectedBenefits] = useState<City | null>(null);
-  const [selectedSchollPublic, setselectedSchollPublic] = useState<City | null>(null);
+  const [selectedSchollPublic, setselectedSchollPublic] = useState<City | null>(
+    null
+  );
   const [selectedDeficiency, SetSelectedDeficiency] = useState<City | null>(
     null
   );
@@ -56,38 +58,13 @@ export const SocioEconomico = ({
 
   console.log(hasFormBeenSubmitted);
 
-  async function convertFileToBase64Blob(file: File): Promise<Blob> {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
 
-      reader.onload = () => {
-        const result = reader.result;
-        if (result instanceof ArrayBuffer) {
-          const blob = new Blob([new Uint8Array(result)], { type: file.type });
-          resolve(blob);
-        } else {
-          reject(new Error("Error reading file as ArrayBuffer"));
-        }
-      };
-
-      reader.onerror = (error) => {
-        reject(error);
-      };
-
-      reader.readAsArrayBuffer(file);
-    });
-  }
 
   const apiUrl = "https://api.jogajuntoinstituto.org/socioeconomics/";
 
   async function sendSocioEconomicInfo(data: SocioeconomicoSchemaType) {
     localStorage.setItem("socioeconomicForm", "true");
-    //const allowedFiles = ["image/png", "image/jpeg"]
-
-    console.log("data: ", data);
-
     try {
-
       const salario = Number(data.income);
       if (Number.isNaN(salario)) {
         toast.error("Salario com valor incorreto.");
@@ -107,8 +84,10 @@ export const SocioEconomico = ({
       formData.append("income", salario.toString());
       formData.append("household_count", data.family.name);
       formData.append("employment_status", data.employment_status);
-
-
+      
+      if (data.schooling === "ensino_medio_incompleto") {
+        formData.append("schoolName", data.schollName);
+      }
       const token = localStorage.getItem("token");
       console.log("formData: ", formData);
 
@@ -244,7 +223,6 @@ export const SocioEconomico = ({
             }}
             className="card flex justify-content-center"
           >
-
             <label>Qual sua situação de emprego? *</label>
             <Dropdown
               value={selectedemprego}
@@ -297,9 +275,7 @@ export const SocioEconomico = ({
               flexDirection: "column",
             }}
           >
-
-
-           <label>Qual a renda média mensal da sua família? *</label>
+            <label>Qual a renda média mensal da sua família? *</label>
             <InputText
               {...register("income")}
               id="renda"
@@ -348,7 +324,7 @@ export const SocioEconomico = ({
             }}
             className="card flex justify-content-center"
           >
-           <label>Qual sua orientação sexual? *</label>
+            <label>Qual sua orientação sexual? *</label>
             <Dropdown
               value={selectedguildance}
               options={guildance}
@@ -402,8 +378,7 @@ export const SocioEconomico = ({
             }}
             className="card flex justify-content-center"
           >
-
-           <label>Qual sua escolaridade: *</label>
+            <label>Qual sua escolaridade: *</label>
             <Dropdown
               value={selectedscholl}
               options={scholl}
@@ -420,6 +395,22 @@ export const SocioEconomico = ({
                   : "w-full md:w-14rem"
               }
             />
+            {selectedscholl === "ensino_medio_incompleto" && (
+              
+             <>
+              <label>Qual nome da escola: *</label>
+              <InputText
+                {...register("schollName")}
+                id="schollName"
+                aria-describedby="username-help"
+                className={
+                  errors.schollName
+                    ? "p-invalid w-full md:w-14rem"
+                    : "w-full md:w-14rem"
+                }
+                placeholder="Nome da escola"
+              /></>
+            )}
           </div>
 
           <div
@@ -430,10 +421,10 @@ export const SocioEconomico = ({
             }}
             className="card flex justify-content-center"
           >
+            <label>
+              Você ou alguém da sua família recebe algum benefício social? *
+            </label>
 
-
-           <label>Você ou alguém da sua família recebe algum benefício social? *</label>
-            
             <Dropdown
               value={selectedBenefits}
               options={benefits}
@@ -452,7 +443,6 @@ export const SocioEconomico = ({
             />
           </div>
 
-          
           <div
             style={{
               display: "flex",
@@ -461,10 +451,8 @@ export const SocioEconomico = ({
             }}
             className="card flex justify-content-center"
           >
+            <label>É aluno de escola pública? *</label>
 
-
-           <label>É aluno de escola pública? *</label>
-            
             <Dropdown
               value={selectedSchollPublic}
               options={schollPublic}
