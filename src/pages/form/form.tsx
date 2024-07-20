@@ -168,19 +168,18 @@ export const FormPage = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [isUnderage, setIsUnderage] = useState(false);
   const [cep, setCep] = useState("");
-  
   const [cepData, setCepData] = useState<CepResponse | null>(null);
+  console.log('cepData', cepData)
   async function buscaCEP(cep: any) {
     try {
       const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
       const cepData = response.data;
       setCepData(cepData);
-      setValue("state", cepData.uf.toString());
+      setValue("state", cepData.uf);
     } catch (error) {
       console.log("CEP não encontrado");
     }
   }
-
 
   const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const dateValue = event.target.value;
@@ -198,9 +197,8 @@ export const FormPage = () => {
     }
   };
 
-
-
-  const apiUrl = "https://api.jogajuntoinstituto.org/hotsite/students/personalinfo/";
+  const apiUrl =
+    "https://api.jogajuntoinstituto.org/hotsite/students/personalinfo/";
   async function sendPersonalInfo(data: FormSchemaType) {
     console.log("Enviando dados:", data);
     localStorage.setItem("personalForm", "true");
@@ -215,7 +213,6 @@ export const FormPage = () => {
     formData.append("cpf", data.cpf.replace(/\D/g, ""));
     formData.append("rg", data.cpf.replace(/\D/g, ""));
     formData.append("first_name", data.first_name);
-    formData.append("id", '12');
     formData.append("last_name", data.first_name);
     formData.append("social_name", data.socialName ?? "");
     formData.append("city", data.city);
@@ -223,9 +220,9 @@ export const FormPage = () => {
     formData.append("phone", cleanedPhone);
     formData.append("date_of_birth", data.date);
     formData.append("living_uf", data.state.name);
-    formData.append("country", data.state.name);
+    formData.append("country", data.country);
     formData.append("civil_state", data.civil_state);
-    formData.append("selective_process_id", '1');
+    formData.append("selective_process_id", "1");
     formData.append("zip_code", data.cep);
 
     if (isUnderage) {
@@ -240,9 +237,10 @@ export const FormPage = () => {
       const response = await axios.post(apiUrl, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "application/json",
         },
       });
+
       console.log("response: ", response);
       setIsTabEnabledSocial(true);
       setIsTabEnabledDate(true);
@@ -524,27 +522,25 @@ export const FormPage = () => {
                           >
                             <label>Estado: *</label>
                             <Dropdown
-                                options={states}
-                                value={selectedCity}
-                                optionLabel="name"
-                                defaultValue={cepData?.uf || ""}
-                                onChange={(e) => {
-                                  const selectedValue = e.value || cepData?.uf;
-                                  setSelectedCity(selectedValue);
-                                  setValue("state", selectedValue);
-                                }}
-                                placeholder={
-                                  cepData?.uf
-                                    ? cepData.uf
-                                    : "Selecione o estado"
-                                }
-                                className={
-                                  errors.state
-                                    ? "p-invalid w-full md:w-14rem"
-                                    : "w-full md:w-14rem"
-                                }
-                                showClear
-                              />
+                              options={states}
+                              value={selectedCity}
+                              optionLabel="name"
+                              defaultValue={cepData?.uf || ""}
+                              onChange={(e) => {
+                                const selectedValue = e.value || cepData?.uf;
+                                setSelectedCity(selectedValue);
+                                setValue("state", selectedValue);
+                              }}
+                              placeholder={
+                                cepData?.uf ? cepData.uf : "Selecione o estado"
+                              }
+                              className={
+                                errors.state
+                                  ? "p-invalid w-full md:w-14rem"
+                                  : "w-full md:w-14rem"
+                              }
+                              showClear
+                            />
                           </div>
 
                           <div
@@ -562,9 +558,39 @@ export const FormPage = () => {
                               defaultValue={cepData?.localidade}
                             />
                           </div>
+
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <label>país *</label>
+                            <InputText
+                              maxLength={15}
+                              {...register("country")}
+                              placeholder="country"
+                              className={errors.city ? "p-invalid" : ""}
+                            />
+                          </div>
                         </div>
 
                         <div>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <label>Rua *</label>
+                            <InputText
+                              maxLength={40}
+                              {...register("adress")}
+                              placeholder="adress"
+                              className={errors.adress ? "p-invalid" : ""}
+                              defaultValue={cepData?.logradouro}
+                            />
+                          </div>
                           <div
                             style={{
                               display: "flex",
@@ -596,23 +622,25 @@ export const FormPage = () => {
                           </div>
                           <br />
                           <div className="inputForm">
-                            
-                                <span style={{
-                                  color: 'white',
-                                  paddingBottom: '25px'
-                                }}>RG *</span>
-                            
-                              <InputMask
-                               style={{
-                                marginTop: '16px'
+                            <span
+                              style={{
+                                color: "white",
+                                paddingBottom: "25px",
                               }}
-                                mask="99.999.999-9"
-                                {...register("rg", { required: true })}
-                               
-                                placeholder="__.___.___-_" 
-                                className={errors.rg ? "p-invalid" : ""}
-                              />
-                            </div>
+                            >
+                              RG *
+                            </span>
+
+                            <InputMask
+                              style={{
+                                marginTop: "16px",
+                              }}
+                              mask="99.999.999-9"
+                              {...register("rg", { required: true })}
+                              placeholder="__.___.___-_"
+                              className={errors.rg ? "p-invalid" : ""}
+                            />
+                          </div>
                           <div>
                             <div
                               style={{
@@ -672,8 +700,6 @@ export const FormPage = () => {
                               showClear
                             />
                           </div>
-
-                    
 
                           <ContainerButtons className="flexEnd">
                             <button

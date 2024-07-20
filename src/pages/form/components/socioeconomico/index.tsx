@@ -43,7 +43,7 @@ export const SocioEconomico = ({
     null
   );
   const [selectedInstitutoOptions, setSelectedInstitutoOptions] =
-  useState(null);
+    useState(null);
   const [selectedDeficiency, SetSelectedDeficiency] = useState<City | null>(
     null
   );
@@ -71,7 +71,6 @@ export const SocioEconomico = ({
         toast.error("Salario com valor incorreto.");
         return;
       }
-
       const formData = new FormData();
       formData.append("deficiency", data.deficiency);
       formData.append("average_monthly_income", salario.toString());
@@ -98,7 +97,7 @@ export const SocioEconomico = ({
       const response = await axios.post(apiUrl, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "application/json",
         },
       });
 
@@ -400,20 +399,20 @@ export const SocioEconomico = ({
               }
             />
             {selectedscholl === "ensino_medio_incompleto" && (
-              
-             <>
-              <label>Qual nome da escola: *</label>
-              <InputText
-                {...register("schollName")}
-                id="schollName"
-                aria-describedby="username-help"
-                className={
-                  errors.schollName
-                    ? "p-invalid w-full md:w-14rem"
-                    : "w-full md:w-14rem"
-                }
-                placeholder="Nome da escola"
-              /></>
+              <>
+                <label>Qual nome da escola: *</label>
+                <InputText
+                  {...register("schollName")}
+                  id="schollName"
+                  aria-describedby="username-help"
+                  className={
+                    errors.schollName
+                      ? "p-invalid w-full md:w-14rem"
+                      : "w-full md:w-14rem"
+                  }
+                  placeholder="Nome da escola"
+                />
+              </>
             )}
           </div>
 
@@ -475,33 +474,30 @@ export const SocioEconomico = ({
             />
           </div>
           <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label>Onde conheceu o instituto? *</label>
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <label>Onde conheceu o instituto? *</label>
 
-                            <Dropdown
-                              options={institutoOptions}
-                              value={selectedInstitutoOptions}
-                              optionLabel="name"
-                              onChange={(e) => {
-                                setSelectedInstitutoOptions(e.value);
-                                setValue(
-                                  "howDidYouHearAboutInstitute",
-                                  e.value
-                                );
-                              }}
-                              placeholder="Onde conheceu o instituto?"
-                              className={
-                                errors.howDidYouHearAboutInstitute
-                                  ? "p-invalid w-full md:w-14rem"
-                                  : "w-full md:w-14rem"
-                              }
-                              showClear
-                            />
-                          </div>
+            <Dropdown
+              options={institutoOptions}
+              value={selectedInstitutoOptions}
+              optionLabel="name"
+              onChange={(e) => {
+                setSelectedInstitutoOptions(e.value);
+                setValue("howDidYouHearAboutInstitute", e.value);
+              }}
+              placeholder="Onde conheceu o instituto?"
+              className={
+                errors.howDidYouHearAboutInstitute
+                  ? "p-invalid w-full md:w-14rem"
+                  : "w-full md:w-14rem"
+              }
+              showClear
+            />
+          </div>
         </div>
         <ContainerButtons>
           <button type="submit" onClick={handleSubmit(sendSocioEconomicInfo)}>

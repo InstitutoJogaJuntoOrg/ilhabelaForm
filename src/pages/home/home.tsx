@@ -116,8 +116,7 @@ export const HomePage = () => {
             header=""
             footer={
               <a
-                href="https://www.instagram.com/ilhabela.tech/"
-                target={"_blank"}
+                href={emailFromLocalStorage ? "/inscricao" : "/login"}
               >
                 <ModalHome className="modalHomepage"></ModalHome>
               </a>
@@ -141,7 +140,7 @@ export const HomePage = () => {
           >
             {showText && (
               <div>
-                Texto que será exibido quando o mouse passar sobre a image
+                .
               </div>
             )}
           </Overlay>
