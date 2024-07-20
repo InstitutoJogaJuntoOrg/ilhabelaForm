@@ -3,6 +3,7 @@ import * as z from "zod";
 export const SocioeconomicoSchema = z.object({
   residency_proof: z
   .any(),
+  howDidYouHearAboutInstitute: z.string().optional(),
   enrollment_proof: z
   .any(),
     deficiency:z

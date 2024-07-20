@@ -1,3 +1,5 @@
+//form/componentes/socioeconômico
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { Dropdown } from "primereact/dropdown";
@@ -20,6 +22,7 @@ import { gender } from "../options/gender";
 import { guildance } from "../options/guidance";
 import { scholl } from "../options/scholl";
 import { schollPublic } from "../options/schollPublic";
+import { institutoOptions } from "../options/instituto";
 
 export const SocioEconomico = ({
   setTabEnabled,
@@ -44,7 +47,8 @@ export const SocioEconomico = ({
   const [selectedDeficiency, SetSelectedDeficiency] = useState<City | null>(
     null
   );
-
+  const [selectedInstitutoOptions, setSelectedInstitutoOptions] =
+    useState(null);
   const [hasFormBeenSubmitted, setHasFormBeenSubmitted] = useState(false);
 
   const {
@@ -79,10 +83,11 @@ export const SocioEconomico = ({
       reader.readAsArrayBuffer(file);
     });
   }
-  const apiUrl = `https://devapi.jogajuntoinstituto.org/socioeconomics/`;
+
+  const apiUrl = `${import.meta.env.VITE_API_URL}/socioeconomics/`;
+
   async function sendSocioEconomicInfo(data: SocioeconomicoSchemaType) {
     localStorage.setItem("socioeconomicForm", "true");
-    //const allowedFiles = ["image/png", "image/jpeg"]
 
     console.log("data: ", data);
 
@@ -94,6 +99,10 @@ export const SocioEconomico = ({
       }
 
       const formData = new FormData();
+      formData.append(
+        "howDidYouHearAboutInstitute",
+        data.howDidYouHearAboutInstitute ?? ""
+      );
       formData.append("deficiency", data.deficiency);
       formData.append("average_monthly_income", salario.toString());
       formData.append("race", data.color);
@@ -125,9 +134,9 @@ export const SocioEconomico = ({
         return;
       }
 
-      toast.error("Erro ao enviar o formulario, tente novaente mais tarde!");
+      toast.error("Erro ao enviar o formulario, tente novamente mais tarde!");
     } catch (error) {
-      toast.error("Erro ao enviar o formulario, tente novaente mais tarde!");
+      toast.error("Erro ao enviar o formulario, tente novamente mais tarde!");
       console.log("error: ", error);
     }
   }
@@ -140,8 +149,9 @@ export const SocioEconomico = ({
     const checkFormSubmission = async () => {
       try {
         const response = await axios.get(
-          "https://api.jogajuntoinstituto.org/socioeconomics/"
+          "https://api.jogajuntoinstituto.org/hotsite/students/personalinfo/"
         );
+
         localStorage.setItem("token", response.data.access);
         if (response.status === 200 || response.status === 201) {
           toast.success("Formulário enviado com sucesso!");
@@ -470,6 +480,33 @@ export const SocioEconomico = ({
               placeholder="Selecione"
               className={
                 errors.schollPublic
+                  ? "p-invalid w-full md:w-14rem"
+                  : "w-full md:w-14rem"
+              }
+              showClear
+            />
+          </div>
+          <br />
+          <div
+            className="inputForm"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <label>Onde conheceu o instituto? *</label>
+
+            <Dropdown
+              options={institutoOptions}
+              value={selectedInstitutoOptions}
+              optionLabel="name"
+              onChange={(e) => {
+                setSelectedInstitutoOptions(e.value);
+                setValue("howDidYouHearAboutInstitute", e.value);
+              }}
+              placeholder="Onde conheceu o instituto?"
+              className={
+                errors.howDidYouHearAboutInstitute
                   ? "p-invalid w-full md:w-14rem"
                   : "w-full md:w-14rem"
               }

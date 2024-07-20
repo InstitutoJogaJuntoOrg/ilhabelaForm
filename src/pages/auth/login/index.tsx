@@ -1,3 +1,4 @@
+
 import { InputText } from "primereact/inputtext";
 import { Container } from "../../form";
 import { FormField, Register } from "../register/styles";
@@ -21,27 +22,18 @@ export const LoginPage = () => {
   const handleSubmitLogin = handleSubmit(async (data) => {
     try {
       const response = await axios.post(
-        `https://devapi.jogajuntoinstituto.org/users/login/`,
+        `https://api.jogajuntoinstituto.org/hotsite/students/login/`,
         { email: data.email, password: data.password }
       );
 
-      console.log(data.email);
       if (response.status === 200) {
-        if (response.data.project != "comunidade") {
-          alert(
-            "Sua conta não está configurada corretamente. Por favor, contate o suporte: 5511945950731"
-          );
-          localStorage.clear(); // Remova todos os itens do localStorage
-          window.location.reload();
-          return;
-        }
+      
 
         localStorage.setItem("email", data.email); // Use data.email em vez de email
         console.log("logado");
         setData(response.data);
         localStorage.setItem("token", response.data.access);
         localStorage.setItem("refresh", response.data.refresh);
-        localStorage.setItem("username", response.data.user);
         localStorage.setItem("personalForm", response.data.personal_form);
         localStorage.setItem(
           "socioeconomicForm",
