@@ -202,6 +202,7 @@ export const FormPage = () => {
     );
     formData.append("country", data.state.name ? data.state.name : data.state);
     formData.append("civil_state", data.civil_state);
+ 
 
     if (isUnderage) {
       formData.append("resp_name", data.guardian?.name ?? "");
@@ -224,9 +225,10 @@ export const FormPage = () => {
         localStorage.setItem("username", data.socialName);
         window.location.reload();
       }
-      // setIsTabEnabledSocial(true);
-      // setIsTabEnabledDate(true);
-      // setActiveTab(1);
+      setIsTabEnabledSocial(true);
+      setIsTabEnabledDate(true);
+      setActiveTab(1);
+      
       console.log("imagem enviada", image);
       console.log("Data sent successfully:", response.data);
       localStorage.getItem("personalForm");
