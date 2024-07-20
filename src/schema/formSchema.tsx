@@ -27,9 +27,7 @@ export const FormSchema = z.object({
       message: "Data de nascimento inválida",
     }
   ),
-  state: z.object({
-    name: z.string({ required_error: "messages.required" }).min(1, { message: "messages.required" }),
-  }),
+  state: z.any(),
   rg: z
   .string({
     required_error: "messages.required",

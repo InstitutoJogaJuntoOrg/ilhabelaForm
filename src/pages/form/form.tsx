@@ -164,6 +164,9 @@ export const FormPage = () => {
     formState: { errors },
   } = useForm<FormSchemaType>({
     resolver: zodResolver(FormSchema),
+    defaultValues: {
+      state: "a",
+    }
   });
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [isUnderage, setIsUnderage] = useState(false);
@@ -176,6 +179,7 @@ export const FormPage = () => {
       const cepData = response.data;
       setCepData(cepData);
       setValue("state", cepData.uf);
+      setValue("adress", cepData.logradouro);
     } catch (error) {
       console.log("CEP não encontrado");
     }
@@ -526,9 +530,9 @@ export const FormPage = () => {
                               options={states}
                               value={selectedCity}
                               optionLabel="name"
-                              defaultValue={cepData?.uf || ""}
+                              defaultValue={cepData?.uf}
                               onChange={(e) => {
-                                const selectedValue = e.value || cepData?.uf;
+                                const selectedValue = e.value ? e.value : cepData?.uf || cepData?.uf;
                                 setSelectedCity(selectedValue);
                                 setValue("state", selectedValue);
                               }}
