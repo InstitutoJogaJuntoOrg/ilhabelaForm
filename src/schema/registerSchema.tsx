@@ -1,7 +1,15 @@
+//registerSchema.tsx
+
 import * as z from 'zod';
 
 export const RegisterSchema = z
   .object({
+    phone: z
+    .string()
+    .nonempty({ message: "O campo de telefone é obrigatório" })
+    .regex(/^\d{11}$/, {
+      message: "O telefone deve conter exatamente 11 dígitos",
+    }),
     email: z
       .string({
         errorMap: () => {
@@ -10,7 +18,6 @@ export const RegisterSchema = z
       })
       .email(),
     password: z.string().min(3),
-    
     confirmPassword: z.string().min(3),
     name: z.string({
       errorMap: () => {
@@ -18,6 +25,7 @@ export const RegisterSchema = z
       },
     }).min(3),
   })
+  
   .refine((fields) => fields.password === fields.confirmPassword, {
     path: ["confirmPassword"],
     message: "As senhas precisam ser iguais",
