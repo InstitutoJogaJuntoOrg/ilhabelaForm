@@ -216,6 +216,7 @@ export const FormPage = () => {
     formData.append("last_name", data.first_name);
     formData.append("social_name", data.socialName ?? "");
     formData.append("city", data.city);
+    formData.append("adress", data.adress);
     formData.append("email", data.email);
     formData.append("phone", cleanedPhone);
     formData.append("date_of_birth", data.date);
