@@ -14,6 +14,12 @@ export const RegisterSchema = z
       message: "O campo deve ser marcado",
       path: ["checked"],
     }),
+    phone: z
+    .string()
+    .nonempty({ message: "O campo de telefone é obrigatório" })
+    .regex(/^\d{11}$/, {
+      message: "O telefone deve conter exatamente 11 dígitos",
+    }),
     checkedTree: z.boolean().refine(value => value === true, {
       message: "O campo deve ser marcado",
       path: ["checkedTree"],

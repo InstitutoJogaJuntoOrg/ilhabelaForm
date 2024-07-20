@@ -51,15 +51,16 @@ export const RegisterPage = () => {
   }
 
   function handleSubmitRegister(data: RegisterSchemaType) {
+    const cleanedPhone = data.phone.replace(/[\s\.-]/g, "");
     const requestData = {
       username: data.name,
       password: data.password,
       email: data.email,
-      project: "ilhabela"
+      phone: cleanedPhone,
     };
 
     axios
-      .post("http://api.jogajuntoinstituto.org/users/", requestData)
+      .post("https://api.jogajuntoinstituto.org/hotsite/students/", requestData)
       .then((response) => {
         notifySuccess();
         setTimeout(() => {
@@ -67,6 +68,7 @@ export const RegisterPage = () => {
         }, 2000);
         if (response.status === 201) {
           localStorage.setItem("email", email);
+          localStorage.setItem("username", data.name);
           setTimeout(() => {
             navigate("/auth");
           }, 2000);
@@ -119,6 +121,24 @@ export const RegisterPage = () => {
               value={email}
             />
           </FormField>
+
+          <FormField>
+            <label>Telefone</label>
+            <InputText
+              id="phone"
+              {...register("phone")}
+
+              aria-describedby="phone-help"
+              placeholder="phone"
+              className={errors.phone ? "p-invalid" : ""}
+            />
+            <span style={{
+              fontSize: '12px',
+              color: 'white',
+              marginTop: '6px'
+            }}>{errors.phone?.message} Exemplo: 11945555555</span>
+          </FormField>
+
 
           <FormField>
             <label>Senha</label>
