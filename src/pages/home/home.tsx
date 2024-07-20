@@ -19,6 +19,7 @@ import styled from "styled-components";
 import { Footer } from "../../components/footer";
 import { Modules } from "../../components/modules/modules";
 import FAQs from "./components/FAQ/faq";
+import { StyledNavLink } from "../../components/header/styles";
 // import { Cookies } from "js-cookie"; // Importe a biblioteca
 
 const Overlay = styled.div`
@@ -61,10 +62,11 @@ export const HomePage = () => {
   const [display, setDisplay] = useState(true);
   const auth = localStorage.getItem("token");
   const [showText, setShowText] = useState(false);
-
+  const emailFromLocalStorage = localStorage.getItem("username");
   const setCookie = (name: string) => {
     document.cookie = name;
   };
+
   useEffect(() => {
     const hasVisitedHomePage = localStorage.getItem("final");
 
@@ -149,19 +151,17 @@ export const HomePage = () => {
         <br />
         <section>
           <ContainerTitle className="InitialMessage">
-             <h1 style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}>
+            <h1 style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}>
               ILHABELA TECH
             </h1>
-      
-             <a
+
+            <a
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
-              href={
-                "/inscricao"
-              }
-       
+              href={emailFromLocalStorage ? "/inscricao" : "/login"}
             >
               <button>Participe agora</button>
-            </a> 
+            </a>
+
             {/* <span
               className="subDescp"
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)", background: "", padding: '2rem', borderRadius: '16px'}}
@@ -190,9 +190,13 @@ export const HomePage = () => {
         </ContainerCardLayout>
 
         <BannerContainer>
-          <img src="/banners.svg" style={{
-            display: 'block',
-          }} alt="icon" />
+          <img
+            src="/banners.svg"
+            style={{
+              display: "block",
+            }}
+            alt="icon"
+          />
         </BannerContainer>
 
         <div
