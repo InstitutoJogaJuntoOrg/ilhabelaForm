@@ -453,7 +453,7 @@ export const FormPage = () => {
                                 aria-describedby="cep-help"
                                 id="cep"
                                 mask="99999999"
-                                placeholder="___.___.___-__"
+                                placeholder="________"
                                 onChange={(e) => {
                                   setCep(e.target.value);
                                   if (e.target.value?.length === 8) {
