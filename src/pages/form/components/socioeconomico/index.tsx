@@ -20,6 +20,7 @@ import { gender } from "../options/gender";
 import { guildance } from "../options/guidance";
 import { scholl } from "../options/scholl";
 import { schollPublic } from "../options/schollPublic";
+import { institutoOptions } from "../options/instituto";
 
 export const SocioEconomico = ({
   setTabEnabled,
@@ -41,6 +42,8 @@ export const SocioEconomico = ({
   const [selectedSchollPublic, setselectedSchollPublic] = useState<City | null>(
     null
   );
+  const [selectedInstitutoOptions, setSelectedInstitutoOptions] =
+  useState(null);
   const [selectedDeficiency, SetSelectedDeficiency] = useState<City | null>(
     null
   );
@@ -84,7 +87,10 @@ export const SocioEconomico = ({
       formData.append("income", salario.toString());
       formData.append("household_count", data.family.name);
       formData.append("employment_status", data.employment_status);
-      
+      formData.append(
+        "howDidYouHearAboutInstitute",
+        data.howDidYouHearAboutInstitute ?? ""
+      );
       if (data.schooling === "ensino_medio_incompleto") {
         formData.append("schoolName", data.schollName);
       }
@@ -470,6 +476,34 @@ export const SocioEconomico = ({
               showClear
             />
           </div>
+          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <label>Onde conheceu o instituto? *</label>
+
+                            <Dropdown
+                              options={institutoOptions}
+                              value={selectedInstitutoOptions}
+                              optionLabel="name"
+                              onChange={(e) => {
+                                setSelectedInstitutoOptions(e.value);
+                                setValue(
+                                  "howDidYouHearAboutInstitute",
+                                  e.value
+                                );
+                              }}
+                              placeholder="Onde conheceu o instituto?"
+                              className={
+                                errors.howDidYouHearAboutInstitute
+                                  ? "p-invalid w-full md:w-14rem"
+                                  : "w-full md:w-14rem"
+                              }
+                              showClear
+                            />
+                          </div>
         </div>
         <ContainerButtons>
           <button type="submit" onClick={handleSubmit(sendSocioEconomicInfo)}>

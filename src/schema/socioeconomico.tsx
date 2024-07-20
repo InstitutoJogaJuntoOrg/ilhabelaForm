@@ -5,6 +5,7 @@ export const SocioeconomicoSchema = z.object({
   .any(),
   schollName: z
   .any(),
+  howDidYouHearAboutInstitute: z.string().optional(),
   enrollment_proof: z
   .any(),
     deficiency:z

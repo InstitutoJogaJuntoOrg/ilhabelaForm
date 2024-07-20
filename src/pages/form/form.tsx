@@ -59,8 +59,7 @@ export const FormPage = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [selectedCity, setSelectedCity] = useState<City | null>(null);
-  const [selectedInstitutoOptions, setSelectedInstitutoOptions] =
-    useState(null);
+
   const [selectedStateSocial, setelectedStateSocial] = useState<City | null>(
     null
   );
@@ -211,7 +210,7 @@ export const FormPage = () => {
   //   }
   // };
 
-  const apiUrl = "https://api.jogajuntoinstituto.org/personalinfo/";
+  const apiUrl = "https://api.jogajuntoinstituto.org/hotsite/students/personalinfo/";
   async function sendPersonalInfo(data: FormSchemaType) {
     console.log("Enviando dados:", data);
     localStorage.setItem("personalForm", "true");
@@ -224,19 +223,20 @@ export const FormPage = () => {
     }
     const formData = new FormData();
     formData.append("cpf", data.cpf.replace(/\D/g, ""));
+    formData.append("rg", data.cpf.replace(/\D/g, ""));
     formData.append("first_name", data.first_name);
+    formData.append("id", '12');
     formData.append("last_name", data.first_name);
     formData.append("social_name", data.socialName ?? "");
     formData.append("city", data.city);
+    formData.append("email", data.email);
     formData.append("phone", cleanedPhone);
     formData.append("date_of_birth", data.date);
     formData.append("living_uf", data.state.name);
     formData.append("country", data.state.name);
     formData.append("civil_state", data.civil_state);
-    formData.append(
-      "howDidYouHearAboutInstitute",
-      data.howDidYouHearAboutInstitute ?? ""
-    );
+    formData.append("selective_process_id", '1');
+    formData.append("zip_code", data.cep);
 
     if (isUnderage) {
       formData.append("resp_name", data.guardian?.name ?? "");
@@ -534,24 +534,27 @@ export const FormPage = () => {
                           >
                             <label>Estado: *</label>
                             <Dropdown
-                              options={states}
-                              value={selectedCity}
-                              optionLabel="name"
-                              defaultValue={cepData?.uf}
-                              onChange={(e) => {
-                                setSelectedCity(e.value);
-                                setValue("state", e.value);
-                              }}
-                              placeholder={
-                                cepData?.uf ? cepData.uf : "Selecione o estado"
-                              }
-                              className={
-                                errors.state
-                                  ? "p-invalid w-full md:w-14rem"
-                                  : "w-full md:w-14rem"
-                              }
-                              showClear
-                            />
+                                options={states}
+                                value={selectedCity}
+                                optionLabel="name"
+                                defaultValue={cepData?.uf || ""}
+                                onChange={(e) => {
+                                  const selectedValue = e.value || cepData?.uf;
+                                  setSelectedCity(selectedValue);
+                                  setValue("state", selectedValue);
+                                }}
+                                placeholder={
+                                  cepData?.uf
+                                    ? cepData.uf
+                                    : "Selecione o estado"
+                                }
+                                className={
+                                  errors.state
+                                    ? "p-invalid w-full md:w-14rem"
+                                    : "w-full md:w-14rem"
+                                }
+                                showClear
+                              />
                           </div>
 
                           <div
@@ -601,6 +604,25 @@ export const FormPage = () => {
                               className={errors.cpf ? "p-invalid" : ""}
                             />
                           </div>
+                          <br />
+                          <div className="inputForm">
+                            
+                                <span style={{
+                                  color: 'white',
+                                  paddingBottom: '25px'
+                                }}>RG *</span>
+                            
+                              <InputMask
+                               style={{
+                                marginTop: '16px'
+                              }}
+                                mask="99.999.999-9"
+                                {...register("rg", { required: true })}
+                               
+                                placeholder="__.___.___-_" 
+                                className={errors.rg ? "p-invalid" : ""}
+                              />
+                            </div>
                           <div>
                             <div
                               style={{
@@ -661,34 +683,7 @@ export const FormPage = () => {
                             />
                           </div>
 
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label>Onde conheceu o instituto? *</label>
-
-                            <Dropdown
-                              options={institutoOptions}
-                              value={selectedInstitutoOptions}
-                              optionLabel="name"
-                              onChange={(e) => {
-                                setSelectedInstitutoOptions(e.value);
-                                setValue(
-                                  "howDidYouHearAboutInstitute",
-                                  e.value
-                                );
-                              }}
-                              placeholder="Onde conheceu o instituto?"
-                              className={
-                                errors.howDidYouHearAboutInstitute
-                                  ? "p-invalid w-full md:w-14rem"
-                                  : "w-full md:w-14rem"
-                              }
-                              showClear
-                            />
-                          </div>
+                    
 
                           <ContainerButtons className="flexEnd">
                             <button

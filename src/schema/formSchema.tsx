@@ -10,7 +10,6 @@ const guardianSchema = z.object({
 
 export const FormSchema = z.object({
   civil_state: z.string().min(3, "Campo obrigatório"),
-  rg: z.any(),
   socialName: z.string().optional(),
   first_name: z.string().min(1, "Campo obrigatório"),
   last_name: z.string().min(1, "Campo obrigatório"),
@@ -29,7 +28,10 @@ export const FormSchema = z.object({
   state: z.object({
     name: z.string({ required_error: "messages.required" }).min(1, { message: "messages.required" }),
   }),
-  howDidYouHearAboutInstitute: z.string().optional(),
+  rg: z
+  .string({
+    required_error: "messages.required",
+  }),
   cep: z.string(),
   phone: z
     .string()
