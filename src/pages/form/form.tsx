@@ -65,22 +65,6 @@ export const FormPage = () => {
   const [data, setData] = useState();
   const [cep, setCep] = useState("");
   const [cepData, setCepData] = useState<CepResponse | null>(null);
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-
-  const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const dateValue = event.target.value;
-    const date = dateValue ? new Date(dateValue) : null;
-
-    setSelectedDate(date);
-
-    if (date) {
-      const age = differenceInYears(new Date(), date);
-      setIsUnderage(age < 18);
-      setValue("date", format(date, "yyyy-MM-dd"));
-    } else {
-      setIsUnderage(false);
-    }
-  };
 
   function ErrosSending() {
     if (errors.cpf) {
@@ -185,6 +169,19 @@ export const FormPage = () => {
       (e.key >= "A" && e.key <= "Z")
     ) {
       e.preventDefault();
+    }
+  };
+  const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const dateValue = event.target.value;
+
+    if (dateValue && dateValue.length === 10) {
+      // Checa se a data está completa no formato yyyy-MM-dd
+      const date = new Date(dateValue);
+      const age = differenceInYears(new Date(), date);
+      setIsUnderage(age < 18);
+      setValue("date", format(date, "yyyy-MM-dd"));
+    } else {
+      setIsUnderage(false);
     }
   };
   async function buscaCEP(cep: any) {
@@ -442,17 +439,18 @@ export const FormPage = () => {
                               />
                             </div>
                             <br />
-                            <div className="inputForm">
-                              <div>
-                                <span>Data de nascimento *</span>
-                              </div>
+                            <div>
                               <input
-        {...register("date")}
-        id="date"
-        type="date"
-        onChange={handleDateChange}
-        className={errors.date ? "p-invalid" : ""}
-      />
+                                {...register("date")}
+                                type="date"
+                                id="date"
+                                className={errors.date ? "p-invalid" : ""}
+                              />
+                              {isUnderage && (
+                                <p className="error-message">
+                                  You are under 18 years old
+                                </p>
+                              )}
                             </div>
                             <br />
                             {isUnderage && (
