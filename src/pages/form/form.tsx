@@ -168,10 +168,10 @@ export const FormPage = () => {
       state: "a",
     }
   });
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedDate, setSelectedDate] = useState<Date | any>(null);
   const [isUnderage, setIsUnderage] = useState(false);
-  const [cep, setCep] = useState("");
-  const [cepData, setCepData] = useState<CepResponse | null>(null);
+  const [cep, setCep] = useState<any>("");
+  const [cepData, setCepData] = useState<CepResponse | any>(null);
   console.log('cepData', cepData)
   async function buscaCEP(cep: any) {
     try {
@@ -185,17 +185,48 @@ export const FormPage = () => {
     }
   }
 
+
+  const isValidDate = (dateString: string) => {
+    const [day, month, year] = dateString.split("/").map(Number);
+    if (
+      month < 1 ||
+      month > 12 ||
+      day < 1 ||
+      day > 31 ||
+      year < 1900 ||
+      year > 2100
+    ) {
+      return false;
+    }
+    const date = new Date(year, month - 1, day);
+    return (
+      date.getDate() === day &&
+      date.getMonth() === month - 1 &&
+      date.getFullYear() === year
+    );
+  };
+  const parseDate = (dateString: string) => {
+    const [day, month, year] = dateString.split("/").map(Number);
+    return new Date(year, month - 1, day);
+  };
+
+  const applyMask = (value: string) => {
+    value = value.replace(/\D/g, "");
+    if (value.length <= 2) return value;
+    if (value.length <= 4) return `${value.slice(0, 2)}/${value.slice(2)}`;
+    return `${value.slice(0, 2)}/${value.slice(2, 4)}/${value.slice(4, 8)}`;
+  };
+
   const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const dateValue = event.target.value;
-    const date = dateValue ? new Date(dateValue) : null;
+    const rawValue = event.target.value;
+    const maskedValue = applyMask(rawValue);
+    setSelectedDate(maskedValue);
 
-    setSelectedDate(date);
-
-    if (date) {
+    if (maskedValue.length === 10 && isValidDate(maskedValue)) {
+      const date = parseDate(maskedValue);
       const age = differenceInYears(new Date(), date);
       setIsUnderage(age < 18);
       setValue("date", format(date, "yyyy-MM-dd"));
-      setDate(dateValue);
     } else {
       setIsUnderage(false);
     }
@@ -414,25 +445,26 @@ export const FormPage = () => {
                           </div>
 
                           <div
-                            style={{ display: "flex", flexDirection: "column" }}
-                          >
-                            <label>CEP *</label>
-                            <InputText
-                              {...register("cep")}
-                              id="cep"
-                              onChange={(e) => {
-                                setCep(e.target.value);
-                                if (e.target.value.length === 8) {
-                                  // Certifique-se de que o CEP tenha 8 dígitos
-                                  buscaCEP(e.target.value);
-                                }
+                              style={{
+                                marginTop: "10px",
                               }}
-                              value={cep}
-                              aria-describedby="cep-help"
-                              placeholder="CEP"
-                              className={errors.cep ? "p-invalid" : ""}
-                            />
-                          </div>
+                              className="inputForm"
+                            >
+                              <label>CEP *</label>
+                              <InputMask
+                                aria-describedby="cep-help"
+                                id="cep"
+                                mask="99999999"
+                                placeholder="________"
+                                onChange={(e) => {
+                                  setCep(e.target.value);
+                                  if (e.target.value?.length === 8) {
+                                    buscaCEP(e.target.value);
+                                  }
+                                }}
+                                className={errors.cpf ? "p-invalid" : ""}
+                              />
+                            </div>
                           <div
                             style={{
                               display: "flex",
@@ -456,14 +488,19 @@ export const FormPage = () => {
                             }}
                           >
                             <label>Data de nascimento *</label>
-                            <InputText
-                              {...register("date")}
-                              id="date"
-                              type="date"
-                              onChange={handleDateChange}
-                              placeholder="dd-mm-yyyy"
-                              className={errors.date ? "p-invalid" : ""}
-                            />
+                            <input
+                                {...register("date")}
+                                id="date"
+                                type="text"
+                                onChange={handleDateChange}
+                                value={selectedDate}
+                                placeholder="dd/MM/yyyy"
+                                className={
+                                  errors.date
+                                    ? "p-invalid inputForm"
+                                    : "inputForm"
+                                }
+                              />
                             {isUnderage && (
                               <div
                                 style={{

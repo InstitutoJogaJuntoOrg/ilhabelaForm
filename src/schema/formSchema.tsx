@@ -18,15 +18,7 @@ export const FormSchema = z.object({
   country: z.string().min(1, "Campo obrigatório"),
   cpf: z.string({ required_error: "messages.required" }).min(1, "Campo obrigatório"),
   email: z.string().email("Email inválido").min(1, "Campo obrigatório"),
-  date: z.string().refine(
-    (value) => {
-      const date = new Date(value);
-      return !isNaN(date.getTime());
-    },
-    {
-      message: "Data de nascimento inválida",
-    }
-  ),
+  date: z.any(),
   state: z.any(),
   rg: z
   .string({
