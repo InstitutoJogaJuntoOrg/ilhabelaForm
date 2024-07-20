@@ -134,9 +134,9 @@ export const SocioEconomico = ({
         return;
       }
 
-      toast.error("Erro ao enviar o formulario, tente novaente mais tarde!");
+      toast.error("Erro ao enviar o formulario, tente novamente mais tarde!");
     } catch (error) {
-      toast.error("Erro ao enviar o formulario, tente novaente mais tarde!");
+      toast.error("Erro ao enviar o formulario, tente novamente mais tarde!");
       console.log("error: ", error);
     }
   }
