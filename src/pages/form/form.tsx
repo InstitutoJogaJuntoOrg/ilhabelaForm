@@ -67,17 +67,6 @@ export const FormPage = () => {
   const [cep, setCep] = useState("");
   const [cepData, setCepData] = useState<CepResponse | null>(null);
 
-  async function buscaCEP(cep: any) {
-    try {
-      const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
-      const cepData = response.data;
-      setCepData(cepData);
-      setValue("state", cepData.uf.toString());
-    } catch (error) {
-      console.log("CEP não encontrado");
-    }
-  }
-
   const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const dateValue = event.target.value;
     const date = dateValue ? new Date(dateValue) : null;
@@ -182,28 +171,44 @@ export const FormPage = () => {
     formState: { errors },
   } = useForm<FormSchemaType>({
     resolver: zodResolver(FormSchema),
+    defaultValues: {
+      state: "",
+    },
   });
+
+  async function buscaCEP(cep: any) {
+    try {
+      const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+      const cepData = response.data;
+      setCepData(cepData);
+      setValue("state", cepData.uf);
+      setValue("adress", cepData.logradouro);
+    } catch (error) {
+      console.log("CEP não encontrado");
+    }
+  }
 
   const apiUrl = `${import.meta.env.VITE_API_URL}/students/personalinfo/`;
   async function sendPersonalInfo(data: FormSchemaType) {
     console.log("Enviando dados:", data);
     localStorage.setItem("personalForm", "true");
+ 
     const formData = new FormData();
     formData.append("cpf", data.cpf.replace(/\D/g, ""));
     formData.append("rg", data.cpf.replace(/\D/g, ""));
     formData.append("first_name", data.first_name);
     formData.append("last_name", data.first_name);
-    formData.append("social_name", data.socialName);
+    formData.append("social_name", data.socialName ?? "");
     formData.append("city", data.city);
+    formData.append("adress", data.adress);
+    formData.append("email", data.email);
+  
     formData.append("date_of_birth", data.date);
-    formData.append(
-      "living_uf",
-      data.state.name ? data.state.name : data.state
-    );
-    formData.append("country", data.state.name ? data.state.name : data.state);
+    formData.append("living_uf", data.state.name);
+    formData.append("country", data.country);
     formData.append("civil_state", data.civil_state);
- 
-
+    formData.append("selective_process_id", "1");
+    formData.append("zip_code", data.cep);
     if (isUnderage) {
       formData.append("resp_name", data.guardian?.name ?? "");
       formData.append("resp_phone", data.guardian?.phone ?? "");
@@ -216,7 +221,7 @@ export const FormPage = () => {
       const response = await axios.post(apiUrl, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "application/json",
         },
       });
       console.log("response: ", response);
@@ -228,7 +233,7 @@ export const FormPage = () => {
       setIsTabEnabledSocial(true);
       setIsTabEnabledDate(true);
       setActiveTab(1);
-      
+
       console.log("imagem enviada", image);
       console.log("Data sent successfully:", response.data);
       localStorage.getItem("personalForm");
@@ -551,9 +556,42 @@ export const FormPage = () => {
                                 defaultValue={cepData?.localidade}
                               />
                             </div>
+                            <br />
+                            <div
+                              className="inputForm"
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                              }}
+                            >
+                              <label>país *</label>
+                              <InputText
+                                maxLength={15}
+                                {...register("country")}
+                                placeholder="País"
+                                className={errors.country ? "p-invalid" : ""}
+                              />
+                            </div>
                           </div>
                           <br />
                           <div>
+                            <div
+                              className="inputForm"
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                              }}
+                            >
+                              <label>Rua *</label>
+                              <InputText
+                                maxLength={40}
+                                {...register("adress")}
+                                placeholder="adress"
+                                className={errors.adress ? "p-invalid" : ""}
+                                defaultValue={cepData?.logradouro}
+                              />
+                            </div>
+                            <br />
                             <div className="inputForm">
                               <div>
                                 <span>Nome social</span>
@@ -587,7 +625,7 @@ export const FormPage = () => {
                               <InputMask
                                 mask="99.999.999-9"
                                 {...register("rg", { required: true })}
-                                placeholder="__.___.___-_" 
+                                placeholder="__.___.___-_"
                                 className={errors.rg ? "p-invalid" : ""}
                               />
                             </div>
@@ -632,7 +670,7 @@ export const FormPage = () => {
                               />
                             </div>
                             <br />
-                           
+
                             <ContainerButtons className="flexEnd">
                               <button
                                 className="buttonForm"
