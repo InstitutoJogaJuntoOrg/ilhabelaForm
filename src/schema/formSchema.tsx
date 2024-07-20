@@ -14,18 +14,10 @@ export const FormSchema = z.object({
   civil_state: z.string().min(3, "Campo obrigatório"),
   socialName: z.string(),
   first_name: z.string().min(1, "Campo obrigatório"),
-  date: z.string().refine(
-    (value) => {
-      const date = new Date(value);
-      return !isNaN(date.getTime());
-    },
-    {
-      message: "Data de nascimento inválida",
-    }
-  ),
+  date: z.any(),
   last_name: z.string().min(1, "Campo obrigatório"),
   city: z.string().min(4, "Campo obrigatório"),
-  cep: z.string(),
+  cep: z.any(),
   adress: z.string().min(1, "Campo obrigatório"),
   country: z.string().min(1, "Campo obrigatório"),
   cpf: z

@@ -13,6 +13,7 @@ import { states } from "./components/options/state";
 import { TabView, TabPanel } from "primereact/tabview";
 import { InputText } from "primereact/inputtext";
 import { InputMask } from "primereact/inputmask";
+
 import { Dropdown } from "primereact/dropdown";
 import { useContext, useEffect, useState } from "react";
 import { Steps } from "primereact/steps";
@@ -63,8 +64,9 @@ export const FormPage = () => {
     null
   );
   const [data, setData] = useState();
-  const [cep, setCep] = useState("");
-  const [cepData, setCepData] = useState<CepResponse | null>(null);
+  const [cep, setCep] = useState<any>("");
+  const [selectedDate, setSelectedDate] = useState<any>("");
+  const [cepData, setCepData] = useState<CepResponse | any>(null);
 
   function ErrosSending() {
     if (errors.cpf) {
@@ -161,22 +163,21 @@ export const FormPage = () => {
       state: "",
     },
   });
-  const handleKeyDown = (e: any) => {
-    const invalidChars = ["e", "E", "+", "-", "."];
-    if (
-      invalidChars.includes(e.key) ||
-      (e.key >= "a" && e.key <= "z") ||
-      (e.key >= "A" && e.key <= "Z")
-    ) {
-      e.preventDefault();
-    }
-  };
-  const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const dateValue = event.target.value;
 
-    if (dateValue && dateValue.length === 10) {
-      // Checa se a data está completa no formato yyyy-MM-dd
-      const date = new Date(dateValue);
+  const applyMask = (value: string) => {
+    value = value.replace(/\D/g, "");
+    if (value.length <= 2) return value;
+    if (value.length <= 4) return `${value.slice(0, 2)}/${value.slice(2)}`;
+    return `${value.slice(0, 2)}/${value.slice(2, 4)}/${value.slice(4, 8)}`;
+  };
+
+  const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const rawValue = event.target.value;
+    const maskedValue = applyMask(rawValue);
+    setSelectedDate(maskedValue);
+
+    if (maskedValue.length === 10 && isValidDate(maskedValue)) {
+      const date = parseDate(maskedValue);
       const age = differenceInYears(new Date(), date);
       setIsUnderage(age < 18);
       setValue("date", format(date, "yyyy-MM-dd"));
@@ -184,6 +185,33 @@ export const FormPage = () => {
       setIsUnderage(false);
     }
   };
+
+  const isValidDate = (dateString: string) => {
+    const [day, month, year] = dateString.split("/").map(Number);
+    if (
+      month < 1 ||
+      month > 12 ||
+      day < 1 ||
+      day > 31 ||
+      year < 1900 ||
+      year > 2100
+    ) {
+      return false;
+    }
+    const date = new Date(year, month - 1, day);
+    return (
+      date.getDate() === day &&
+      date.getMonth() === month - 1 &&
+      date.getFullYear() === year
+    );
+  };
+
+  // Função para converter a string para um objeto Date
+  const parseDate = (dateString: string) => {
+    const [day, month, year] = dateString.split("/").map(Number);
+    return new Date(year, month - 1, day);
+  };
+
   async function buscaCEP(cep: any) {
     try {
       const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
@@ -196,7 +224,7 @@ export const FormPage = () => {
     }
   }
 
-  const apiUrl = `${import.meta.env.VITE_API_URL}/personalinfo/`;
+  const apiUrl = `https://api.jogajuntoinstituto.org/hotsite/students/personalinfo/`;
   async function sendPersonalInfo(data: FormSchemaType) {
     console.log("Enviando dados:", data);
     localStorage.setItem("personalForm", "true");
@@ -215,7 +243,7 @@ export const FormPage = () => {
     formData.append("country", data.country);
     formData.append("civil_state", data.civil_state);
     formData.append("selective_process_id", "1");
-    formData.append("zip_code", data.cep);
+    formData.append("zip_code", cep);
     if (isUnderage) {
       formData.append("resp_name", data.guardian?.name ?? "");
       formData.append("resp_phone", data.guardian?.phone ?? "");
@@ -421,36 +449,36 @@ export const FormPage = () => {
                               className="inputForm"
                             >
                               <label>CEP *</label>
-                              <InputText
-                                {...register("cep")}
-                                id="cep"
+                              <InputMask
                                 aria-describedby="cep-help"
+                                id="cep"
+                                mask="99999999"
+                                placeholder="___.___.___-__"
                                 onChange={(e) => {
                                   setCep(e.target.value);
-                                  if (e.target.value.length === 8) {
+                                  if (e.target.value?.length === 8) {
                                     buscaCEP(e.target.value);
                                   }
                                 }}
-                                onKeyDown={handleKeyDown}
-                                value={cep}
-                                inputMode="numeric"
-                                placeholder="CEP"
-                                className={errors.cep ? "p-invalid" : ""}
+                                className={errors.cpf ? "p-invalid" : ""}
                               />
                             </div>
                             <br />
-                            <div>
+                            <div className="inputForm">
+                              <label>Data de nascimento *</label>
                               <input
                                 {...register("date")}
-                                type="date"
                                 id="date"
-                                className={errors.date ? "p-invalid" : ""}
+                                type="text"
+                                onChange={handleDateChange}
+                                value={selectedDate}
+                                placeholder="dd/MM/yyyy"
+                                className={
+                                  errors.date
+                                    ? "p-invalid inputForm"
+                                    : "inputForm"
+                                }
                               />
-                              {isUnderage && (
-                                <p className="error-message">
-                                  You are under 18 years old
-                                </p>
-                              )}
                             </div>
                             <br />
                             {isUnderage && (
