@@ -168,16 +168,19 @@ export const FormPage = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [isUnderage, setIsUnderage] = useState(false);
   const [cep, setCep] = useState("");
+  
   const [cepData, setCepData] = useState<CepResponse | null>(null);
-
   async function buscaCEP(cep: any) {
     try {
       const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
-      setCepData(response.data);
+      const cepData = response.data;
+      setCepData(cepData);
+      setValue("state", cepData.uf.toString());
     } catch (error) {
       console.log("CEP não encontrado");
     }
   }
+
 
   const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const dateValue = event.target.value;
@@ -195,20 +198,7 @@ export const FormPage = () => {
     }
   };
 
-  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const inputDate = event.target.value;
-  //   setDate(inputDate);
 
-  //   const today = new Date();
-  //   const birthDate = new Date(inputDate);
-  //   const age = today.getFullYear() - birthDate.getFullYear();
-
-  //   if (age < 18) {
-  //     setYoungerAge(false);
-  //   } else {
-  //     setYoungerAge(false);
-  //   }
-  // };
 
   const apiUrl = "https://api.jogajuntoinstituto.org/hotsite/students/personalinfo/";
   async function sendPersonalInfo(data: FormSchemaType) {

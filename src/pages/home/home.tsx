@@ -155,20 +155,19 @@ export const HomePage = () => {
       
              <a
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
-              target="_blank"
               href={
-                "https://estaticos-ijj.s3.sa-east-1.amazonaws.com/lista_aprovados_ilhabelatech.pdf"
+                "/inscricao"
               }
        
             >
-              <button>Confira os resultados</button>
+              <button>Participe agora</button>
             </a> 
-            <span
+            {/* <span
               className="subDescp"
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)", background: "", padding: '2rem', borderRadius: '16px'}}
             >
               Inscrições encerradas, fique de olho no nosso Instagram <a href="https://www.instagram.com/ilhabela.tech/" target={"_blank"}>ilhabela.tech</a> para saber quando abrirem novas vagas!
-            </span>
+            </span> */}
           </ContainerTitle>
         </section>
         <ContainerCardLayout>

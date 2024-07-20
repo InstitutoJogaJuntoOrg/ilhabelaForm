@@ -29,6 +29,7 @@ export const LoginPage = () => {
   
   
         localStorage.setItem("email", data.email); 
+        localStorage.setItem("username", data.email); 
         console.log("logado");
         setData(response.data);
         localStorage.setItem("token", response.data.access);
