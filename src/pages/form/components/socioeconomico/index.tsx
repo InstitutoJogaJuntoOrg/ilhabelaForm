@@ -61,9 +61,7 @@ export const SocioEconomico = ({
 
   console.log(hasFormBeenSubmitted);
 
-
-
-  const apiUrl = "https://api.jogajuntoinstituto.org/socioeconomics/";
+  const apiUrl = "https://api.jogajuntoinstituto.org/hotsite/socioeconomics/";
 
   async function sendSocioEconomicInfo(data: SocioeconomicoSchemaType) {
     localStorage.setItem("socioeconomicForm", "true");

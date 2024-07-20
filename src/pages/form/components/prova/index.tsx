@@ -31,7 +31,7 @@ export const Prova = () => {
       questionFourteen: parseInt(data.questionFourteen),
     };
     const token = localStorage.getItem("token");
-    const response = await fetch("https://api.jogajuntoinstituto.org/quiz/", {
+    const response = await fetch("https://api.jogajuntoinstituto.org/hotsite/quiz/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
