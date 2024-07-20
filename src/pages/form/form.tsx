@@ -26,7 +26,6 @@ import { SocioEconomico } from "./components/socioeconomico";
 import axios from "axios";
 import { civilState } from "./components/options/civil_state";
 import { Footer } from "../../components/footer";
-import { institutoOptions } from "./components/options/instituto";
 import { differenceInYears, format } from "date-fns";
 interface City {
   name: string;
@@ -66,20 +65,23 @@ export const FormPage = () => {
   const [data, setData] = useState();
   const [cep, setCep] = useState("");
   const [cepData, setCepData] = useState<CepResponse | null>(null);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const dateValue = event.target.value;
     const date = dateValue ? new Date(dateValue) : null;
 
+    setSelectedDate(date);
+
     if (date) {
       const age = differenceInYears(new Date(), date);
       setIsUnderage(age < 18);
       setValue("date", format(date, "yyyy-MM-dd"));
-      setDate(dateValue);
     } else {
       setIsUnderage(false);
     }
   };
+
   function ErrosSending() {
     if (errors.cpf) {
       toast.error("Por favor informe um CPF válido");
@@ -175,7 +177,16 @@ export const FormPage = () => {
       state: "",
     },
   });
-
+  const handleKeyDown = (e: any) => {
+    const invalidChars = ["e", "E", "+", "-", "."];
+    if (
+      invalidChars.includes(e.key) ||
+      (e.key >= "a" && e.key <= "z") ||
+      (e.key >= "A" && e.key <= "Z")
+    ) {
+      e.preventDefault();
+    }
+  };
   async function buscaCEP(cep: any) {
     try {
       const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
@@ -193,12 +204,6 @@ export const FormPage = () => {
     console.log("Enviando dados:", data);
     localStorage.setItem("personalForm", "true");
 
-    const cleanedPhone = data.phone.replace(/[\s\.-]/g, "");
-
-    if (cleanedPhone.length !== 11) {
-      console.error("Número de telefone deve ter exatamente 11 dígitos.");
-      return;
-    }
     const formData = new FormData();
     formData.append("cpf", data.cpf.replace(/\D/g, ""));
     formData.append("rg", data.cpf.replace(/\D/g, ""));
@@ -422,15 +427,16 @@ export const FormPage = () => {
                               <InputText
                                 {...register("cep")}
                                 id="cep"
+                                aria-describedby="cep-help"
                                 onChange={(e) => {
                                   setCep(e.target.value);
                                   if (e.target.value.length === 8) {
-                                    // Certifique-se de que o CEP tenha 8 dígitos
                                     buscaCEP(e.target.value);
                                   }
                                 }}
+                                onKeyDown={handleKeyDown}
                                 value={cep}
-                                aria-describedby="cep-help"
+                                inputMode="numeric"
                                 placeholder="CEP"
                                 className={errors.cep ? "p-invalid" : ""}
                               />
@@ -441,14 +447,12 @@ export const FormPage = () => {
                                 <span>Data de nascimento *</span>
                               </div>
                               <input
-                                {...register("date")}
-                                id="date"
-                                type="date"
-                                value={date}
-                                onChange={handleDateChange}
-                                placeholder="dd-mm-yyyy"
-                                className={errors.date ? "p-invalid" : ""}
-                              />
+        {...register("date")}
+        id="date"
+        type="date"
+        onChange={handleDateChange}
+        className={errors.date ? "p-invalid" : ""}
+      />
                             </div>
                             <br />
                             {isUnderage && (
@@ -650,18 +654,6 @@ export const FormPage = () => {
                               </div>
                             </div>
                             <br />
-                            <div className="inputForm">
-                              <div>
-                                <span> Telefone (WhatsApp) *</span>
-                              </div>
-
-                              <InputText
-                                {...register("phone")}
-                                placeholder="12 999999999"
-                                maxLength={15}
-                                className={errors.phone ? "p-invalid" : ""}
-                              />
-                            </div>
 
                             <br />
                             <div className="inputForm">
