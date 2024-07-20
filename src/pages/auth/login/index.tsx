@@ -20,18 +20,13 @@ export const LoginPage = () => {
   const handleSubmitLogin = handleSubmit(async (data) => {
     try {
       const response = await axios.post(
-        "http://api.jogajuntoinstituto.org/users/login/",
+        "http://api.jogajuntoinstituto.org/hotsite/students/login/",
         { email: data.email, password: data.password }
       );
   
       console.log(data.email);
       if (response.status === 200) {
-        if (response.data.project != "ilhabela") {
-          alert('Sua conta não está configurada corretamente. Por favor, contate o suporte: 5511945950731');
-          localStorage.clear(); 
-          window.location.reload();
-          return;
-        }
+  
   
         localStorage.setItem("email", data.email); 
         console.log("logado");
