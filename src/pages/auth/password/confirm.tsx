@@ -59,7 +59,7 @@ export const NewPassword = () => {
     };
     // const url = ;
     axios
-      .post(`https://api.jogajuntoinstituto.org/password_reset/${uid}/${token}/`, requestData)
+      .post(`https://api.jogajuntoinstituto.org/hotsite/password_reset/${uid}/${token}/`, requestData)
       .then((response) => {
         notifySuccess();
         setTimeout(() => {
