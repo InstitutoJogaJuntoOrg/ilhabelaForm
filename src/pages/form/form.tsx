@@ -242,7 +242,7 @@ export const FormPage = () => {
     formData.append("cpf", data.cpf.replace(/\D/g, ""));
     formData.append("rg", data.cpf.replace(/\D/g, ""));
     formData.append("first_name", data.first_name);
-    formData.append("last_name", data.first_name);
+    formData.append("last_name", data.last_name);
     formData.append("social_name", data.socialName ?? "");
     formData.append("city", data.city);
     formData.append("adress", data.adress);
