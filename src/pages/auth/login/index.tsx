@@ -20,25 +20,21 @@ export const LoginPage = () => {
   const handleSubmitLogin = handleSubmit(async (data) => {
     try {
       const response = await axios.post(
-        "https://api.jogajuntoinstituto.org/users/login/",
+        "https://api.jogajuntoinstituto.org/hotsite/students/login/",
         { email: data.email, password: data.password }
       );
   
       console.log(data.email);
       if (response.status === 200) {
-        if (response.data.project != "ilhabela") {
-          alert('Sua conta não está configurada corretamente. Por favor, contate o suporte: 5511945950731');
-          localStorage.clear(); // Remova todos os itens do localStorage
-          window.location.reload();
-          return;
-        }
   
-        localStorage.setItem("email", data.email); // Use data.email em vez de email
+  
+        localStorage.setItem("email", data.email); 
+        localStorage.setItem("username", data.email); 
         console.log("logado");
         setData(response.data);
+        localStorage.setItem("subscription_code", response.data.subscription_code);
         localStorage.setItem("token", response.data.access);
         localStorage.setItem("refresh", response.data.refresh);
-        localStorage.setItem("username", response.data.user);
         localStorage.setItem("personalForm", response.data.personal_form);
         localStorage.setItem("socioeconomicForm", response.data.socioeconomic_form);
         localStorage.setItem("quizForm", response.data.quiz_form);
@@ -113,7 +109,7 @@ export const LoginPage = () => {
                 alignItems: "flex-end",
               }}
             >
-              <Register>
+              {/* <Register>
                 <span className="">
                   <span>
                     <Link
@@ -124,7 +120,7 @@ export const LoginPage = () => {
                     </Link>
                   </span>
                 </span>
-              </Register>
+              </Register> */}
             </div>
 
             <button

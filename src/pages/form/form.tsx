@@ -24,16 +24,32 @@ import { SocioEconomico } from "./components/socioeconomico";
 import axios from "axios";
 import { civilState } from "./components/options/civil_state";
 import { Footer } from "../../components/footer";
+import { differenceInYears, format } from "date-fns";
+import { institutoOptions } from "./components/options/instituto";
 
 interface City {
   name: string;
   code: string;
 }
-
+type CepResponse = {
+  cep: string;
+  logradouro: string;
+  complemento: string;
+  unidade: string;
+  bairro: string;
+  localidade: string;
+  uf: string;
+  ibge: string;
+  gia: string;
+  ddd: string;
+  siafi: string;
+};
 export const FormPage = () => {
   const { image } = useContext(ImageContext);
-
   const [user, setUser] = useState(localStorage.getItem("username") || "");
+  const [message, setMessage] = useState(
+    localStorage.getItem("subscription_code") || ""
+  );
   const [email, setEmail] = useState(localStorage.getItem("email") || "");
   const [date, setDate] = useState("");
   const [youngerAge, setYoungerAge] = useState<boolean>(false);
@@ -46,6 +62,7 @@ export const FormPage = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [selectedCity, setSelectedCity] = useState<City | null>(null);
+
   const [selectedStateSocial, setelectedStateSocial] = useState<City | null>(
     null
   );
@@ -70,9 +87,7 @@ export const FormPage = () => {
     if (errors.last_name) {
       toast.error("Por favor informe seu Sobrenome");
     }
-    if (errors.phone) {
-      toast.error("Por favor informe um número válido");
-    }
+
     if (errors.socialName) {
       toast.error("Por favor informe seu Nome social");
     }
@@ -150,60 +165,113 @@ export const FormPage = () => {
     formState: { errors },
   } = useForm<FormSchemaType>({
     resolver: zodResolver(FormSchema),
+    defaultValues: {
+      state: "a",
+    },
   });
+  const [selectedDate, setSelectedDate] = useState<Date | any>(null);
+  const [isUnderage, setIsUnderage] = useState(false);
+  const [cep, setCep] = useState<any>("");
+  const [cepData, setCepData] = useState<CepResponse | any>(null);
+  console.log("cepData", cepData);
+  async function buscaCEP(cep: any) {
+    try {
+      const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+      const cepData = response.data;
+      setCepData(cepData);
+      setValue("state", cepData.uf);
+      setValue("adress", cepData.logradouro);
+    } catch (error) {
+      console.log("CEP não encontrado");
+    }
+  }
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const inputDate = event.target.value;
-    setDate(inputDate);
+  const isValidDate = (dateString: string) => {
+    const [day, month, year] = dateString.split("/").map(Number);
+    if (
+      month < 1 ||
+      month > 12 ||
+      day < 1 ||
+      day > 31 ||
+      year < 1900 ||
+      year > 2100
+    ) {
+      return false;
+    }
+    const date = new Date(year, month - 1, day);
+    return (
+      date.getDate() === day &&
+      date.getMonth() === month - 1 &&
+      date.getFullYear() === year
+    );
+  };
+  const parseDate = (dateString: string) => {
+    const [day, month, year] = dateString.split("/").map(Number);
+    return new Date(year, month - 1, day);
+  };
 
-    const today = new Date();
-    const birthDate = new Date(inputDate);
-    const age = today.getFullYear() - birthDate.getFullYear();
+  const applyMask = (value: string) => {
+    value = value.replace(/\D/g, "");
+    if (value.length <= 2) return value;
+    if (value.length <= 4) return `${value.slice(0, 2)}/${value.slice(2)}`;
+    return `${value.slice(0, 2)}/${value.slice(2, 4)}/${value.slice(4, 8)}`;
+  };
 
-    if (age < 18) {
-      setYoungerAge(false);
+  const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const rawValue = event.target.value;
+    const maskedValue = applyMask(rawValue);
+    setSelectedDate(maskedValue);
+
+    if (maskedValue.length === 10 && isValidDate(maskedValue)) {
+      const date = parseDate(maskedValue);
+      const age = differenceInYears(new Date(), date);
+      setIsUnderage(age < 18);
+      setValue("date", format(date, "yyyy-MM-dd"));
     } else {
-      setYoungerAge(false);
+      setIsUnderage(false);
     }
   };
 
-
-  const apiUrl = "https://api.jogajuntoinstituto.org/personalinfo/";
+  const apiUrl =
+    "https://api.jogajuntoinstituto.org/hotsite/students/personalinfo/";
   async function sendPersonalInfo(data: FormSchemaType) {
     console.log("Enviando dados:", data);
     localStorage.setItem("personalForm", "true");
 
-
-
-    const cleanedPhone = data.phone.replace(/[\s\.-]/g, "");
-
-    if (cleanedPhone.length !== 11) {
-      console.error("Número de telefone deve ter exatamente 11 dígitos.");
-      return;
-    }
     const formData = new FormData();
     formData.append("cpf", data.cpf.replace(/\D/g, ""));
+    formData.append("rg", data.cpf.replace(/\D/g, ""));
     formData.append("first_name", data.first_name);
-    formData.append("last_name", data.first_name);
-    formData.append("social_name", data.socialName);
+    formData.append("last_name", data.last_name);
+    formData.append("social_name", data.socialName ?? "");
     formData.append("city", data.city);
-    formData.append("phone", cleanedPhone);
+    formData.append("adress", data.adress);
+    formData.append("email", data.email);
+
     formData.append("date_of_birth", data.date);
     formData.append("living_uf", data.state.name);
-    formData.append("country", data.state.name);
+    formData.append("country", data.country);
     formData.append("civil_state", data.civil_state);
+    formData.append("selective_process_id", "1");
+    formData.append("zip_code", data.cep);
+
+    if (isUnderage) {
+      formData.append("resp_name", data.guardian?.name ?? "");
+      formData.append("resp_phone", data.guardian?.phone ?? "");
+      formData.append("resp_cpf", data.guardian?.cpf ?? "");
+      formData.append("resp_email", data.guardian?.email ?? "");
+    }
 
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(apiUrl, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "application/json",
         },
       });
 
       console.log("response: ", response);
-
       setIsTabEnabledSocial(true);
       setIsTabEnabledDate(true);
       setActiveTab(1);
@@ -358,7 +426,7 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>Nome *</label>
+                            <label>Primeiro nome *</label>
                             <InputText
                               {...register("first_name")}
                               id="username"
@@ -369,6 +437,7 @@ export const FormPage = () => {
                               className={errors.first_name ? "p-invalid" : ""}
                             />
                           </div>
+
                           <div
                             style={{
                               display: "flex",
@@ -384,68 +453,6 @@ export const FormPage = () => {
                               className={errors.last_name ? "p-invalid" : ""}
                             />
                           </div>
-                          
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label>Data de nascimento *</label>
-                            <input
-                              {...register("date")}
-                              id="date"
-                              type="date"
-                              value={date}
-                              onChange={handleChange}
-                              placeholder="dd-mm-yyyy"
-                              className={errors.date ? "p-invalid" : ""}
-                            />
-                          </div>
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label>Estado: *</label>
-                            <Dropdown
-                              options={states}
-                              value={selectedCity}
-                              optionLabel="name"
-                              defaultValue={"SP"}
-                              onChange={(e) => {
-                                setSelectedCity(e.value);
-                                setValue("state", e.value);
-                              }}
-                              placeholder="Selecione o estado"
-                              className={
-                                errors.state
-                                  ? "p-invalid w-full md:w-14rem"
-                                  : "w-full md:w-14rem"
-                              }
-                              showClear
-                            />
-                          </div>
-
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label>Cidade *</label>
-                            <InputText
-                              maxLength={15}
-                              {...register("city")}
-                              placeholder="Cidade"
-                              className={errors.city ? "p-invalid" : ""}
-                              defaultValue={"Ilhabela"}
-                            />
-                          </div>
-                        </div>
-
-                        <div>
 
                           <div
                             style={{
@@ -462,6 +469,7 @@ export const FormPage = () => {
                               className={errors.socialName ? "p-invalid" : ""}
                             />
                           </div>
+
                           <div
                             style={{
                               display: "flex",
@@ -476,41 +484,27 @@ export const FormPage = () => {
                               className={errors.cpf ? "p-invalid" : ""}
                             />
                           </div>
-                          <div>
-                            <div
+                          <br />
+                          <div className="inputForm">
+                            <span
                               style={{
-                                display: "flex",
-                                flexDirection: "column",
+                                color: "white",
+                                paddingBottom: "25px",
                               }}
                             >
-                              <label>Email: *</label>
+                              RG *
+                            </span>
 
-                              <InputText
-                                {...register("email")}
-                                value={email}
-                                placeholder="Email"
-                                className={errors.email ? "p-invalid" : ""}
-                              />
-                            </div>
-                          </div>
-
-
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label> Telefone (WhatsApp) *</label>
-
-                            <InputText
-                              {...register("phone")}
-                              placeholder="12 999999999"
-                              maxLength={15}
-                              className={errors.phone ? "p-invalid" : ""}
+                            <InputMask
+                              style={{
+                                marginTop: "16px",
+                              }}
+                              mask="99.999.999-99"
+                              {...register("rg", { required: true })}
+                              placeholder="__.___.___-__"
+                              className={errors.rg ? "p-invalid" : ""}
                             />
                           </div>
-
 
                           <div
                             style={{
@@ -535,6 +529,200 @@ export const FormPage = () => {
                                   : "w-full md:w-14rem"
                               }
                               showClear
+                            />
+                          </div>
+                          <div>
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                              }}
+                            >
+                              <label>Email: *</label>
+
+                              <InputText
+                                {...register("email")}
+                                value={email}
+                                placeholder="Email"
+                                className={errors.email ? "p-invalid" : ""}
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <label>Data de nascimento *</label>
+                            <input
+                              {...register("date")}
+                              id="date"
+                              type="text"
+                              onChange={handleDateChange}
+                              value={selectedDate}
+                              placeholder="dd/MM/yyyy"
+                              className={
+                                errors.date
+                                  ? "p-invalid inputForm"
+                                  : "inputForm"
+                              }
+                            />
+                            {isUnderage && (
+                              <div
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  gap: "1rem",
+                                  marginTop: "12px",
+                                }}
+                              >
+                                <span
+                                  style={{
+                                    color: "white",
+                                  }}
+                                >
+                                  Dados dos responsáveis
+                                </span>
+                                <InputText
+                                  {...register("guardian.name")}
+                                  id="Sobrenome"
+                                  aria-describedby="username-help"
+                                  placeholder="Nome do responsável"
+                                  className={
+                                    errors.guardian?.name ? "p-invalid" : ""
+                                  }
+                                />
+                                <InputText
+                                  {...register("guardian.email")}
+                                  id="Sobrenome"
+                                  aria-describedby="username-help"
+                                  placeholder="Email do responsável"
+                                  className={
+                                    errors.guardian?.email ? "p-invalid" : ""
+                                  }
+                                />
+                                <InputText
+                                  {...register("guardian.phone")}
+                                  id="Sobrenome"
+                                  aria-describedby="username-help"
+                                  placeholder="Telefone do responsável"
+                                  className={
+                                    errors.guardian?.phone ? "p-invalid" : ""
+                                  }
+                                />
+                                <InputText
+                                  {...register("guardian.cpf")}
+                                  id="Sobrenome"
+                                  aria-describedby="username-help"
+                                  placeholder="CPF do responsável"
+                                  className={
+                                    errors.guardian?.cpf ? "p-invalid" : ""
+                                  }
+                                />
+                              </div>
+                            )}
+                          </div>
+                          <div
+                            style={{
+                              marginTop: "10px",
+                            }}
+                            className="inputForm"
+                          >
+                            <label>CEP *</label>
+                            <InputMask
+                              aria-describedby="cep-help"
+                              id="cep"
+                              mask="99999999"
+                              placeholder="________"
+                              onChange={(e) => {
+                                setCep(e.target.value);
+                                if (e.target.value?.length === 8) {
+                                  buscaCEP(e.target.value);
+                                }
+                              }}
+                              className={errors.cpf ? "p-invalid" : ""}
+                            />
+                          </div>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <label>Cidade *</label>
+                            <InputText
+                              maxLength={15}
+                              {...register("city")}
+                              placeholder="Cidade"
+                              className={errors.city ? "p-invalid" : ""}
+                              defaultValue={cepData?.localidade}
+                            />
+                          </div>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <label>Rua *</label>
+                            <InputText
+                              maxLength={40}
+                              {...register("adress")}
+                              placeholder="adress"
+                              className={errors.adress ? "p-invalid" : ""}
+                              defaultValue={cepData?.logradouro}
+                            />
+                          </div>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <label>Estado: *</label>
+                            <Dropdown
+                              options={states}
+                              value={selectedCity}
+                              optionLabel="name"
+                              defaultValue={cepData?.uf}
+                              onChange={(e) => {
+                                const selectedValue = e.value
+                                  ? e.value
+                                  : cepData?.uf || cepData?.uf;
+                                setSelectedCity(selectedValue);
+                                setValue("state", selectedValue);
+                              }}
+                              placeholder={
+                                cepData?.uf ? cepData.uf : "Selecione o estado"
+                              }
+                              className={
+                                errors.state
+                                  ? "p-invalid w-full md:w-14rem"
+                                  : "w-full md:w-14rem"
+                              }
+                              showClear
+                            />
+                          </div>
+
+                          <br />
+
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <label>País *</label>
+                            <InputText
+                              maxLength={15}
+                              {...register("country")}
+                              placeholder="País"
+                              defaultValue="Brasil"
+                              className={errors.city ? "p-invalid" : ""}
                             />
                           </div>
 
@@ -599,10 +787,8 @@ export const FormPage = () => {
         socioeconomicForm === "true" && (
           <Container>
             <div className="success">
-              Parabéns! Você já completou todos os formulários.
-              <p>
-                Assim que saírem, as respostas serão enviadas para o seu e-mail.
-              </p>
+              Parabéns! Você completou sua inscrição. Código da inscrição:
+              <p>{message}</p>
             </div>
           </Container>
         )}

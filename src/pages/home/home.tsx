@@ -19,6 +19,7 @@ import styled from "styled-components";
 import { Footer } from "../../components/footer";
 import { Modules } from "../../components/modules/modules";
 import FAQs from "./components/FAQ/faq";
+import { StyledNavLink } from "../../components/header/styles";
 // import { Cookies } from "js-cookie"; // Importe a biblioteca
 
 const Overlay = styled.div`
@@ -61,10 +62,11 @@ export const HomePage = () => {
   const [display, setDisplay] = useState(true);
   const auth = localStorage.getItem("token");
   const [showText, setShowText] = useState(false);
-
+  const emailFromLocalStorage = localStorage.getItem("token");
   const setCookie = (name: string) => {
     document.cookie = name;
   };
+
   useEffect(() => {
     const hasVisitedHomePage = localStorage.getItem("final");
 
@@ -114,8 +116,7 @@ export const HomePage = () => {
             header=""
             footer={
               <a
-                href="https://www.instagram.com/ilhabela.tech/"
-                target={"_blank"}
+                href={emailFromLocalStorage ? "/inscricao" : "/login"}
               >
                 <ModalHome className="modalHomepage"></ModalHome>
               </a>
@@ -139,7 +140,7 @@ export const HomePage = () => {
           >
             {showText && (
               <div>
-                Texto que será exibido quando o mouse passar sobre a image
+                .
               </div>
             )}
           </Overlay>
@@ -149,26 +150,23 @@ export const HomePage = () => {
         <br />
         <section>
           <ContainerTitle className="InitialMessage">
-             <h1 style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}>
+            <h1 style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}>
               ILHABELA TECH
             </h1>
-      
-             <a
+
+            <a
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
-              target="_blank"
-              href={
-                "https://estaticos-ijj.s3.sa-east-1.amazonaws.com/lista_aprovados_ilhabelatech.pdf"
-              }
-       
+              href={emailFromLocalStorage ? "/inscricao" : "/login"}
             >
-              <button>Confira os resultados</button>
-            </a> 
-            <span
+              <button>Participe agora</button>
+            </a>
+
+            {/* <span
               className="subDescp"
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)", background: "", padding: '2rem', borderRadius: '16px'}}
             >
               Inscrições encerradas, fique de olho no nosso Instagram <a href="https://www.instagram.com/ilhabela.tech/" target={"_blank"}>ilhabela.tech</a> para saber quando abrirem novas vagas!
-            </span>
+            </span> */}
           </ContainerTitle>
         </section>
         <ContainerCardLayout>
@@ -191,9 +189,13 @@ export const HomePage = () => {
         </ContainerCardLayout>
 
         <BannerContainer>
-          <img src="/banners.svg" style={{
-            display: 'block',
-          }} alt="icon" />
+          <img
+            src="/banners.svg"
+            style={{
+              display: "block",
+            }}
+            alt="icon"
+          />
         </BannerContainer>
 
         <div

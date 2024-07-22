@@ -9,7 +9,7 @@ export const Header = () => {
   const [showLinks, setShowLinks] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [userEmail, setUserEmail] = useState("");
-  const emailFromLocalStorage = localStorage.getItem("username");
+  const emailFromLocalStorage = localStorage.getItem("token");
   const closeMenu = () => {
     setShowLinks(false);
   };
@@ -25,7 +25,7 @@ export const Header = () => {
     };
 
     const checkUserAuthentication = () => {
-      const emailFromLocalStorage = localStorage.getItem("username");
+      const emailFromLocalStorage = localStorage.getItem("token");
 
       if (emailFromLocalStorage) {
         setUserEmail(emailFromLocalStorage);
@@ -40,7 +40,7 @@ export const Header = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  console.log(userEmail);
+
   return (
     <HeaderContainer className={showLinks ? "show-links" : ""}>
       <nav>
@@ -52,7 +52,7 @@ export const Header = () => {
         </Link>
         <ul className={windowWidth <= 1000 && showLinks ? "hidden" : ""}>
           <StyledNavLink to={"/"}>Home</StyledNavLink>
-          {/* {!emailFromLocalStorage && (
+         {!emailFromLocalStorage && (
             <StyledNavLink to="/login">Fazer login</StyledNavLink>
           )}
 
@@ -62,7 +62,7 @@ export const Header = () => {
             <StyledNavLink to={emailFromLocalStorage ? "/inscricao" : "/auth"}>
               Inscrição
             </StyledNavLink>
-          )} */}
+          )} 
           <li>
             <a
               style={{
