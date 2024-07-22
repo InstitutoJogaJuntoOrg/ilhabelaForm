@@ -21,6 +21,7 @@ import { guildance } from "../options/guidance";
 import { scholl } from "../options/scholl";
 import { schollPublic } from "../options/schollPublic";
 import { institutoOptions } from "../options/instituto";
+import { studing } from "../options/studing";
 
 export const SocioEconomico = ({
   setTabEnabled,
@@ -32,13 +33,14 @@ export const SocioEconomico = ({
     code: string;
   }
   const [selectedcollor, setSelectedcollor] = useState<City | null>(null);
-  const [selectedchildrens, setSelectedchildrens] = useState<City | null>(null);
-  const [selectedemprego, setSelectedEmprego] = useState<City | null>(null);
+  const [selectedchildrens, setSelectedchildrens] = useState<any>(null);
+  const [selectedemprego, setSelectedEmprego] = useState<any>(null);
   const [selectedguildance, setSelectedguildance] = useState<City | null>(null);
   const [selectedfamily, setSelectedfamily] = useState<City | null>(null);
   const [selectedscholl, setSelectedscholl] = useState<any | null>(null);
   const [selectedgender, setSelectedgender] = useState<City | null>(null);
-  const [selectedBenefits, setSelectedBenefits] = useState<City | null>(null);
+  const [selectedBenefits, setSelectedBenefits] = useState<any>(null);
+  const [selectedStuding, setSelectedStuding] = useState<any>(null);
   const [selectedSchollPublic, setselectedSchollPublic] = useState<City | null>(
     null
   );
@@ -61,60 +63,70 @@ export const SocioEconomico = ({
 
   console.log(hasFormBeenSubmitted);
 
-  const apiUrl = "https://api.jogajuntoinstituto.org/hotsite/socioeconomics/";
-
-  async function sendSocioEconomicInfo(data: SocioeconomicoSchemaType) {
-    localStorage.setItem("socioeconomicForm", "true");
-    try {
-      const salario = Number(data.income);
-      if (Number.isNaN(salario)) {
-        toast.error("Salario com valor incorreto.");
-        return;
+  const apiUrl =
+    "https://api.jogajuntoinstituto.org/hotsite/students/socioeconomics/";
+    async function sendSocioEconomicInfo(data: SocioeconomicoSchemaType) {
+      localStorage.setItem("socioeconomicForm", "true");
+      try {
+        const salario = Number(data.income);
+        if (Number.isNaN(salario)) {
+          toast.error("Salario com valor incorreto.");
+          return;
+        }
+    
+        const socioeconomicData: any = {
+          sociadata_physical_disability: data.deficiency,
+          average_monthly_income: salario,
+          sociadata_race: data.color,
+          sociadata_gender: data.gender,
+          sociodata_sexual_orientation: data.guidance,
+          socioeconomic_has_children: Number(data.children),
+          education_level: data.schooling,
+          socioeconomic_receives_benefit: data.benefit,
+          public_school: data.schollPublic,
+          is_studying: data.isStuding,
+          socioeconomic_average_family_income: salario,
+          socioeconomic_people_at_home: data.family.name,
+          employment_status: data.employment_status,
+          where_found_us: data.howDidYouHearAboutInstitute ?? ""
+        };
+    
+        if (data.schooling === "ensino_medio_incompleto") {
+          socioeconomicData.schoolName = data.schollName;
+        }
+    
+        if (data.isStuding === true) {
+          socioeconomicData.current_course = data.current_course;
+        }
+    
+        if (data.benefit === true) {
+          socioeconomicData.socioeconomic_benefit_name = data.benefitsName;
+        }
+    
+        const token = localStorage.getItem("token");
+    
+        const response = await axios.post(apiUrl, socioeconomicData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+    
+        if (response.status == 200 || response.status == 201) {
+          toast.success("Formulário enviado com sucesso!");
+          // setTabEnabled(false);
+          // setActiveTab(2);
+          // setVisible(true);
+          return;
+        }
+    
+        toast.error("Erro ao enviar o formulario, tente novamente mais tarde!");
+      } catch (error) {
+        toast.error("Erro ao enviar o formulario, tente novamente mais tarde!");
+        console.log("error: ", error);
       }
-      const formData = new FormData();
-      formData.append("deficiency", data.deficiency);
-      formData.append("average_monthly_income", salario.toString());
-      formData.append("race", data.color);
-      formData.append("gender", data.gender);
-      formData.append("sexual_orientation", data.guidance);
-      formData.append("children", data.children);
-      formData.append("education_level", data.schooling);
-      formData.append("benefit", data.benefit);
-      formData.append("public_school", data.schollPublic);
-      formData.append("income", salario.toString());
-      formData.append("household_count", data.family.name);
-      formData.append("employment_status", data.employment_status);
-      formData.append(
-        "howDidYouHearAboutInstitute",
-        data.howDidYouHearAboutInstitute ?? ""
-      );
-      if (data.schooling === "ensino_medio_incompleto") {
-        formData.append("schoolName", data.schollName);
-      }
-      const token = localStorage.getItem("token");
-      console.log("formData: ", formData);
-
-      const response = await axios.post(apiUrl, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (response.status == 200 || response.status == 201) {
-        toast.success("Formulário enviado com sucesso!");
-        setTabEnabled(false);
-        setActiveTab(2);
-        setVisible(true);
-        return;
-      }
-
-      toast.error("Erro ao enviar o formulario, tente novaente mais tarde!");
-    } catch (error) {
-      toast.error("Erro ao enviar o formulario, tente novaente mais tarde!");
-      console.log("error: ", error);
     }
-  }
+    
 
   console.log(errors);
   const token = localStorage.getItem("token");
@@ -243,6 +255,22 @@ export const SocioEconomico = ({
               }
               showClear
             />
+            {selectedemprego != "desempregado" && (
+              <>
+                <label>Qual nome da empresa: *</label>
+                <InputText
+                  {...register("company_name")}
+                  id="company_name"
+                  aria-describedby="username-help"
+                  className={
+                    errors.company_name
+                      ? "p-invalid w-full md:w-14rem"
+                      : "w-full md:w-14rem"
+                  }
+                  placeholder="Nome da empresa"
+                />
+              </>
+            )}
           </div>
 
           <div
@@ -254,22 +282,19 @@ export const SocioEconomico = ({
             className="card flex justify-content-center"
           >
             <label>Tem filhos? *</label>
-            <Dropdown
-              value={selectedchildrens}
-              options={childrens}
-              optionLabel="name"
-              onChange={(e) => {
-                setSelectedchildrens(e.value);
-                setValue("children", e.value);
-              }}
-              placeholder="Selecione"
+            <InputText
+              {...register("children")}
+              id="renda"
+              type="number"
+              aria-describedby="username-help"
               className={
                 errors.children
                   ? "p-invalid w-full md:w-14rem"
                   : "w-full md:w-14rem"
               }
-              showClear
+              placeholder="0"
             />
+
           </div>
 
           <div
@@ -444,6 +469,66 @@ export const SocioEconomico = ({
               }
               showClear
             />
+            {selectedBenefits === true && (
+              <>
+                <label>Qual o nome do benefício: *</label>
+                <InputText
+                  {...register("benefitsName")}
+                  id="benefitsName"
+                  aria-describedby="username-help"
+                  className={
+                    errors.benefitsName
+                      ? "p-invalid w-full md:w-14rem"
+                      : "w-full md:w-14rem"
+                  }
+                  placeholder="Nome do benefício"
+                />
+              </>
+            )}
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: ".0rem",
+            }}
+            className="card flex justify-content-center"
+          >
+            <label>Você esta estudando ? *</label>
+
+            <Dropdown
+              value={selectedStuding}
+              options={studing}
+              optionLabel="name"
+              onChange={(e) => {
+                setSelectedStuding(e.value);
+                setValue("isStuding", e.value);
+              }}
+              placeholder="Selecione"
+              className={
+                errors.isStuding
+                  ? "p-invalid w-full md:w-14rem"
+                  : "w-full md:w-14rem"
+              }
+              showClear
+            />
+            {selectedStuding === true && (
+              <>
+                <label>Qual o nome do curso: *</label>
+                <InputText
+                  {...register("current_course")}
+                  id="current_course"
+                  aria-describedby="username-help"
+                  className={
+                    errors.current_course
+                      ? "p-invalid w-full md:w-14rem"
+                      : "w-full md:w-14rem"
+                  }
+                  placeholder="Nome do curso"
+                />
+              </>
+            )}
           </div>
 
           <div

@@ -24,7 +24,7 @@ export const FormSchema = z.object({
   .string({
     required_error: "messages.required",
   }),
-  cep: z.string(),
+  cep: z.any(),
   phone: z
     .string()
     .nonempty({ message: "O campo de telefone é obrigatório" })
