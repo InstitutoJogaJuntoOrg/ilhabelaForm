@@ -52,7 +52,9 @@ export const FormPage = () => {
   const [date, setDate] = useState("");
   const [youngerAge, setYoungerAge] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState(0);
-
+  const [message, setMessage] = useState(
+    localStorage.getItem("subscription_code") || ""
+  );
   const [isTabEnabled, setTabEnabled] = useState(true);
   const [isTabEnabledSocial, setIsTabEnabledSocial] = useState(false);
   const [isUnderage, setIsUnderage] = useState(false);
@@ -233,7 +235,7 @@ export const FormPage = () => {
     formData.append("cpf", data.cpf.replace(/\D/g, ""));
     formData.append("rg", data.cpf.replace(/\D/g, ""));
     formData.append("first_name", data.first_name);
-    formData.append("last_name", data.first_name);
+    formData.append("last_name", data.last_name);
     formData.append("social_name", data.socialName ?? "");
     formData.append("city", data.city);
     formData.append("adress", data.adress);
@@ -429,7 +431,7 @@ export const FormPage = () => {
                           </span> */}
                             <div className="inputForm">
                               <div>
-                                <span>Nome *</span>
+                                <span>Primeiro nome *</span>
                               </div>
                               <InputText
                                 {...register("first_name")}
@@ -441,45 +443,95 @@ export const FormPage = () => {
                                 className={errors.first_name ? "p-invalid" : ""}
                               />
                             </div>
-
-                            <div
-                              style={{
-                                marginTop: "10px",
-                              }}
-                              className="inputForm"
-                            >
-                              <label>CEP *</label>
+                            <br />
+                            <div className="inputForm">
+                              <div>
+                                <span>Sobrenome *</span>
+                              </div>
+                              <InputText
+                                {...register("last_name")}
+                                id="Sobrenome"
+                                aria-describedby="username-help"
+                                placeholder="Sobrenome"
+                                className={errors.last_name ? "p-invalid" : ""}
+                              />
+                            </div>
+                            <br />
+                            <div className="inputForm">
+                              <div>
+                                <span>Nome social</span>
+                              </div>
+                              <InputText
+                                {...register("socialName")}
+                                id="socialName"
+                                aria-describedby="username-help"
+                                placeholder="Nome social"
+                                className={errors.socialName ? "p-invalid" : ""}
+                              />
+                            </div>
+                            <br />
+                            <div className="inputForm">
+                              <div>
+                                <span>CPF *</span>
+                              </div>
                               <InputMask
-                                aria-describedby="cep-help"
-                                id="cep"
-                                mask="99999999"
-                                placeholder="________"
-                                onChange={(e) => {
-                                  setCep(e.target.value);
-                                  if (e.target.value?.length === 8) {
-                                    buscaCEP(e.target.value);
-                                  }
-                                }}
+                                mask="999.999.999-99"
+                                {...register("cpf", { required: true })}
+                                placeholder="___.___.___-__"
                                 className={errors.cpf ? "p-invalid" : ""}
                               />
                             </div>
                             <br />
                             <div className="inputForm">
-                              <label>Data de nascimento *</label>
-                              <input
-                                {...register("date")}
-                                id="date"
-                                type="text"
-                                onChange={handleDateChange}
-                                value={selectedDate}
-                                placeholder="dd/MM/yyyy"
-                                className={
-                                  errors.date
-                                    ? "p-invalid inputForm"
-                                    : "inputForm"
-                                }
+                              <div>
+                                <span>RG *</span>
+                              </div>
+                              <InputMask
+                                mask="99.999.999-99"
+                                {...register("rg", { required: true })}
+                                placeholder="__.___.___-__"
+                                className={errors.rg ? "p-invalid" : ""}
                               />
                             </div>
+                            <br />
+                            <div>
+                              <div className="inputForm">
+                                <div>
+                                  <span>Email *</span>
+                                </div>
+
+                                <InputText
+                                  {...register("email")}
+                                  value={email}
+                                  placeholder="Email"
+                                  className={errors.email ? "p-invalid" : ""}
+                                />
+                              </div>
+                            </div>
+                            <br />
+                            <div className="inputForm">
+                              <div>
+                                <span>Estado civil: *</span>
+                              </div>
+
+                              <Dropdown
+                                options={civilState}
+                                value={selectedStateSocial}
+                                optionLabel="name"
+                                onChange={(e) => {
+                                  setelectedStateSocial(e.value);
+                                  setValue("civil_state", e.value);
+                                }}
+                                placeholder="Estado civil"
+                                className={
+                                  errors.civil_state
+                                    ? "p-invalid w-full md:w-14rem"
+                                    : "w-full md:w-14rem"
+                                }
+                                showClear
+                              />
+                            </div>
+
                             <br />
                             {isUnderage && (
                               <div
@@ -537,21 +589,79 @@ export const FormPage = () => {
                               </div>
                             )}
 
+                            <br />
+                          </div>
+
+                          <div>
                             <div className="inputForm">
-                              <div>
-                                <span>Sobrenome *</span>
-                              </div>
-                              <InputText
-                                {...register("last_name")}
-                                id="Sobrenome"
-                                aria-describedby="username-help"
-                                placeholder="Sobrenome"
-                                className={errors.last_name ? "p-invalid" : ""}
+                              <label>Data de nascimento *</label>
+                              <input
+                                {...register("date")}
+                                id="date"
+                                type="text"
+                                onChange={handleDateChange}
+                                value={selectedDate}
+                                placeholder="dd/MM/yyyy"
+                                className={
+                                  errors.date
+                                    ? "p-invalid inputForm"
+                                    : "inputForm"
+                                }
                               />
                             </div>
                             <br />
+                            <div
+                              style={{
+                                marginTop: "10px",
+                              }}
+                              className="inputForm"
+                            >
+                              <label>CEP *</label>
+                              <InputMask
+                                aria-describedby="cep-help"
+                                id="cep"
+                                mask="99999999"
+                                placeholder="________"
+                                onChange={(e) => {
+                                  setCep(e.target.value);
+                                  if (e.target.value?.length === 8) {
+                                    buscaCEP(e.target.value);
+                                  }
+                                }}
+                                className={errors.cpf ? "p-invalid" : ""}
+                              />
+                            </div>
+                            <br />
+                            <div
+                              className="inputForm"
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                              }}
+                            >
+                              <label>Rua *</label>
+                              <InputText
+                                maxLength={40}
+                                {...register("adress")}
+                                placeholder="adress"
+                                className={errors.adress ? "p-invalid" : ""}
+                                defaultValue={cepData?.logradouro}
+                              />
+                            </div>
+                            <br />
+                            <div className="inputForm">
+                              <label>Cidade *</label>
+                              <InputText
+                                maxLength={15}
+                                {...register("city")}
+                                placeholder="Cidade"
+                                className={errors.city ? "p-invalid" : ""}
+                                defaultValue={cepData?.localidade}
+                              />
+                            </div>
 
                             <br />
+
                             <div className="inputForm">
                               <div>
                                 <span>Estado *</span>
@@ -581,17 +691,6 @@ export const FormPage = () => {
                             </div>
 
                             <br />
-                            <div className="inputForm">
-                              <label>Cidade *</label>
-                              <InputText
-                                maxLength={15}
-                                {...register("city")}
-                                placeholder="Cidade"
-                                className={errors.city ? "p-invalid" : ""}
-                                defaultValue={cepData?.localidade}
-                              />
-                            </div>
-                            <br />
                             <div
                               className="inputForm"
                               style={{
@@ -607,105 +706,6 @@ export const FormPage = () => {
                                 className={errors.country ? "p-invalid" : ""}
                               />
                             </div>
-                          </div>
-                          <br />
-                          <div>
-                            <div
-                              className="inputForm"
-                              style={{
-                                display: "flex",
-                                flexDirection: "column",
-                              }}
-                            >
-                              <label>Rua *</label>
-                              <InputText
-                                maxLength={40}
-                                {...register("adress")}
-                                placeholder="adress"
-                                className={errors.adress ? "p-invalid" : ""}
-                                defaultValue={cepData?.logradouro}
-                              />
-                            </div>
-                            <br />
-                            <div className="inputForm">
-                              <div>
-                                <span>Nome social</span>
-                              </div>
-                              <InputText
-                                {...register("socialName")}
-                                id="socialName"
-                                aria-describedby="username-help"
-                                placeholder="Nome social"
-                                className={errors.socialName ? "p-invalid" : ""}
-                              />
-                            </div>
-
-                            <br />
-                            <div className="inputForm">
-                              <div>
-                                <span>CPF *</span>
-                              </div>
-                              <InputMask
-                                mask="999.999.999-99"
-                                {...register("cpf", { required: true })}
-                                placeholder="___.___.___-__"
-                                className={errors.cpf ? "p-invalid" : ""}
-                              />
-                            </div>
-                            <br />
-                            <div className="inputForm">
-                              <div>
-                                <span>RG *</span>
-                              </div>
-                              <InputMask
-                                mask="99.999.999-99"
-                                {...register("rg", { required: true })}
-                                placeholder="__.___.___-__"
-                                className={errors.rg ? "p-invalid" : ""}
-                              />
-                            </div>
-                            <br />
-                            <div>
-                              <div className="inputForm">
-                                <div>
-                                  <span>Email *</span>
-                                </div>
-
-                                <InputText
-                                  {...register("email")}
-                                  value={email}
-                                  placeholder="Email"
-                                  className={errors.email ? "p-invalid" : ""}
-                                />
-                              </div>
-                            </div>
-                            <br />
-
-                            <br />
-                            <div className="inputForm">
-                              <div>
-                                <span>Estado civil: *</span>
-                              </div>
-
-                              <Dropdown
-                                options={civilState}
-                                value={selectedStateSocial}
-                                optionLabel="name"
-                                onChange={(e) => {
-                                  setelectedStateSocial(e.value);
-                                  setValue("civil_state", e.value);
-                                }}
-                                placeholder="Estado civil"
-                                className={
-                                  errors.civil_state
-                                    ? "p-invalid w-full md:w-14rem"
-                                    : "w-full md:w-14rem"
-                                }
-                                showClear
-                              />
-                            </div>
-                            <br />
-
                             <ContainerButtons className="flexEnd">
                               <button
                                 className="buttonForm"
@@ -766,13 +766,10 @@ export const FormPage = () => {
           personalForm === "true" &&
           socioeconomicForm === "true" && (
             <Container>
-              <div className="success">
-                Parabéns! Você já completou todos os formulários.
-                <p>
-                  Assim que saírem, as respostas serão enviadas para o seu
-                  e-mail.
-                </p>
-              </div>
+             <div className="success">
+              Parabéns! Você completou sua inscrição. Código da inscrição:
+              <p>{message}</p>
+            </div>
             </Container>
           )}
       </div>

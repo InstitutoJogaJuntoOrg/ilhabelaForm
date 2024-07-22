@@ -44,7 +44,7 @@ export const HomePage = () => {
           <div className="banners">
             <h3>Processos seletivos</h3>
             <Link to="/inscricao">
-              <img src="/banner5.svg" alt="" />
+              <img src="/baner.png" alt="" />
             </Link>
           </div>
         </div>

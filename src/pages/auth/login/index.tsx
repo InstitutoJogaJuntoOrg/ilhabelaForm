@@ -32,6 +32,7 @@ export const LoginPage = () => {
         localStorage.setItem("email", data.email); // Use data.email em vez de email
         console.log("logado");
         setData(response.data);
+        localStorage.setItem("subscription_code", response.data.subscription_code);
         localStorage.setItem("token", response.data.access);
         localStorage.setItem("refresh", response.data.refresh);
         localStorage.setItem("personalForm", response.data.personal_form);
