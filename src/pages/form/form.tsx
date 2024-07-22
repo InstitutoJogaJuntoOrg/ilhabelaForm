@@ -162,7 +162,7 @@ export const FormPage = () => {
   } = useForm<FormSchemaType>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      state: "",
+      state: "SP",
     },
   });
 
@@ -698,11 +698,12 @@ export const FormPage = () => {
                                 flexDirection: "column",
                               }}
                             >
-                              <label>país *</label>
+                              <label>País *</label>
                               <InputText
                                 maxLength={15}
                                 {...register("country")}
                                 placeholder="País"
+                                 defaultValue="Brasil"
                                 className={errors.country ? "p-invalid" : ""}
                               />
                             </div>
