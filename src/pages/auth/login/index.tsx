@@ -138,7 +138,7 @@ export const LoginPage = () => {
                 alignItems: "flex-end",
               }}
             >
-              <Register>
+              {/* <Register>
                 <span className="">
                   <span>
                     <Link
@@ -154,7 +154,7 @@ export const LoginPage = () => {
                     </Link>
                   </span>
                 </span>
-              </Register>
+              </Register> */}
             </div>
 
             <button
