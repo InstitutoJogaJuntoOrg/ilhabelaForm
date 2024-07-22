@@ -46,7 +46,7 @@ type CepResponse = {
 };
 export const FormPage = () => {
   const { image } = useContext(ImageContext);
-  const [user, setUser] = useState(localStorage.getItem("username") || "");
+  const [user, setUser] = useState(localStorage.getItem("") || "");
   const [email, setEmail] = useState(localStorage.getItem("email") || "");
   const [date, setDate] = useState("");
   const [youngerAge, setYoungerAge] = useState<boolean>(false);
@@ -432,7 +432,7 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>Nome *</label>
+                            <label>Primeiro nome *</label>
                             <InputText
                               {...register("first_name")}
                               id="username"
@@ -444,27 +444,7 @@ export const FormPage = () => {
                             />
                           </div>
 
-                          <div
-                              style={{
-                                marginTop: "10px",
-                              }}
-                              className="inputForm"
-                            >
-                              <label>CEP *</label>
-                              <InputMask
-                                aria-describedby="cep-help"
-                                id="cep"
-                                mask="99999999"
-                                placeholder="________"
-                                onChange={(e) => {
-                                  setCep(e.target.value);
-                                  if (e.target.value?.length === 8) {
-                                    buscaCEP(e.target.value);
-                                  }
-                                }}
-                                className={errors.cpf ? "p-invalid" : ""}
-                              />
-                            </div>
+                 
                           <div
                             style={{
                               display: "flex",
@@ -482,6 +462,108 @@ export const FormPage = () => {
                           </div>
 
                           <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <label>Nome social:</label>
+                            <InputText
+                              {...register("socialName")}
+                              id="socialName"
+                              aria-describedby="username-help"
+                              placeholder="Nome social"
+                              className={errors.socialName ? "p-invalid" : ""}
+                            />
+                          </div>
+
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <label>CPF: *</label>
+                            <InputMask
+                              mask="999.999.999-99"
+                              {...register("cpf", { required: true })}
+                              placeholder="___.___.___-__"
+                              className={errors.cpf ? "p-invalid" : ""}
+                            />
+                          </div>
+                          <br />
+                          <div className="inputForm">
+                            <span
+                              style={{
+                                color: "white",
+                                paddingBottom: "25px",
+                              }}
+                            >
+                              RG *
+                            </span>
+
+                            <InputMask
+                              style={{
+                                marginTop: "16px",
+                              }}
+                              mask="99.999.999-99"
+                              {...register("rg", { required: true })}
+                              placeholder="__.___.___-__"
+                              className={errors.rg ? "p-invalid" : ""}
+                            />
+                          </div>
+                       
+                            <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <label>Estado civil: *</label>
+
+                            <Dropdown
+                              options={civilState}
+                              value={selectedStateSocial}
+                              optionLabel="name"
+                              onChange={(e) => {
+                                setelectedStateSocial(e.value);
+                                setValue("civil_state", e.value);
+                              }}
+                              placeholder="Estado civil"
+                              className={
+                                errors.civil_state
+                                  ? "p-invalid w-full md:w-14rem"
+                                  : "w-full md:w-14rem"
+                              }
+                              showClear
+                            />
+                          </div>
+                          <div>
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                              }}
+                            >
+                              <label>Email: *</label>
+
+                              <InputText
+                                {...register("email")}
+                                value={email}
+                                placeholder="Email"
+                                className={errors.email ? "p-invalid" : ""}
+                              />
+                            </div>
+                          </div>
+                    
+
+                     
+
+                     
+                        </div>
+
+                        <div>
+                        <div
                             style={{
                               display: "flex",
                               flexDirection: "column",
@@ -557,6 +639,57 @@ export const FormPage = () => {
                             )}
                           </div>
                           <div
+                              style={{
+                                marginTop: "10px",
+                              }}
+                              className="inputForm"
+                            >
+                              <label>CEP *</label>
+                              <InputMask
+                                aria-describedby="cep-help"
+                                id="cep"
+                                mask="99999999"
+                                placeholder="________"
+                                onChange={(e) => {
+                                  setCep(e.target.value);
+                                  if (e.target.value?.length === 8) {
+                                    buscaCEP(e.target.value);
+                                  }
+                                }}
+                                className={errors.cpf ? "p-invalid" : ""}
+                              />
+                            </div>
+                            <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <label>Cidade *</label>
+                            <InputText
+                              maxLength={15}
+                              {...register("city")}
+                              placeholder="Cidade"
+                              className={errors.city ? "p-invalid" : ""}
+                              defaultValue={cepData?.localidade}
+                            />
+                          </div>
+                            <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
+                          >
+                            <label>Rua *</label>
+                            <InputText
+                              maxLength={40}
+                              {...register("adress")}
+                              placeholder="adress"
+                              className={errors.adress ? "p-invalid" : ""}
+                              defaultValue={cepData?.logradouro}
+                            />
+                          </div>
+                          <div
                             style={{
                               display: "flex",
                               flexDirection: "column",
@@ -584,6 +717,12 @@ export const FormPage = () => {
                               showClear
                             />
                           </div>
+                       
+                       
+                         
+                          <br />
+                     
+                 
 
                           <div
                             style={{
@@ -591,157 +730,16 @@ export const FormPage = () => {
                               flexDirection: "column",
                             }}
                           >
-                            <label>Cidade *</label>
-                            <InputText
-                              maxLength={15}
-                              {...register("city")}
-                              placeholder="Cidade"
-                              className={errors.city ? "p-invalid" : ""}
-                              defaultValue={cepData?.localidade}
-                            />
-                          </div>
-
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label>país *</label>
+                            <label>País *</label>
                             <InputText
                               maxLength={15}
                               {...register("country")}
-                              placeholder="country"
+                              placeholder="país"
                               className={errors.city ? "p-invalid" : ""}
                             />
                           </div>
-                        </div>
 
-                        <div>
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label>Rua *</label>
-                            <InputText
-                              maxLength={40}
-                              {...register("adress")}
-                              placeholder="adress"
-                              className={errors.adress ? "p-invalid" : ""}
-                              defaultValue={cepData?.logradouro}
-                            />
-                          </div>
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label>Nome social:</label>
-                            <InputText
-                              {...register("socialName")}
-                              id="socialName"
-                              aria-describedby="username-help"
-                              placeholder="Nome social"
-                              className={errors.socialName ? "p-invalid" : ""}
-                            />
-                          </div>
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label>CPF: *</label>
-                            <InputMask
-                              mask="999.999.999-99"
-                              {...register("cpf", { required: true })}
-                              placeholder="___.___.___-__"
-                              className={errors.cpf ? "p-invalid" : ""}
-                            />
-                          </div>
-                          <br />
-                          <div className="inputForm">
-                            <span
-                              style={{
-                                color: "white",
-                                paddingBottom: "25px",
-                              }}
-                            >
-                              RG *
-                            </span>
-
-                            <InputMask
-                              style={{
-                                marginTop: "16px",
-                              }}
-                              mask="99.999.999-99"
-                              {...register("rg", { required: true })}
-                              placeholder="__.___.___-__"
-                              className={errors.rg ? "p-invalid" : ""}
-                            />
-                          </div>
-                          <div>
-                            <div
-                              style={{
-                                display: "flex",
-                                flexDirection: "column",
-                              }}
-                            >
-                              <label>Email: *</label>
-
-                              <InputText
-                                {...register("email")}
-                                value={email}
-                                placeholder="Email"
-                                className={errors.email ? "p-invalid" : ""}
-                              />
-                            </div>
-                          </div>
-
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label> Telefone (WhatsApp) *</label>
-
-                            <InputText
-                              {...register("phone")}
-                              placeholder="12 999999999"
-                              maxLength={15}
-                              className={errors.phone ? "p-invalid" : ""}
-                            />
-                          </div>
-
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <label>Estado civil: *</label>
-
-                            <Dropdown
-                              options={civilState}
-                              value={selectedStateSocial}
-                              optionLabel="name"
-                              onChange={(e) => {
-                                setelectedStateSocial(e.value);
-                                setValue("civil_state", e.value);
-                              }}
-                              placeholder="Estado civil"
-                              className={
-                                errors.civil_state
-                                  ? "p-invalid w-full md:w-14rem"
-                                  : "w-full md:w-14rem"
-                              }
-                              showClear
-                            />
-                          </div>
+                     
 
                           <ContainerButtons className="flexEnd">
                             <button
