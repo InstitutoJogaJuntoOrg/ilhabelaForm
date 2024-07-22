@@ -33,7 +33,7 @@ export const Footer = () => {
           <div>
             
             <p>IETEC</p>
-            <a href="tel:1238956402">Telefone: (12) 3895-6402</a>
+            <a href="tel:1238956402">Telefone: (12) 98890-2389</a>
             <p>
               Endereço: Av. Profº Malaquias de O. Freitas, 448 - Barra Velha,
               Ilhabela - SP, 11630-000{" "}
@@ -43,7 +43,7 @@ export const Footer = () => {
        <a style={{
             textDecoration: 'underline',
             color: '#f8fcf7'
-           }} href="https://wa.me/5511945950731" target={"_blank"}>Ajuda</a>
+           }} href="https://wa.me/5512988902389" target={"_blank"}>Ajuda</a>
         <div>
           
           <p>Todos os direitos reservados - Instituto Joga Junto </p>
