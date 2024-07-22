@@ -53,7 +53,7 @@ export const RegisterPage = () => {
   function handleSubmitRegister(data: RegisterSchemaType) {
     const cleanedPhone = data.phone.replace(/[\s\.-]/g, "");
     const requestData = {
-      username: data.name,
+      first_name: data.name,
       password: data.password,
       email: data.email,
       phone: cleanedPhone,
