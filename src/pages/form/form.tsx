@@ -720,7 +720,8 @@ export const FormPage = () => {
                             <InputText
                               maxLength={15}
                               {...register("country")}
-                              placeholder="país"
+                              placeholder="País"
+                              defaultValue="Brasil"
                               className={errors.city ? "p-invalid" : ""}
                             />
                           </div>
