@@ -114,6 +114,7 @@ export const SocioEconomico = ({
     
         if (response.status == 200 || response.status == 201) {
           toast.success("Formulário enviado com sucesso!");
+          localStorage.setItem("subscription_code", response.data.subscription_code);
           setTabEnabled(false);
           setActiveTab(2);
            setVisible(true);

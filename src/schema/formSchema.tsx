@@ -25,12 +25,6 @@ export const FormSchema = z.object({
     required_error: "messages.required",
   }),
   cep: z.any(),
-  phone: z
-    .string()
-    .nonempty({ message: "O campo de telefone é obrigatório" })
-    .regex(/^\d{11}$/, {
-      message: "O telefone deve conter exatamente 11 dígitos",
-    }),
   guardian: guardianSchema.optional(),
 }).superRefine((data, ctx: any) => {
   const date = new Date(data.date);

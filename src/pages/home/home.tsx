@@ -62,7 +62,7 @@ export const HomePage = () => {
   const [display, setDisplay] = useState(true);
   const auth = localStorage.getItem("token");
   const [showText, setShowText] = useState(false);
-  const emailFromLocalStorage = localStorage.getItem("username");
+  const emailFromLocalStorage = localStorage.getItem("token");
   const setCookie = (name: string) => {
     document.cookie = name;
   };

@@ -46,7 +46,10 @@ type CepResponse = {
 };
 export const FormPage = () => {
   const { image } = useContext(ImageContext);
-  const [user, setUser] = useState(localStorage.getItem("") || "");
+  const [user, setUser] = useState(localStorage.getItem("username") || "");
+  const [message, setMessage] = useState(
+    localStorage.getItem("subscription_code") || ""
+  );
   const [email, setEmail] = useState(localStorage.getItem("email") || "");
   const [date, setDate] = useState("");
   const [youngerAge, setYoungerAge] = useState<boolean>(false);
@@ -84,9 +87,7 @@ export const FormPage = () => {
     if (errors.last_name) {
       toast.error("Por favor informe seu Sobrenome");
     }
-    if (errors.phone) {
-      toast.error("Por favor informe um número válido");
-    }
+
     if (errors.socialName) {
       toast.error("Por favor informe seu Nome social");
     }
@@ -166,13 +167,13 @@ export const FormPage = () => {
     resolver: zodResolver(FormSchema),
     defaultValues: {
       state: "a",
-    }
+    },
   });
   const [selectedDate, setSelectedDate] = useState<Date | any>(null);
   const [isUnderage, setIsUnderage] = useState(false);
   const [cep, setCep] = useState<any>("");
   const [cepData, setCepData] = useState<CepResponse | any>(null);
-  console.log('cepData', cepData)
+  console.log("cepData", cepData);
   async function buscaCEP(cep: any) {
     try {
       const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
@@ -184,7 +185,6 @@ export const FormPage = () => {
       console.log("CEP não encontrado");
     }
   }
-
 
   const isValidDate = (dateString: string) => {
     const [day, month, year] = dateString.split("/").map(Number);
@@ -238,12 +238,6 @@ export const FormPage = () => {
     console.log("Enviando dados:", data);
     localStorage.setItem("personalForm", "true");
 
-    const cleanedPhone = data.phone.replace(/[\s\.-]/g, "");
-
-    if (cleanedPhone.length !== 11) {
-      console.error("Número de telefone deve ter exatamente 11 dígitos.");
-      return;
-    }
     const formData = new FormData();
     formData.append("cpf", data.cpf.replace(/\D/g, ""));
     formData.append("rg", data.cpf.replace(/\D/g, ""));
@@ -253,7 +247,7 @@ export const FormPage = () => {
     formData.append("city", data.city);
     formData.append("adress", data.adress);
     formData.append("email", data.email);
-    formData.append("phone", cleanedPhone);
+
     formData.append("date_of_birth", data.date);
     formData.append("living_uf", data.state.name);
     formData.append("country", data.country);
@@ -444,7 +438,6 @@ export const FormPage = () => {
                             />
                           </div>
 
-                 
                           <div
                             style={{
                               display: "flex",
@@ -512,8 +505,8 @@ export const FormPage = () => {
                               className={errors.rg ? "p-invalid" : ""}
                             />
                           </div>
-                       
-                            <div
+
+                          <div
                             style={{
                               display: "flex",
                               flexDirection: "column",
@@ -555,15 +548,10 @@ export const FormPage = () => {
                               />
                             </div>
                           </div>
-                    
-
-                     
-
-                     
                         </div>
 
                         <div>
-                        <div
+                          <div
                             style={{
                               display: "flex",
                               flexDirection: "column",
@@ -571,18 +559,18 @@ export const FormPage = () => {
                           >
                             <label>Data de nascimento *</label>
                             <input
-                                {...register("date")}
-                                id="date"
-                                type="text"
-                                onChange={handleDateChange}
-                                value={selectedDate}
-                                placeholder="dd/MM/yyyy"
-                                className={
-                                  errors.date
-                                    ? "p-invalid inputForm"
-                                    : "inputForm"
-                                }
-                              />
+                              {...register("date")}
+                              id="date"
+                              type="text"
+                              onChange={handleDateChange}
+                              value={selectedDate}
+                              placeholder="dd/MM/yyyy"
+                              className={
+                                errors.date
+                                  ? "p-invalid inputForm"
+                                  : "inputForm"
+                              }
+                            />
                             {isUnderage && (
                               <div
                                 style={{
@@ -639,27 +627,27 @@ export const FormPage = () => {
                             )}
                           </div>
                           <div
-                              style={{
-                                marginTop: "10px",
+                            style={{
+                              marginTop: "10px",
+                            }}
+                            className="inputForm"
+                          >
+                            <label>CEP *</label>
+                            <InputMask
+                              aria-describedby="cep-help"
+                              id="cep"
+                              mask="99999999"
+                              placeholder="________"
+                              onChange={(e) => {
+                                setCep(e.target.value);
+                                if (e.target.value?.length === 8) {
+                                  buscaCEP(e.target.value);
+                                }
                               }}
-                              className="inputForm"
-                            >
-                              <label>CEP *</label>
-                              <InputMask
-                                aria-describedby="cep-help"
-                                id="cep"
-                                mask="99999999"
-                                placeholder="________"
-                                onChange={(e) => {
-                                  setCep(e.target.value);
-                                  if (e.target.value?.length === 8) {
-                                    buscaCEP(e.target.value);
-                                  }
-                                }}
-                                className={errors.cpf ? "p-invalid" : ""}
-                              />
-                            </div>
-                            <div
+                              className={errors.cpf ? "p-invalid" : ""}
+                            />
+                          </div>
+                          <div
                             style={{
                               display: "flex",
                               flexDirection: "column",
@@ -674,7 +662,7 @@ export const FormPage = () => {
                               defaultValue={cepData?.localidade}
                             />
                           </div>
-                            <div
+                          <div
                             style={{
                               display: "flex",
                               flexDirection: "column",
@@ -702,7 +690,9 @@ export const FormPage = () => {
                               optionLabel="name"
                               defaultValue={cepData?.uf}
                               onChange={(e) => {
-                                const selectedValue = e.value ? e.value : cepData?.uf || cepData?.uf;
+                                const selectedValue = e.value
+                                  ? e.value
+                                  : cepData?.uf || cepData?.uf;
                                 setSelectedCity(selectedValue);
                                 setValue("state", selectedValue);
                               }}
@@ -717,12 +707,8 @@ export const FormPage = () => {
                               showClear
                             />
                           </div>
-                       
-                       
-                         
+
                           <br />
-                     
-                 
 
                           <div
                             style={{
@@ -738,8 +724,6 @@ export const FormPage = () => {
                               className={errors.city ? "p-invalid" : ""}
                             />
                           </div>
-
-                     
 
                           <ContainerButtons className="flexEnd">
                             <button
@@ -802,10 +786,8 @@ export const FormPage = () => {
         socioeconomicForm === "true" && (
           <Container>
             <div className="success">
-              Parabéns! Você já completou todos os formulários.
-              <p>
-                Assim que saírem, as respostas serão enviadas para o seu e-mail.
-              </p>
+              Parabéns! Você completou sua inscrição. Código da inscrição:
+              <p>{message}</p>
             </div>
           </Container>
         )}
