@@ -35,6 +35,7 @@ export const LoginPage = () => {
         localStorage.setItem("subscription_code", response.data.subscription_code);
         localStorage.setItem("token", response.data.access);
         localStorage.setItem("refresh", response.data.refresh);
+        localStorage.setItem("username", response.data.first_name);
         localStorage.setItem("personalForm", response.data.personal_form);
         localStorage.setItem(
           "socioeconomicForm",

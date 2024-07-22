@@ -9,7 +9,7 @@ export const Header = () => {
   const [showLinks, setShowLinks] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [userEmail, setUserEmail] = useState("");
-  const emailFromLocalStorage = localStorage.getItem("username");
+  const emailFromLocalStorage = localStorage.getItem("token");
   const closeMenu = () => {
     setShowLinks(false);
   };
@@ -25,7 +25,7 @@ export const Header = () => {
     };
 
     const checkUserAuthentication = () => {
-      const emailFromLocalStorage = localStorage.getItem("username");
+      const emailFromLocalStorage = localStorage.getItem("token");
 
       if (emailFromLocalStorage) {
         setUserEmail(emailFromLocalStorage);
