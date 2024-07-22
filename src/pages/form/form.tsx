@@ -658,9 +658,9 @@ export const FormPage = () => {
                                 <span>RG *</span>
                               </div>
                               <InputMask
-                                mask="99.999.999-9"
+                                mask="99.999.999-99"
                                 {...register("rg", { required: true })}
-                                placeholder="__.___.___-_"
+                                placeholder="__.___.___-__"
                                 className={errors.rg ? "p-invalid" : ""}
                               />
                             </div>
