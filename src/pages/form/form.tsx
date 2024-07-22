@@ -677,9 +677,9 @@ export const FormPage = () => {
                               style={{
                                 marginTop: "16px",
                               }}
-                              mask="99.999.999-9"
+                              mask="99.999.999-99"
                               {...register("rg", { required: true })}
-                              placeholder="__.___.___-_"
+                              placeholder="__.___.___-__"
                               className={errors.rg ? "p-invalid" : ""}
                             />
                           </div>
