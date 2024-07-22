@@ -244,7 +244,7 @@ export const FormPage = () => {
     formData.append("living_uf", data.state.name);
     formData.append("country", data.country);
     formData.append("civil_state", data.civil_state);
-    formData.append("selective_process_id", "1");
+    formData.append("selective_process_id", "2");
     formData.append("zip_code", cep);
     if (isUnderage) {
       formData.append("resp_name", data.guardian?.name ?? "");
