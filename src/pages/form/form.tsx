@@ -162,6 +162,7 @@ export const FormPage = () => {
     register,
     handleSubmit,
     setValue,
+    watch,
     formState: { errors },
   } = useForm<FormSchemaType>({
     resolver: zodResolver(FormSchema),
@@ -181,6 +182,7 @@ export const FormPage = () => {
       setCepData(cepData);
       setValue("state", cepData.uf);
       setValue("adress", cepData.logradouro);
+      setValue("city", cepData.localidade);
     } catch (error) {
       console.log("CEP não encontrado");
     }
@@ -245,7 +247,7 @@ export const FormPage = () => {
     formData.append("last_name", data.last_name);
     formData.append("social_name", data.socialName ?? "");
     formData.append("city", data.city);
-    formData.append("adress", data.adress);
+    formData.append("address", data.adress);
     formData.append("email", data.email);
 
     formData.append("date_of_birth", data.date);
@@ -659,7 +661,7 @@ export const FormPage = () => {
                               {...register("city")}
                               placeholder="Cidade"
                               className={errors.city ? "p-invalid" : ""}
-                              defaultValue={cepData?.localidade}
+                              defaultValue={watch('city')}
                             />
                           </div>
                           <div
