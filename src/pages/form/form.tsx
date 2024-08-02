@@ -78,9 +78,9 @@ export const FormPage = () => {
       toast.error("Por favor informe um Cidade válida");
     }
 
-    if (errors.civil_state) {
-      toast.error("Por favor informe seu Estado Civil");
-    }
+    // if (errors.civil_state) {
+    //   toast.error("Por favor informe seu Estado Civil");
+    // }
     if (errors.first_name) {
       toast.error("Por favor informe seu Nome");
     }
@@ -168,6 +168,7 @@ export const FormPage = () => {
     resolver: zodResolver(FormSchema),
     defaultValues: {
       state: "a",
+      civil_state: "a",
     },
   });
   const [selectedDate, setSelectedDate] = useState<Date | any>(null);
@@ -237,7 +238,9 @@ export const FormPage = () => {
   const apiUrl =
     "https://api.jogajuntoinstituto.org/hotsite/students/personalinfo/";
   async function sendPersonalInfo(data: FormSchemaType) {
-    console.log("Enviando dados:", data);
+    // console.log("Enviando dados:", data);
+    // console.log('errors', errors)
+  
     localStorage.setItem("personalForm", "true");
 
     const formData = new FormData();
@@ -533,6 +536,9 @@ export const FormPage = () => {
                               showClear
                             />
                           </div>
+
+
+                          
                           <div>
                             <div
                               style={{

@@ -2,10 +2,10 @@ import * as z from "zod";
 import { differenceInYears } from "date-fns";
 
 const guardianSchema = z.object({
-  name: z.string().nonempty({ message: "Nome completo é obrigatório." }),
-  cpf: z.string().length(11, { message: "CPF deve ter 11 dígitos." }),
-  email: z.string().email({ message: "E-mail inválido." }),
-  phone: z.string().min(10, { message: "Celular deve ter pelo menos 10 dígitos." }),
+  name: z.string().optional(),
+  cpf: z.string().optional(),
+  email: z.string().optional(),
+  phone: z.string().optional(),
 });
 
 export const FormSchema = z.object({
