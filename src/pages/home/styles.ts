@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ModalHome = styled.div`
 
-  background-image: url('https://estaticos-ijj.s3.sa-east-1.amazonaws.com/banner_ilhabela.jpeg'); /* Substitua pelo caminho real da sua imagem */
+  background-image: url('/aviso.png'); /* Substitua pelo caminho real da sua imagem */
   background-size: cover;
   background-repeat: no-repeat;
 width: 800px;
