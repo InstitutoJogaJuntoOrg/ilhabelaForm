@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ModalHome = styled.div`
 
-  background-image: url('/aprovada.jpg');
+  background-image: url('/aprovada.png');
   background-size: cover;
   background-repeat: no-repeat;
 width: 800px;
