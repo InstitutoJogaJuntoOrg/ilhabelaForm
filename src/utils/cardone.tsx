@@ -3,7 +3,7 @@ export const cardOne = [
     title: "Ilhabela Tech",
     description:
       "É um programa da Prefeitura de Ilhabela em parceria com o Instituto Joga Junto que visa capacitar e incluir novos profissionais no mercado tecnológico por meio do conhecimento técnico de testador de Qualidade de Sofware (Q.A)",
-    startDate: "12/08",
+    startDate: "09/09",
     modalidade: "Presencial",
     periods: ["Turmas noturnas das 18:30 às 21:30"],
     modality: "Presencial, na IETC de Ilhabela de segunda à quinta",
