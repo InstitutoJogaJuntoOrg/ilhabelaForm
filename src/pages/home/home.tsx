@@ -190,7 +190,7 @@ export const HomePage = () => {
 
         <BannerContainer>
           <img
-            src="/aviso.png"
+            src="/close2.jpg"
             style={{
               display: "block",
             }}
