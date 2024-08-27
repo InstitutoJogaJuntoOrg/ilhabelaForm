@@ -154,12 +154,12 @@ export const HomePage = () => {
               ILHABELA TECH
             </h1>
 
-            <a
+            {/* <a
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
               href={emailFromLocalStorage ? "/inscricao" : "/login"}
             >
               <button>Participe agora</button>
-            </a>
+            </a> */}
 
             {/* <span
               className="subDescp"
