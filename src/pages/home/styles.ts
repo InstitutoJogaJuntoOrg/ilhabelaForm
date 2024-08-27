@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const ModalHome = styled.div`
 
-  background-image: url('/aprovada.png');
+background-image: url('/close.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-width: 800px;
+width: 470px;
 height: 470px;
 margin-top: -2.5rem;
 

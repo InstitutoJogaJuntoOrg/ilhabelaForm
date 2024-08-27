@@ -123,7 +123,7 @@ export const LoginPage = () => {
               </Register> */}
             </div>
 
-            <button
+            {/* <button
               style={{
                 fontSize: "16px",
                 borderRadius: "26px",
@@ -131,7 +131,7 @@ export const LoginPage = () => {
               type="submit"
             >
               Fazer login
-            </button>
+            </button> */}
             <br />
             <br />
           </form>
