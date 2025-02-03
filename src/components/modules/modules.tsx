@@ -6,7 +6,7 @@ export const Modules = ({}) => {
       <ModuleContainer>
        
         <div>
-          <h1>FORMAÇÃO BÁSICA</h1>
+          <h1>Hardskills</h1>
           <ul>
             <li>
               <span className="circle">1</span> SQL
@@ -29,7 +29,7 @@ export const Modules = ({}) => {
 
    <div>
     
-   <h1>FORMAÇÃO AVANÇADA</h1>
+   <h1>Softskills</h1>
           <ul>
             <li>
               <span className="circle">5</span> Autoconhecimento
