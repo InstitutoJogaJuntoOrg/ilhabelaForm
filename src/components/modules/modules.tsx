@@ -9,20 +9,22 @@ export const Modules = ({}) => {
           <h1>FORMAÇÃO BÁSICA</h1>
           <ul>
             <li>
-              <span className="circle">1</span> Autoconhecimento
+              <span className="circle">1</span> SQL
             </li>
             <li>
               <span className="circle">2</span>
-              Gestão de projetos
+              Metabase
             </li>
             <li>
               <span className="circle">3</span>
-              Testes Manuais
+              Redshift
+            </li>
+            <li>
+              <span className="circle">4</span>
+              Estatística
             </li>
           </ul>
-          <footer>
-            Certificado <span>QA Básico</span>
-          </footer>
+        
         </div>
 
    <div>
@@ -30,20 +32,18 @@ export const Modules = ({}) => {
    <h1>FORMAÇÃO AVANÇADA</h1>
           <ul>
             <li>
-              <span className="circle">4</span> Algorítimos
-            </li>
-            <li>
-              <span className="circle">5</span>
-              Python
+              <span className="circle">5</span> Autoconhecimento
             </li>
             <li>
               <span className="circle">6</span>
-              Automação de testes
+              Trabalho em equipe
+            </li>
+            <li>
+              <span className="circle">7</span>
+              Pensamento analítico
             </li>
           </ul>
-          <footer>
-            Certificado <span>QA Avançado</span>
-          </footer>
+         
    </div>
      
 
@@ -58,7 +58,7 @@ export const Modules = ({}) => {
           <img src="/certificado.svg" alt="" />
         </div>
         <div className="content">
-          <h2>+ de 140 horas de formação</h2>
+          <h2>+ de 170 horas de formação</h2>
           <p>
             E diversos workshops com especialistas em finanças, recursos
             humanos, projetos, inovação, preparação para o mercado de trabalho e

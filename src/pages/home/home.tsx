@@ -182,7 +182,7 @@ export const HomePage = () => {
           />
           <CardTwo
             description=""
-            titleCard="O que é um testador de qualidade de software"
+            titleCard="O que é o curso de análise de dados?"
             image="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/card_ilhabela_IETEC.png"
             key={1}
             alt="img"

@@ -1,14 +1,19 @@
 export const cardTwo = [
   {
-    Programa: "O que é um testador de qualidade de software:",
+    Programa: "O que é o curso de análise de dados?",
     Fases: [
       {
-        Nome: "Os testadores são os profissionais encarregados de garantir a qualidade do software, assegurando que tudo funcione corretamente de acordo com os requisitos, e fazendo com que os erros não cheguem ao usuário.",
+        Nome: "O Instituto Joga Junto criou o curso EntreDADO: O Elo Entre um Dado e a Decisão, onde você aprenderá desde os fundamentos do letramento em dados até técnicas avançadas de SQL, estatística descritiva e visualização de dados.",
       },
       {
-        Nome: "Mercado de trabalho para profissionais de Q.A:  ",
+        Nome: "O que um profissional faz?",
         Descrição:
-          "O mercado do profissional de QA/ testador prevê um crescimento no número de vagas anual de 8.80% até 2030. Atualmente, os analistas de mercado apontam que há grande demanda de pessoas para o cargo e poucas pessoas com qualificação em QA Relatório Global sobre o Mercado de QA para Softwares, da Market Research Future",
+          "Esses profissionais são responsáveis por organizar, interpretar e transformar grandes volumes de dados em insights estratégicos para empresas, governos e organizações. Eles ajudam a prever tendências, otimizar recursos e tomar decisões mais inteligentes. Sem análise de dados, estaríamos navegando no escuro.",
+      },
+      {
+        Nome: "Como é o mercado de trabalho?",
+        Descrição:
+          "A Análise de Dados está entre as carreiras mais promissoras do século. Com o crescimento da Inteligência Artificial e do Big Data, empresas de todos os setores estão em busca de profissionais capacitados.",
       },
     ],
   },

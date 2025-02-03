@@ -133,7 +133,7 @@ const FAQs: React.FC = () => {
     {
       question: "O que é o Ilhabela tech",
       answer:
-        "• É um programa da Prefeitura de Ilhabela em parceria com o <a target='_blank' href='https://www.jogajuntoinstituto.org/'>Instituto JogaJunto</a> que visa capacitar e incluir novos profissionais no mercado tecnológico por meio do conhecimento técnico de testador de Qualidade de Sofware (Q.A)",
+        "• É um programa da Prefeitura de Ilhabela em parceria com o <a target='_blank' href='https://www.jogajuntoinstituto.org/'>Instituto JogaJunto</a> que visa capacitar e incluir novos profissionais no mercado tecnológico por meio do conhecimento técnico.",
     },
     {
       question: "Vagas:",
@@ -163,7 +163,7 @@ const FAQs: React.FC = () => {
     {
       question: "Quantos certificados posso receber?",
       answer: [
-        "Dois certificados, um do curso básico e outro do curso avançado de qualidade de software, desde que tenha realizado os dois cursos, com cumprimento dos requisitos de aprovação.",
+        "Um certificado para o curso de Analista de Dados desde que tenha cumprido todos os requisitos de aprovação.",
       ],
     },
     {
@@ -214,12 +214,7 @@ const FAQs: React.FC = () => {
         "Não. No momento da sua inscrição, você já precisa ter 16 anos.",
       ],
     },
-    {
-      question: "Posso fazer o curso mesmo tendo mais de 24 anos?",
-      answer: [
-        "Sim, ainda que você tenha mais que 24 anos, você pode fazer o curso normalmente.",
-      ],
-    },
+    
     {
       question: "Posso fazer o curso mesmo tendo estudado em escola particular?",
       answer: [
