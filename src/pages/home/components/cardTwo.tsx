@@ -35,7 +35,9 @@ export const CardTwo = ({ image, alt, className, titleCard }: CardsProps) => {
                   <div key={index}>
                     <span className="tiitlecard">
                      
-                        <span>{fase.Nome}</span>
+                        <span style={{
+                          fontWeight: '800'
+                        }}>{fase.Nome}</span>
                      
                     </span>
                     <br />
