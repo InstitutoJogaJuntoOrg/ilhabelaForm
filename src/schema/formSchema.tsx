@@ -11,6 +11,7 @@ const guardianSchema = z.object({
 export const FormSchema = z.object({
   civil_state: z.string().min(3, "Campo obrigatório"),
   socialName: z.string().optional(),
+  linkedin: z.string().optional(),
   first_name: z.string().min(1, "Campo obrigatório"),
   last_name: z.string().min(1, "Campo obrigatório"),
   city: z.string().min(1, "Campo obrigatório"),

@@ -252,7 +252,7 @@ export const FormPage = () => {
     formData.append("city", data.city);
     formData.append("address", data.adress);
     formData.append("email", data.email);
-
+    formData.append("linkedin_profile", data.linkedin ?? "")
     formData.append("date_of_birth", data.date);
     formData.append("living_uf", data.state.name);
     formData.append("country", data.country);
@@ -733,7 +733,25 @@ export const FormPage = () => {
                               className={errors.city ? "p-invalid" : ""}
                             />
                           </div>
-
+                          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+                <label>Qual seu linkedin: </label>
+                <InputText
+                  {...register("linkedin")}
+                  id="linkedin"
+                  aria-describedby="username-help"
+                  className={
+                    errors.linkedin
+                      ? "p-invalid w-full md:w-14rem"
+                      : "w-full md:w-14rem"
+                  }
+                  placeholder="link do seu perfil"
+                />
+              </div>
                           <ContainerButtons className="flexEnd">
                             <button
                               className="buttonForm"

@@ -83,7 +83,7 @@ export const SocioEconomico = ({
           sociadata_physical_disability: data.deficiency,
           average_monthly_income: salario,
           socioeconomic_personal_income: salariopessoal,
-          linkedin_profile: data.linkedin,
+         
           sociodata_race: data.color,
           sociodata_gender: data.gender,
           sociodata_sexual_orientation: data.guidance,
@@ -611,25 +611,7 @@ export const SocioEconomico = ({
               showClear
             />
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-                <label>Qual seu linkedin: </label>
-                <InputText
-                  {...register("linkedin")}
-                  id="linkedin"
-                  aria-describedby="username-help"
-                  className={
-                    errors.linkedin
-                      ? "p-invalid w-full md:w-14rem"
-                      : "w-full md:w-14rem"
-                  }
-                  placeholder="link do seu perfil"
-                />
-              </div>
+   
         </div>
         <ContainerButtons>
           <button type="submit" onClick={handleSubmit(sendSocioEconomicInfo)}>
