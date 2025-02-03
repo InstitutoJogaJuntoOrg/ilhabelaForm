@@ -102,7 +102,7 @@ export const HomePage = () => {
         width: "100%",
       }}
     >
-      <div
+      {/* <div
         style={{
           display: "flex",
           flexDirection: "column",
@@ -110,7 +110,7 @@ export const HomePage = () => {
           width: "100%",
         }}
       >
-        {/* {display && (
+        {display && (
           <Dialog
             className="accontDelete"
             visible={display}
@@ -124,8 +124,8 @@ export const HomePage = () => {
               </a>
             }
           ></Dialog>
-        )} */}
-      </div>
+        )}
+      </div> */}
       <ContainerHome>
         <ImageContainer>
           <VideoBackground>
@@ -157,10 +157,10 @@ export const HomePage = () => {
 
               href="/inscricao"
             >
-              <button>Insrever-se</button>
+              <button>inscrever-se</button>
             </a>
 
-            <span
+            {/* <span
               className="subDescp"
               style={{
                 textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)",
@@ -177,7 +177,7 @@ export const HomePage = () => {
                 ilhabela.tech
               </a>{" "}
               para saber quando abrirem novas vagas!
-            </span>
+            </span> */}
           </ContainerTitle>
         </section>
         <ContainerCardLayout>
