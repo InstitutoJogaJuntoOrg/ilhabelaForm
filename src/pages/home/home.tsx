@@ -194,7 +194,7 @@ export const HomePage = () => {
             description={`
            `}
             className=""
-            titleCard="Informações sobre o curso"
+            titleCard="O que é Ilhabela Tech"
             image="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/card_ilhabela_bannerlogo.png"
             key={3}
             alt="img"
