@@ -43,7 +43,7 @@ export const Footer = () => {
        <a style={{
             textDecoration: 'underline',
             color: '#f8fcf7'
-           }} href="https://wa.me/5512988902389" target={"_blank"}>Ajuda</a>
+           }} href="https://wa.me/559198189000" target={"_blank"}>Ajuda</a>
         <div>
           
           <p>Todos os direitos reservados - Instituto Joga Junto </p>
