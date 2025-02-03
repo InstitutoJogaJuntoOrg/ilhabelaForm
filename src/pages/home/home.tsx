@@ -10,6 +10,7 @@ import {
   About,
   BannerContainer,
   ContainerCardLayout,
+  ContainerCardLayouta,
   ContainerHome,
   ContainerTitle,
   ModalHome,
@@ -20,6 +21,7 @@ import { Footer } from "../../components/footer";
 import { Modules } from "../../components/modules/modules";
 import FAQs from "./components/FAQ/faq";
 import { StyledNavLink } from "../../components/header/styles";
+import { CardTree } from "./components/cardtre";
 // import { Cookies } from "js-cookie"; // Importe a biblioteca
 
 const Overlay = styled.div`
@@ -171,7 +173,7 @@ export const HomePage = () => {
           </ContainerTitle>
         </section>
         <ContainerCardLayout>
-          <CardOne
+          <CardTree
             description={`
             É um programa da Prefeitura de Ilhabela em parceria com o Instituto Joga Junto que visa capacitar e incluir novos profissionais no mercado tecnológico por meio do conhecimento técnico de testador de Qualidade de Sofware (Q.A)`}
             className="secondImg"
@@ -187,8 +189,20 @@ export const HomePage = () => {
             key={1}
             alt="img"
           />
+           
         </ContainerCardLayout>
-
+        <ContainerCardLayouta>
+        <CardOne
+            description={`
+           `}
+            className="secondImg"
+            titleCard="Informações sobre o curso"
+            image="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/card_ilhabela_bannerlogo.png"
+            key={3}
+            alt="img"
+          />
+        </ContainerCardLayouta>
+       
         <BannerContainer>
           <img
             src="/close2.jpg"

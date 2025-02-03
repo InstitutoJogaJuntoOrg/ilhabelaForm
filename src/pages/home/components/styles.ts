@@ -189,7 +189,7 @@ export const OpacityOverlay = styled.div`
   .titleOpacity {
     position: absolute;
     top: 80%;
-    left: 10%;
+    left: 5%;
     font-size: 34px;
     font-style: normal;
     font-weight: 800;

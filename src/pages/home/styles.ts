@@ -156,6 +156,31 @@ export const ContainerCardLayout = styled.div`
     align-items: center;
   }
 `;
+
+export const ContainerCardLayouta = styled.div`
+  display: flex;
+  margin-top: 1rem;
+  gap: 3rem;
+  justify-content: center;
+  width: 100%;
+  @media (max-width: 1900px) {
+    margin-top: 1rem;
+  }
+  @media (max-width: 1700px) {
+    margin-top: 1rem;
+  }
+  @media (max-width: 1600px) {
+    margin-top: 1rem;
+  }
+  @media (max-width: 1300px) {
+    margin-top: 1rem;
+  }
+  @media (max-width: 1100px) {
+    margin-top: 2rem;
+    flex-direction: column;
+    align-items: center;
+  }
+`;
 export const ContainerTitle = styled.div`
   display: flex;
   flex-direction: column;
