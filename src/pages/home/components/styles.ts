@@ -28,7 +28,7 @@ export const OpacityOverlay = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 120%;
   
   background: linear-gradient(
     0deg,
@@ -83,7 +83,7 @@ export const OpacityOverlay = styled.div`
   }
 
   .mtop {
-    margin-top: 22%;
+    margin-top: 2%;
     @media (max-width: 900px) {
       margin-top: 0%;
     }
@@ -109,16 +109,16 @@ export const OpacityOverlay = styled.div`
 
   .titleOpacity {
     position: absolute;
-    top: 80%;
+    top: 65%;
     left: 5%;
-    font-size: 34px;
+    font-size: 22px;
     font-style: normal;
     font-weight: 800;
     color: white;
     transition: 1s linear;
 
     @media (max-width: 900px) {
-      top:76%;
+      top:66%;
       left: 5%;
       font-size: 24px;
     }
