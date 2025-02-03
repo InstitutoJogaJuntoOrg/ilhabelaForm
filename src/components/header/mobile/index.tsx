@@ -25,14 +25,14 @@ const MobileMenu = ({ closeMenu }: any) => {
       </StyledNavLink>
       <div>
 
-         {/* {!user && <StyledNavLink to="/login" onClick={closeMenu}>Fazer login</StyledNavLink>} 
+         {!user && <StyledNavLink to="/login" onClick={closeMenu}>Fazer login</StyledNavLink>} 
 
-       */}
-        {/* {user && (
+      
+        {user && (
           <StyledNavLink to={user ? "/inscricao" : "/auth"} onClick={closeMenu}>
             Inscrição
           </StyledNavLink>
-        )}  */}
+        )} 
                <li><a style={{
             textDecoration: 'none',
             color: '#f8fcf7'
