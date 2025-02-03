@@ -138,6 +138,7 @@ export const ContainerCardLayout = styled.div`
   gap: 3rem;
   justify-content: center;
   width: 100%;
+  padding: 5rem;
   @media (max-width: 1900px) {
     margin-top: -15rem;
   }

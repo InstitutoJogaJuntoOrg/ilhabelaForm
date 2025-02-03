@@ -140,11 +140,7 @@ export const HomePage = () => {
             onMouseOver={() => setShowText(true)}
             onMouseOut={() => setShowText(false)}
           >
-            {showText && (
-              <div>
-                .
-              </div>
-            )}
+            {showText && <div>.</div>}
           </Overlay>
         </ImageContainer>
 
@@ -162,24 +158,45 @@ export const HomePage = () => {
               href="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/Classifica%C3%A7%C3%A3o+Geral+Ilhabela+Tech.pdf"
             >
               <button>Insrever-se</button>
-            </a> 
+            </a>
 
             <span
               className="subDescp"
-              style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)", background: "", padding: '2rem', borderRadius: '16px'}}
+              style={{
+                textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)",
+                background: "",
+                padding: "2rem",
+                borderRadius: "16px",
+              }}
             >
-              Inscrições encerradas, fique de olho no nosso Instagram <a href="https://www.instagram.com/ilhabela.tech/" target={"_blank"}>ilhabela.tech</a> para saber quando abrirem novas vagas!
+              Inscrições encerradas, fique de olho no nosso Instagram{" "}
+              <a
+                href="https://www.instagram.com/ilhabela.tech/"
+                target={"_blank"}
+              >
+                ilhabela.tech
+              </a>{" "}
+              para saber quando abrirem novas vagas!
             </span>
           </ContainerTitle>
         </section>
         <ContainerCardLayout>
-          <CardTree
+          {/* <CardTree
             description={`
-            É um programa da Prefeitura de Ilhabela em parceria com o Instituto Joga Junto que visa capacitar e incluir novos profissionais no mercado tecnológico por meio do conhecimento técnico de testador de Qualidade de Sofware (Q.A)`}
+            É um programa da Prefeitura de Ilhabela em parceria com o Instituto Joga Junto que visa capacitar e incluir novos profissionais no mercado tecnológico por meio do conhecimento técnico`}
             className="secondImg"
             titleCard="O que é o Ilhabela tech:"
             image="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/card_ilhabela_bannerlogo.png"
             key={2}
+            alt="img"
+          /> */}
+           <CardTree
+            description={`
+           `}
+            className=""
+            titleCard="Informações sobre o curso"
+            image="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/card_ilhabela_bannerlogo.png"
+            key={3}
             alt="img"
           />
           <CardTwo
@@ -189,20 +206,16 @@ export const HomePage = () => {
             key={1}
             alt="img"
           />
-           
-        </ContainerCardLayout>
-        <ContainerCardLayouta>
-        <CardOne
-            description={`
-           `}
-            className="secondImg"
+          <CardOne
+            description=""
             titleCard="Informações sobre o curso"
-            image="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/card_ilhabela_bannerlogo.png"
-            key={3}
+            image="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/card_ilhabela_IETEC.png"
+            key={1}
             alt="img"
           />
-        </ContainerCardLayouta>
-       
+        </ContainerCardLayout>
+
+
         <BannerContainer>
           <img
             src="/close2.jpg"

@@ -32,7 +32,7 @@ export const CardTree = ({
         <OpacityOverlay style={{ display: hovered ? "block" : "none" }}>
           {cardTree.map((item) => {
             return (
-              <div className="Card mtop">
+              <div className="Card scroll mtop">
                 <span className="titleCard">
                   <strong>{item.title}</strong>
                 </span>

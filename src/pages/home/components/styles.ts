@@ -3,11 +3,10 @@ import styled from "styled-components";
 export const Background = styled.div`
   position: relative;
 `;
-
 export const ContainerCard = styled.div`
   position: relative;
-  width: 499px;
-  height: 600px;
+  width: 100%;
+  height: 100%;
   border-radius: 16px;
   background-color: white;
   box-shadow: 0px 15px 39px 0px rgba(0, 0, 0, 0.25);
@@ -19,10 +18,125 @@ export const ContainerCard = styled.div`
     flex-direction: column;
     align-items: center;
   }
+
   &:hover {
     box-shadow: 0px 15px 39px 0px rgba(0, 0, 0, 0.5);
   }
 `;
+export const OpacityOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  background: linear-gradient(
+    0deg,
+    rgba(23, 23, 23, 0.91) 0%,
+    #54993a 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 1s linear;
+
+  .titletwo {
+    @media (max-width: 900px) {
+      font-size: 0.7rem!important;
+    }
+  }
+
+  .tiitlecard {
+    font-size: 1.2rem;
+    font-weight: 400;
+    @media (max-width: 900px) {
+      font-size: 0.7rem;
+    }
+  }
+
+  .Card {
+    padding: 2rem;
+    display: flex;
+    gap: 1rem;
+    color: #1b512d;
+    line-height: 22px;
+    flex-direction: column;
+    max-height: 80%; /* Define um limite para o conteúdo */
+    overflow-y: auto; /* Permite rolagem quando necessário */
+    pointer-events: auto; /* Permite interação */
+
+    @media (max-width: 900px) {
+      font-size: 0.7rem;
+      line-height: 12px;
+    }
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(27, 81, 45, 0.5);
+      border-radius: 10px;
+    }
+  }
+
+  .mtop {
+    margin-top: 22%;
+    @media (max-width: 900px) {
+      margin-top: 0%;
+    }
+  }
+
+  .mtoptwo {
+    margin-top: 5%;
+    @media (max-width: 900px) {
+      margin-top: 0%;
+    }
+  }
+
+  .titleCard {
+    font-size: 1.5rem;
+    @media (max-width: 900px) {
+      font-size: .8rem!important;
+    }
+  }
+
+  .desc {
+    margin-top: -5px !important;
+  }
+
+  .titleOpacity {
+    position: absolute;
+    top: 80%;
+    left: 5%;
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 800;
+    color: white;
+    transition: 1s linear;
+
+    @media (max-width: 900px) {
+      top:76%;
+      left: 5%;
+      font-size: 24px;
+    }
+  }
+
+  p {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: #1b512d;
+    margin-top: 40%;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+`;
+
+
 
 export const StepsContainer = styled.div`
   margin-top: 9rem;
@@ -122,95 +236,4 @@ export const ImageWrapper = styled.div`
   }
 `;
 
-export const OpacityOverlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    0deg,
-    rgba(23, 23, 23, 0.91) 0%,
-    #54993a 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  .titletwo {
-    @media (max-width: 900px) {
 
-      font-size: 0.7rem!important;
-    }
-  }
-  pointer-events: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: 1s linear;
-  .tiitlecard {
-    font-size: 1.2rem;
-    font-weight: 400;
-    @media (max-width: 900px) {
-      font-size: 0.7rem;
-    }
-  }
-  .Card {
-    padding: 2rem;
-    display: flex;
-    gap: 1rem;
-    color: #1b512d;
-    line-height: 22px;
-    flex-direction: column;
-    @media (max-width: 900px) {
-      font-size: 0.7rem;
-      line-height: 12px;
-    }
-  }
-  .mtop {
-    margin-top: 22%;
-    @media (max-width: 900px) {
-      margin-top: 0%;
-    }
-  }
-  .mtoptwo {
-    margin-top: 5%;
-    @media (max-width: 900px) {
-      margin-top: 0%;
-    }
-  }
-  .titleCard {
-    font-size: 1.5rem;
-    @media (max-width: 900px) {
-      font-size: .8rem!important;
-    }
-
-  }
-  .desc {
-    margin-top: -5px !important;
-  }
-  .titleOpacity {
-    position: absolute;
-    top: 80%;
-    left: 5%;
-    font-size: 34px;
-    font-style: normal;
-    font-weight: 800;
-    color: white;
-    transition: 1s linear;
-
-
-    @media (max-width: 900px) {
-      top:76%;
-      left: 5%;
-      font-size: 24px;
-    }
-  }
-  p {
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    color: #1b512d;
-    margin-top: 40%;
-    font-weight: 600;
-    padding: 1rem 2rem;
-    font-size: 1rem;
-  }
-`;
