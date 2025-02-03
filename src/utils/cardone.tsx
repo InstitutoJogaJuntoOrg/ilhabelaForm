@@ -9,8 +9,7 @@ export const cardTree = [
 export const cardOne = [
   {
     title: "Ilhabela Tech",
-    description:
-      "",
+    description: "",
     startDate: "10/03",
     modalidade: "Presencial",
     periods: ["Turmas noturnas das 19:00 às 21:30"],
