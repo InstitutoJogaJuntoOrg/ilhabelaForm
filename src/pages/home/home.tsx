@@ -154,8 +154,8 @@ export const HomePage = () => {
 
             <a
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
-              target="_blank"
-              href="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/Classifica%C3%A7%C3%A3o+Geral+Ilhabela+Tech.pdf"
+
+              href="/inscricao"
             >
               <button>Insrever-se</button>
             </a>
