@@ -1,5 +1,3 @@
-//form/componentes/socioeconômico
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { Dropdown } from "primereact/dropdown";
@@ -34,23 +32,23 @@ export const SocioEconomico = ({
     name: string;
     code: string;
   }
-  const [selectedcollor, setSelectedcollor] = useState<City | null>(null);
-  const [selectedchildrens, setSelectedchildrens] = useState<City | null>(null);
-  const [selectedemprego, setSelectedEmprego] = useState<any>('');
+  const [selectedcollor, setSelectedcollor] = useState<City | null>(null);;
+  const [selectedemprego, setSelectedEmprego] = useState<any>(null);
   const [selectedguildance, setSelectedguildance] = useState<City | null>(null);
   const [selectedfamily, setSelectedfamily] = useState<City | null>(null);
-  const [selectedscholl, setSelectedscholl] = useState<City | any>(null);
+  const [selectedscholl, setSelectedscholl] = useState<any | null>(null);
   const [selectedgender, setSelectedgender] = useState<City | null>(null);
-  const [selectedBenefits, setSelectedBenefits] = useState<City | any>(null);
-  const [selectedSchollPublic, setselectedSchollPublic] = useState<City | null>(
-    null
-  );
+  const [selectedBenefits, setSelectedBenefits] = useState<any>(null);
   const [selectedStuding, setSelectedStuding] = useState<any>(null);
-  const [selectedDeficiency, SetSelectedDeficiency] = useState<City | null>(
+  const [selectedSchollPublic, setselectedSchollPublic] = useState<City | null>(
     null
   );
   const [selectedInstitutoOptions, setSelectedInstitutoOptions] =
     useState(null);
+  const [selectedDeficiency, SetSelectedDeficiency] = useState<City | null>(
+    null
+  );
+
   const [hasFormBeenSubmitted, setHasFormBeenSubmitted] = useState(false);
 
   const {
@@ -65,70 +63,79 @@ export const SocioEconomico = ({
   console.log(hasFormBeenSubmitted);
 
   const apiUrl =
-  "https://api.jogajuntoinstituto.org/hotsite/students/socioeconomics/";
-  async function sendSocioEconomicInfo(data: SocioeconomicoSchemaType) {
-    localStorage.setItem("socioeconomicForm", "true");
-    try {
-      const salario = Number(data.income);
-      if (Number.isNaN(salario)) {
-        toast.error("Salario com valor incorreto.");
-        return;
+    "https://devapi.jogajuntoinstituto.org/hotsite/students/socioeconomics/";
+    async function sendSocioEconomicInfo(data: SocioeconomicoSchemaType) {
+      localStorage.setItem("socioeconomicForm", "true");
+      try {
+        const salario = Number(data.income);
+        if (Number.isNaN(salario)) {
+          toast.error("Salario com valor incorreto.");
+          return;
+        }
+
+        const salariopessoal = Number(data.pessoal_income);
+        if (Number.isNaN(salariopessoal)) {
+          toast.error("Salario pessoal com valor incorreto.");
+          return;
+        }
+    
+        const socioeconomicData: any = {
+          sociadata_physical_disability: data.deficiency,
+          average_monthly_income: salario,
+          socioeconomic_personal_income: salariopessoal,
+          linkedin_profile: data.linkedin,
+          sociodata_race: data.color,
+          sociodata_gender: data.gender,
+          sociodata_sexual_orientation: data.guidance,
+          socioeconomic_has_children: Number(data.children),
+          education_level: data.schooling,
+          socioeconomic_receives_benefit: data.benefit,
+          public_school: data.schollPublic,
+          is_studying: data.isStuding,
+          socioeconomic_average_family_income: salario,
+          socioeconomic_people_at_home: data.family.name,
+          employment_status: data.employment_status,
+          where_found_us: data.howDidYouHearAboutInstitute ?? ""
+        };
+    
+        if (data.schooling === "ensino_medio_incompleto") {
+          socioeconomicData.schoolName = data.schollName;
+        }
+    
+        if (data.isStuding === true) {
+          socioeconomicData.current_course = data.current_course;
+        }
+    
+        if (data.benefit === true) {
+          socioeconomicData.socioeconomic_benefit_name = data.benefitsName;
+        }
+    
+        const token = localStorage.getItem("token");
+    
+        const response = await axios.post(apiUrl, socioeconomicData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+    
+        if (response.status == 200 || response.status == 201) {
+          toast.success("Formulário enviado com sucesso!");
+          localStorage.setItem("subscription_code", response.data.subscription_code);
+          setTabEnabled(false);
+          setActiveTab(2);
+           setVisible(true);
+          return;
+        }
+    
+        toast.error("Erro ao enviar o formulario, tente novamente mais tarde!");
+      } catch (error) {
+        toast.error("Erro ao enviar o formulario, tente novamente mais tarde!");
+        console.log("error: ", error);
       }
-  
-      const socioeconomicData: any = {
-        sociadata_physical_disability: data.deficiency,
-        average_monthly_income: salario,
-        sociadata_race: data.color,
-        sociadata_gender: data.gender,
-        sociodata_sexual_orientation: data.guidance,
-        socioeconomic_has_children: Number(data.children),
-        education_level: data.schooling,
-        socioeconomic_receives_benefit: data.benefit,
-        public_school: data.schollPublic,
-        is_studying: data.isStuding,
-        socioeconomic_average_family_income: salario,
-        socioeconomic_people_at_home: data.family.name,
-        employment_status: data.employment_status,
-        where_found_us: data.howDidYouHearAboutInstitute ?? ""
-      };
-  
-      if (data.schooling === "ensino_medio_incompleto") {
-        socioeconomicData.schoolName = data.schollName;
-      }
-  
-      if (data.isStuding === true) {
-        socioeconomicData.current_course = data.current_course;
-      }
-  
-      if (data.benefit === true) {
-        socioeconomicData.socioeconomic_benefit_name = data.benefitsName;
-      }
-  
-      const token = localStorage.getItem("token");
-  
-      const response = await axios.post(apiUrl, socioeconomicData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      });
-  
-      if (response.status == 200 || response.status == 201) {
-        toast.success("Formulário enviado com sucesso!");
-        localStorage.setItem("subscription_code", response.data.subscription_code);
-        setTabEnabled(false);
-        setActiveTab(2);
-         setVisible(true);
-        return;
-      }
-  
-      toast.error("Erro ao enviar o formulario, tente novamente mais tarde!");
-    } catch (error) {
-      toast.error("Erro ao enviar o formulario, tente novamente mais tarde!");
-      console.log("error: ", error);
     }
-  }
-  
+    
+
   console.log(errors);
   const token = localStorage.getItem("token");
   console.log(token);
@@ -137,9 +144,8 @@ export const SocioEconomico = ({
     const checkFormSubmission = async () => {
       try {
         const response = await axios.get(
-          "https://api.jogajuntoinstituto.org/hotsite/students/personalinfo/"
+          "https://api.jogajuntoinstituto.org/socioeconomics/"
         );
-
         localStorage.setItem("token", response.data.access);
         if (response.status === 200 || response.status === 201) {
           toast.success("Formulário enviado com sucesso!");
@@ -184,7 +190,7 @@ export const SocioEconomico = ({
               flexDirection: "column",
               gap: ".0rem",
             }}
-            className="inputForm"
+            className="card flex justify-content-center"
           >
             <label>Possui algum tipo de deficiência física? *</label>
 
@@ -204,14 +210,14 @@ export const SocioEconomico = ({
               }
             />
           </div>
-          <br />
+
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               gap: ".0rem",
             }}
-            className="inputForm"
+            className="card flex justify-content-center"
           >
             <label>Qual gênero você se identifica? *</label>
             <Dropdown
@@ -231,14 +237,14 @@ export const SocioEconomico = ({
               showClear
             />
           </div>
-          <br />
+
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               gap: ".0rem",
             }}
-            className="card flex justify-content-center inputForm"
+            className="card flex justify-content-center"
           >
             <label>Qual sua situação de emprego? *</label>
             <Dropdown
@@ -263,6 +269,9 @@ export const SocioEconomico = ({
                 <InputText
                   {...register("company_name")}
                   id="company_name"
+                  style={{
+                    background: 'transparent'
+                  }}
                   aria-describedby="username-help"
                   className={
                     errors.company_name
@@ -274,20 +283,23 @@ export const SocioEconomico = ({
               </>
             )}
           </div>
-          <br />
+
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               gap: ".0rem",
             }}
-            className="card flex justify-content-center inputForm"
+            className="card flex justify-content-center"
           >
             <label>Tem filhos? *</label>
             <InputText
               {...register("children")}
               id="renda"
               type="number"
+              style={{
+                background: 'transparent'
+              }}
               aria-describedby="username-help"
               className={
                 errors.children
@@ -298,18 +310,20 @@ export const SocioEconomico = ({
             />
 
           </div>
-          <br />
+
           <div
             style={{
               display: "flex",
               flexDirection: "column",
             }}
-            className="inputForm"
           >
             <label>Qual a renda média mensal da sua família? *</label>
             <InputText
               {...register("income")}
               id="renda"
+              style={{
+                background: 'transparent'
+              }}
               aria-describedby="username-help"
               className={
                 errors.income
@@ -319,8 +333,30 @@ export const SocioEconomico = ({
               placeholder="R$"
             />
           </div>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <label>Qual a sua renda média mensal? *</label>
+            <InputText
+              {...register("pessoal_income")}
+              id="rendapessoal"
+              style={{
+                background: 'transparent'
+              }}
+              aria-describedby="username-help"
+              className={
+                errors.pessoal_income
+                  ? "p-invalid w-full md:w-14rem"
+                  : "w-full md:w-14rem"
+              }
+              placeholder="R$"
+            />
+          </div>
         </div>
-        <br />
         <div>
           <div
             style={{
@@ -328,7 +364,7 @@ export const SocioEconomico = ({
               flexDirection: "column",
               gap: ".0rem",
             }}
-            className="inputForm"
+            className="card flex justify-content-center"
           >
             <label>Cor/raça *</label>
             <Dropdown
@@ -347,14 +383,14 @@ export const SocioEconomico = ({
               }
             />
           </div>
-          <br />
+
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               gap: ".0rem",
             }}
-            className="inputForm"
+            className="card flex justify-content-center"
           >
             <label>Qual sua orientação sexual? *</label>
             <Dropdown
@@ -374,14 +410,14 @@ export const SocioEconomico = ({
               showClear
             />
           </div>
-          <br />
+
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               gap: ".0rem",
             }}
-            className="inputForm"
+            className="card flex justify-content-center"
           >
             <label>Números de membros da família? *</label>
             <Dropdown
@@ -401,14 +437,14 @@ export const SocioEconomico = ({
               showClear
             />
           </div>
-          <br />
+
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               gap: ".0rem",
             }}
-            className="card flex justify-content-center inputForm"
+            className="card flex justify-content-center"
           >
             <label>Qual sua escolaridade: *</label>
             <Dropdown
@@ -429,7 +465,6 @@ export const SocioEconomico = ({
             />
             {selectedscholl === "ensino_medio_incompleto" && (
               <>
-              <br />
                 <label>Qual nome da escola: *</label>
                 <InputText
                   {...register("schollName")}
@@ -445,14 +480,14 @@ export const SocioEconomico = ({
               </>
             )}
           </div>
-          <br />
+
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               gap: ".0rem",
             }}
-            className="card flex justify-content-center inputForm"
+            className="card flex justify-content-center"
           >
             <label>
               Você ou alguém da sua família recebe algum benefício social? *
@@ -491,14 +526,14 @@ export const SocioEconomico = ({
               </>
             )}
           </div>
-          <br />
+
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               gap: ".0rem",
             }}
-            className="card flex justify-content-center inputForm"
+            className="card flex justify-content-center"
           >
             <label>Você esta estudando ? *</label>
 
@@ -518,9 +553,8 @@ export const SocioEconomico = ({
               }
               showClear
             />
-            <br />
             {selectedStuding === true && (
-              <div   className="inputForm">
+              <>
                 <label>Qual o nome do curso: *</label>
                 <InputText
                   {...register("current_course")}
@@ -533,17 +567,17 @@ export const SocioEconomico = ({
                   }
                   placeholder="Nome do curso"
                 />
-              </div>
+              </>
             )}
           </div>
-          <br />
+
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               gap: ".0rem",
             }}
-            className="inputForm"
+            className="card flex justify-content-center"
           >
             <label>É aluno de escola pública? *</label>
 
@@ -564,9 +598,7 @@ export const SocioEconomico = ({
               showClear
             />
           </div>
-          <br />
           <div
-            className="inputForm"
             style={{
               display: "flex",
               flexDirection: "column",
@@ -591,6 +623,28 @@ export const SocioEconomico = ({
               showClear
             />
           </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+                <label>Qual seu linkedin: </label>
+                <InputText
+                  {...register("linkedin")}
+                  id="linkedin"
+                  aria-describedby="username-help"
+                  style={{
+                    background: 'transparent'
+                  }}
+                  className={
+                    errors.linkedin
+                      ? "p-invalid w-full md:w-14rem"
+                      : "w-full md:w-14rem"
+                  }
+                  placeholder="link do seu perfil"
+                />
+              </div>
         </div>
         <ContainerButtons>
           <button type="submit" onClick={handleSubmit(sendSocioEconomicInfo)}>

@@ -41,7 +41,7 @@ export const RegisterPage = () => {
     };
 
     axios
-      .post(`https://api.jogajuntoinstituto.org/hotsite/students/`, requestData)
+      .post(`https://devapi.jogajuntoinstituto.org/hotsite/students/`, requestData)
       .then((response) => {
         notifySuccess();
         setTimeout(() => {
