@@ -236,7 +236,7 @@ export const FormPage = () => {
   };
 
   const apiUrl =
-    "https://api.jogajuntoinstituto.org/hotsite/students/personalinfo/";
+    "https://devapi.jogajuntoinstituto.org/hotsite/students/personalinfo/";
   async function sendPersonalInfo(data: FormSchemaType) {
     // console.log("Enviando dados:", data);
     // console.log('errors', errors)
@@ -257,7 +257,7 @@ export const FormPage = () => {
     formData.append("living_uf", data.state.name);
     formData.append("country", data.country);
     formData.append("civil_state", data.civil_state);
-    formData.append("selective_process_id", "1");
+    formData.append("selective_process_id", "3");
     formData.append("zip_code", data.cep);
 
     if (isUnderage) {

@@ -32,8 +32,7 @@ export const SocioEconomico = ({
     name: string;
     code: string;
   }
-  const [selectedcollor, setSelectedcollor] = useState<City | null>(null);
-  const [selectedchildrens, setSelectedchildrens] = useState<any>(null);
+  const [selectedcollor, setSelectedcollor] = useState<City | null>(null);;
   const [selectedemprego, setSelectedEmprego] = useState<any>(null);
   const [selectedguildance, setSelectedguildance] = useState<City | null>(null);
   const [selectedfamily, setSelectedfamily] = useState<City | null>(null);
@@ -64,7 +63,7 @@ export const SocioEconomico = ({
   console.log(hasFormBeenSubmitted);
 
   const apiUrl =
-    "https://api.jogajuntoinstituto.org/hotsite/students/socioeconomics/";
+    "https://devapi.jogajuntoinstituto.org/hotsite/students/socioeconomics/";
     async function sendSocioEconomicInfo(data: SocioeconomicoSchemaType) {
       localStorage.setItem("socioeconomicForm", "true");
       try {
@@ -73,10 +72,18 @@ export const SocioEconomico = ({
           toast.error("Salario com valor incorreto.");
           return;
         }
+
+        const salariopessoal = Number(data.pessoal_income);
+        if (Number.isNaN(salariopessoal)) {
+          toast.error("Salario pessoal com valor incorreto.");
+          return;
+        }
     
         const socioeconomicData: any = {
           sociadata_physical_disability: data.deficiency,
           average_monthly_income: salario,
+          socioeconomic_personal_income: salariopessoal,
+          linkedin_profile: data.linkedin,
           sociodata_race: data.color,
           sociodata_gender: data.gender,
           sociodata_sexual_orientation: data.guidance,
@@ -311,6 +318,26 @@ export const SocioEconomico = ({
               aria-describedby="username-help"
               className={
                 errors.income
+                  ? "p-invalid w-full md:w-14rem"
+                  : "w-full md:w-14rem"
+              }
+              placeholder="R$"
+            />
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <label>Qual a sua renda média mensal? *</label>
+            <InputText
+              {...register("pessoal_income")}
+              id="rendapessoal"
+              aria-describedby="username-help"
+              className={
+                errors.pessoal_income
                   ? "p-invalid w-full md:w-14rem"
                   : "w-full md:w-14rem"
               }
@@ -584,6 +611,25 @@ export const SocioEconomico = ({
               showClear
             />
           </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+                <label>Qual seu linkedin: </label>
+                <InputText
+                  {...register("linkedin")}
+                  id="linkedin"
+                  aria-describedby="username-help"
+                  className={
+                    errors.linkedin
+                      ? "p-invalid w-full md:w-14rem"
+                      : "w-full md:w-14rem"
+                  }
+                  placeholder="link do seu perfil"
+                />
+              </div>
         </div>
         <ContainerButtons>
           <button type="submit" onClick={handleSubmit(sendSocioEconomicInfo)}>

@@ -20,7 +20,7 @@ export const LoginPage = () => {
   const handleSubmitLogin = handleSubmit(async (data) => {
     try {
       const response = await axios.post(
-        "https://api.jogajuntoinstituto.org/hotsite/students/login/",
+        "https://devapi.jogajuntoinstituto.org/hotsite/students/login/",
         { email: data.email, password: data.password }
       );
   
@@ -109,7 +109,7 @@ export const LoginPage = () => {
                 alignItems: "flex-end",
               }}
             >
-              {/* <Register>
+              <Register>
                 <span className="">
                   <span>
                     <Link
@@ -120,10 +120,10 @@ export const LoginPage = () => {
                     </Link>
                   </span>
                 </span>
-              </Register> */}
+              </Register>
             </div>
 
-            {/* <button
+            <button
               style={{
                 fontSize: "16px",
                 borderRadius: "26px",
@@ -131,7 +131,7 @@ export const LoginPage = () => {
               type="submit"
             >
               Fazer login
-            </button> */}
+            </button>
             <br />
             <br />
           </form>

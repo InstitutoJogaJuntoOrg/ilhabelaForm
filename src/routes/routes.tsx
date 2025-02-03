@@ -6,15 +6,16 @@ import { LoginPage } from "../pages/auth/login";
 import { NewPassword } from "../pages/auth/password/confirm";
 import { PasswordReset } from "../pages/auth/password";
 import { RegisterPage } from "../pages/auth/register";
+import { FormPage } from "../pages/form/form";
 
 export function Router() {
   return (
     <Routes>
       <Route path="/" element={<DefaultLayout />}>
-        <Route path="/inscricao" element={<PrivateRoute> <HomePage /> </PrivateRoute>} />
+        <Route path="/inscricao" element={<PrivateRoute> <FormPage/> </PrivateRoute>} />
         <Route path="/" element={<HomePage />} />
-        <Route path="/register" element={<HomePage />} />
-        <Route path="/login" element={<HomePage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/auth" element={<HomePage  />} />
         <Route path="/reset" element={<PasswordReset  />} />
         <Route path="/newpassword" element={<NewPassword  />} />

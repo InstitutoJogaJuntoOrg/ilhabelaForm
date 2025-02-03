@@ -33,7 +33,7 @@ export const Prova = () => {
     };
     const token = localStorage.getItem("token");
     const response = await fetch(
-      "https://api.jogajuntoinstituto.org/hotsite/students/exam/",
+      "https://devapi.jogajuntoinstituto.org/hotsite/students/exam/",
       {
         method: "POST",
         headers: {
@@ -285,16 +285,7 @@ export const Prova = () => {
             Não há vendas registradas
           </label>
 
-          <label className="hLabel" htmlFor="q4-option5">
-            <input
-              className="inputWidth"
-              type="radio"
-              {...register("questionFour")}
-              id="q4-option5"
-              value={3}
-            />
-            Se Elvis foi aprovado no concurso, então ele é aluno de Fulano.
-          </label>
+      
         </div>
 
         <div className="options">

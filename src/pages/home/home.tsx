@@ -161,15 +161,15 @@ export const HomePage = () => {
               target="_blank"
               href="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/Classifica%C3%A7%C3%A3o+Geral+Ilhabela+Tech.pdf"
             >
-              <button>Confira os resultados</button>
+              <button>Insrever-se</button>
             </a> 
 
-            {/* <span
+            <span
               className="subDescp"
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)", background: "", padding: '2rem', borderRadius: '16px'}}
             >
               Inscrições encerradas, fique de olho no nosso Instagram <a href="https://www.instagram.com/ilhabela.tech/" target={"_blank"}>ilhabela.tech</a> para saber quando abrirem novas vagas!
-            </span> */}
+            </span>
           </ContainerTitle>
         </section>
         <ContainerCardLayout>

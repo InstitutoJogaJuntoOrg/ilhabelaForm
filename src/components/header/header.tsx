@@ -52,9 +52,9 @@ export const Header = () => {
         </Link>
         <ul className={windowWidth <= 1000 && showLinks ? "hidden" : ""}>
           <StyledNavLink to={"/"}>Home</StyledNavLink>
-         {/* {!emailFromLocalStorage && (
+         {!emailFromLocalStorage && (
             <StyledNavLink to="/login">Fazer login</StyledNavLink>
-          )} */}
+          )}
 
           {emailFromLocalStorage && <MyDropdown />}
 
