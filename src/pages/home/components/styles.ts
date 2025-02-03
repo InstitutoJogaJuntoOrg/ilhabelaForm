@@ -49,7 +49,7 @@ export const OpacityOverlay = styled.div`
   }
 
   .tiitlecard {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 400;
     @media (max-width: 900px) {
       font-size: 0.7rem;
