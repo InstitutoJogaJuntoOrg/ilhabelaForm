@@ -64,13 +64,13 @@ export const RegisterPage = () => {
       .then((response) => {
         notifySuccess();
         setTimeout(() => {
-          navigate("/auth");
+          navigate("/login");
         }, 2000);
         if (response.status === 201) {
           localStorage.setItem("email", email);
           localStorage.setItem("username", data.name);
           setTimeout(() => {
-            navigate("/auth");
+            navigate("/login");
           }, 2000);
         }
       })
