@@ -18,6 +18,7 @@ export function Router() {
         <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/auth" element={<LoginPage  />} />
+        <Route path="/login" element={<LoginPage  />} />
         <Route path="/reset" element={<PasswordReset  />} />
         <Route path="/newpassword" element={<NewPassword  />} />
         <Route path="/portal-do-titular" element={<HomePage />} />
