@@ -157,7 +157,7 @@ export const HomePage = () => {
 
               href="/inscricao"
             >
-              <button>inscrever-se</button>
+              <button>Inscreva-se</button>
             </a>
 
              {/* <span
