@@ -222,12 +222,14 @@ margin-top: 30px;
 margin-bottom: 40px;
 width: 100%;
 
-
   img {
     max-width: 100%;
-    height: fit-content;
- 
+    height: auto; 
+    object-fit: contain; 
+    display: block;
   }
+  img {
+
 `;
 export const About = styled.div`
   margin-top: 10rem;
