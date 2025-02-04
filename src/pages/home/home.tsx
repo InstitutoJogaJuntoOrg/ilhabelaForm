@@ -102,7 +102,7 @@ export const HomePage = () => {
         width: "100%",
       }}
     >
-      {/* <div
+       <div
         style={{
           display: "flex",
           flexDirection: "column",
@@ -125,7 +125,7 @@ export const HomePage = () => {
             }
           ></Dialog>
         )}
-      </div> */}
+      </div> 
       <ContainerHome>
         <ImageContainer>
           <VideoBackground>
@@ -160,7 +160,7 @@ export const HomePage = () => {
               <button>inscrever-se</button>
             </a>
 
-            {/* <span
+             {/* <span
               className="subDescp"
               style={{
                 textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)",
@@ -218,7 +218,7 @@ export const HomePage = () => {
 
         <BannerContainer>
           <img
-            src="/close2.jpg"
+            src="/banner34.png"
             style={{
               display: "block",
             }}

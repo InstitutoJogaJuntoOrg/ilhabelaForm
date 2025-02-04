@@ -244,7 +244,7 @@ export const FormPage = () => {
   };
 
   const apiUrl =
-    "https://devapi.jogajuntoinstituto.org/hotsite/students/personalinfo/";
+    "https://api.jogajuntoinstituto.org/hotsite/students/personalinfo/";
   async function sendPersonalInfo(data: FormSchemaType) {
     // console.log("Enviando dados:", data);
     // console.log('errors', errors)

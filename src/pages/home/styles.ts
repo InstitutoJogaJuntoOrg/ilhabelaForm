@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const ModalHome = styled.div`
 
-background-image: url('/close.jpg');
+background-image: url('/aviso3.png');
   background-size: cover;
   background-repeat: no-repeat;
-width: 470px;
+width: 870px;
 height: 470px;
 margin-top: -2.5rem;
 
@@ -218,13 +218,14 @@ export const ContainerTitle = styled.div`
   }
 `;
 export const BannerContainer = styled.div`
-margin-top: 40px;
+margin-top: 30px;
+margin-bottom: 40px;
 width: 100%;
 
 
   img {
     max-width: 100%;
-    height: auto;
+    height: fit-content;
  
   }
 `;
