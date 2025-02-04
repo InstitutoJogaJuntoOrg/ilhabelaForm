@@ -75,7 +75,7 @@ export const Prova = () => {
     <Container>
       <form
         onSubmit={handleSubmit(handleForm)}
-        className="boxSh responsiveProva"
+        className=" responsiveProva"
       >
         <div className="options">
           <h1 style={{ fontSize: "1rem" }}>
