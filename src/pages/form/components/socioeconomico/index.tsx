@@ -32,7 +32,7 @@ export const SocioEconomico = ({
     name: string;
     code: string;
   }
-  const [selectedcollor, setSelectedcollor] = useState<City | null>(null);;
+  const [selectedcollor, setSelectedcollor] = useState<City | null>(null);
   const [selectedemprego, setSelectedEmprego] = useState<any>(null);
   const [selectedguildance, setSelectedguildance] = useState<City | null>(null);
   const [selectedfamily, setSelectedfamily] = useState<City | null>(null);
@@ -64,77 +64,79 @@ export const SocioEconomico = ({
 
   const apiUrl =
     "https://devapi.jogajuntoinstituto.org/hotsite/students/socioeconomics/";
-    async function sendSocioEconomicInfo(data: SocioeconomicoSchemaType) {
-      localStorage.setItem("socioeconomicForm", "true");
-      try {
-        const salario = Number(data.income);
-        if (Number.isNaN(salario)) {
-          toast.error("Salario com valor incorreto.");
-          return;
-        }
-
-        const salariopessoal = Number(data.pessoal_income);
-        if (Number.isNaN(salariopessoal)) {
-          toast.error("Salario pessoal com valor incorreto.");
-          return;
-        }
-    
-        const socioeconomicData: any = {
-          sociadata_physical_disability: data.deficiency,
-          average_monthly_income: salario,
-          socioeconomic_personal_income: salariopessoal,
-          linkedin_profile: data.linkedin,
-          sociodata_race: data.color,
-          sociodata_gender: data.gender,
-          sociodata_sexual_orientation: data.guidance,
-          socioeconomic_has_children: Number(data.children),
-          education_level: data.schooling,
-          socioeconomic_receives_benefit: data.benefit,
-          public_school: data.schollPublic,
-          is_studying: data.isStuding,
-          socioeconomic_average_family_income: salario,
-          socioeconomic_people_at_home: data.family.name,
-          employment_status: data.employment_status,
-          where_found_us: data.howDidYouHearAboutInstitute ?? ""
-        };
-    
-        if (data.schooling === "ensino_medio_incompleto") {
-          socioeconomicData.schoolName = data.schollName;
-        }
-    
-        if (data.isStuding === true) {
-          socioeconomicData.current_course = data.current_course;
-        }
-    
-        if (data.benefit === true) {
-          socioeconomicData.socioeconomic_benefit_name = data.benefitsName;
-        }
-    
-        const token = localStorage.getItem("token");
-    
-        const response = await axios.post(apiUrl, socioeconomicData, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        });
-    
-        if (response.status == 200 || response.status == 201) {
-          toast.success("Formulário enviado com sucesso!");
-          localStorage.setItem("subscription_code", response.data.subscription_code);
-          setTabEnabled(false);
-          setActiveTab(2);
-           setVisible(true);
-          return;
-        }
-    
-        toast.error("Erro ao enviar o formulario, tente novamente mais tarde!");
-      } catch (error) {
-        toast.error("Erro ao enviar o formulario, tente novamente mais tarde!");
-        console.log("error: ", error);
+  async function sendSocioEconomicInfo(data: SocioeconomicoSchemaType) {
+    localStorage.setItem("socioeconomicForm", "true");
+    try {
+      const salario = Number(data.income);
+      if (Number.isNaN(salario)) {
+        toast.error("Salario com valor incorreto.");
+        return;
       }
+
+      const salariopessoal = Number(data.pessoal_income);
+      if (Number.isNaN(salariopessoal)) {
+        toast.error("Salario pessoal com valor incorreto.");
+        return;
+      }
+
+      const socioeconomicData: any = {
+        sociadata_physical_disability: data.deficiency,
+        average_monthly_income: salario,
+        socioeconomic_personal_income: salariopessoal,
+      
+        sociodata_race: data.color,
+        sociodata_gender: data.gender,
+        sociodata_sexual_orientation: data.guidance,
+        socioeconomic_has_children: Number(data.children),
+        education_level: data.schooling,
+        socioeconomic_receives_benefit: data.benefit,
+        public_school: data.schollPublic,
+        is_studying: data.isStuding,
+        socioeconomic_average_family_income: salario,
+        socioeconomic_people_at_home: data.family.name,
+        employment_status: data.employment_status,
+        where_found_us: data.howDidYouHearAboutInstitute ?? "",
+      };
+
+      if (data.schooling === "ensino_medio_incompleto") {
+        socioeconomicData.schoolName = data.schollName;
+      }
+
+      if (data.isStuding === true) {
+        socioeconomicData.current_course = data.current_course;
+      }
+
+      if (data.benefit === true) {
+        socioeconomicData.socioeconomic_benefit_name = data.benefitsName;
+      }
+
+      const token = localStorage.getItem("token");
+
+      const response = await axios.post(apiUrl, socioeconomicData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.status == 200 || response.status == 201) {
+        toast.success("Formulário enviado com sucesso!");
+        localStorage.setItem(
+          "subscription_code",
+          response.data.subscription_code
+        );
+        setTabEnabled(false);
+        setActiveTab(2);
+        setVisible(true);
+        return;
+      }
+
+      toast.error("Erro ao enviar o formulario, tente novamente mais tarde!");
+    } catch (error) {
+      toast.error("Erro ao enviar o formulario, tente novamente mais tarde!");
+      console.log("error: ", error);
     }
-    
+  }
 
   console.log(errors);
   const token = localStorage.getItem("token");
@@ -270,7 +272,7 @@ export const SocioEconomico = ({
                   {...register("company_name")}
                   id="company_name"
                   style={{
-                    background: 'transparent'
+                    background: "transparent",
                   }}
                   aria-describedby="username-help"
                   className={
@@ -298,7 +300,7 @@ export const SocioEconomico = ({
               id="renda"
               type="number"
               style={{
-                background: 'transparent'
+                background: "transparent",
               }}
               aria-describedby="username-help"
               className={
@@ -308,7 +310,6 @@ export const SocioEconomico = ({
               }
               placeholder="0"
             />
-
           </div>
 
           <div
@@ -322,7 +323,7 @@ export const SocioEconomico = ({
               {...register("income")}
               id="renda"
               style={{
-                background: 'transparent'
+                background: "transparent",
               }}
               aria-describedby="username-help"
               className={
@@ -345,7 +346,7 @@ export const SocioEconomico = ({
               {...register("pessoal_income")}
               id="rendapessoal"
               style={{
-                background: 'transparent'
+                background: "transparent",
               }}
               aria-describedby="username-help"
               className={
@@ -623,28 +624,8 @@ export const SocioEconomico = ({
               showClear
             />
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-                <label>Qual seu linkedin: </label>
-                <InputText
-                  {...register("linkedin")}
-                  id="linkedin"
-                  aria-describedby="username-help"
-                  style={{
-                    background: 'transparent'
-                  }}
-                  className={
-                    errors.linkedin
-                      ? "p-invalid w-full md:w-14rem"
-                      : "w-full md:w-14rem"
-                  }
-                  placeholder="link do seu perfil"
-                />
-              </div>
+        
+        
         </div>
         <ContainerButtons>
           <button type="submit" onClick={handleSubmit(sendSocioEconomicInfo)}>
