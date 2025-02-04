@@ -33,7 +33,7 @@ export const Prova = () => {
     };
     const token = localStorage.getItem("token");
     const response = await fetch(
-      "https://devapi.jogajuntoinstituto.org/hotsite/students/exam/",
+      "https://api.jogajuntoinstituto.org/hotsite/students/exam/",
       {
         method: "POST",
         headers: {
