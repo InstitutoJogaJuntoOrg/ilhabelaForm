@@ -175,20 +175,28 @@ export const FormPage = () => {
   const [isUnderage, setIsUnderage] = useState(false);
   const [cep, setCep] = useState<any>("");
   const [cepData, setCepData] = useState<CepResponse | any>(null);
-  console.log("cepData", cepData);
-  async function buscaCEP(cep: any) {
+
+  async function buscaCEP(cep: string) {
     try {
       const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
       const cepData = response.data;
       setCepData(cepData);
-      setValue("state", cepData.uf);
+  
+      // Procura no array "states" o objeto que tenha o name igual ao uf retornado
+      const stateObj = states.find((state) => state.name === cepData.uf);
+  
+      // Atualiza os valores do formulário e o estado do dropdown
+      setValue("state", stateObj); // Aqui você atribui o objeto
       setValue("adress", cepData.logradouro);
       setValue("city", cepData.localidade);
+      if (stateObj) {
+        setValue("state", stateObj);
+        setSelectedCity(stateObj);
+      }// Atualiza o estado do dropdown se necessário
     } catch (error) {
       console.log("CEP não encontrado");
     }
   }
-
   const isValidDate = (dateString: string) => {
     const [day, month, year] = dateString.split("/").map(Number);
     if (
@@ -258,7 +266,7 @@ export const FormPage = () => {
     formData.append("country", data.country);
     formData.append("civil_state", data.civil_state);
     formData.append("selective_process_id", "3");
-    formData.append("zip_code", data.cep);
+    formData.append("zip_code", cep);
 
     if (isUnderage) {
       formData.append("resp_name", data.guardian?.name ?? "");
