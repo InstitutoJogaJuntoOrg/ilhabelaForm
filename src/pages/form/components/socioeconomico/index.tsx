@@ -291,7 +291,13 @@ export const SocioEconomico = ({
           >
             <label>Tem filhos? *</label>
             <InputText
-              {...register("children")}
+              {...register("children", {
+                valueAsNumber: true, 
+                min: {
+                  value: 0,
+                  message: "O número de filhos não pode ser negativo",
+                },
+              })}
               id="renda"
               type="number"
               aria-describedby="username-help"
