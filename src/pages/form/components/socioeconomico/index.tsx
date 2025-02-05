@@ -300,6 +300,11 @@ export const SocioEconomico = ({
               })}
               id="renda"
               type="number"
+              min={0}
+              onKeyDown={(e) => {
+                if (e.key === "-" || e.key === "e") {
+                  e.preventDefault();
+              }}}
               aria-describedby="username-help"
               className={
                 errors.children

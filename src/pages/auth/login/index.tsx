@@ -48,7 +48,13 @@ export const LoginPage = () => {
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         if (error.response.status === 401) {
-          console.log("Erro de autenticação:", error.response.data.error);
+          console.log("usuário ou senhas inválidos:", error.response.data.error);
+          console.log(data.email);
+          console.log(data.password);
+  
+          toast.error(error.response.data.error);
+        } else if (error.response.status === 500) {
+          console.log("O usuário não existe:", error.response.data.error);
           console.log(data.email);
           console.log(data.password);
   
