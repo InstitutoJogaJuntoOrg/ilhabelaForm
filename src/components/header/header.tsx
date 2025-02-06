@@ -69,7 +69,7 @@ export const Header = () => {
                 textDecoration: "none",
                 color: "#54993a",
               }}
-              href="https://wa.me/5511945950731"
+              href="https://wa.me/5511994007913"
               target={"_blank"}
             >
               Ajuda
