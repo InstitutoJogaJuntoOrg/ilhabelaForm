@@ -146,21 +146,23 @@ export const HomePage = () => {
 
         <br />
         <br />
-        <section>
+        <section style={{
+          marginTop: '2rem'
+        }}>
           <ContainerTitle className="InitialMessage">
             <h1 style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}>
               ILHABELA TECH
             </h1>
 
-            <a
+            {/* <a
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
 
               href="/inscricao"
             >
-              <button>inscrever-se</button>
-            </a>
+              <button>Confira o resultado</button>
+            </a>  */}
 
-             {/* <span
+              <span
               className="subDescp"
               style={{
                 textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)",
@@ -177,7 +179,7 @@ export const HomePage = () => {
                 ilhabela.tech
               </a>{" "}
               para saber quando abrirem novas vagas!
-            </span> */}
+            </span> 
           </ContainerTitle>
         </section>
         <ContainerCardLayout>
@@ -218,7 +220,7 @@ export const HomePage = () => {
 
         <BannerContainer>
           <img
-            src="/banner34.png"
+            src="/encerrada2.png"
             style={{
               display: "block",
             }}
