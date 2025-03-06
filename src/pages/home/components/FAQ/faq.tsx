@@ -169,7 +169,7 @@ const FAQs: React.FC = () => {
     {
       question: "Critério de classificação:",
       answer: [
-        "As 30 melhores classificações no teste de conhecimentos em informática básica.",
+        "As 40 melhores classificações no teste de conhecimentos em informática básica.",
       ],
     },
     {
