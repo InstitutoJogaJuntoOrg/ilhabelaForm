@@ -154,13 +154,13 @@ export const HomePage = () => {
               ILHABELA TECH
             </h1>
 
-            {/* <a
+            <a
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
-
-              href="/inscricao"
+              target="_blank"
+              href="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/Classifica%C3%A7%C3%A3o+Geral+Ilhabela+Tech.pdf"
             >
               <button>Confira o resultado</button>
-            </a>  */}
+            </a> 
 
               <span
               className="subDescp"
