@@ -110,7 +110,7 @@ export const HomePage = () => {
           width: "100%",
         }}
       >
-        {display && (
+         {/*** {display && (
           <Dialog
             className="accontDelete"
             visible={display}
@@ -124,7 +124,8 @@ export const HomePage = () => {
               </a>
             }
           ></Dialog>
-        )}
+        )} ***/}
+        
       </div> 
       <ContainerHome>
         <ImageContainer>
