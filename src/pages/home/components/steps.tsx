@@ -20,6 +20,8 @@ export default function StepsHome() {
     {
       label: "",
     },
+
+
   ];
 
   return (
@@ -33,21 +35,23 @@ export default function StepsHome() {
             to={auth ? "/inscricao" : "/login"}
             style={{ textDecoration: "none" }}
           >
-            <p>Realize seu cadastro aqui no site preenchendo todos os campos.</p>
+            <p>Acesse o edital do processo seletivo e leia com atenção, em seguida acesse o link do processo seletivo.</p>
           </Link>
         </div>
         <div>
           <span className="pass">2 Passo</span>
-          <p>Teste seus conhecimentos sobre informática básica. <br /> (Etapa seletiva)</p>
+          <p>Preencha o formulário socioeconômico e Realize a prova de conhecimentos específicos;
+ <br /> (Etapa seletiva)</p>
         </div>
         <div>
           <span className="pass">3 Passo</span>
-          <p>Preencha o formulário de inscrição. <br /> (Critério de desempate)</p>
+          <p>Se você for um dos aprovados no curso, será convocado a comparecer na IETEC portando os documentos comprobatórios, segundo edital.</p>
         </div>
         <div>
           <span className="pass">4 Passo</span>
-          <p>Uma vez aprovado no processo seletivo, você estará automaticamente matriculado no curso.</p>
+          <p>Mantenha o seu número de telefone e e-mail atualizados.</p>
         </div>
+
 
       </CardsContainer>
     </StepsContainer>

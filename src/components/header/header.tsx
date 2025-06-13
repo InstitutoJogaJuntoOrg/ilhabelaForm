@@ -38,7 +38,7 @@ export const Header = () => {
 
     axios
       .get(
-        "https://api.jogajuntoinstituto.org/hotsite/selective/?process_id=5"
+        "https://api.jogajuntoinstituto.org/hotsite/selective/?process_id=10"
       )
       .then((response) => {
         const result = response.data.results[0];
@@ -90,7 +90,7 @@ export const Header = () => {
                 textDecoration: "none",
                 color: "#54993a",
               }}
-              href="https://wa.me/5511945950731"
+              href="https://wa.me/5512988902389"
               target={"_blank"}
             >
               Ajuda

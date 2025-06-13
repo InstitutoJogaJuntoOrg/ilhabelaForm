@@ -76,7 +76,7 @@ export const HomePage = () => {
   useEffect(() => {
     axios
       .get(
-        "https://api.jogajuntoinstituto.org/hotsite/selective/?process_id=5"
+        "https://api.jogajuntoinstituto.org/hotsite/selective/?process_id=10"
       )
       .then((response) => {
         const result = response.data.results[0];
@@ -175,12 +175,12 @@ export const HomePage = () => {
             <a
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
               target="_blank"
-              href="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/Classifica%C3%A7%C3%A3o+Geral+Ilhabela+Tech.pdf"
+              href="https://aluno.jogajuntoinstituto.org/"
             >
-              <button>Confira o resultado</button>
+              <button>Inscreva-se</button>
             </a>  
 
-              <span
+              {/* <span
               className="subDescp"
               style={{
                 textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)",
@@ -197,7 +197,7 @@ export const HomePage = () => {
                 ilhabela.tech
               </a>{" "}
               para saber quando abrirem novas vagas!
-            </span> 
+            </span>  */}
           </ContainerTitle>
         </section>
         <ContainerCardLayout>
@@ -238,7 +238,7 @@ export const HomePage = () => {
 
         <BannerContainer>
           <img
-            src="/encerrada2.png"
+            src="banner_inscricao_line.png"
             style={{
               display: "block",
             }}
