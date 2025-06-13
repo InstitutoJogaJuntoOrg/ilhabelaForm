@@ -13,19 +13,19 @@ export const Modules = ({ hours }: ModulesProps) => {
           <h1>Hardskills</h1>
           <ul>
             <li>
-              <span className="circle">1</span> SQL
+              <span className="circle">1</span> Gestão de Projetos com Scrum
             </li>
             <li>
               <span className="circle">2</span>
-              Metabase
+              Testes Manuais
             </li>
             <li>
               <span className="circle">3</span>
-              Redshift
+              Python
             </li>
             <li>
               <span className="circle">4</span>
-              Estatística
+              Selenium
             </li>
           </ul>
         
