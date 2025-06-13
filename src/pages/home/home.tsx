@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { CardOne } from "./components/card";
 import { CardTwo } from "./components/cardTwo";
 import StepsHome from "./components/steps";
@@ -65,9 +66,26 @@ export const HomePage = () => {
   const auth = localStorage.getItem("token");
   const [showText, setShowText] = useState(false);
   const emailFromLocalStorage = localStorage.getItem("token");
+  const [faqs, setFaqs] = useState<any[]>([]);
+  const [hours, setHours] = useState<number>(0);
+  const [editalLink, setEditalLink] = useState<string>("#");
   const setCookie = (name: string) => {
     document.cookie = name;
   };
+
+  useEffect(() => {
+    axios
+      .get(
+        "https://api.jogajuntoinstituto.org/hotsite/selective/?process_id=5"
+      )
+      .then((response) => {
+        const result = response.data.results[0];
+        setFaqs(result.faqs || []);
+        setHours(result.course?.hours || 0);
+        setEditalLink(result.edital);
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   useEffect(() => {
     const hasVisitedHomePage = localStorage.getItem("final");
@@ -239,13 +257,13 @@ export const HomePage = () => {
             gap: "2rem",
           }}
         >
-          <Modules />
+          <Modules hours={hours} />
         </div>
         <About>
           <h1>Como participar</h1>
           <StepsHome />
         </About>
-        <FAQs />
+        <FAQs faqs={faqs} />
         <Footer />
       </ContainerHome>
     </div>
