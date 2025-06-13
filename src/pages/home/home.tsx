@@ -136,7 +136,7 @@ export const HomePage = () => {
             header=""
             footer={
               <a
-                href={emailFromLocalStorage ? "/inscricao" : "/login"}
+                href="https://aluno.jogajuntoinstituto.org/"
               >
                 <ModalHome className="modalHomepage"></ModalHome>
               </a>

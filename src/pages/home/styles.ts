@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ModalHome = styled.div`
 
-background-image: url('/encerrada1.png');
+background-image: url('/banner_inscricao_aberta_ibt.png');
   background-size: cover;
   background-repeat: no-repeat;
 width: 870px;
