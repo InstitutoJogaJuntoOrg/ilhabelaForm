@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { CardOne } from "./components/card";
 import { CardTwo } from "./components/cardTwo";
 import StepsHome from "./components/steps";
@@ -13,6 +14,7 @@ import {
   ContainerCardLayouta,
   ContainerHome,
   ContainerTitle,
+  VideoSection,
   ModalHome,
 } from "./styles";
 import { Link } from "react-router-dom";
@@ -65,9 +67,28 @@ export const HomePage = () => {
   const auth = localStorage.getItem("token");
   const [showText, setShowText] = useState(false);
   const emailFromLocalStorage = localStorage.getItem("token");
+  const [faqs, setFaqs] = useState<any[]>([]);
+  const [hours, setHours] = useState<number>(0);
+  const [editalLink, setEditalLink] = useState<string>("#");
+  const [updateVideo, setUpdateVideo] = useState<string>("");
   const setCookie = (name: string) => {
     document.cookie = name;
   };
+
+  useEffect(() => {
+    axios
+      .get(
+        "https://api.jogajuntoinstituto.org/hotsite/selective/?process_id=10"
+      )
+      .then((response) => {
+        const result = response.data.results[0];
+        setFaqs(result.faqs || []);
+        setHours(result.course?.hours || 0);
+        setEditalLink(result.edital);
+        setUpdateVideo(result.course?.update_video || "");
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   useEffect(() => {
     const hasVisitedHomePage = localStorage.getItem("final");
@@ -118,7 +139,7 @@ export const HomePage = () => {
             header=""
             footer={
               <a
-                href={emailFromLocalStorage ? "/inscricao" : "/login"}
+                href="https://aluno.jogajuntoinstituto.org/"
               >
                 <ModalHome className="modalHomepage"></ModalHome>
               </a>
@@ -158,12 +179,12 @@ export const HomePage = () => {
             <a
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
               target="_blank"
-              href="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/Classifica%C3%A7%C3%A3o+Geral+Ilhabela+Tech.pdf"
+              href="https://aluno.jogajuntoinstituto.org/"
             >
-              <button>Confira os resultados!</button>
-            </a> 
+              <button>Inscreva-se</button>
+            </a>  
 
-              <span
+              {/* <span
               className="subDescp"
               style={{
                 textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)",
@@ -180,7 +201,7 @@ export const HomePage = () => {
                 ilhabela.tech
               </a>{" "}
               para saber quando abrirem novas vagas!
-            </span> 
+            </span>  */}
           </ContainerTitle>
         </section>
         <ContainerCardLayout>
@@ -221,13 +242,19 @@ export const HomePage = () => {
 
         <BannerContainer>
           <img
-            src="/encerrada2.png"
+            src="banner_inscricao_line.png"
             style={{
               display: "block",
             }}
             alt="icon"
           />
         </BannerContainer>
+
+        {updateVideo && (
+          <VideoSection>
+            <video src={updateVideo} controls />
+          </VideoSection>
+        )}
 
         <div
           style={{
@@ -240,13 +267,13 @@ export const HomePage = () => {
             gap: "2rem",
           }}
         >
-          <Modules />
+          <Modules hours={hours} />
         </div>
         <About>
           <h1>Como participar</h1>
           <StepsHome />
         </About>
-        <FAQs />
+        <FAQs faqs={faqs} />
         <Footer />
       </ContainerHome>
     </div>

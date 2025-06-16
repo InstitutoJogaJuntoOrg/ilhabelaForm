@@ -1,6 +1,10 @@
 import { FormationInfo, ModuleContainer } from "./styles";
 
-export const Modules = ({}) => {
+interface ModulesProps {
+  hours: number;
+}
+
+export const Modules = ({ hours }: ModulesProps) => {
   return (
     <div>
       <ModuleContainer>
@@ -9,19 +13,19 @@ export const Modules = ({}) => {
           <h1>Hardskills</h1>
           <ul>
             <li>
-              <span className="circle">1</span> SQL
+              <span className="circle">1</span> Gestão de Projetos com Scrum
             </li>
             <li>
               <span className="circle">2</span>
-              Metabase
+              Testes Manuais
             </li>
             <li>
               <span className="circle">3</span>
-              Redshift
+              Python
             </li>
             <li>
               <span className="circle">4</span>
-              Estatística
+              Selenium
             </li>
           </ul>
         
@@ -58,7 +62,7 @@ export const Modules = ({}) => {
           <img src="/certificado.svg" alt="" />
         </div>
         <div className="content">
-          <h2>+ de 170 horas de formação</h2>
+          <h2>+ de {hours} horas de formação</h2>
           <p>
             E diversos workshops com especialistas em finanças, recursos
             humanos, projetos, inovação, preparação para o mercado de trabalho e

@@ -10,13 +10,13 @@ export const cardOne = [
   {
     title: "Ilhabela Tech",
     description: "",
-    startDate: "10/03",
+    startDate: "04/08/2025",
     modalidade: "Presencial",
-    periods: ["Turmas noturnas das 19:00 às 21:30"],
+    periods: ["19h – 21h30, de segunda a quinta-feira."],
     modality: "Presencial, na IETC de Ilhabela de segunda à quinta",
     location:
       "IETEC Laboratório de informática Av. Profº Malaquias de O. Freitas, 448 - Barra Velha",
     vagas:
-      "São disponibilizadas 30 vagas para o curso, com no mínimo 20 aprovados para formação da turma.",
+      "São disponibilizadas 40 vagas para o curso, com no mínimo 20 aprovados para formação da turma.",
   },
 ];

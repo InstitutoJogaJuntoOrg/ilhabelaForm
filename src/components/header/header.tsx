@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { HeaderContainer, StyledNavLink } from "./styles";
 import { FaBars, FaTimes } from "react-icons/fa";
 import MobileMenu from "./mobile";
@@ -9,6 +10,7 @@ export const Header = () => {
   const [showLinks, setShowLinks] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [userEmail, setUserEmail] = useState("");
+  const [editalLink, setEditalLink] = useState<string>("#");
   const emailFromLocalStorage = localStorage.getItem("token");
   const closeMenu = () => {
     setShowLinks(false);
@@ -33,6 +35,16 @@ export const Header = () => {
     };
 
     checkUserAuthentication();
+
+    axios
+      .get(
+        "https://api.jogajuntoinstituto.org/hotsite/selective/?process_id=10"
+      )
+      .then((response) => {
+        const result = response.data.results[0];
+        setEditalLink(result.edital);
+      })
+      .catch((err) => console.error(err));
 
     window.addEventListener("resize", handleResize);
 
@@ -65,11 +77,20 @@ export const Header = () => {
           )}  */}
           <li>
             <a
+              style={{ textDecoration: "none", color: "#54993a" }}
+              href={editalLink}
+              target="_blank"
+            >
+              Transparência
+            </a>
+          </li>
+          <li>
+            <a
               style={{
                 textDecoration: "none",
                 color: "#54993a",
               }}
-              href="https://wa.me/5511994007913"
+              href="https://wa.me/5512988902389"
               target={"_blank"}
             >
               Ajuda

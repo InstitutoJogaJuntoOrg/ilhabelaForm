@@ -17,7 +17,7 @@ type FAQProps = {
   faqs: FAQItem[];
 };
 
-const FAQ: React.FC<FAQProps> = ({ faqs }: any) => {
+const FAQList: React.FC<FAQProps> = ({ faqs }) => {
   const [selectedItem, setSelectedItem] = useState<number | null>(-1);
 
   const toggleItem = (index: number) => {
@@ -128,105 +128,11 @@ const FAQ: React.FC<FAQProps> = ({ faqs }: any) => {
   );
 };
 
-const FAQs: React.FC = () => {
-  const faqs: FAQItem[] = [
-    {
-      question: "O que é o Ilhabela tech",
-      answer:
-        "• É um programa da Prefeitura de Ilhabela em parceria com o <a target='_blank' href='https://www.jogajuntoinstituto.org/'>Instituto JogaJunto</a> que visa capacitar e incluir novos profissionais no mercado tecnológico por meio do conhecimento técnico.",
-    },
-    {
-      question: "Vagas:",
-      answer: [
-        "São disponibilizadas 30 vagas para o curso, com no mínimo 20 aprovados para formação da turma.",
-      ],
-    },
-    {
-      question:
-        "Não sou residente de Ilhabela, mas frequento a cidade. Posso fazer o curso?",
-      answer: [
-        "Sim, você pode fazer o curso desde que compareça presencialmente nas aulas. A frequência mínima é de 75% em sala de aula para obtenção do certificado.",
-      ],
-    },
-    {
-      question: "Preciso estar presencial para fazer o curso?",
-      answer: [
-        "Sim, a frequência mínima é de 75% em sala de aula para obtenção do certificado.",
-      ],
-    },
-    {
-      question: "Recebo um certificado no final do curso?",
-      answer: [
-        "Sim, você receberá certificado desde que tenha frequência de 75% em sala de aula e tenha entregue o projeto final.",
-      ],
-    },
-    {
-      question: "Quantos certificados posso receber?",
-      answer: [
-        "Um certificado para o curso de Analista de Dados desde que tenha cumprido todos os requisitos de aprovação.",
-      ],
-    },
-    {
-      question: "Critério de classificação:",
-      answer: [
-        "As 40 melhores classificações no teste de conhecimentos em informática básica.",
-      ],
-    },
-    {
-      question: "Critério de desempate:",
-      answer: [
-        "Beneficiário de programas sociais do Governo Federal",
-        "Maior tempo de experiência na área",
-        "Maior nota na etapa teórica",
-      ],
-    },
-    {
-      question: "Qual a frequência mínima para eu receber o certificado?",
-      answer: ["Frequência de 75% em sala de aula."],
-    },
-    {
-      question: "Preciso pagar para realizar o curso?",
-      answer: [
-        "Não, o curso é realizado pelo  em parceria com a Prefeitura de Ilhabela e é oferecido gratuitamente para todos os aprovados no processo seletivo.",
-      ],
-    },
-    {
-      question: "Eu preciso passar por todas as etapas do processo de seleção?",
-      answer: [
-        "Sim. Todos os candidatos devem passar por todas as etapas do processo de seleção. Caso alguma etapa não seja concluída, haverá desclassificação.",
-      ],
-    },
-    {
-      question: "Posso fazer o curso mesmo tendo mais de 24 anos?",
-      answer: [
-        "Sim, ainda que você tenha mais que 24 anos, você pode fazer o curso normalmente.",
-      ],
-    },
-    {
-      question: "Tenho menos que 17 anos, posso fazer o curso?",
-      answer: [
-        "A idade mínima para fazer o curso é de 16 anos completos.",
-      ],
-    },
-    {
-      question: "Vou fazer 16 anos durante o curso, posso fazer minha inscrição?",
-      answer: [
-        "Não. No momento da sua inscrição, você já precisa ter 16 anos.",
-      ],
-    },
-    
-    {
-      question: "Posso fazer o curso mesmo tendo estudado em escola particular?",
-      answer: [
-        "Sim, você pode fazer o curso normalmente.",
-      ],
-    },
-  ];
-
+const FAQs: React.FC<FAQProps> = ({ faqs }) => {
   return (
     <FAQContainer>
       <h1 className="title">FAQ (Perguntas Frequentes)</h1>
-      <FAQ faqs={faqs} />
+      <FAQList faqs={faqs} />
     </FAQContainer>
   );
 };
