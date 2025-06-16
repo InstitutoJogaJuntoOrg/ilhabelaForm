@@ -14,6 +14,7 @@ import {
   ContainerCardLayouta,
   ContainerHome,
   ContainerTitle,
+  VideoSection,
   ModalHome,
 } from "./styles";
 import { Link } from "react-router-dom";
@@ -69,6 +70,7 @@ export const HomePage = () => {
   const [faqs, setFaqs] = useState<any[]>([]);
   const [hours, setHours] = useState<number>(0);
   const [editalLink, setEditalLink] = useState<string>("#");
+  const [updateVideo, setUpdateVideo] = useState<string>("");
   const setCookie = (name: string) => {
     document.cookie = name;
   };
@@ -83,6 +85,7 @@ export const HomePage = () => {
         setFaqs(result.faqs || []);
         setHours(result.course?.hours || 0);
         setEditalLink(result.edital);
+        setUpdateVideo(result.course?.update_video || "");
       })
       .catch((err) => console.error(err));
   }, []);
@@ -245,6 +248,12 @@ export const HomePage = () => {
             alt="icon"
           />
         </BannerContainer>
+
+        {updateVideo && (
+          <VideoSection>
+            <video src={updateVideo} controls />
+          </VideoSection>
+        )}
 
         <div
           style={{

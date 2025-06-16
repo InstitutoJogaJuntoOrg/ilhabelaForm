@@ -226,7 +226,18 @@ width: 100%;
   img {
     max-width: 100%;
     height: fit-content;
- 
+
+  }
+`;
+
+export const VideoSection = styled.div`
+  margin: 2rem 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  video {
+    max-width: 100%;
+    height: auto;
   }
 `;
 export const About = styled.div`
