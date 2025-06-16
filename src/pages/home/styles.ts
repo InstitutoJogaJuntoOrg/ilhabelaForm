@@ -231,12 +231,13 @@ width: 100%;
 `;
 
 export const VideoSection = styled.div`
-  margin: 2rem 0;
+  margin: 2rem ;
   width: 100%;
   display: flex;
   justify-content: center;
   video {
-    max-width: 100%;
+    width: 100%;
+    max-width: 50%;
     height: auto;
   }
 `;
