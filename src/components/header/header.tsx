@@ -96,7 +96,7 @@ export const Header = () => {
               Ajuda
             </a>
           </li>
-          <li>
+          {/* <li>
             <a
               style={{
                 textDecoration: "none",
@@ -107,7 +107,7 @@ export const Header = () => {
             >
               Transparência 
             </a>
-          </li>
+          </li> */}
         </ul>
         <div className="hamburger-icon" onClick={toggleLinks}>
           {showLinks ? <FaTimes /> : <FaBars />}
