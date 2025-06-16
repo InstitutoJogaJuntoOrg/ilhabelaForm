@@ -225,7 +225,7 @@ export const HomePage = () => {
           />
           <CardTwo
             description=""
-            titleCard="O que é o curso de análise de dados?"
+            titleCard="O que é o curso de QA?"
             image="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/card_ilhabela_IETEC.png"
             key={1}
             alt="img"
