@@ -176,15 +176,15 @@ export const HomePage = () => {
               ILHABELA TECH
             </h1>
 
-            <a
+            {/* <a
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
               target="_blank"
               href="https://aluno.jogajuntoinstituto.org/"
-            >
-              <button>Inscreva-se</button>
-            </a>  
+            > */}
+              <button>Inscrições encerradas</button>
+            {/* </a>   */}
 
-              {/* <span
+              <span
               className="subDescp"
               style={{
                 textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)",
@@ -201,7 +201,7 @@ export const HomePage = () => {
                 ilhabela.tech
               </a>{" "}
               para saber quando abrirem novas vagas!
-            </span>  */}
+            </span> 
           </ContainerTitle>
         </section>
         <ContainerCardLayout>
@@ -242,7 +242,7 @@ export const HomePage = () => {
 
         <BannerContainer>
           <img
-            src="banner_inscricao_line.png"
+            src="banner_inscricao_encerrada_line.png"
             style={{
               display: "block",
             }}
