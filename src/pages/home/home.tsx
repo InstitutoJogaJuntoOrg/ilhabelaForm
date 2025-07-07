@@ -195,14 +195,14 @@ export const HomePage = () => {
                 borderRadius: "16px",
               }}
             >
-              Inscrições encerradas, fique de olho no nosso Instagram{" "}
+              Inscrições encerradas, confira {" "}
               <a
-                href="https://www.instagram.com/ilhabela.tech/"
+                href={approvedPdfLink}
                 target={"_blank"}
               >
-                ilhabela.tech
+                aqui
               </a>{" "}
-              para saber quando abrirem novas vagas!
+              os resultados.
             </span> 
           </ContainerTitle>
         </section>
