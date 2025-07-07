@@ -71,6 +71,7 @@ export const HomePage = () => {
   const [hours, setHours] = useState<number>(0);
   const [editalLink, setEditalLink] = useState<string>("#");
   const [updateVideo, setUpdateVideo] = useState<string>("");
+  const [approvedPdfLink, setApprovedPdfLink] = useState<string>("#");
   const setCookie = (name: string) => {
     document.cookie = name;
   };
@@ -86,6 +87,7 @@ export const HomePage = () => {
         setHours(result.course?.hours || 0);
         setEditalLink(result.edital);
         setUpdateVideo(result.course?.update_video || "");
+        setApprovedPdfLink(result.students_approved_pdf || "#");
       })
       .catch((err) => console.error(err));
   }, []);
@@ -176,13 +178,13 @@ export const HomePage = () => {
               ILHABELA TECH
             </h1>
 
-            {/* <a
+            <a
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
               target="_blank"
-              href="https://aluno.jogajuntoinstituto.org/"
-            > */}
-              <button>Inscrições encerradas</button>
-            {/* </a>   */}
+              href={approvedPdfLink}
+            >
+              <button>Confira o resultado</button>
+            </a>
 
               <span
               className="subDescp"
