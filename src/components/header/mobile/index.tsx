@@ -21,7 +21,7 @@ const MobileMenu = ({ closeMenu }: any) => {
 
     axios
       .get(
-        "https://api.jogajuntoinstituto.org/hotsite/selective/?process_id=10"
+        "https://api.jogajuntoinstituto.org/hotsite/selective/?process_id=36"
       )
       .then((response) => {
         const result = response.data.results[0];
