@@ -229,17 +229,30 @@ width: 100%;
 `;
 
 export const VideoSection = styled.div`
-  margin: 2rem ;
+  margin: 2rem 0;
   width: 100%;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
   video {
     width: 100%;
-    max-width: 50%;
     height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   }
-  img {
-
+  .videoCopy {
+    text-align: left;
+    color: #444;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .videoCopy h3 {
+    margin-bottom: 1rem;
+    font-size: 1.75rem;
+    color: #333;
+    font-weight: 700;
+  }
 `;
 
 

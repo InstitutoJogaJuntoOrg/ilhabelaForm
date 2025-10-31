@@ -14,7 +14,6 @@ import {
 } from "./styles";
 import { Footer } from "../../components/footer";
 import FAQs from "./components/FAQ/faq";
-import teste from "../../../public/video1.mp4";
 import { CardTree } from "./components/cardtre";
 
 const Overlay = styled.div`
@@ -57,6 +56,7 @@ const Video = styled.video`
 export const HomePage = () => {
   const [showText, setShowText] = useState(false);
   const [faqs, setFaqs] = useState<any[]>([]);
+  const [courseVideoUrl, setCourseVideoUrl] = useState<string | null>(null);
 
   useEffect(() => {
     axios
@@ -66,6 +66,7 @@ export const HomePage = () => {
       .then((response) => {
         const result = response.data.results[0];
         setFaqs(result.faqs || []);
+        setCourseVideoUrl(result?.course?.update_video ?? null);
       })
       .catch((err) => console.error(err));
   }, []);
@@ -312,6 +313,51 @@ export const HomePage = () => {
             </p>
           </div>
         </div>
+
+        {courseVideoUrl && (
+          <div
+            style={{
+              backgroundColor: "#ffffff",
+              padding: "60px 20px",
+              margin: "40px 0",
+            }}
+          >
+            <div
+              style={{
+                maxWidth: "1000px",
+                margin: "0 auto",
+                textAlign: "center",
+              }}
+            >
+              <h2
+                style={{
+                  fontSize: "2.5rem",
+                  color: "#333",
+                  marginBottom: "30px",
+                  fontWeight: "bold",
+                }}
+              >
+                Conheça o UXperts em vídeo
+              </h2>
+              <VideoSection>
+                <video src={courseVideoUrl} controls />
+                <div className="videoCopy">
+                  <h3>User Experience (UX)</h3>
+                  <p>
+                    User Experience, Experiência do Usuário ou simplesmente UX é
+                    a área que cria experiências digitais que fazem sentido para
+                    as pessoas. Quem atua nesta profissão entende o
+                    comportamento dos usuários, identifica suas necessidades e
+                    desenha soluções fáceis e agradáveis de usar. É a forma como
+                    uma pessoa percebe, sente e interage com um produto,
+                    serviço ou sistema — especialmente no ambiente digital, como
+                    sites, aplicativos ou plataformas.
+                  </p>
+                </div>
+              </VideoSection>
+            </div>
+          </div>
+        )}
 
         <div
           style={{
