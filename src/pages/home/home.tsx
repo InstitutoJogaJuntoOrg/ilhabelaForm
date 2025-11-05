@@ -4,6 +4,7 @@ import { CardOne } from "./components/card";
 import { CardTwo } from "./components/cardTwo";
 import StepsHome from "./components/steps";
 import styled from "styled-components";
+import videoteste from "../../../public/video1.mp4";
 
 import {
   About,
@@ -14,7 +15,6 @@ import {
 } from "./styles";
 import { Footer } from "../../components/footer";
 import FAQs from "./components/FAQ/faq";
-import teste from "../../../public/video1.mp4";
 import { CardTree } from "./components/cardtre";
 
 const Overlay = styled.div`
@@ -49,7 +49,7 @@ const Video = styled.video`
   object-fit: cover;
   width: 100%;
   height: 100%;
-
+  position: absolute;
   top: 0;
   left: 0;
 `;
@@ -75,18 +75,9 @@ export const HomePage = () => {
       style={{
         display: "flex",
         flexDirection: "column",
-        height: "100vh",
         width: "100%",
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          height: "100vh",
-          width: "100%",
-        }}
-      ></div>
       <ContainerHome>
         <ImageContainer>
           <VideoBackground>
@@ -95,6 +86,7 @@ export const HomePage = () => {
               autoPlay
               muted
               loop
+              playsInline
             />
           </VideoBackground>
           <Overlay
@@ -128,17 +120,17 @@ export const HomePage = () => {
                 Transforme sua carreira com UX Design
               </h2>
               <p>
-                Domine as habilidades essenciais para criar experiências
-                digitais que encantam usuários e geram resultados reais para
-                negócios.
+                Aprenda a criar experiências digitais que encantam pessoas,
+                despertam emoções e fazem marcas se tornarem inesquecíveis.
               </p>
             </div>
             <a
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
               target="_blank"
+              rel="noopener noreferrer"
               href={"https://aluno.jogajuntoinstituto.org/"}
             >
-              <button>Inscrever-se Gratuitamente</button>
+              <button>Comece aqui a sua jornada. É grátis!</button>
             </a>
           </ContainerTitle>
         </section>
@@ -154,7 +146,7 @@ export const HomePage = () => {
           />
           <CardTwo
             description=""
-            titleCard="O que é o curso de UX?"
+            titleCard="O que é UX Design?"
             image="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/card_ilhabela_IETEC.png"
             key={1}
             alt="img"
@@ -168,18 +160,19 @@ export const HomePage = () => {
           />
         </ContainerCardLayout>
 
-       <div
-  style={{
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
-    gap: "clamp(1rem, 3vw, 1.5rem)",
-    padding: "clamp(1rem, 4vw, 1.25rem)",
-    maxWidth: "1200px",
-    margin: "0 auto",
-    width: "100%",
-    boxSizing: "border-box",
-  }}
->
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns:
+              "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
+            gap: "clamp(1rem, 3vw, 1.5rem)",
+            padding: "clamp(1rem, 4vw, 1.25rem)",
+            maxWidth: "1200px",
+            margin: "0 auto",
+            width: "100%",
+            boxSizing: "border-box",
+          }}
+        >
           {/* Card 1 - Apoio Total */}
           <div
             style={{
@@ -262,9 +255,12 @@ export const HomePage = () => {
                 margin: 0,
               }}
             >
-              Desenvolva um projeto em grupo, com atividades semanais, para
-              iniciar seu portfólio profissional. Trabalhe em equipe e em
-              projetos reais que você poderá apresentar para recrutadores.
+              Desde as primeiras semanas, você já coloca a mão na massa em um
+              projeto real de UX, trabalhando em equipe e vivenciando o dia a
+              dia da área. Ao longo do curso, seu grupo desenvolverá uma solução
+              completa, da pesquisa com usuários ao design final, e o resultado
+              será o primeiro projeto do seu portfólio profissional, pronto para
+              apresentar a recrutadores e abrir portas na sua carreira.
             </p>
           </div>
 
@@ -306,9 +302,17 @@ export const HomePage = () => {
                 margin: 0,
               }}
             >
-              Participe de encontros de mentoria técnica, para aprimorar as
-              práticas e se preparar para a apresentação do projeto. Receba
-              feedback de profissionais experientes do mercado de UX.
+              Ao longo do curso, você contará com o apoio de mentores
+              experientes para aprimorar o projeto que desenvolverá em equipe.
+              Seu grupo receberá orientações práticas, feedbacks personalizados
+              e dicas valiosas de profissionais do mercado de UX para elevar a
+              qualidade do seu portfólio e se preparar para a apresentação
+              final.Ao longo do curso, você contará com o apoio de mentores
+              experientes para aprimorar o projeto que desenvolverá em equipe.
+              Seu grupo receberá orientações práticas, feedbacks personalizados
+              e dicas valiosas de profissionais do mercado de UX para elevar a
+              qualidade do seu portfólio e se preparar para a apresentação
+              final.
             </p>
           </div>
         </div>
@@ -403,11 +407,14 @@ export const HomePage = () => {
             </div>
           </div>
         </div>
-        {/* {teste && (
-          <VideoSection>
-            <video src={teste} controls />
-          </VideoSection>
-        )} */}
+
+        {/* Seção de vídeo adicional */}
+        <VideoSection>
+          <video src={videoteste} controls>
+            Seu navegador não suporta a tag de vídeo.
+          </video>
+        </VideoSection>
+
         {/* Section 2 - Encerramento/CTA */}
         <span
           style={{
@@ -416,6 +423,7 @@ export const HomePage = () => {
             margin: "40px 0",
             textAlign: "center",
             color: "#fff",
+            display: "block",
           }}
         >
           <div
@@ -427,16 +435,16 @@ export const HomePage = () => {
             <div
               style={{
                 display: "inline-block",
-                backgroundColor: "rgba(255, 255, 255, 0.2)",
+                backgroundColor: "rgb(255, 0, 0)",
                 padding: "8px 20px",
                 borderRadius: "20px",
                 marginBottom: "20px",
-                fontSize: "0.9rem",
+                fontSize: "1rem",
                 fontWeight: "600",
                 letterSpacing: "0.5px",
               }}
             >
-              ⚠️ VAGAS LIMITADAS
+              ⚠️ VAGAS LIMITADAS | ÚLTIMOS DIAS PARA SE INSCREVER ⚠️
             </div>
 
             <h2
@@ -447,7 +455,7 @@ export const HomePage = () => {
                 lineHeight: "1.2",
               }}
             >
-              Não perca esta oportunidade única
+              Dê o primeiro passo rumo à sua carreira em UX Design
             </h2>
 
             <p
@@ -458,14 +466,22 @@ export const HomePage = () => {
                 opacity: "0.95",
               }}
             >
-              Transforme sua carreira com conhecimento de qualidade, totalmente
-              gratuito. As vagas são limitadas e as inscrições encerram em
-              breve.
+              Um curso intensivo, gratuito e com mentoria prática para quem quer
+              criar experiências que transformam. 
+              - Metodologia pensada por
+              especialistas em educação e design
+              - Aprenda do zero ao protótipo
+              com um projeto real
+              - Totalmente gratuito, mas valioso para o
+              mercado de trabalho
+              As vagas são limitadas e as inscrições se
+              encerram em breve. Quem entra agora sai na frente.
             </p>
 
             <a
               href="https://aluno.jogajuntoinstituto.org"
               target="_blank"
+              rel="noopener noreferrer"
               style={{
                 backgroundColor: "#fff",
                 color: "#72B65A",
@@ -480,6 +496,8 @@ export const HomePage = () => {
                 marginBottom: "40px",
                 textTransform: "uppercase",
                 letterSpacing: "1px",
+                display: "inline-block",
+                textDecoration: "none",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "scale(1.05)";
@@ -492,13 +510,10 @@ export const HomePage = () => {
                   "0 6px 20px rgba(0, 0, 0, 0.15)";
               }}
             >
-              Seja UXPERT
+              QUERO SER UXPERTS!
             </a>
-
           </div>
         </span>
-
-
 
         <About>
           <h1>Como participar</h1>

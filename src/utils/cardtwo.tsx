@@ -1,10 +1,10 @@
 export const cardTwo = [
   {
-    Programa: "O que é o curso de UX?",
+    Programa: "O que é UX Design?",
     Fases: [
       {
-        Nome: "User Experience, Experiência do Usuário ou simplesmente UX É a área que cria experiências digitais que fazem sentido para as pessoas. Quem atua nesta profissão entende o comportamento dos usuários, identifica suas necessidades e desenha soluções fáceis e agradáveis de usar. É a forma como uma pessoa percebe, sente e interage com um produto, serviço ou sistema — especialmente no ambiente digital, como sites, aplicativos ou plataformas."
-      },
+        Nome: "Imagine que você entra em um aplicativo pela primeira vez. Tudo parece claro, fácil, fluido. Você encontra o que procura sem esforço, faz o que precisa em poucos cliques e pensa: “Nossa, que simples! ”Por trás dessa experiência está o trabalho de quem atua com UX Design, a área que cria experiências digitais que fazem sentido para as pessoas.Profissionais de UX estudam o comportamento humano, entendem necessidades e desenham soluções que unem empatia, estratégia e design. Em outras palavras, o UX transforma tecnologia em algo humano: sites, aplicativos e plataformas que encantam, facilitam a vida e geram resultados reais para os negócios."
+        },
 
     ],
   },
