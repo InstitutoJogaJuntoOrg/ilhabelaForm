@@ -88,6 +88,7 @@ export const HomePage = () => {
               loop
               playsInline
             />
+            
           </VideoBackground>
           <Overlay
             onMouseOver={() => setShowText(true)}
@@ -409,11 +410,70 @@ export const HomePage = () => {
         </div>
 
         {/* Seção de vídeo adicional */}
-        <VideoSection>
-          <video src={videoteste} controls>
-            Seu navegador não suporta a tag de vídeo.
-          </video>
-        </VideoSection>
+{/* Seção de vídeo adicional */}
+<VideoSection>
+  <div style={{
+    maxWidth: '1200px',
+    margin: '0 auto',
+    padding: '40px 20px'
+  }}>
+    {/* Título da Seção */}
+    <h2 style={{
+      fontSize: '2.5rem',
+      color: '#333',
+      marginBottom: '40px',
+      fontWeight: 'bold',
+      textAlign: 'center'
+    }}>
+      Conheça o UXperts em vídeo
+    </h2>
+
+    <div style={{
+      display: 'flex',
+      flexDirection: 'row',
+      gap: '40px',
+      alignItems: 'center',
+      flexWrap: 'wrap'
+    }}>
+      <div style={{
+        flex: '1 1 650px',
+        minWidth: '300px'
+      }}>
+        <video src={videoteste} controls style={{
+          width: '100%',
+          borderRadius: '12px',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
+        }}>
+          Seu navegador não suporta a tag de vídeo.
+        </video>
+      </div>
+      
+      <div style={{
+        flex: '1 1 400px',
+        minWidth: '300px',
+        padding: '20px'
+      }}>
+        <h3 style={{
+          fontSize: '2rem',
+          color: '#333',
+          marginBottom: '20px',
+          fontWeight: 'bold'
+        }}>
+          User Experience (UX)
+        </h3>
+        <p style={{
+          fontSize: '1rem',
+          color: '#555',
+          lineHeight: '1.8',
+          textAlign: 'justify',
+          marginBottom: '20px'
+        }}>
+          User Experience, Experiência do Usuário ou simplesmente UX é a área que cria experiências digitais que fazem sentido para as pessoas. Quem atua nesta profissão entende o comportamento dos usuários, identifica suas necessidades e desenha soluções fáceis e agradáveis de usar. É a forma como uma pessoa percebe, sente e interage com um produto, serviço ou sistema - seja um site, um aplicativo, como sites, aplicativos ou plataformas.
+        </p>
+      </div>
+    </div>
+  </div>
+</VideoSection>
 
         {/* Section 2 - Encerramento/CTA */}
         <span
