@@ -10,7 +10,7 @@ export const cardOne = [
   {
     title: "Ilhabela Tech",
     description: "",
-    startDate: "10/11/2025",
+    startDate: "02/03/2026",
     modalidade: "Presencial",
     periods: ["19h – 21h30, de segunda a quinta-feira."],
     modality: "Presencial, na IETC de Ilhabela de segunda à quinta",

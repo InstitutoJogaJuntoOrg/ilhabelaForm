@@ -409,71 +409,105 @@ export const HomePage = () => {
           </div>
         </div>
 
-        {/* Seção de vídeo adicional */}
 {/* Seção de vídeo adicional */}
-<VideoSection>
-  <div style={{
-    maxWidth: '1200px',
-    margin: '0 auto',
-    padding: '40px 20px'
+{/* Seção de vídeo adicional */}
+<div style={{
+  maxWidth: '1400px',
+  margin: '0 auto',
+  padding: 'clamp(20px, 5vw, 40px)'
+}}>
+  {/* Título da Seção */}
+  <h2 style={{
+    fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
+    color: '#333',
+    marginBottom: 'clamp(20px, 4vw, 40px)',
+    fontWeight: 'bold',
+    textAlign: 'center'
   }}>
-    {/* Título da Seção */}
-    <h2 style={{
-      fontSize: '2.5rem',
-      color: '#333',
-      marginBottom: '40px',
-      fontWeight: 'bold',
-      textAlign: 'center'
-    }}>
-      Conheça o UXperts em vídeo
-    </h2>
+    Conheça o UXperts em vídeo
+  </h2>
 
+  <div style={{
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 400px), 1fr))',
+    gap: 'clamp(20px, 4vw, 40px)',
+    alignItems: 'start'
+  }}>
+    {/* Player de Vídeo Maior */}
     <div style={{
-      display: 'flex',
-      flexDirection: 'row',
-      gap: '40px',
-      alignItems: 'center',
-      flexWrap: 'wrap'
+      width: '100%',
+      position: 'relative',
+      backgroundColor: '#000',
+      borderRadius: 'clamp(8px, 2vw, 16px)',
+      overflow: 'hidden',
+      boxShadow: '0 8px 24px rgba(0, 0, 0, 0.2)',
+      gridColumn: 'span 1'
     }}>
-      <div style={{
-        flex: '1 1 650px',
-        minWidth: '300px'
-      }}>
-        <video src={videoteste} controls style={{
+      <video 
+        src={videoteste} 
+        controls 
+        controlsList="nodownload"
+        style={{
           width: '100%',
-          borderRadius: '12px',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
-        }}>
-          Seu navegador não suporta a tag de vídeo.
-        </video>
-      </div>
-      
-      <div style={{
-        flex: '1 1 400px',
-        minWidth: '300px',
-        padding: '20px'
+          height: 'auto',
+          aspectRatio: '16/9',
+          display: 'block',
+          backgroundColor: '#000'
+        }}
+      >
+        Seu navegador não suporta a tag de vídeo.
+      </video>
+    </div>
+    
+    {/* Texto ao lado */}
+    <div style={{
+      width: '100%',
+      padding: 'clamp(10px, 3vw, 20px)',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center'
+    }}>
+      <h3 style={{
+        fontSize: 'clamp(1.5rem, 3vw, 2rem)',
+        color: '#333',
+        marginBottom: 'clamp(15px, 2vw, 20px)',
+        fontWeight: 'bold'
       }}>
-        <h3 style={{
-          fontSize: '2rem',
-          color: '#333',
-          marginBottom: '20px',
-          fontWeight: 'bold'
-        }}>
-          User Experience (UX)
-        </h3>
-        <p style={{
-          fontSize: '1rem',
-          color: '#555',
-          lineHeight: '1.8',
-          textAlign: 'justify',
-          marginBottom: '20px'
-        }}>
-          User Experience, Experiência do Usuário ou simplesmente UX é a área que cria experiências digitais que fazem sentido para as pessoas. Quem atua nesta profissão entende o comportamento dos usuários, identifica suas necessidades e desenha soluções fáceis e agradáveis de usar. É a forma como uma pessoa percebe, sente e interage com um produto, serviço ou sistema - seja um site, um aplicativo, como sites, aplicativos ou plataformas.
-        </p>
-      </div>
+        User Experience (UX)
+      </h3>
+      <p style={{
+        fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
+        color: '#555',
+        lineHeight: '1.8',
+        textAlign: 'justify',
+        marginBottom: '20px'
+      }}>
+        User Experience, Experiência do Usuário ou simplesmente UX é a área que cria experiências digitais que fazem sentido para as pessoas. Quem atua nesta profissão entende o comportamento dos usuários, identifica suas necessidades e desenha soluções fáceis e agradáveis de usar. É a forma como uma pessoa percebe, sente e interage com um produto, serviço ou sistema - seja um site, um aplicativo, como sites, aplicativos ou plataformas.
+      </p>
     </div>
   </div>
-</VideoSection>
+
+  {/* CSS adicional para responsividade avançada */}
+  <style>{`
+    @media (min-width: 969px) {
+      div[style*="gridTemplateColumns: 'repeat"] > div:first-child {
+        grid-column: span 2;
+      }
+    }
+    
+    @media (max-width: 968px) {
+      div[style*="gridTemplateColumns: 'repeat"] {
+        grid-template-columns: 1fr !important;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      video {
+        min-height: 200px;
+      }
+    }
+  `}</style>
+</div>
 
         {/* Section 2 - Encerramento/CTA */}
         <span
