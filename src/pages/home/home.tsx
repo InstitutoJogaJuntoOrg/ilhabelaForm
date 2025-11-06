@@ -308,11 +308,6 @@ export const HomePage = () => {
               Seu grupo receberá orientações práticas, feedbacks personalizados
               e dicas valiosas de profissionais do mercado de UX para elevar a
               qualidade do seu portfólio e se preparar para a apresentação
-              final.Ao longo do curso, você contará com o apoio de mentores
-              experientes para aprimorar o projeto que desenvolverá em equipe.
-              Seu grupo receberá orientações práticas, feedbacks personalizados
-              e dicas valiosas de profissionais do mercado de UX para elevar a
-              qualidade do seu portfólio e se preparar para a apresentação
               final.
             </p>
           </div>
@@ -424,7 +419,7 @@ export const HomePage = () => {
     fontWeight: 'bold',
     textAlign: 'center'
   }}>
-    Conheça o UXperts em vídeo
+    UXperts: mergulhe no universo da Experiência do Usuário com propósito e prática
   </h2>
 
   <div style={{
@@ -482,7 +477,30 @@ export const HomePage = () => {
         textAlign: 'justify',
         marginBottom: '20px'
       }}>
-        User Experience, Experiência do Usuário ou simplesmente UX é a área que cria experiências digitais que fazem sentido para as pessoas. Quem atua nesta profissão entende o comportamento dos usuários, identifica suas necessidades e desenha soluções fáceis e agradáveis de usar. É a forma como uma pessoa percebe, sente e interage com um produto, serviço ou sistema - seja um site, um aplicativo, como sites, aplicativos ou plataformas.
+        O UXperts é mais que um curso, é uma jornada completa de formação em UX Design, feita para quem quer aprender fazendo. Unimos teoria aplicada, atividades mão na massa, mentoria com profissionais experientes e um projeto real em grupo, que vai direto para o seu portfólio.
+
+
+      </p>
+      <p style={{
+        fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
+        color: '#555',
+        lineHeight: '1.8',
+        textAlign: 'justify',
+        marginBottom: '20px'
+      }}>
+Aqui, cada etapa é pensada para desenvolver o seu olhar crítico, sua empatia com o usuário e sua capacidade de criar soluções digitais simples, eficazes e centradas nas pessoas. Você vai passar por todas as fases do processo de UX: pesquisa, personas, jornadas, wireframes, protótipos e testes.
+
+      </p>
+      <p style={{
+        fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
+        color: '#555',
+        lineHeight: '1.8',
+        textAlign: 'justify',
+        marginBottom: '20px'
+      }}>
+Com uma metodologia colaborativa, prática e atualizada com as demandas do mercado, o UXperts te prepara para sair do curso não só com conhecimento, mas com experiência e confiança para atuar na área.
+
+
       </p>
     </div>
   </div>
@@ -552,7 +570,7 @@ export const HomePage = () => {
               Dê o primeiro passo rumo à sua carreira em UX Design
             </h2>
 
-            <p
+            <div
               style={{
                 fontSize: "1.2rem",
                 marginBottom: "40px",
@@ -560,17 +578,29 @@ export const HomePage = () => {
                 opacity: "0.95",
               }}
             >
-              Um curso intensivo, gratuito e com mentoria prática para quem quer
-              criar experiências que transformam. 
-              - Metodologia pensada por
-              especialistas em educação e design
-              - Aprenda do zero ao protótipo
-              com um projeto real
-              - Totalmente gratuito, mas valioso para o
-              mercado de trabalho
-              As vagas são limitadas e as inscrições se
-              encerram em breve. Quem entra agora sai na frente.
-            </p>
+              <p>
+                Um curso intensivo, gratuito e com mentoria prática para quem quer
+                criar experiências que transformam.
+              </p>
+              <ul
+                style={{
+                  margin: "1rem 0",
+                  paddingLeft: "1.5rem",
+                }}
+              >
+                <li>
+                  Metodologia pensada por especialistas em educação e design
+                </li>
+                <li>Aprenda do zero ao protótipo com um projeto real</li>
+                <li>
+                  Totalmente gratuito, mas valioso para o mercado de trabalho
+                </li>
+              </ul>
+              <p>
+                As vagas são limitadas e as inscrições se encerram em breve. Quem
+                entra agora sai na frente.
+              </p>
+            </div>
 
             <a
               href="https://aluno.jogajuntoinstituto.org"
@@ -604,7 +634,7 @@ export const HomePage = () => {
                   "0 6px 20px rgba(0, 0, 0, 0.15)";
               }}
             >
-              QUERO SER UXPERTS!
+              QUERO SER UXPERT!
             </a>
           </div>
         </span>
