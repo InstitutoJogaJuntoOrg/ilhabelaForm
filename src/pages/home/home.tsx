@@ -590,8 +590,8 @@ export const HomePage = () => {
       >
         <span style={{ fontSize: "1.4rem", flexShrink: 0 }}>✓</span>
         <span>
-          <strong>Metodologia pensada por especialistas</strong> em educação e
-          design
+          <strong>Metodologia pensada por especialistas em educação e
+          design</strong>
         </span>
       </li>
       <li
@@ -605,7 +605,7 @@ export const HomePage = () => {
       >
         <span style={{ fontSize: "1.4rem", flexShrink: 0 }}>✓</span>
         <span>
-          <strong>Aprenda do zero ao protótipo</strong> com um projeto real
+          <strong>Aprenda do zero ao protótipo com um projeto real</strong>
         </span>
       </li>
       <li
@@ -619,8 +619,7 @@ export const HomePage = () => {
       >
         <span style={{ fontSize: "1.4rem", flexShrink: 0 }}>✓</span>
         <span>
-          <strong>Totalmente gratuito</strong>, mas valioso para o mercado de
-          trabalho
+          <strong>Totalmente gratuito, mas valioso para o mercado de trabalho</strong>
         </span>
       </li>
     </ul>
