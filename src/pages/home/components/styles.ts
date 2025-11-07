@@ -195,7 +195,7 @@ export const CardsContainer = styled.div`
   justify-items: center;
   align-items: center;
 
-  @media (max-width: 875px) {
+  @media (max-width: 1300px) {
     grid-template-columns: repeat(1, 3fr);
   }
     @media (max-width: 975px) {
@@ -205,7 +205,7 @@ export const CardsContainer = styled.div`
     padding: 2rem;
     margin-top: 22px;
     background-color: #54993a;
-    max-width: 15rem;
+    max-width: 19rem;
     text-align: left;
     border-radius: 22px;
     display: flex;

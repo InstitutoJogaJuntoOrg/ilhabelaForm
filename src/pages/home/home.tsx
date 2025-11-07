@@ -569,60 +569,60 @@ export const HomePage = () => {
     </p>
 
     {/* Lista de Benefícios */}
-    <ul
-      style={{
-        listStyle: "none",
-        padding: "0",
-        marginBottom: "32px",
-        textAlign: "left",
-        maxWidth: "650px",
-        margin: "0 auto 32px auto",
-      }}
-    >
-      <li
-        style={{
-          fontSize: "clamp(0.95rem, 2vw, 1.15rem)",
-          marginBottom: "16px",
-          display: "flex",
-          alignItems: "flex-start",
-          gap: "12px",
-        }}
-      >
-        <span style={{ fontSize: "1.4rem", flexShrink: 0 }}>✓</span>
-        <span>
-          <strong>Metodologia pensada por especialistas em educação e
-          design</strong>
-        </span>
-      </li>
-      <li
-        style={{
-          fontSize: "clamp(0.95rem, 2vw, 1.15rem)",
-          marginBottom: "16px",
-          display: "flex",
-          alignItems: "flex-start",
-          gap: "12px",
-        }}
-      >
-        <span style={{ fontSize: "1.4rem", flexShrink: 0 }}>✓</span>
-        <span>
-          <strong>Aprenda do zero ao protótipo com um projeto real</strong>
-        </span>
-      </li>
-      <li
-        style={{
-          fontSize: "clamp(0.95rem, 2vw, 1.15rem)",
-          marginBottom: "16px",
-          display: "flex",
-          alignItems: "flex-start",
-          gap: "12px",
-        }}
-      >
-        <span style={{ fontSize: "1.4rem", flexShrink: 0 }}>✓</span>
-        <span>
-          <strong>Totalmente gratuito, mas valioso para o mercado de trabalho</strong>
-        </span>
-      </li>
-    </ul>
+   <ul
+  style={{
+    listStyle: "none",
+    padding: "0",
+    marginBottom: "32px",
+    textAlign: "left",
+    maxWidth: "650px",
+    margin: "0 auto 32px auto",
+  }}
+>
+  <li
+    style={{
+      fontSize: "clamp(0.95rem, 2vw, 1.15rem)",
+      marginBottom: "16px",
+      display: "flex",
+      alignItems: "center",
+      gap: "12px",
+    }}
+  >
+    <span style={{ fontSize: "1.4rem", flexShrink: 0 }}>•</span>
+    <span>
+      <strong>Metodologia pensada por especialistas em educação e
+      design</strong>
+    </span>
+  </li>
+  <li
+    style={{
+      fontSize: "clamp(0.95rem, 2vw, 1.15rem)",
+      marginBottom: "16px",
+      display: "flex",
+      alignItems: "center",
+      gap: "12px",
+    }}
+  >
+    <span style={{ fontSize: "1.4rem", flexShrink: 0 }}>•</span>
+    <span>
+      <strong>Aprenda do zero ao protótipo com um projeto real</strong>
+    </span>
+  </li>
+  <li
+    style={{
+      fontSize: "clamp(0.95rem, 2vw, 1.15rem)",
+      marginBottom: "16px",
+      display: "flex",
+      alignItems: "center",
+      gap: "12px",
+    }}
+  >
+    <span style={{ fontSize: "1.4rem", flexShrink: 0, marginBottom: "6px" }}>•</span>
+    <span>
+      <strong>Totalmente gratuito, mas valioso para o mercado de trabalho</strong>
+    </span>
+  </li>
+</ul>
 
     <p
       style={{

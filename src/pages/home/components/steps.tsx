@@ -20,8 +20,6 @@ export default function StepsHome() {
     {
       label: "",
     },
-
-
   ];
 
   return (
@@ -31,28 +29,35 @@ export default function StepsHome() {
       <CardsContainer>
         <div>
           <span className="pass">1 Passo</span>
-          <Link
-            to={auth ? "/inscricao" : "/login"}
-            style={{ textDecoration: "none" }}
-          >
-            <p>Acesse o edital do processo seletivo e leia com atenção, em seguida acesse o link do processo seletivo.</p>
-          </Link>
+          <span style={{ textDecoration: "none" }}>
+            <p>
+              Acesse o edital disponível nessa página e leia tudo com atenção.
+              Em seguida, clique no botão "QUERO SER UXPERTS" para fazer a sua
+              inscrição.
+            </p>
+          </span>
         </div>
         <div>
           <span className="pass">2 Passo</span>
-          <p>Preencha o formulário socioeconômico e Realize a prova de conhecimentos específicos;
- <br /> (Etapa seletiva)</p>
+          <p>
+            Após ler o edital, preencha seus dados pessoais e socioeconômicos na
+            sessão “Meu Perfil”. Feito isso, acesse o processo seletivo do
+            UXperts, clique em “Inscreva-se” e depois em “Realizar prova” para
+            seguir com o questionário de conhecimentos gerais. Essa etapa é
+            fundamental para o processo  seletivo.
+          </p>
         </div>
         <div>
           <span className="pass">3 Passo</span>
-          <p>Se você for um dos aprovados no curso, será convocado a comparecer na IETEC portando os documentos comprobatórios, segundo edital.</p>
+          <p>
+            Se você for um dos aprovados no curso, será convocado a comparecer
+            na IETEC portando os documentos comprobatórios, segundo edital.
+          </p>
         </div>
         <div>
           <span className="pass">4 Passo</span>
           <p>Mantenha o seu número de telefone e e-mail atualizados.</p>
         </div>
-
-
       </CardsContainer>
     </StepsContainer>
   );
