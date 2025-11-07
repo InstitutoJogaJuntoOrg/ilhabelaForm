@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { CardOne } from "./components/card";
-import { CardTwo } from "./components/cardTwo";
 import StepsHome from "./components/steps";
 import styled from "styled-components";
 import videoteste from "../../../public/video1.mp4";
@@ -16,6 +15,7 @@ import {
 import { Footer } from "../../components/footer";
 import FAQs from "./components/FAQ/faq";
 import { CardTree } from "./components/cardtre";
+import { CardTwo } from "./components/cardTwo";
 
 const Overlay = styled.div`
   position: absolute;
@@ -308,11 +308,6 @@ export const HomePage = () => {
               Seu grupo receberá orientações práticas, feedbacks personalizados
               e dicas valiosas de profissionais do mercado de UX para elevar a
               qualidade do seu portfólio e se preparar para a apresentação
-              final.Ao longo do curso, você contará com o apoio de mentores
-              experientes para aprimorar o projeto que desenvolverá em equipe.
-              Seu grupo receberá orientações práticas, feedbacks personalizados
-              e dicas valiosas de profissionais do mercado de UX para elevar a
-              qualidade do seu portfólio e se preparar para a apresentação
               final.
             </p>
           </div>
@@ -424,7 +419,7 @@ export const HomePage = () => {
     fontWeight: 'bold',
     textAlign: 'center'
   }}>
-    Conheça o UXperts em vídeo
+    Saiba mais sobre o curso
   </h2>
 
   <div style={{
@@ -475,15 +470,19 @@ export const HomePage = () => {
       }}>
         User Experience (UX)
       </h3>
-      <p style={{
-        fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
-        color: '#555',
-        lineHeight: '1.8',
-        textAlign: 'justify',
-        marginBottom: '20px'
-      }}>
-        User Experience, Experiência do Usuário ou simplesmente UX é a área que cria experiências digitais que fazem sentido para as pessoas. Quem atua nesta profissão entende o comportamento dos usuários, identifica suas necessidades e desenha soluções fáceis e agradáveis de usar. É a forma como uma pessoa percebe, sente e interage com um produto, serviço ou sistema - seja um site, um aplicativo, como sites, aplicativos ou plataformas.
-      </p>
+<p style={{
+  fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
+  color: '#555',
+  lineHeight: '1.8',
+  textAlign: 'justify',
+  marginBottom: '20px'
+}}>
+  O <strong>UXperts é mais que um curso</strong>, é uma <strong>jornada completa de formação em UX Design</strong>, feita para quem quer aprender fazendo. Unimos teoria aplicada, atividades mão na massa, mentoria com <strong>profissionais experientes</strong> e um projeto real em grupo, que vai direto para o seu portfólio.
+  <br />
+  Aqui, <strong>cada etapa é pensada para desenvolver o seu olhar crítico, sua empatia com o usuário e sua capacidade de criar soluções digitais simples, eficazes e centradas nas pessoas</strong>. Você vai passar por todas as fases do processo de UX: pesquisa, personas, jornadas, wireframes, protótipos e testes.
+  <br />
+  Com uma <strong>metodologia colaborativa, prática e atualizada</strong> com as demandas do mercado, o UXperts te prepara para sair
+</p>
     </div>
   </div>
 
@@ -510,104 +509,167 @@ export const HomePage = () => {
 </div>
 
         {/* Section 2 - Encerramento/CTA */}
-        <span
-          style={{
-            backgroundColor: "#72B65A",
-            padding: "80px 20px",
-            margin: "40px 0",
-            textAlign: "center",
-            color: "#fff",
-            display: "block",
-          }}
-        >
-          <div
-            style={{
-              maxWidth: "800px",
-              margin: "0 auto",
-            }}
-          >
-            <div
-              style={{
-                display: "inline-block",
-                backgroundColor: "rgb(255, 0, 0)",
-                padding: "8px 20px",
-                borderRadius: "20px",
-                marginBottom: "20px",
-                fontSize: "1rem",
-                fontWeight: "600",
-                letterSpacing: "0.5px",
-              }}
-            >
-              ⚠️ VAGAS LIMITADAS | ÚLTIMOS DIAS PARA SE INSCREVER ⚠️
-            </div>
+        <div
+  style={{
+    backgroundColor: "#72B65A",
+    padding: "80px 20px",
+    margin: "40px 0",
+    textAlign: "center",
+    color: "#fff",
+  }}
+>
+  <div
+    style={{
+      maxWidth: "900px",
+      margin: "0 auto",
+    }}
+  >
+    {/* Badge de Alerta */}
+    <div
+      style={{
+        display: "inline-block",
+        backgroundColor: "#ff4444",
+        padding: "10px 24px",
+        borderRadius: "25px",
+        marginBottom: "24px",
+        fontSize: "0.95rem",
+        fontWeight: "700",
+        letterSpacing: "0.5px",
+        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
+      }}
+    >
+      ⚠️ VAGAS LIMITADAS
+    </div>
 
-            <h2
-              style={{
-                fontSize: "3rem",
-                fontWeight: "bold",
-                marginBottom: "20px",
-                lineHeight: "1.2",
-              }}
-            >
-              Dê o primeiro passo rumo à sua carreira em UX Design
-            </h2>
+    {/* Título Principal */}
+    <h2
+      style={{
+        fontSize: "clamp(2rem, 5vw, 3.2rem)",
+        fontWeight: "800",
+        marginBottom: "24px",
+        lineHeight: "1.2",
+        textShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+      }}
+    >
+      Dê o primeiro passo rumo à sua carreira em UX Design
+    </h2>
 
-            <p
-              style={{
-                fontSize: "1.2rem",
-                marginBottom: "40px",
-                lineHeight: "1.6",
-                opacity: "0.95",
-              }}
-            >
-              Um curso intensivo, gratuito e com mentoria prática para quem quer
-              criar experiências que transformam. 
-              - Metodologia pensada por
-              especialistas em educação e design
-              - Aprenda do zero ao protótipo
-              com um projeto real
-              - Totalmente gratuito, mas valioso para o
-              mercado de trabalho
-              As vagas são limitadas e as inscrições se
-              encerram em breve. Quem entra agora sai na frente.
-            </p>
+    {/* Subtítulo */}
+    <p
+      style={{
+        fontSize: "clamp(1rem, 2.5vw, 1.3rem)",
+        marginBottom: "40px",
+        lineHeight: "1.6",
+        opacity: "0.95",
+        fontWeight: "400",
+      }}
+    >
+      Um curso intensivo, gratuito e com mentoria prática para quem quer criar
+      experiências que transformam.
+    </p>
 
-            <a
-              href="https://aluno.jogajuntoinstituto.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                backgroundColor: "#fff",
-                color: "#72B65A",
-                fontSize: "1.3rem",
-                fontWeight: "bold",
-                padding: "18px 50px",
-                border: "none",
-                borderRadius: "50px",
-                cursor: "pointer",
-                boxShadow: "0 6px 20px rgba(0, 0, 0, 0.15)",
-                transition: "all 0.3s ease",
-                marginBottom: "40px",
-                textTransform: "uppercase",
-                letterSpacing: "1px",
-                display: "inline-block",
-                textDecoration: "none",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "scale(1.05)";
-                e.currentTarget.style.boxShadow =
-                  "0 8px 25px rgba(0, 0, 0, 0.2)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "scale(1)";
-                e.currentTarget.style.boxShadow =
-                  "0 6px 20px rgba(0, 0, 0, 0.15)";
-              }}
-            >
-              QUERO SER UXPERTS!
-            </a>
-          </div>
+    {/* Lista de Benefícios */}
+    <ul
+      style={{
+        listStyle: "none",
+        padding: "0",
+        marginBottom: "32px",
+        textAlign: "left",
+        maxWidth: "650px",
+        margin: "0 auto 32px auto",
+      }}
+    >
+      <li
+        style={{
+          fontSize: "clamp(0.95rem, 2vw, 1.15rem)",
+          marginBottom: "16px",
+          display: "flex",
+          alignItems: "flex-start",
+          gap: "12px",
+        }}
+      >
+        <span style={{ fontSize: "1.4rem", flexShrink: 0 }}>✓</span>
+        <span>
+          <strong>Metodologia pensada por especialistas</strong> em educação e
+          design
         </span>
+      </li>
+      <li
+        style={{
+          fontSize: "clamp(0.95rem, 2vw, 1.15rem)",
+          marginBottom: "16px",
+          display: "flex",
+          alignItems: "flex-start",
+          gap: "12px",
+        }}
+      >
+        <span style={{ fontSize: "1.4rem", flexShrink: 0 }}>✓</span>
+        <span>
+          <strong>Aprenda do zero ao protótipo</strong> com um projeto real
+        </span>
+      </li>
+      <li
+        style={{
+          fontSize: "clamp(0.95rem, 2vw, 1.15rem)",
+          marginBottom: "16px",
+          display: "flex",
+          alignItems: "flex-start",
+          gap: "12px",
+        }}
+      >
+        <span style={{ fontSize: "1.4rem", flexShrink: 0 }}>✓</span>
+        <span>
+          <strong>Totalmente gratuito</strong>, mas valioso para o mercado de
+          trabalho
+        </span>
+      </li>
+    </ul>
+
+    <p
+      style={{
+        fontSize: "clamp(0.95rem, 2vw, 1.1rem)",
+        marginBottom: "40px",
+        fontWeight: "600",
+        opacity: "0.95",
+      }}
+    >
+      ⏰ As vagas são limitadas e as inscrições se encerram em breve.
+    </p>
+
+
+<a
+      href="https://aluno.jogajuntoinstituto.org"
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        backgroundColor: "#fff",
+        color: "#72B65A",
+        fontSize: "clamp(1rem, 2.5vw, 1.3rem)",
+        fontWeight: "800",
+        padding: "20px 60px",
+        border: "none",
+        borderRadius: "50px",
+        cursor: "pointer",
+        boxShadow: "0 8px 24px rgba(0, 0, 0, 0.2)",
+        transition: "all 0.3s ease",
+        textTransform: "uppercase",
+        letterSpacing: "1.5px",
+        display: "inline-block",
+        textDecoration: "none",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = "translateY(-3px) scale(1.03)";
+        e.currentTarget.style.boxShadow = "0 12px 32px rgba(0, 0, 0, 0.25)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = "translateY(0) scale(1)";
+        e.currentTarget.style.boxShadow = "0 8px 24px rgba(0, 0, 0, 0.2)";
+      }}
+    >
+      🚀 QUERO SER UXPERTS!
+    </a>
+  </div>
+</div>
 
         <About>
           <h1>Como participar</h1>

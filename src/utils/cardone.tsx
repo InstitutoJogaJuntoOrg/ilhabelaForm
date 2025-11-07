@@ -1,8 +1,7 @@
 export const cardTree = [
   {
     title: "Ilhabela Tech",
-    description:
-      "É um programa da Prefeitura de Ilhabela em parceria com o Instituto Joga Junto que visa capacitar e incluir novos profissionais no mercado tecnológico por meio do conhecimento técnico de Analista de Dados por meio do conhecimento tecnológico.",
+    description: "É um programa da Prefeitura de Ilhabela em parceria com o Instituto Joga Junto que visa capacitar e incluir novos profissionais no mercado de trabalho por meio do conhecimento tecnológico.",
   },
 ];
 

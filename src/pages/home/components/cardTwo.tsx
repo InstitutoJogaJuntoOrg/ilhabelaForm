@@ -25,20 +25,26 @@ export const CardTwo = ({ image, alt, className, titleCard }: CardsProps) => {
           </OpacityOverlay>
         </ImageWrapper>
         <OpacityOverlay style={{ display: hovered ? "block" : "none" }}>
-          {cardTwo.map((item) => {
+          {cardTwo.map((item, itemIndex) => {
             return (
-              <div className="Card">
+              <div className="Card" key={itemIndex}>
                 <span className="titleCard mtoptwo">
                   <strong>{item.Programa}</strong>
                 </span>
                 {item.Fases.map((fase, index) => (
                   <div key={index}>
                     <span className="tiitlecard">
-                     
-                        <span style={{
-                          fontWeight: '800'
-                        }}>{fase.Nome}</span>
-                     
+                      {fase.Nome.map((part, partIndex) => (
+                        <span 
+                          key={partIndex}
+                          style={{
+                            fontWeight: part.bold ? '700' : 'normal',
+                            fontStyle: part.italic ? 'italic' : 'normal'
+                          }}
+                        >
+                          {part.text}
+                        </span>
+                      ))}
                     </span>
                     <br />
    
