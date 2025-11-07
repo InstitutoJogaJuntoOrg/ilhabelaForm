@@ -65,7 +65,10 @@ export const HomePage = () => {
       )
       .then((response) => {
         const result = response.data.results[0];
-        setFaqs(result.faqs || []);
+        const orderedFaqs = [...(result.faqs || [])].sort(
+          (a, b) => Number(b?.id ?? 0) - Number(a?.id ?? 0)
+        );
+        setFaqs(orderedFaqs);
       })
       .catch((err) => console.error(err));
   }, []);
