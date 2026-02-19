@@ -57,6 +57,9 @@ const Video = styled.video`
 export const HomePage = () => {
   const [showText, setShowText] = useState(false);
   const [faqs, setFaqs] = useState<any[]>([]);
+  const [studentsApprovedPdf, setStudentsApprovedPdf] = useState<string | null>(
+    null
+  );
 
   useEffect(() => {
     axios
@@ -69,9 +72,12 @@ export const HomePage = () => {
           (a, b) => Number(b?.id ?? 0) - Number(a?.id ?? 0)
         );
         setFaqs(orderedFaqs);
+        setStudentsApprovedPdf(result?.students_approved_pdf ?? null);
       })
       .catch((err) => console.error(err));
   }, []);
+
+  const hasApprovedPdf = Boolean(studentsApprovedPdf);
 
   return (
     <div
@@ -121,20 +127,32 @@ export const HomePage = () => {
               }}
             >
               <h2 style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}>
-                Transforme sua carreira com UX Design
+                {hasApprovedPdf
+                  ? "Confira o resultado do útimo processo"
+                  : "Transforme sua carreira com UX Design"}
               </h2>
-              <p>
-                Aprenda a criar experiências digitais que encantam pessoas,
-                despertam emoções e fazem marcas se tornarem inesquecíveis.
-              </p>
+              {!hasApprovedPdf && (
+                <p>
+                  Aprenda a criar experiências digitais que encantam pessoas,
+                  despertam emoções e fazem marcas se tornarem inesquecíveis.
+                </p>
+              )}
             </div>
             <a
               style={{ textShadow: "14px 14px 18px rgba(0, 0, 0, 10.5)" }}
               target="_blank"
               rel="noopener noreferrer"
-              href={"https://aluno.jogajuntoinstituto.org/"}
+              href={
+                hasApprovedPdf
+                  ? studentsApprovedPdf ?? ""
+                  : "https://aluno.jogajuntoinstituto.org/"
+              }
             >
-              <button>Comece aqui a sua jornada. É grátis!</button>
+              <button>
+                {hasApprovedPdf
+                  ? "Ver resultado do processo"
+                  : "Comece aqui a sua jornada. É grátis!"}
+              </button>
             </a>
           </ContainerTitle>
         </section>
