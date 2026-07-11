@@ -1,34 +1,25 @@
 export const cardTwo = [
   {
-    Programa: "O que é UX Design?",
+    Programa: "O que é Qualidade de Software?",
     Fases: [
       {
         Nome: [
-          { text: "Imagine que você entra em um aplicativo pela primeira vez.", bold: true }
+          { text: "Qualidade de Software é a área que ajuda produtos digitais a funcionarem melhor antes de chegarem às pessoas.", bold: true }
         ]
       },
       {
         Nome: [
-          { text: "Tudo parece claro, fácil, fluido. Você encontra o que procura sem esforço, faz o que precisa em poucos cliques e pensa: ", bold: false },
-          { text: "'Nossa, que simples!'", bold: false, italic: true }
+          { text: "Na prática, profissionais de QA analisam requisitos, testam funcionalidades, investigam falhas e registram problemas de forma clara para o time corrigir.", bold: false }
         ]
       },
       {
         Nome: [
-          { text: "Por trás dessa experiência está o trabalho de quem atua com ", bold: false },
-          { text: "UX Design", bold: true },
-          { text: ", a área que cria experiências digitais que fazem sentido para as pessoas.", bold: false }
+          { text: "No curso, você vai conhecer testes em API, Python aplicado a testes e boas práticas de report de bugs.", bold: false }
         ]
       },
       {
         Nome: [
-          { text: "Profissionais de UX estudam o comportamento humano, entendem necessidades e desenham soluções que unem ", bold: false },
-          { text: "empatia, estratégia e design.", bold: true }
-        ]
-      },
-      {
-        Nome: [
-          { text: "Em outras palavras, o UX transforma tecnologia em algo humano: sites, aplicativos e sistemas que encantam, facilitam a vida e geram resultados reais para os negócios.", bold: false }
+          { text: "É uma formação para desenvolver olhar crítico, organização e comunicação técnica em projetos de tecnologia.", bold: false }
         ]
       }
     ],

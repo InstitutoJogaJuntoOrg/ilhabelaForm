@@ -7,9 +7,10 @@ export const cardTree = [
 
 export const cardOne = [
   {
-    title: "Ilhabela Tech",
-    description: "",
-    startDate: "02/03/2026",
+    title: "Curso de Qualidade de Software",
+    description:
+      "Formação presencial e gratuita para aprender fundamentos de QA, testes em API, Python e report de bugs.",
+    startDate: "31/08/2026",
     modalidade: "Presencial",
     periods: ["19h – 21h30, de segunda a quinta-feira."],
     modality: "Presencial, na IETC de Ilhabela de segunda à quinta",
