@@ -324,9 +324,11 @@ export const VideoCourseSection = styled.section`
     overflow: hidden;
   }
 
-  video {
+  video,
+  .videoFrame img {
     aspect-ratio: 16 / 9;
     display: block;
+    object-fit: cover;
     width: 100%;
   }
 

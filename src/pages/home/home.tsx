@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Footer } from "../../components/footer";
 import { CardOne } from "./components/card";
@@ -53,11 +53,20 @@ const courseFeatures = [
   },
 ];
 
+const HERO_VIDEO_SRC =
+  "https://estaticos-ijj.s3.sa-east-1.amazonaws.com/JogaJunto_Ilhabela.mp4";
+const HERO_VIDEO_POSTER = "/aprovada.jpg";
+const COURSE_VIDEO_SRC = "/video_qualidade_de_software.mp4";
+const COURSE_VIDEO_POSTER = "/banner_inscricao_line.png";
+
 export const HomePage = () => {
   const [faqs, setFaqs] = useState<any[]>([]);
   const [studentsApprovedPdf, setStudentsApprovedPdf] = useState<string | null>(
     null
   );
+  const [shouldLoadCourseVideo, setShouldLoadCourseVideo] = useState(false);
+  const heroVideoRef = useRef<HTMLVideoElement | null>(null);
+  const courseVideoFrameRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     axios
@@ -75,6 +84,59 @@ export const HomePage = () => {
       .catch((err) => console.error(err));
   }, []);
 
+  useEffect(() => {
+    const video = heroVideoRef.current;
+
+    if (!video || !("IntersectionObserver" in window)) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {
+            // Autoplay may be blocked by the browser; the poster remains visible.
+          });
+          return;
+        }
+
+        video.pause();
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(video);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const frame = courseVideoFrameRef.current;
+
+    if (shouldLoadCourseVideo || !frame) {
+      return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      setShouldLoadCourseVideo(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoadCourseVideo(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "500px 0px" }
+    );
+
+    observer.observe(frame);
+
+    return () => observer.disconnect();
+  }, [shouldLoadCourseVideo]);
+
   const hasApprovedPdf = Boolean(studentsApprovedPdf);
   const primaryLink = hasApprovedPdf
     ? studentsApprovedPdf ?? ""
@@ -84,10 +146,12 @@ export const HomePage = () => {
     <ContainerHome>
       <HeroMedia>
         <video
-          src="https://estaticos-ijj.s3.sa-east-1.amazonaws.com/JogaJunto_Ilhabela.mp4"
+          ref={heroVideoRef}
+          src={HERO_VIDEO_SRC}
           autoPlay
           muted
           loop
+          poster={HERO_VIDEO_POSTER}
           playsInline
         />
         <HeroContent>
@@ -159,14 +223,24 @@ export const HomePage = () => {
       </LearningSection>
 
       <VideoCourseSection>
-        <div className="videoFrame">
-          <video
-            src="/video_qualidade_de_software.mov"
-            controls
-            controlsList="nodownload"
-          >
-            Seu navegador não suporta a tag de vídeo.
-          </video>
+        <div className="videoFrame" ref={courseVideoFrameRef}>
+          {shouldLoadCourseVideo ? (
+            <video
+              src={COURSE_VIDEO_SRC}
+              controls
+              controlsList="nodownload"
+              poster={COURSE_VIDEO_POSTER}
+              preload="none"
+            >
+              Seu navegador não suporta a tag de vídeo.
+            </video>
+          ) : (
+            <img
+              src={COURSE_VIDEO_POSTER}
+              alt="Prévia do vídeo sobre o curso"
+              loading="lazy"
+            />
+          )}
         </div>
         <div className="courseText">
           <SectionEyebrow>Saiba mais sobre o curso</SectionEyebrow>
