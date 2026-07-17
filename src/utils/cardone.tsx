@@ -17,6 +17,6 @@ export const cardOne = [
     location:
       "IETEC Laboratório de informática Av. Profº Malaquias de O. Freitas, 448 - Barra Velha",
     vagas:
-      "São disponibilizadas 40 vagas para o curso, com no mínimo 20 aprovados para formação da turma.",
+      "São disponibilizadas 30 vagas para o curso",
   },
 ];
